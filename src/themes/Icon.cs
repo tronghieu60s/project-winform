@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace project_winform.src.themes
+{
+    class IconTheme
+    {
+        static string path = @"../../";
+
+        static public string exit = path + "assets/exit.png";
+        static public string exitHover = path + "assets/exit_hover.png";
+        static public string resize = path + "assets/resize.png";
+        static public string resizeHover = path + "assets/resize_hover.png";
+        static public string minimize = path + "assets/minimize.png";
+        static public string minimizeHover = path + "assets/minimize_hover.png";
+        static public string student = path + "assets/student.png";
+        static public string teacher = path + "assets/teacher.png";
+        static public string logout = path + "assets/logout.png";
+    }
+}
