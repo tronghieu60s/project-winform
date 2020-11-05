@@ -12,16 +12,16 @@ namespace project_winform.src.helpers
     class FormSetup
     {
         // Select All Object
-        public static IEnumerable<Control> GetAll(Control control, Type type)
+        public static IEnumerable<System.Windows.Forms.Control> GetAll(System.Windows.Forms.Control control, Type type)
         {
-            var controls = control.Controls.Cast<Control>();
+            var controls = control.Controls.Cast<System.Windows.Forms.Control>();
 
             return controls.SelectMany(ctrl => GetAll(ctrl, type))
                                       .Concat(controls)
                                       .Where(c => c.GetType() == type);
         }
 
-        public static void FormLoad(Control control)
+        public static void FormLoad(System.Windows.Forms.Control control)
         {
             // Format Default Button
             foreach (var item in GetAll(control, typeof(Button)))

@@ -106,7 +106,7 @@ namespace project_winform
         /* Title Bar Icon Action */ 
         private void picExit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Control.CloseWindow();
         }
 
         private void picMove_MouseDown(object sender, MouseEventArgs e)
@@ -124,9 +124,14 @@ namespace project_winform
         {
             if (true)
             {
-                Visible = false;
-                new frmMain().Show();
+               Control.frmMain.Show();
+               Control.frmLogin.Hide();
             }
+        }
+
+        private void lblForgetPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MessageBox.Show("Bạn vui lòng liên hệ Administrator để tạo lại mật khẩu.", "Quên Mật Khẩu", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

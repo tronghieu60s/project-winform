@@ -8,7 +8,6 @@ namespace project_winform
 {
     public partial class frmMain : Form
     {
-
         public frmMain()
         {
             InitializeComponent();
@@ -52,6 +51,7 @@ namespace project_winform
             btnSearch.BackColor = ColorTheme.getTheme("primary");
             #endregion
 
+            #region * Style Structor ListView
             // List View
             lvwMain.View = View.Details;
             lvwMain.GridLines = true;
@@ -63,6 +63,7 @@ namespace project_winform
             lvwMain.Columns.Add("Khóa", 50);
             lvwMain.Columns.Add("Khoa", 100);
             lvwMain.Columns.Add("Lớp", 70);
+            #endregion
         }
 
         #region * Style General
@@ -95,7 +96,7 @@ namespace project_winform
 
         private void picExit_Click(object sender, EventArgs e)
         {
-            Close();
+            Control.CloseWindow();
         }
 
 
@@ -116,5 +117,15 @@ namespace project_winform
         }
 
         #endregion
+
+        private void picLogout_Click(object sender, EventArgs e)
+        {
+           DialogResult result = MessageBox.Show("Bạn có muốn đăng xuất không?", "Đăng Xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(result == DialogResult.Yes)
+            {
+                Control.frmLogin.Show();
+                Control.frmMain.Hide();
+            }
+        }
     }
 }

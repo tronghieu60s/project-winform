@@ -108,6 +108,7 @@
             this.lblForgetPass.TabIndex = 3;
             this.lblForgetPass.TabStop = true;
             this.lblForgetPass.Text = "Quên mật khẩu?";
+            this.lblForgetPass.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblForgetPass_LinkClicked);
             this.lblForgetPass.MouseLeave += new System.EventHandler(this.lblForgetPass_MouseLeave);
             this.lblForgetPass.MouseHover += new System.EventHandler(this.lblForgetPass_MouseHover);
             // 
