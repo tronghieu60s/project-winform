@@ -14,7 +14,25 @@ namespace project_winform
             InitializeComponent();
             FormSetup.FormLoad(this);
 
-            #region * Style General
+            #region * Color - Text
+            BackColor = Color.FromArgb(54, 57, 63);
+
+            // Style Panel
+            pnlLeft.BackgroundImage = Image.FromFile(ImageTheme.bg);
+            pnlTextCodeNum.BackColor = pnlTextPassword.BackColor
+                = Color.FromArgb(48, 51, 57);
+            pnlTextCodeNum.Cursor = pnlTextPassword.Cursor = Cursors.IBeam;
+
+            // Style Label
+            lblForgetPass.LinkColor = Color.FromArgb(114, 137, 218);
+            lblForgetPass.LinkBehavior = LinkBehavior.NeverUnderline;
+            lblSlogan.ForeColor = Color.FromArgb(185, 187, 190);
+            lblTitle.ForeColor = Color.FromArgb(255, 255, 255);
+            lblPassword.ForeColor = lblCodeNum.ForeColor = Color.FromArgb(142, 146, 151);
+
+            // Style Button
+            btnLogin.BackColor = btnLogin.FlatAppearance.BorderColor = Color.FromArgb(114, 137, 218);
+
             // Hidden TitleBar
             FormBorderStyle = FormBorderStyle.None;
 
@@ -32,31 +50,7 @@ namespace project_winform
             #endregion
         }
 
-        private void frmLogin_Load(object sender, EventArgs e)
-        {
-            #region * Style General
-            BackColor = Color.FromArgb(54, 57, 63);
-
-            // Style Panel
-            pnlLeft.BackgroundImage = Image.FromFile(ImageTheme.bg);
-            pnlTextCodeNum.BackColor = pnlTextPassword.BackColor 
-                = Color.FromArgb(48, 51, 57);
-            pnlTextCodeNum.Cursor = pnlTextPassword.Cursor = Cursors.IBeam;
-
-            // Style Label
-            lblForgetPass.LinkColor = Color.FromArgb(114, 137, 218);
-            lblForgetPass.LinkBehavior = LinkBehavior.NeverUnderline;
-            lblSlogan.ForeColor = Color.FromArgb(185, 187, 190);
-            lblTitle.ForeColor = Color.FromArgb(255, 255, 255);
-            lblPassword.ForeColor = lblCodeNum.ForeColor = Color.FromArgb(142, 146, 151);
-
-            // Style Button
-            btnLogin.BackColor = btnLogin.FlatAppearance.BorderColor = Color.FromArgb(114, 137, 218);
-
-            #endregion
-        }
-
-        #region * Style General
+        #region * Control General
         /* Title Bar Hover Style */
         private void picIcon_MouseHover(object sender, EventArgs e)
         {

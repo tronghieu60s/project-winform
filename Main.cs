@@ -13,7 +13,23 @@ namespace project_winform
             InitializeComponent();
             FormSetup.FormLoad(this);
 
-            #region * Style General
+            #region * Setup Input
+            // Custom Format DateTime Picker
+            dtpBirthday.Format = DateTimePickerFormat.Custom;
+            dtpBirthday.CustomFormat = "dd / MM / yyyy";
+
+            // Combobox Default
+            cboTypeUser.SelectedIndex = 0;
+            cboSort.SelectedIndex = 0;
+            cboFilter.SelectedIndex = 0;
+            #endregion
+
+            #region * Color - Text
+            BackColor = ColorTheme.getTheme("secondary");
+            picLogout.Image = Image.FromFile(IconTheme.logout);
+            lblWelcome.ForeColor = ColorTheme.getTheme("text-bold");
+            lblWelcomeSlogan.ForeColor = ColorTheme.getTheme("text-normal");
+
             // Hidden TitleBar
             FormBorderStyle = FormBorderStyle.None;
 
@@ -23,25 +39,6 @@ namespace project_winform
             picResize.Image = Image.FromFile(IconTheme.resize);
             picMinimize.Image = Image.FromFile(IconTheme.minimize);
 
-            // Custom Format DateTime Picker
-            dtpNgaySinh.Format = DateTimePickerFormat.Custom;
-            dtpNgaySinh.CustomFormat = "dd / MM / yyyy";
-
-            // Combobox Default
-            cboTypeUser.SelectedIndex = 0;
-            cboSort.SelectedIndex = 0;
-            cboFilter.SelectedIndex = 0;
-            #endregion
-        }
-
-        private void frmMain_Load(object sender, EventArgs e)
-        {
-            #region * Style General
-            BackColor = ColorTheme.getTheme("secondary");
-            picLogout.Image = Image.FromFile(IconTheme.logout);
-            lblWelcome.ForeColor = ColorTheme.getTheme("text-bold");
-            lblWelcomeSlogan.ForeColor = ColorTheme.getTheme("text-normal");
-
             // Color Button Style
             btnImportExcel.BackColor =
             btnExportExcel.BackColor = ColorTheme.getTheme("success");
@@ -50,8 +47,11 @@ namespace project_winform
             btnUpdate.BackColor = ColorTheme.getTheme("warning");
             btnSearch.BackColor = ColorTheme.getTheme("primary");
             #endregion
+        }
 
-            #region * Style Structor ListView
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            #region * Structor ListView
             // List View
             lvwMain.View = View.Details;
             lvwMain.GridLines = true;
@@ -64,9 +64,29 @@ namespace project_winform
             lvwMain.Columns.Add("Khoa", 100);
             lvwMain.Columns.Add("Lớp", 70);
             #endregion
+
+            #region * Fake Data ComboBox
+            cboCourse.Items.Add("K17");
+            cboCourse.Items.Add("K18");
+            cboCourse.Items.Add("K19");
+            cboCourse.Items.Add("K20");
+
+            cboFaculty.Items.Add("Công Nghệ Thông Tin");
+            cboFaculty.Items.Add("Quản Trị Kinh Doanh");
+            cboFaculty.Items.Add("Tiếng Anh");
+            cboFaculty.Items.Add("Tiếng Hàn");
+
+            cboClass.Items.Add("CD19TT1");
+            cboClass.Items.Add("CD19TT2");
+            cboClass.Items.Add("CD19TT3");
+            cboClass.Items.Add("CD19TT4");
+            cboClass.Items.Add("CD19TT5");
+            cboClass.Items.Add("CD19TT6");
+            cboClass.Items.Add("CD19TT7");
+            #endregion
         }
 
-        #region * Style General
+        #region * Control General
         /* Title Bar Hover Style */
         private void picIcon_MouseHover(object sender, EventArgs e)
         {
@@ -125,6 +145,14 @@ namespace project_winform
             {
                 Control.frmLogin.Show();
                 Control.frmMain.Hide();
+            }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (true)
+            {
+
             }
         }
     }

@@ -41,15 +41,15 @@
             this.cboTypeUser = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dtpNgaySinh = new System.Windows.Forms.DateTimePicker();
+            this.dtpBirthday = new System.Windows.Forms.DateTimePicker();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cboClass = new System.Windows.Forms.ComboBox();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.cboFaculty = new System.Windows.Forms.ComboBox();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cboCourse = new System.Windows.Forms.ComboBox();
+            this.txtFullName = new System.Windows.Forms.TextBox();
+            this.txtCodeNum = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -201,15 +201,15 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox2.Controls.Add(this.dtpNgaySinh);
+            this.groupBox2.Controls.Add(this.dtpBirthday);
             this.groupBox2.Controls.Add(this.btnUpdate);
-            this.groupBox2.Controls.Add(this.comboBox3);
+            this.groupBox2.Controls.Add(this.cboClass);
             this.groupBox2.Controls.Add(this.btnDelete);
-            this.groupBox2.Controls.Add(this.comboBox6);
+            this.groupBox2.Controls.Add(this.cboFaculty);
             this.groupBox2.Controls.Add(this.btnAdd);
-            this.groupBox2.Controls.Add(this.comboBox2);
-            this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.cboCourse);
+            this.groupBox2.Controls.Add(this.txtFullName);
+            this.groupBox2.Controls.Add(this.txtCodeNum);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label5);
@@ -223,12 +223,12 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông tin chi tiết";
             // 
-            // dtpNgaySinh
+            // dtpBirthday
             // 
-            this.dtpNgaySinh.Location = new System.Drawing.Point(164, 117);
-            this.dtpNgaySinh.Name = "dtpNgaySinh";
-            this.dtpNgaySinh.Size = new System.Drawing.Size(216, 26);
-            this.dtpNgaySinh.TabIndex = 3;
+            this.dtpBirthday.Location = new System.Drawing.Point(164, 117);
+            this.dtpBirthday.Name = "dtpBirthday";
+            this.dtpBirthday.Size = new System.Drawing.Size(216, 26);
+            this.dtpBirthday.TabIndex = 3;
             // 
             // btnUpdate
             // 
@@ -241,13 +241,13 @@
             this.btnUpdate.Text = "Cập Nhật";
             this.btnUpdate.UseVisualStyleBackColor = false;
             // 
-            // comboBox3
+            // cboClass
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(164, 232);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(156, 28);
-            this.comboBox3.TabIndex = 6;
+            this.cboClass.FormattingEnabled = true;
+            this.cboClass.Location = new System.Drawing.Point(164, 232);
+            this.cboClass.Name = "cboClass";
+            this.cboClass.Size = new System.Drawing.Size(156, 28);
+            this.cboClass.TabIndex = 6;
             // 
             // btnDelete
             // 
@@ -260,13 +260,13 @@
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = false;
             // 
-            // comboBox6
+            // cboFaculty
             // 
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(164, 192);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(156, 28);
-            this.comboBox6.TabIndex = 5;
+            this.cboFaculty.FormattingEnabled = true;
+            this.cboFaculty.Location = new System.Drawing.Point(164, 192);
+            this.cboFaculty.Name = "cboFaculty";
+            this.cboFaculty.Size = new System.Drawing.Size(156, 28);
+            this.cboFaculty.TabIndex = 5;
             // 
             // btnAdd
             // 
@@ -278,28 +278,29 @@
             this.btnAdd.TabIndex = 7;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // comboBox2
+            // cboCourse
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(164, 154);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(61, 28);
-            this.comboBox2.TabIndex = 4;
+            this.cboCourse.FormattingEnabled = true;
+            this.cboCourse.Location = new System.Drawing.Point(164, 154);
+            this.cboCourse.Name = "cboCourse";
+            this.cboCourse.Size = new System.Drawing.Size(61, 28);
+            this.cboCourse.TabIndex = 4;
             // 
-            // textBox2
+            // txtFullName
             // 
-            this.textBox2.Location = new System.Drawing.Point(164, 80);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(216, 26);
-            this.textBox2.TabIndex = 2;
+            this.txtFullName.Location = new System.Drawing.Point(164, 80);
+            this.txtFullName.Name = "txtFullName";
+            this.txtFullName.Size = new System.Drawing.Size(216, 26);
+            this.txtFullName.TabIndex = 2;
             // 
-            // textBox1
+            // txtCodeNum
             // 
-            this.textBox1.Location = new System.Drawing.Point(164, 43);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(216, 26);
-            this.textBox1.TabIndex = 1;
+            this.txtCodeNum.Location = new System.Drawing.Point(164, 43);
+            this.txtCodeNum.Name = "txtCodeNum";
+            this.txtCodeNum.Size = new System.Drawing.Size(216, 26);
+            this.txtCodeNum.TabIndex = 1;
             // 
             // label8
             // 
@@ -470,14 +471,14 @@
         private System.Windows.Forms.Button btnExportExcel;
         private System.Windows.Forms.Button btnImportExcel;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DateTimePicker dtpNgaySinh;
+        private System.Windows.Forms.DateTimePicker dtpBirthday;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox cboClass;
+        private System.Windows.Forms.ComboBox cboCourse;
+        private System.Windows.Forms.TextBox txtFullName;
+        private System.Windows.Forms.TextBox txtCodeNum;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -487,7 +488,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cboSort;
         private System.Windows.Forms.ComboBox cboFilter;
-        private System.Windows.Forms.ComboBox comboBox6;
+        private System.Windows.Forms.ComboBox cboFaculty;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button btnSearch;
