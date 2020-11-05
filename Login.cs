@@ -14,25 +14,27 @@ namespace project_winform
             InitializeComponent();
             FormSetup.FormLoad(this);
 
+            #region * Style General
             // Hidden TitleBar
             FormBorderStyle = FormBorderStyle.None;
 
+            // Style Title Bar
+            picExit.Image = Image.FromFile(IconTheme.exitHover);
+            picMove.Image = Image.FromFile(IconTheme.move);
+
+            // Text Box Style 
             foreach (var item in FormSetup.GetAll(this, typeof(TextBox)))
             {
                 (item as TextBox).BorderStyle = BorderStyle.None;
                 (item as TextBox).ForeColor = Color.FromArgb(255, 255, 255);
                 (item as TextBox).BackColor = Color.FromArgb(48, 51, 57);
             }
+            #endregion
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            /* --- Title Bar ---  */
-            // Style Button Title Bar
-            picExit.Image = Image.FromFile(IconTheme.exit);
-            picResize.Image = Image.FromFile(IconTheme.resize);
-            picMinimize.Image = Image.FromFile(IconTheme.minimize);
-
+            #region * Style General
             BackColor = Color.FromArgb(54, 57, 63);
 
             // Style Panel
@@ -50,8 +52,25 @@ namespace project_winform
 
             // Style Button
             btnLogin.BackColor = btnLogin.FlatAppearance.BorderColor = Color.FromArgb(114, 137, 218);
+
+            #endregion
         }
 
+        #region * Style General
+        /* Title Bar Hover Style */
+        private void picIcon_MouseHover(object sender, EventArgs e)
+        {
+            if ((sender as PictureBox).Name == "picMove")
+                picMove.Image = Image.FromFile(IconTheme.moveHover);
+        }
+
+        private void picIcon_MouseLeave(object sender, EventArgs e)
+        {
+            if ((sender as PictureBox).Name == "picMove")
+                picMove.Image = Image.FromFile(IconTheme.move);
+        }
+
+        /* Panel Text Style */
         private void pnlTextCodeNum_Click(object sender, EventArgs e)
         {
             txtCodeNum.Focus();
@@ -72,6 +91,7 @@ namespace project_winform
             ControlPaint.DrawBorder(e.Graphics, pnlTextPassword.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
         }
 
+        /* Forget Passeword Label Style */
         private void lblForgetPass_MouseHover(object sender, EventArgs e)
         {
             lblForgetPass.LinkBehavior = LinkBehavior.AlwaysUnderline;
@@ -82,30 +102,31 @@ namespace project_winform
             lblForgetPass.LinkBehavior = LinkBehavior.NeverUnderline;
         }
 
-        // Style Title Bar Icon Hover
-        private void picIcon_MouseHover(object sender, EventArgs e)
-        {
-            if ((sender as PictureBox).Name == "picExit")
-                picExit.Image = Image.FromFile(IconTheme.exitHover);
-            if ((sender as PictureBox).Name == "picResize")
-                picResize.Image = Image.FromFile(IconTheme.resizeHover);
-            if ((sender as PictureBox).Name == "picMinimize")
-                picMinimize.Image = Image.FromFile(IconTheme.minimizeHover);
-        }
 
-        private void picIcon_MouseLeave(object sender, EventArgs e)
-        {
-            if ((sender as PictureBox).Name == "picExit")
-                picExit.Image = Image.FromFile(IconTheme.exit);
-            if ((sender as PictureBox).Name == "picResize")
-                picResize.Image = Image.FromFile(IconTheme.resize);
-            if ((sender as PictureBox).Name == "picMinimize")
-                picMinimize.Image = Image.FromFile(IconTheme.minimize);
-        }
-
+        /* Title Bar Icon Action */ 
         private void picExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void picMove_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Window.ReleaseCapture();
+                Window.SendMessage(Handle, Window.WM_NCLBUTTONDOWN, Window.HT_CAPTION, 0);
+            }
+        }
+
+        #endregion
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            if (true)
+            {
+                Visible = false;
+                new frmMain().Show();
+            }
         }
     }
 }

@@ -14,8 +14,15 @@ namespace project_winform
             InitializeComponent();
             FormSetup.FormLoad(this);
 
+            #region * Style General
             // Hidden TitleBar
             FormBorderStyle = FormBorderStyle.None;
+
+            // Style Title Bar
+            pnlTitleBar.BackColor = ColorTheme.getTheme();
+            picExit.Image = Image.FromFile(IconTheme.exit);
+            picResize.Image = Image.FromFile(IconTheme.resize);
+            picMinimize.Image = Image.FromFile(IconTheme.minimize);
 
             // Custom Format DateTime Picker
             dtpNgaySinh.Format = DateTimePickerFormat.Custom;
@@ -25,34 +32,27 @@ namespace project_winform
             cboTypeUser.SelectedIndex = 0;
             cboSort.SelectedIndex = 0;
             cboFilter.SelectedIndex = 0;
+            #endregion
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            /* --- Title Bar ---  */
-            // Style Color
-            pnlTitleBar.BackColor = ColorTheme.getTheme();
-
-            // Style Button Title Bar
-            picExit.Image = Image.FromFile(IconTheme.exit);
-            picResize.Image = Image.FromFile(IconTheme.resize);
-            picMinimize.Image = Image.FromFile(IconTheme.minimize);
-
-            /* --- Style General --- */
+            #region * Style General
             BackColor = ColorTheme.getTheme("secondary");
             picLogout.Image = Image.FromFile(IconTheme.logout);
             lblWelcome.ForeColor = ColorTheme.getTheme("text-bold");
             lblWelcomeSlogan.ForeColor = ColorTheme.getTheme("text-normal");
 
-            // Color Button
+            // Color Button Style
             btnImportExcel.BackColor =
             btnExportExcel.BackColor = ColorTheme.getTheme("success");
             btnAdd.BackColor = ColorTheme.getTheme("primary");
             btnDelete.BackColor = ColorTheme.getTheme("danger");
             btnUpdate.BackColor = ColorTheme.getTheme("warning");
             btnSearch.BackColor = ColorTheme.getTheme("primary");
+            #endregion
 
-            /* --- List View --- */
+            // List View
             lvwMain.View = View.Details;
             lvwMain.GridLines = true;
             lvwMain.FullRowSelect = true;
@@ -65,7 +65,8 @@ namespace project_winform
             lvwMain.Columns.Add("Lớp", 70);
         }
 
-        // Style Title Bar Icon Hover
+        #region * Style General
+        /* Title Bar Hover Style */
         private void picIcon_MouseHover(object sender, EventArgs e)
         {
             if ((sender as PictureBox).Name == "picExit")
@@ -86,7 +87,7 @@ namespace project_winform
                 picMinimize.Image = Image.FromFile(IconTheme.minimize);
         }
 
-        // Action Pic Icon
+        /* Title Bar Icon Action */
         private void picMinimize_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
@@ -98,7 +99,7 @@ namespace project_winform
         }
 
 
-        // Move Window Action
+        /* Move Window Action */
         private void pnlTitleBar_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -108,9 +109,12 @@ namespace project_winform
             }
         }
 
+        /* Border Form Style */
         private void frmMain_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.DrawRectangle(new Pen(ColorTheme.getTheme(), 8), DisplayRectangle);
         }
+
+        #endregion
     }
 }

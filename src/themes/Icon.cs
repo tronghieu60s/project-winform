@@ -16,6 +16,8 @@ namespace project_winform.src.themes
         static public string resizeHover = path + "assets/resize_hover.png";
         static public string minimize = path + "assets/minimize.png";
         static public string minimizeHover = path + "assets/minimize_hover.png";
+        static public string move = path + "assets/move.png";
+        static public string moveHover = path + "assets/move_hover.png";
         static public string student = path + "assets/student.png";
         static public string teacher = path + "assets/teacher.png";
         static public string logout = path + "assets/logout.png";
