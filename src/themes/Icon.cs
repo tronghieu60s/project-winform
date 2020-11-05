@@ -1,4 +1,5 @@
-﻿using System;
+﻿using project_winform.src.config;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ namespace project_winform.src.themes
 {
     class IconTheme
     {
-        static string path = @"../../";
+        static readonly string path = Config.path;
 
         static public string exit = path + "assets/exit.png";
         static public string exitHover = path + "assets/exit_hover.png";

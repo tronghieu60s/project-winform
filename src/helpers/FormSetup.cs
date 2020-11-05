@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 using project_winform.src.themes;
+using System.Drawing;
 
 namespace project_winform.src.helpers
 {
@@ -22,17 +24,23 @@ namespace project_winform.src.helpers
         public static void FormLoad(Control control)
         {
             // Format Default Button
-            foreach (var btn in GetAll(control, typeof(Button)))
+            foreach (var item in GetAll(control, typeof(Button)))
             {
-                (btn as Button).FlatStyle = FlatStyle.Flat;
-                (btn as Button).Cursor = Cursors.Hand;
-                (btn as Button).ForeColor = ColorTheme.getTheme("secondary");
+                (item as Button).FlatStyle = FlatStyle.Flat;
+                (item as Button).Cursor = Cursors.Hand;
+                (item as Button).ForeColor = ColorTheme.getTheme("secondary");
             }
 
-            foreach (var btn in GetAll(control, typeof(PictureBox)))
+            foreach (var item in GetAll(control, typeof(PictureBox)))
             {
-                (btn as PictureBox).SizeMode = PictureBoxSizeMode.StretchImage;
-                (btn as PictureBox).Cursor = Cursors.Hand;
+                (item as PictureBox).SizeMode = PictureBoxSizeMode.StretchImage;
+                (item as PictureBox).Cursor = Cursors.Hand;
+            }
+
+            foreach (var item in GetAll(control, typeof(Panel)))
+            {
+                (item as Panel).BackgroundImageLayout = ImageLayout.Stretch;
+                (item as Panel).Cursor = Cursors.Hand;
             }
         }
     }

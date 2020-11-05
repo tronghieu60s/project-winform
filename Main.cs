@@ -20,6 +20,7 @@ namespace project_winform
             // Custom Format DateTime Picker
             dtpNgaySinh.Format = DateTimePickerFormat.Custom;
             dtpNgaySinh.CustomFormat = "dd / MM / yyyy";
+
             // Combobox Default
             cboTypeUser.SelectedIndex = 0;
             cboSort.SelectedIndex = 0;
@@ -30,7 +31,6 @@ namespace project_winform
         {
             /* --- Title Bar ---  */
             // Style Color
-            BackColor = ColorTheme.getTheme("secondary");
             pnlTitleBar.BackColor = ColorTheme.getTheme();
 
             // Style Button Title Bar
@@ -39,6 +39,7 @@ namespace project_winform
             picMinimize.Image = Image.FromFile(IconTheme.minimize);
 
             /* --- Style General --- */
+            BackColor = ColorTheme.getTheme("secondary");
             picLogout.Image = Image.FromFile(IconTheme.logout);
             lblWelcome.ForeColor = ColorTheme.getTheme("text-bold");
             lblWelcomeSlogan.ForeColor = ColorTheme.getTheme("text-normal");
