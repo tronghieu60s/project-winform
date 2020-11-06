@@ -63,7 +63,7 @@
             this.lblCountItemListView = new System.Windows.Forms.Label();
             this.cboSort = new System.Windows.Forms.ComboBox();
             this.cboFilter = new System.Windows.Forms.ComboBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.mnuStripListView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.xóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -432,13 +432,13 @@
             this.cboFilter.Size = new System.Drawing.Size(121, 28);
             this.cboFilter.TabIndex = 9;
             // 
-            // textBox3
+            // txtSearch
             // 
-            this.textBox3.Location = new System.Drawing.Point(771, 74);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(230, 26);
-            this.textBox3.TabIndex = 10;
+            this.txtSearch.Location = new System.Drawing.Point(771, 74);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(230, 26);
+            this.txtSearch.TabIndex = 10;
             // 
             // btnSearch
             // 
@@ -450,6 +450,7 @@
             this.btnSearch.TabIndex = 11;
             this.btnSearch.Text = "Tìm Kiếm";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // mnuStripListView
             // 
@@ -473,7 +474,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1182, 694);
             this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.cboFilter);
             this.Controls.Add(this.cboSort);
             this.Controls.Add(this.lblCountItemListView);
@@ -540,7 +541,7 @@
         private System.Windows.Forms.ComboBox cboFilter;
         private System.Windows.Forms.ComboBox cboFaculty;
         private System.Windows.Forms.Label lblFaculty;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label lblManager;
         private System.Windows.Forms.CheckedListBox chkListManager;

@@ -9,6 +9,8 @@ namespace project_winform
 {
     public partial class frmMain : Form
     {
+        private ListView lvwMainBase = new ListView();
+
         public frmMain()
         {
             InitializeComponent();
@@ -343,10 +345,43 @@ namespace project_winform
         }
         #endregion
 
+        #region * Menu Strip List View
+        private void lvwMain_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (lvwMain.FocusedItem.Bounds.Contains(e.Location))
+                {
+                    mnuStripListView.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void xóaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            while (lvwMain.SelectedIndices.Count > 0)
+                lvwMain.Items.RemoveAt(lvwMain.SelectedIndices[0]);
+            SaveListViewToBase();
+            CountNumberListView();
+        }
+
+        #endregion
+
         private void CountNumberListView()
         {
             int number = lvwMain.Items.Count;
             lblCountItemListView.Text = $"{number} mục";
+        }
+
+        private void SaveListViewToBase()
+        {
+            lvwMainBase.Items.Clear();
+            ListViewItem itemClone;
+            foreach (ListViewItem item in lvwMain.Items)
+            {
+                itemClone = item.Clone() as ListViewItem;
+                lvwMainBase.Items.Add(itemClone);
+            }
         }
 
         private void picLogout_Click(object sender, EventArgs e)
@@ -367,6 +402,7 @@ namespace project_winform
                 AddUserStudent();
             if (cboTypeUser.SelectedIndex == 2)
                 AddUserTeacher();
+            SaveListViewToBase();
             CountNumberListView();
         }
 
@@ -390,25 +426,34 @@ namespace project_winform
             }
         }
 
-        #region * Menu Strip List View
-        private void lvwMain_MouseClick(object sender, MouseEventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            ListViewItem itemClone;
+            if (txtSearch.Text == string.Empty)
             {
-                if (lvwMain.FocusedItem.Bounds.Contains(e.Location))
+                lvwMain.Items.Clear();
+                foreach (ListViewItem item in lvwMainBase.Items)
                 {
-                    mnuStripListView.Show(Cursor.Position);
+                    itemClone = item.Clone() as ListViewItem;
+                    lvwMain.Items.Add(itemClone);
                 }
+                return;
+            }
+
+            ListView lvwTemporary = new ListView();
+            foreach (ListViewItem item in lvwMainBase.Items)
+            {
+                itemClone = item.Clone() as ListViewItem;
+                if (item.SubItems[1].Text == txtSearch.Text)
+                    lvwTemporary.Items.Add(itemClone);
+            }
+
+            lvwMain.Items.Clear();
+            foreach (ListViewItem item in lvwTemporary.Items)
+            {
+                itemClone = item.Clone() as ListViewItem;
+                lvwMain.Items.Add(itemClone);
             }
         }
-
-        private void xóaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            while (lvwMain.SelectedIndices.Count > 0)
-                lvwMain.Items.RemoveAt(lvwMain.SelectedIndices[0]);
-            CountNumberListView();
-        }
-
-        #endregion
     }
 }
