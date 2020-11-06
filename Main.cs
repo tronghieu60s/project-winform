@@ -138,6 +138,95 @@ namespace project_winform
 
         #endregion
 
+        #region * Validating Input
+
+        private bool ValidatingTxtCodeNum()
+        {
+            if (txtCodeNum.Text.Trim().Length <= 0)
+            {
+                txtCodeNum.Focus();
+                lblCodeNum.ForeColor = ColorTheme.getTheme("danger");
+                return false;
+            }
+            else lblCodeNum.ForeColor = Color.Black;
+            return true;
+        }
+
+        private bool ValidatingTxtFullName()
+        {
+            if (txtFullName.Text.Trim().Length <= 0)
+            {
+                txtFullName.Focus();
+                lblFullName.ForeColor = ColorTheme.getTheme("danger");
+                return false;
+            }
+            else lblFullName.ForeColor = Color.Black;
+            return true;
+        }
+
+        private bool ValidatingCboCourse()
+        {
+            if (cboCourse.Text.Trim().Length <= 0 || cboCourse.SelectedIndex == -1)
+            {
+                cboCourse.Focus();
+                lblCourse.ForeColor = ColorTheme.getTheme("danger");
+                return false;
+            }
+            else lblCourse.ForeColor = Color.Black;
+            return true;
+        }
+
+        private bool ValidatingCboFaculty()
+        {
+            if (cboFaculty.Text.Trim().Length <= 0 || cboFaculty.SelectedIndex == -1)
+            {
+                cboFaculty.Focus();
+                lblFaculty.ForeColor = ColorTheme.getTheme("danger");
+                return false;
+            }
+            else lblFaculty.ForeColor = Color.Black;
+            return true;
+        }
+
+        private bool ValidatingCboClass()
+        {
+            if (cboClass.Text.Trim().Length <= 0 || cboClass.SelectedIndex == -1)
+            {
+                cboClass.Focus();
+                lblClass.ForeColor = ColorTheme.getTheme("danger");
+                return false;
+            }
+            else lblClass.ForeColor = Color.Black;
+            return true;
+        }
+
+        private void txtCodeNum_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidatingTxtCodeNum();
+        }
+
+        private void txtFullName_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidatingTxtFullName();
+        }
+
+        private void cboCourse_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidatingCboCourse();
+        }
+
+        private void cboFaculty_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidatingCboFaculty();
+        }
+
+        private void cboClass_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidatingCboClass();
+        }
+
+        #endregion
+
         private void picLogout_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Bạn có muốn đăng xuất không?", "Đăng Xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -150,9 +239,9 @@ namespace project_winform
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (true)
+            if (ValidatingTxtCodeNum() && ValidatingTxtFullName() && ValidatingCboCourse() && ValidatingCboFaculty() && ValidatingCboClass())
             {
-
+                Console.WriteLine("ok");
             }
         }
     }

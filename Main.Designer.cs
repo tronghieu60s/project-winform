@@ -50,12 +50,12 @@
             this.cboCourse = new System.Windows.Forms.ComboBox();
             this.txtFullName = new System.Windows.Forms.TextBox();
             this.txtCodeNum = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblFaculty = new System.Windows.Forms.Label();
+            this.lblClass = new System.Windows.Forms.Label();
+            this.lblCourse = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblFullName = new System.Windows.Forms.Label();
+            this.lblCodeNum = new System.Windows.Forms.Label();
             this.lvwMain = new System.Windows.Forms.ListView();
             this.label7 = new System.Windows.Forms.Label();
             this.cboSort = new System.Windows.Forms.ComboBox();
@@ -210,12 +210,12 @@
             this.groupBox2.Controls.Add(this.cboCourse);
             this.groupBox2.Controls.Add(this.txtFullName);
             this.groupBox2.Controls.Add(this.txtCodeNum);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.lblFaculty);
+            this.groupBox2.Controls.Add(this.lblClass);
+            this.groupBox2.Controls.Add(this.lblCourse);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.lblFullName);
+            this.groupBox2.Controls.Add(this.lblCodeNum);
             this.groupBox2.Location = new System.Drawing.Point(12, 338);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(442, 342);
@@ -248,6 +248,7 @@
             this.cboClass.Name = "cboClass";
             this.cboClass.Size = new System.Drawing.Size(156, 28);
             this.cboClass.TabIndex = 6;
+            this.cboClass.Validating += new System.ComponentModel.CancelEventHandler(this.cboClass_Validating);
             // 
             // btnDelete
             // 
@@ -267,6 +268,7 @@
             this.cboFaculty.Name = "cboFaculty";
             this.cboFaculty.Size = new System.Drawing.Size(156, 28);
             this.cboFaculty.TabIndex = 5;
+            this.cboFaculty.Validating += new System.ComponentModel.CancelEventHandler(this.cboFaculty_Validating);
             // 
             // btnAdd
             // 
@@ -287,6 +289,7 @@
             this.cboCourse.Name = "cboCourse";
             this.cboCourse.Size = new System.Drawing.Size(61, 28);
             this.cboCourse.TabIndex = 4;
+            this.cboCourse.Validating += new System.ComponentModel.CancelEventHandler(this.cboCourse_Validating);
             // 
             // txtFullName
             // 
@@ -294,6 +297,7 @@
             this.txtFullName.Name = "txtFullName";
             this.txtFullName.Size = new System.Drawing.Size(216, 26);
             this.txtFullName.TabIndex = 2;
+            this.txtFullName.Validating += new System.ComponentModel.CancelEventHandler(this.txtFullName_Validating);
             // 
             // txtCodeNum
             // 
@@ -301,33 +305,34 @@
             this.txtCodeNum.Name = "txtCodeNum";
             this.txtCodeNum.Size = new System.Drawing.Size(216, 26);
             this.txtCodeNum.TabIndex = 1;
+            this.txtCodeNum.Validating += new System.ComponentModel.CancelEventHandler(this.txtCodeNum_Validating);
             // 
-            // label8
+            // lblFaculty
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(62, 181);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(50, 20);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Khoa:";
+            this.lblFaculty.AutoSize = true;
+            this.lblFaculty.Location = new System.Drawing.Point(62, 181);
+            this.lblFaculty.Name = "lblFaculty";
+            this.lblFaculty.Size = new System.Drawing.Size(50, 20);
+            this.lblFaculty.TabIndex = 0;
+            this.lblFaculty.Text = "Khoa:";
             // 
-            // label6
+            // lblClass
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(62, 221);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 20);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Lớp:";
+            this.lblClass.AutoSize = true;
+            this.lblClass.Location = new System.Drawing.Point(62, 221);
+            this.lblClass.Name = "lblClass";
+            this.lblClass.Size = new System.Drawing.Size(40, 20);
+            this.lblClass.TabIndex = 0;
+            this.lblClass.Text = "Lớp:";
             // 
-            // label5
+            // lblCourse
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(62, 143);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(50, 20);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Khóa:";
+            this.lblCourse.AutoSize = true;
+            this.lblCourse.Location = new System.Drawing.Point(62, 143);
+            this.lblCourse.Name = "lblCourse";
+            this.lblCourse.Size = new System.Drawing.Size(50, 20);
+            this.lblCourse.TabIndex = 0;
+            this.lblCourse.Text = "Khóa:";
             // 
             // label4
             // 
@@ -338,23 +343,23 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Ngày Sinh:";
             // 
-            // label3
+            // lblFullName
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(62, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 20);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Họ Tên:";
+            this.lblFullName.AutoSize = true;
+            this.lblFullName.Location = new System.Drawing.Point(62, 69);
+            this.lblFullName.Name = "lblFullName";
+            this.lblFullName.Size = new System.Drawing.Size(65, 20);
+            this.lblFullName.TabIndex = 0;
+            this.lblFullName.Text = "Họ Tên:";
             // 
-            // label2
+            // lblCodeNum
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(62, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 20);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Mã Số:";
+            this.lblCodeNum.AutoSize = true;
+            this.lblCodeNum.Location = new System.Drawing.Point(62, 32);
+            this.lblCodeNum.Name = "lblCodeNum";
+            this.lblCodeNum.Size = new System.Drawing.Size(59, 20);
+            this.lblCodeNum.TabIndex = 0;
+            this.lblCodeNum.Text = "Mã Số:";
             // 
             // lvwMain
             // 
@@ -480,17 +485,17 @@
         private System.Windows.Forms.ComboBox cboCourse;
         private System.Windows.Forms.TextBox txtFullName;
         private System.Windows.Forms.TextBox txtCodeNum;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblClass;
+        private System.Windows.Forms.Label lblCourse;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblFullName;
+        private System.Windows.Forms.Label lblCodeNum;
         private System.Windows.Forms.ListView lvwMain;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cboSort;
         private System.Windows.Forms.ComboBox cboFilter;
         private System.Windows.Forms.ComboBox cboFaculty;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblFaculty;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button btnSearch;
     }
