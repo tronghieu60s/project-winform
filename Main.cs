@@ -244,5 +244,50 @@ namespace project_winform
                 Console.WriteLine("ok");
             }
         }
+
+        private void cboTypeUser_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cboTypeUser.SelectedIndex == 0)
+            {
+                lblCourse.Hide();
+                cboCourse.Hide();
+                lblFaculty.Hide();
+                cboFaculty.Hide();
+                lblClass.Hide();
+                cboClass.Hide();
+                lblExpertise.Hide();
+                cboExpertise.Hide();
+                lblManager.Hide();
+                chkListManager.Hide();
+            }
+            if(cboTypeUser.SelectedIndex == 1)
+            {
+                lblExpertise.Hide();
+                cboExpertise.Hide();
+                lblManager.Hide();
+                chkListManager.Hide();
+
+                lblCourse.Show();
+                cboCourse.Show();
+                lblFaculty.Show();
+                cboFaculty.Show();
+                lblClass.Show();
+                cboClass.Show();
+            }
+            if(cboTypeUser.SelectedIndex == 2)
+            {
+                lblCourse.Hide();
+                cboCourse.Hide();
+                lblFaculty.Hide();
+                cboFaculty.Hide();
+                lblClass.Hide();
+                cboClass.Hide();
+
+                lblExpertise.Show();
+                cboExpertise.Show();
+                lblManager.Show();
+                chkListManager.Show();
+            }
+        }
     }
 }

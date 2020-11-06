@@ -62,6 +62,10 @@
             this.cboFilter = new System.Windows.Forms.ComboBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.lblExpertise = new System.Windows.Forms.Label();
+            this.cboExpertise = new System.Windows.Forms.ComboBox();
+            this.lblManager = new System.Windows.Forms.Label();
+            this.chkListManager = new System.Windows.Forms.CheckedListBox();
             this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picResize)).BeginInit();
@@ -182,12 +186,13 @@
             this.cboTypeUser.FormattingEnabled = true;
             this.cboTypeUser.Items.AddRange(new object[] {
             "Quản Trị Viên",
-            "Giáo Viên",
-            "Học Sinh"});
+            "Học Sinh",
+            "Giáo Viên"});
             this.cboTypeUser.Location = new System.Drawing.Point(159, 28);
             this.cboTypeUser.Name = "cboTypeUser";
             this.cboTypeUser.Size = new System.Drawing.Size(252, 28);
             this.cboTypeUser.TabIndex = 10;
+            this.cboTypeUser.SelectedIndexChanged += new System.EventHandler(this.cboTypeUser_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -201,6 +206,10 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox2.Controls.Add(this.chkListManager);
+            this.groupBox2.Controls.Add(this.lblManager);
+            this.groupBox2.Controls.Add(this.cboExpertise);
+            this.groupBox2.Controls.Add(this.lblExpertise);
             this.groupBox2.Controls.Add(this.dtpBirthday);
             this.groupBox2.Controls.Add(this.btnUpdate);
             this.groupBox2.Controls.Add(this.cboClass);
@@ -227,7 +236,7 @@
             // 
             this.dtpBirthday.Location = new System.Drawing.Point(164, 103);
             this.dtpBirthday.Name = "dtpBirthday";
-            this.dtpBirthday.Size = new System.Drawing.Size(216, 26);
+            this.dtpBirthday.Size = new System.Drawing.Size(180, 26);
             this.dtpBirthday.TabIndex = 3;
             // 
             // btnUpdate
@@ -266,7 +275,7 @@
             this.cboFaculty.FormattingEnabled = true;
             this.cboFaculty.Location = new System.Drawing.Point(164, 178);
             this.cboFaculty.Name = "cboFaculty";
-            this.cboFaculty.Size = new System.Drawing.Size(156, 28);
+            this.cboFaculty.Size = new System.Drawing.Size(216, 28);
             this.cboFaculty.TabIndex = 5;
             this.cboFaculty.Validating += new System.ComponentModel.CancelEventHandler(this.cboFaculty_Validating);
             // 
@@ -303,14 +312,14 @@
             // 
             this.txtCodeNum.Location = new System.Drawing.Point(164, 29);
             this.txtCodeNum.Name = "txtCodeNum";
-            this.txtCodeNum.Size = new System.Drawing.Size(216, 26);
+            this.txtCodeNum.Size = new System.Drawing.Size(156, 26);
             this.txtCodeNum.TabIndex = 1;
             this.txtCodeNum.Validating += new System.ComponentModel.CancelEventHandler(this.txtCodeNum_Validating);
             // 
             // lblFaculty
             // 
             this.lblFaculty.AutoSize = true;
-            this.lblFaculty.Location = new System.Drawing.Point(62, 181);
+            this.lblFaculty.Location = new System.Drawing.Point(49, 181);
             this.lblFaculty.Name = "lblFaculty";
             this.lblFaculty.Size = new System.Drawing.Size(50, 20);
             this.lblFaculty.TabIndex = 0;
@@ -319,7 +328,7 @@
             // lblClass
             // 
             this.lblClass.AutoSize = true;
-            this.lblClass.Location = new System.Drawing.Point(62, 221);
+            this.lblClass.Location = new System.Drawing.Point(49, 221);
             this.lblClass.Name = "lblClass";
             this.lblClass.Size = new System.Drawing.Size(40, 20);
             this.lblClass.TabIndex = 0;
@@ -328,7 +337,7 @@
             // lblCourse
             // 
             this.lblCourse.AutoSize = true;
-            this.lblCourse.Location = new System.Drawing.Point(62, 143);
+            this.lblCourse.Location = new System.Drawing.Point(49, 143);
             this.lblCourse.Name = "lblCourse";
             this.lblCourse.Size = new System.Drawing.Size(50, 20);
             this.lblCourse.TabIndex = 0;
@@ -337,7 +346,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(62, 108);
+            this.label4.Location = new System.Drawing.Point(49, 108);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 20);
             this.label4.TabIndex = 0;
@@ -346,7 +355,7 @@
             // lblFullName
             // 
             this.lblFullName.AutoSize = true;
-            this.lblFullName.Location = new System.Drawing.Point(62, 69);
+            this.lblFullName.Location = new System.Drawing.Point(49, 69);
             this.lblFullName.Name = "lblFullName";
             this.lblFullName.Size = new System.Drawing.Size(65, 20);
             this.lblFullName.TabIndex = 0;
@@ -355,7 +364,7 @@
             // lblCodeNum
             // 
             this.lblCodeNum.AutoSize = true;
-            this.lblCodeNum.Location = new System.Drawing.Point(62, 32);
+            this.lblCodeNum.Location = new System.Drawing.Point(49, 32);
             this.lblCodeNum.Name = "lblCodeNum";
             this.lblCodeNum.Size = new System.Drawing.Size(59, 20);
             this.lblCodeNum.TabIndex = 0;
@@ -422,6 +431,40 @@
             this.btnSearch.TabIndex = 11;
             this.btnSearch.Text = "Tìm Kiếm";
             this.btnSearch.UseVisualStyleBackColor = true;
+            // 
+            // lblExpertise
+            // 
+            this.lblExpertise.AutoSize = true;
+            this.lblExpertise.Location = new System.Drawing.Point(49, 143);
+            this.lblExpertise.Name = "lblExpertise";
+            this.lblExpertise.Size = new System.Drawing.Size(102, 20);
+            this.lblExpertise.TabIndex = 10;
+            this.lblExpertise.Text = "Chuyên môn:";
+            // 
+            // cboExpertise
+            // 
+            this.cboExpertise.FormattingEnabled = true;
+            this.cboExpertise.Location = new System.Drawing.Point(164, 140);
+            this.cboExpertise.Name = "cboExpertise";
+            this.cboExpertise.Size = new System.Drawing.Size(180, 28);
+            this.cboExpertise.TabIndex = 11;
+            // 
+            // lblManager
+            // 
+            this.lblManager.AutoSize = true;
+            this.lblManager.Location = new System.Drawing.Point(49, 181);
+            this.lblManager.Name = "lblManager";
+            this.lblManager.Size = new System.Drawing.Size(106, 20);
+            this.lblManager.TabIndex = 13;
+            this.lblManager.Text = "Phụ trách lớp:";
+            // 
+            // chkListManager
+            // 
+            this.chkListManager.FormattingEnabled = true;
+            this.chkListManager.Location = new System.Drawing.Point(164, 178);
+            this.chkListManager.Name = "chkListManager";
+            this.chkListManager.Size = new System.Drawing.Size(216, 73);
+            this.chkListManager.TabIndex = 14;
             // 
             // frmMain
             // 
@@ -498,6 +541,10 @@
         private System.Windows.Forms.Label lblFaculty;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.ComboBox cboExpertise;
+        private System.Windows.Forms.Label lblExpertise;
+        private System.Windows.Forms.Label lblManager;
+        private System.Windows.Forms.CheckedListBox chkListManager;
     }
 }
 
