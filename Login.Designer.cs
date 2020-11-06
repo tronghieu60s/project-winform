@@ -98,6 +98,7 @@
             this.txtCodeNum.Name = "txtCodeNum";
             this.txtCodeNum.Size = new System.Drawing.Size(415, 30);
             this.txtCodeNum.TabIndex = 5;
+            this.txtCodeNum.TextChanged += new System.EventHandler(this.txtCodeNum_TextChanged);
             // 
             // lblForgetPass
             // 
@@ -158,6 +159,7 @@
             this.txtPassword.Size = new System.Drawing.Size(415, 30);
             this.txtPassword.TabIndex = 5;
             this.txtPassword.UseSystemPasswordChar = true;
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // picMove
             // 
@@ -183,7 +185,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1210, 723);
+            this.ClientSize = new System.Drawing.Size(1182, 694);
             this.Controls.Add(this.picMove);
             this.Controls.Add(this.picExit);
             this.Controls.Add(this.pnlTextPassword);
@@ -196,6 +198,7 @@
             this.Controls.Add(this.lblCodeNum);
             this.Controls.Add(this.lblPassword);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MinimumSize = new System.Drawing.Size(1204, 750);
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";

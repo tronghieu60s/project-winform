@@ -10,8 +10,12 @@ namespace project_winform
 
         public static void CloseWindow()
         {
-            frmMain.Close();
-            frmLogin.Close();
+            DialogResult result = MessageBox.Show("Bạn có muốn thoát không?", "Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                frmMain.Close();
+                frmLogin.Close();
+            }
         }
     }
 }

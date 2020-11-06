@@ -97,7 +97,7 @@ namespace project_winform
         }
 
 
-        /* Title Bar Icon Action */ 
+        /* Title Bar Icon Action */
         private void picExit_Click(object sender, EventArgs e)
         {
             Control.CloseWindow();
@@ -114,12 +114,59 @@ namespace project_winform
 
         #endregion
 
+        #region * Validating Input
+        private bool ValidatingTxtCodeNumLogin()
+        {
+            if (txtCodeNum.Text.Trim().Length <= 0)
+            {
+                txtCodeNum.Focus();
+                lblCodeNum.Text = $"MÃ SỐ - Ô này là bắt buộc";
+                lblCodeNum.ForeColor = ColorTheme.getTheme("danger");
+                return false;
+            }
+            else
+            {
+                lblCodeNum.Text = $"MÃ SỐ";
+                lblCodeNum.ForeColor = Color.FromArgb(142, 146, 151);
+            }
+            return true;
+        }
+
+        private bool ValidatingTxtPasswordLogin()
+        {
+            if (txtPassword.Text.Trim().Length <= 0)
+            {
+                txtPassword.Focus();
+                lblPassword.Text = $"MẬT KHẨU - Ô này là bắt buộc";
+                lblPassword.ForeColor = ColorTheme.getTheme("danger");
+                return false;
+            }
+            else
+            {
+                lblPassword.Text = $"MẬT KHẨU";
+                lblPassword.ForeColor = Color.FromArgb(142, 146, 151);
+            }
+            return true;
+        }
+
+        private void txtCodeNum_TextChanged(object sender, EventArgs e)
+        {
+            ValidatingTxtCodeNumLogin();
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+            ValidatingTxtPasswordLogin();
+        }
+
+        #endregion
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (true)
+            if (ValidatingTxtCodeNumLogin() && ValidatingTxtPasswordLogin())
             {
-               Control.frmMain.Show();
-               Control.frmLogin.Hide();
+                Control.frmMain.Show();
+                Control.frmLogin.Hide();
             }
         }
 
