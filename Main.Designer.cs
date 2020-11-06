@@ -439,6 +439,7 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(230, 26);
             this.txtSearch.TabIndex = 10;
+            this.txtSearch.TextChanged += new System.EventHandler(this.SearchNameListView);
             // 
             // btnSearch
             // 
@@ -450,7 +451,7 @@
             this.btnSearch.TabIndex = 11;
             this.btnSearch.Text = "Tìm Kiếm";
             this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.btnSearch.Click += new System.EventHandler(this.SearchNameListView);
             // 
             // mnuStripListView
             // 

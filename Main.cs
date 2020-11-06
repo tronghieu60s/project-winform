@@ -426,7 +426,7 @@ namespace project_winform
             }
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void SearchNameListView(object sender, EventArgs e)
         {
             ListViewItem itemClone;
             if (txtSearch.Text == string.Empty)
@@ -444,7 +444,7 @@ namespace project_winform
             foreach (ListViewItem item in lvwMainBase.Items)
             {
                 itemClone = item.Clone() as ListViewItem;
-                if (item.SubItems[1].Text == txtSearch.Text)
+                if (item.SubItems[1].Text.Trim().ToLower() == txtSearch.Text.Trim().ToLower())
                     lvwTemporary.Items.Add(itemClone);
             }
 
