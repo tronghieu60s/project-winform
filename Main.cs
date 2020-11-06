@@ -57,12 +57,7 @@ namespace project_winform
             lvwMain.GridLines = true;
             lvwMain.FullRowSelect = true;
 
-            lvwMain.Columns.Add("Mã Số", 100);
-            lvwMain.Columns.Add("Họ Tên", 100);
-            lvwMain.Columns.Add("Ngày Sinh", 70);
-            lvwMain.Columns.Add("Khóa", 50);
-            lvwMain.Columns.Add("Khoa", 100);
-            lvwMain.Columns.Add("Lớp", 70);
+            SelectTypeUser();
             #endregion
 
             #region * Fake Data ComboBox
@@ -227,6 +222,81 @@ namespace project_winform
 
         #endregion
 
+        #region * ComboBox Type User Action
+        private void SelectTypeUser()
+        {
+            if (cboTypeUser.SelectedIndex == 0)
+                TypeUserAdmin();
+            if (cboTypeUser.SelectedIndex == 1)
+                TypeUserStudent();
+            if (cboTypeUser.SelectedIndex == 2)
+                TypeUserTeacher();
+        }
+
+        private void TypeUserAdmin()
+        {
+            lvwMain.Columns.Clear();
+            lvwMain.Columns.Add("Mã Số", 100);
+            lvwMain.Columns.Add("Họ Tên", 200);
+            lvwMain.Columns.Add("Ngày Sinh", 200);
+
+            lblCourse.Hide();
+            cboCourse.Hide();
+            lblFaculty.Hide();
+            cboFaculty.Hide();
+            lblClass.Hide();
+            cboClass.Hide();
+            lblExpertise.Hide();
+            cboExpertise.Hide();
+            lblManager.Hide();
+            chkListManager.Hide();
+        }
+
+        private void TypeUserStudent()
+        {
+            lvwMain.Columns.Clear();
+            lvwMain.Columns.Add("Mã Số", 100);
+            lvwMain.Columns.Add("Họ Tên", 100);
+            lvwMain.Columns.Add("Ngày Sinh", 70);
+            lvwMain.Columns.Add("Khóa", 50);
+            lvwMain.Columns.Add("Khoa", 100);
+            lvwMain.Columns.Add("Lớp", 70);
+
+            lblExpertise.Hide();
+            cboExpertise.Hide();
+            lblManager.Hide();
+            chkListManager.Hide();
+
+            lblCourse.Show();
+            cboCourse.Show();
+            lblFaculty.Show();
+            cboFaculty.Show();
+            lblClass.Show();
+            cboClass.Show();
+        }
+
+        private void TypeUserTeacher()
+        {
+            lvwMain.Columns.Clear();
+            lvwMain.Columns.Add("Mã Số", 100);
+            lvwMain.Columns.Add("Họ Tên", 200);
+            lvwMain.Columns.Add("Ngày Sinh", 70);
+            lvwMain.Columns.Add("Chuyên môn", 130);
+
+            lblCourse.Hide();
+            cboCourse.Hide();
+            lblFaculty.Hide();
+            cboFaculty.Hide();
+            lblClass.Hide();
+            cboClass.Hide();
+
+            lblExpertise.Show();
+            cboExpertise.Show();
+            lblManager.Show();
+            chkListManager.Show();
+        }
+        #endregion
+
         private void picLogout_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Bạn có muốn đăng xuất không?", "Đăng Xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -239,55 +309,21 @@ namespace project_winform
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (ValidatingTxtCodeNum() && ValidatingTxtFullName() && ValidatingCboCourse() && ValidatingCboFaculty() && ValidatingCboClass())
-            {
-                Console.WriteLine("ok");
-            }
+            if (cboTypeUser.SelectedIndex == 0 || cboTypeUser.SelectedIndex == 2)
+                if (ValidatingTxtCodeNum() && ValidatingTxtFullName())
+                {
+                    Console.WriteLine("ok");
+                }
+            if (cboTypeUser.SelectedIndex == 1)
+                if (ValidatingTxtCodeNum() && ValidatingTxtFullName() && ValidatingCboCourse() && ValidatingCboFaculty() && ValidatingCboClass())
+                {
+                    Console.WriteLine("ok");
+                }
         }
 
         private void cboTypeUser_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cboTypeUser.SelectedIndex == 0)
-            {
-                lblCourse.Hide();
-                cboCourse.Hide();
-                lblFaculty.Hide();
-                cboFaculty.Hide();
-                lblClass.Hide();
-                cboClass.Hide();
-                lblExpertise.Hide();
-                cboExpertise.Hide();
-                lblManager.Hide();
-                chkListManager.Hide();
-            }
-            if(cboTypeUser.SelectedIndex == 1)
-            {
-                lblExpertise.Hide();
-                cboExpertise.Hide();
-                lblManager.Hide();
-                chkListManager.Hide();
-
-                lblCourse.Show();
-                cboCourse.Show();
-                lblFaculty.Show();
-                cboFaculty.Show();
-                lblClass.Show();
-                cboClass.Show();
-            }
-            if(cboTypeUser.SelectedIndex == 2)
-            {
-                lblCourse.Hide();
-                cboCourse.Hide();
-                lblFaculty.Hide();
-                cboFaculty.Hide();
-                lblClass.Hide();
-                cboClass.Hide();
-
-                lblExpertise.Show();
-                cboExpertise.Show();
-                lblManager.Show();
-                chkListManager.Show();
-            }
+            SelectTypeUser();
         }
     }
 }
