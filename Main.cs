@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using project_winform.src.constants;
 using project_winform.src.helpers;
 using project_winform.src.themes;
 
@@ -19,7 +20,7 @@ namespace project_winform
             dtpBirthday.CustomFormat = "dd / MM / yyyy";
 
             // Combobox Default
-            cboTypeUser.SelectedIndex = 0;
+            cboTypeUser.SelectedIndex = 1;
             cboSort.SelectedIndex = 0;
             cboFilter.SelectedIndex = 0;
             #endregion
@@ -222,7 +223,7 @@ namespace project_winform
 
         #endregion
 
-        #region * ComboBox Type User Action
+        #region * Select TypeUser Filter
         private void SelectTypeUser()
         {
             if (cboTypeUser.SelectedIndex == 0)
@@ -238,7 +239,7 @@ namespace project_winform
             lvwMain.Columns.Clear();
             lvwMain.Columns.Add("Mã Số", 100);
             lvwMain.Columns.Add("Họ Tên", 200);
-            lvwMain.Columns.Add("Ngày Sinh", 200);
+            lvwMain.Columns.Add("Ngày Sinh", 100);
 
             lblCourse.Hide();
             cboCourse.Hide();
@@ -246,8 +247,6 @@ namespace project_winform
             cboFaculty.Hide();
             lblClass.Hide();
             cboClass.Hide();
-            lblExpertise.Hide();
-            cboExpertise.Hide();
             lblManager.Hide();
             chkListManager.Hide();
         }
@@ -262,8 +261,6 @@ namespace project_winform
             lvwMain.Columns.Add("Khoa", 100);
             lvwMain.Columns.Add("Lớp", 70);
 
-            lblExpertise.Hide();
-            cboExpertise.Hide();
             lblManager.Hide();
             chkListManager.Hide();
 
@@ -281,25 +278,80 @@ namespace project_winform
             lvwMain.Columns.Add("Mã Số", 100);
             lvwMain.Columns.Add("Họ Tên", 200);
             lvwMain.Columns.Add("Ngày Sinh", 70);
-            lvwMain.Columns.Add("Chuyên môn", 130);
+            lvwMain.Columns.Add("Khoa", 130);
 
             lblCourse.Hide();
             cboCourse.Hide();
-            lblFaculty.Hide();
-            cboFaculty.Hide();
             lblClass.Hide();
             cboClass.Hide();
 
-            lblExpertise.Show();
-            cboExpertise.Show();
+            lblFaculty.Show();
+            cboFaculty.Show();
             lblManager.Show();
             chkListManager.Show();
         }
         #endregion
 
+        #region * Add Data User
+        private void AddUserAdmin()
+        {
+            if (ValidatingTxtCodeNum() && ValidatingTxtFullName())
+            {
+                string[] arrData = new string[3];
+                arrData[0] = txtCodeNum.Text;
+                arrData[1] = txtFullName.Text;
+                arrData[2] = dtpBirthday.Text;
+
+                ListViewItem item = new ListViewItem(arrData);
+                lvwMain.Items.Add(item);
+            }
+            else MessageBox.Show(MessageBoxText.RequiredInput, MessageBoxText.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void AddUserStudent()
+        {
+            if (ValidatingTxtCodeNum() && ValidatingTxtFullName() && ValidatingCboCourse() && ValidatingCboFaculty() && ValidatingCboClass())
+            {
+                string[] arrData = new string[6];
+                arrData[0] = txtCodeNum.Text;
+                arrData[1] = txtFullName.Text;
+                arrData[2] = dtpBirthday.Text;
+                arrData[3] = cboCourse.SelectedItem.ToString();
+                arrData[4] = cboFaculty.SelectedItem.ToString();
+                arrData[5] = cboClass.SelectedItem.ToString();
+
+                ListViewItem item = new ListViewItem(arrData);
+                lvwMain.Items.Add(item);
+            }
+            else MessageBox.Show(MessageBoxText.RequiredInput, MessageBoxText.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void AddUserTeacher()
+        {
+            if (ValidatingTxtCodeNum() && ValidatingTxtFullName() && ValidatingCboFaculty())
+            {
+                string[] arrData = new string[6];
+                arrData[0] = txtCodeNum.Text;
+                arrData[1] = txtFullName.Text;
+                arrData[2] = dtpBirthday.Text;
+                arrData[3] = cboFaculty.SelectedItem.ToString();
+
+                ListViewItem item = new ListViewItem(arrData);
+                lvwMain.Items.Add(item);
+            }
+            else MessageBox.Show(MessageBoxText.RequiredInput, MessageBoxText.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+        #endregion
+
+        private void CountNumberListView()
+        {
+            int number = lvwMain.Items.Count;
+            lblCountItemListView.Text = $"{number} mục";
+        }
+
         private void picLogout_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bạn có muốn đăng xuất không?", "Đăng Xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show(MessageBoxText.Logout, MessageBoxText.CaptionLogout, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 Control.frmLogin.Show();
@@ -309,21 +361,54 @@ namespace project_winform
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (cboTypeUser.SelectedIndex == 0 || cboTypeUser.SelectedIndex == 2)
-                if (ValidatingTxtCodeNum() && ValidatingTxtFullName())
-                {
-                    Console.WriteLine("ok");
-                }
+            if (cboTypeUser.SelectedIndex == 0)
+                AddUserAdmin();
             if (cboTypeUser.SelectedIndex == 1)
-                if (ValidatingTxtCodeNum() && ValidatingTxtFullName() && ValidatingCboCourse() && ValidatingCboFaculty() && ValidatingCboClass())
-                {
-                    Console.WriteLine("ok");
-                }
+                AddUserStudent();
+            if (cboTypeUser.SelectedIndex == 2)
+                AddUserTeacher();
+            CountNumberListView();
         }
 
         private void cboTypeUser_SelectedIndexChanged(object sender, EventArgs e)
         {
             SelectTypeUser();
         }
+
+        private void cboFaculty_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            chkListManager.Items.Clear();
+            if(cboFaculty.SelectedIndex == 0)
+            {
+                // while or for
+                chkListManager.Items.Add("CD19TT1");
+                chkListManager.Items.Add("CD19TT2");
+                chkListManager.Items.Add("CD19TT3");
+                chkListManager.Items.Add("CD19TT4");
+                chkListManager.Items.Add("CD19TT5");
+                chkListManager.Items.Add("CD19TT6");
+            }
+        }
+
+        #region * Menu Strip List View
+        private void lvwMain_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (lvwMain.FocusedItem.Bounds.Contains(e.Location))
+                {
+                    mnuStripListView.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void xóaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            while (lvwMain.SelectedIndices.Count > 0)
+                lvwMain.Items.RemoveAt(lvwMain.SelectedIndices[0]);
+            CountNumberListView();
+        }
+
+        #endregion
     }
 }
