@@ -13,5 +13,7 @@ namespace project_winform.src.constants
         public static string CaptionLogout = "Đăng Xuất";
         public static string Logout = "Bạn có muốn đăng xuất không?";
 
+        public static string CaptionDuplicatedCodeNum = "Trùng Mã Số";
+        public static string DuplicatedCodeNum = "Mã số không được trùng trong dữ liệu đã có.";
     }
 }

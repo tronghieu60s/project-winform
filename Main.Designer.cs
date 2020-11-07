@@ -42,6 +42,7 @@
             this.cboTypeUser = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chkRandomCodeNum = new System.Windows.Forms.CheckBox();
             this.chkListManager = new System.Windows.Forms.CheckedListBox();
             this.lblManager = new System.Windows.Forms.Label();
             this.dtpBirthday = new System.Windows.Forms.DateTimePicker();
@@ -64,9 +65,9 @@
             this.cboSort = new System.Windows.Forms.ComboBox();
             this.cboFilter = new System.Windows.Forms.ComboBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.mnuStripListView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.xóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picResize)).BeginInit();
@@ -208,6 +209,7 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox2.Controls.Add(this.chkRandomCodeNum);
             this.groupBox2.Controls.Add(this.chkListManager);
             this.groupBox2.Controls.Add(this.lblManager);
             this.groupBox2.Controls.Add(this.dtpBirthday);
@@ -231,6 +233,17 @@
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông tin chi tiết";
+            // 
+            // chkRandomCodeNum
+            // 
+            this.chkRandomCodeNum.AutoSize = true;
+            this.chkRandomCodeNum.Location = new System.Drawing.Point(327, 30);
+            this.chkRandomCodeNum.Name = "chkRandomCodeNum";
+            this.chkRandomCodeNum.Size = new System.Drawing.Size(114, 24);
+            this.chkRandomCodeNum.TabIndex = 15;
+            this.chkRandomCodeNum.Text = "ngẫu nhiên";
+            this.chkRandomCodeNum.UseVisualStyleBackColor = true;
+            this.chkRandomCodeNum.CheckedChanged += new System.EventHandler(this.chkRandomCodeNum_CheckedChanged);
             // 
             // chkListManager
             // 
@@ -332,6 +345,7 @@
             this.txtCodeNum.Name = "txtCodeNum";
             this.txtCodeNum.Size = new System.Drawing.Size(156, 26);
             this.txtCodeNum.TabIndex = 1;
+            this.txtCodeNum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodeNum_KeyPress);
             this.txtCodeNum.Validating += new System.ComponentModel.CancelEventHandler(this.txtCodeNum_Validating);
             // 
             // lblFaculty
@@ -401,11 +415,11 @@
             // lblCountItemListView
             // 
             this.lblCountItemListView.AutoSize = true;
-            this.lblCountItemListView.Location = new System.Drawing.Point(1126, 78);
+            this.lblCountItemListView.Location = new System.Drawing.Point(1123, 82);
             this.lblCountItemListView.Name = "lblCountItemListView";
-            this.lblCountItemListView.Size = new System.Drawing.Size(61, 20);
+            this.lblCountItemListView.Size = new System.Drawing.Size(52, 20);
             this.lblCountItemListView.TabIndex = 7;
-            this.lblCountItemListView.Text = "18 mục";
+            this.lblCountItemListView.Text = "0 mục";
             // 
             // cboSort
             // 
@@ -427,31 +441,19 @@
             "Lọc theo khóa",
             "Lọc theo khoa",
             "Lọc theo lớp"});
-            this.cboFilter.Location = new System.Drawing.Point(622, 74);
+            this.cboFilter.Location = new System.Drawing.Point(621, 74);
             this.cboFilter.Name = "cboFilter";
             this.cboFilter.Size = new System.Drawing.Size(121, 28);
             this.cboFilter.TabIndex = 9;
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(771, 74);
+            this.txtSearch.Location = new System.Drawing.Point(911, 74);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(230, 26);
+            this.txtSearch.Size = new System.Drawing.Size(193, 26);
             this.txtSearch.TabIndex = 10;
             this.txtSearch.TextChanged += new System.EventHandler(this.SearchNameListView);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(1012, 69);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(81, 40);
-            this.btnSearch.TabIndex = 11;
-            this.btnSearch.Text = "Tìm Kiếm";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.SearchNameListView);
             // 
             // mnuStripListView
             // 
@@ -468,14 +470,27 @@
             this.xóaToolStripMenuItem.Text = "Xóa";
             this.xóaToolStripMenuItem.Click += new System.EventHandler(this.xóaToolStripMenuItem_Click);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "(Lọc dữ liệu)",
+            "Lọc theo khóa",
+            "Lọc theo khoa",
+            "Lọc theo lớp"});
+            this.comboBox1.Location = new System.Drawing.Point(764, 74);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 28);
+            this.comboBox1.TabIndex = 9;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1182, 694);
-            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtSearch);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.cboFilter);
             this.Controls.Add(this.cboSort);
             this.Controls.Add(this.lblCountItemListView);
@@ -543,11 +558,12 @@
         private System.Windows.Forms.ComboBox cboFaculty;
         private System.Windows.Forms.Label lblFaculty;
         private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label lblManager;
         private System.Windows.Forms.CheckedListBox chkListManager;
         private System.Windows.Forms.ContextMenuStrip mnuStripListView;
         private System.Windows.Forms.ToolStripMenuItem xóaToolStripMenuItem;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.CheckBox chkRandomCodeNum;
     }
 }
 

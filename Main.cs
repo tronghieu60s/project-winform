@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 using project_winform.src.constants;
 using project_winform.src.helpers;
 using project_winform.src.themes;
@@ -9,7 +10,7 @@ namespace project_winform
 {
     public partial class frmMain : Form
     {
-        private ListView lvwMainBase = new ListView();
+        private ListView lvwMainState = new ListView();
 
         public frmMain()
         {
@@ -48,7 +49,6 @@ namespace project_winform
             btnAdd.BackColor = ColorTheme.getTheme("primary");
             btnDelete.BackColor = ColorTheme.getTheme("danger");
             btnUpdate.BackColor = ColorTheme.getTheme("warning");
-            btnSearch.BackColor = ColorTheme.getTheme("primary");
             #endregion
         }
 
@@ -140,6 +140,7 @@ namespace project_winform
 
         private bool ValidatingTxtCodeNum()
         {
+            if (chkRandomCodeNum.Checked) return true;
             if (txtCodeNum.Text.Trim().Length <= 0)
             {
                 txtCodeNum.Focus();
@@ -295,12 +296,25 @@ namespace project_winform
         #endregion
 
         #region * Add Data User
+        private int RandomCodeNum()
+        {
+            Random rd = new Random();
+            int random = rd.Next(10000000, 99999999);
+            // Recursive Random
+            foreach (ListViewItem item in lvwMainState.Items)
+                if (item.SubItems[0].Text == random.ToString())
+                    return RandomCodeNum();
+            return random;
+        }
+
         private void AddUserAdmin()
         {
             if (ValidatingTxtCodeNum() && ValidatingTxtFullName())
             {
                 string[] arrData = new string[3];
-                arrData[0] = txtCodeNum.Text;
+                if (chkRandomCodeNum.Checked)
+                    arrData[0] = RandomCodeNum().ToString();
+                else arrData[0] = txtCodeNum.Text;
                 arrData[1] = txtFullName.Text;
                 arrData[2] = dtpBirthday.Text;
 
@@ -315,7 +329,9 @@ namespace project_winform
             if (ValidatingTxtCodeNum() && ValidatingTxtFullName() && ValidatingCboCourse() && ValidatingCboFaculty() && ValidatingCboClass())
             {
                 string[] arrData = new string[6];
-                arrData[0] = txtCodeNum.Text;
+                if (chkRandomCodeNum.Checked)
+                    arrData[0] = RandomCodeNum().ToString();
+                else arrData[0] = txtCodeNum.Text;
                 arrData[1] = txtFullName.Text;
                 arrData[2] = dtpBirthday.Text;
                 arrData[3] = cboCourse.SelectedItem.ToString();
@@ -333,7 +349,9 @@ namespace project_winform
             if (ValidatingTxtCodeNum() && ValidatingTxtFullName() && ValidatingCboFaculty())
             {
                 string[] arrData = new string[6];
-                arrData[0] = txtCodeNum.Text;
+                if (chkRandomCodeNum.Checked)
+                    arrData[0] = RandomCodeNum().ToString();
+                else arrData[0] = txtCodeNum.Text;
                 arrData[1] = txtFullName.Text;
                 arrData[2] = dtpBirthday.Text;
                 arrData[3] = cboFaculty.SelectedItem.ToString();
@@ -359,10 +377,30 @@ namespace project_winform
 
         private void xóaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            while (lvwMain.SelectedIndices.Count > 0)
-                lvwMain.Items.RemoveAt(lvwMain.SelectedIndices[0]);
-            SaveListViewToBase();
+            foreach (ListViewItem itemMain in lvwMain.SelectedItems)
+            {
+                lvwMain.Items.Remove(itemMain);
+                foreach (ListViewItem itemMainState in lvwMainState.Items)
+                    if(itemMainState.SubItems[0].Text == itemMain.SubItems[0].Text)
+                        lvwMainState.Items.Remove(itemMainState);
+            }
             CountNumberListView();
+        }
+
+        #endregion
+
+        #region * Handle Small Modules
+        private void txtCodeNum_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void chkRandomCodeNum_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkRandomCodeNum.Checked)
+                txtCodeNum.Enabled = false;
+            else txtCodeNum.Enabled = true;
         }
 
         #endregion
@@ -375,12 +413,12 @@ namespace project_winform
 
         private void SaveListViewToBase()
         {
-            lvwMainBase.Items.Clear();
+            lvwMainState.Items.Clear();
             ListViewItem itemClone;
             foreach (ListViewItem item in lvwMain.Items)
             {
                 itemClone = item.Clone() as ListViewItem;
-                lvwMainBase.Items.Add(itemClone);
+                lvwMainState.Items.Add(itemClone);
             }
         }
 
@@ -396,6 +434,14 @@ namespace project_winform
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (!chkRandomCodeNum.Checked)
+                foreach (ListViewItem item in lvwMainState.Items)
+                    if (item.SubItems[0].Text == txtCodeNum.Text)
+                    {
+                        MessageBox.Show(MessageBoxText.DuplicatedCodeNum, MessageBoxText.CaptionDuplicatedCodeNum, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
             if (cboTypeUser.SelectedIndex == 0)
                 AddUserAdmin();
             if (cboTypeUser.SelectedIndex == 1)
@@ -414,7 +460,7 @@ namespace project_winform
         private void cboFaculty_SelectedIndexChanged(object sender, EventArgs e)
         {
             chkListManager.Items.Clear();
-            if(cboFaculty.SelectedIndex == 0)
+            if (cboFaculty.SelectedIndex == 0)
             {
                 // while or for
                 chkListManager.Items.Add("CD19TT1");
@@ -432,16 +478,17 @@ namespace project_winform
             if (txtSearch.Text == string.Empty)
             {
                 lvwMain.Items.Clear();
-                foreach (ListViewItem item in lvwMainBase.Items)
+                foreach (ListViewItem item in lvwMainState.Items)
                 {
                     itemClone = item.Clone() as ListViewItem;
                     lvwMain.Items.Add(itemClone);
                 }
+                CountNumberListView();
                 return;
             }
 
             ListView lvwTemporary = new ListView();
-            foreach (ListViewItem item in lvwMainBase.Items)
+            foreach (ListViewItem item in lvwMainState.Items)
             {
                 itemClone = item.Clone() as ListViewItem;
                 if (item.SubItems[1].Text.Trim().ToLower() == txtSearch.Text.Trim().ToLower())
@@ -454,6 +501,8 @@ namespace project_winform
                 itemClone = item.Clone() as ListViewItem;
                 lvwMain.Items.Add(itemClone);
             }
+
+            CountNumberListView();
         }
     }
 }
