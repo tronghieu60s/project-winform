@@ -62,12 +62,10 @@
             this.lblCodeNum = new System.Windows.Forms.Label();
             this.lvwMain = new System.Windows.Forms.ListView();
             this.lblCountItemListView = new System.Windows.Forms.Label();
-            this.cboSort = new System.Windows.Forms.ComboBox();
-            this.cboFilter = new System.Windows.Forms.ComboBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.mnuStripListView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.xóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picResize)).BeginInit();
@@ -410,6 +408,7 @@
             this.lvwMain.Size = new System.Drawing.Size(718, 560);
             this.lvwMain.TabIndex = 6;
             this.lvwMain.UseCompatibleStateImageBehavior = false;
+            this.lvwMain.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwMain_ColumnClick);
             this.lvwMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lvwMain_MouseClick);
             // 
             // lblCountItemListView
@@ -421,34 +420,9 @@
             this.lblCountItemListView.TabIndex = 7;
             this.lblCountItemListView.Text = "0 mục";
             // 
-            // cboSort
-            // 
-            this.cboSort.FormattingEnabled = true;
-            this.cboSort.Items.AddRange(new object[] {
-            "(Sắp xếp)",
-            "Tên A-Z",
-            "Tên Z-A"});
-            this.cboSort.Location = new System.Drawing.Point(478, 74);
-            this.cboSort.Name = "cboSort";
-            this.cboSort.Size = new System.Drawing.Size(121, 28);
-            this.cboSort.TabIndex = 8;
-            // 
-            // cboFilter
-            // 
-            this.cboFilter.FormattingEnabled = true;
-            this.cboFilter.Items.AddRange(new object[] {
-            "(Lọc dữ liệu)",
-            "Lọc theo khóa",
-            "Lọc theo khoa",
-            "Lọc theo lớp"});
-            this.cboFilter.Location = new System.Drawing.Point(621, 74);
-            this.cboFilter.Name = "cboFilter";
-            this.cboFilter.Size = new System.Drawing.Size(121, 28);
-            this.cboFilter.TabIndex = 9;
-            // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(911, 74);
+            this.txtSearch.Location = new System.Drawing.Point(567, 79);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(193, 26);
@@ -470,18 +444,14 @@
             this.xóaToolStripMenuItem.Text = "Xóa";
             this.xóaToolStripMenuItem.Click += new System.EventHandler(this.xóaToolStripMenuItem_Click);
             // 
-            // comboBox1
+            // label2
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "(Lọc dữ liệu)",
-            "Lọc theo khóa",
-            "Lọc theo khoa",
-            "Lọc theo lớp"});
-            this.comboBox1.Location = new System.Drawing.Point(764, 74);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 28);
-            this.comboBox1.TabIndex = 9;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(474, 85);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 20);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Tìm kiếm:";
             // 
             // frmMain
             // 
@@ -489,10 +459,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1182, 694);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.cboFilter);
-            this.Controls.Add(this.cboSort);
             this.Controls.Add(this.lblCountItemListView);
             this.Controls.Add(this.lvwMain);
             this.Controls.Add(this.groupBox2);
@@ -553,8 +521,6 @@
         private System.Windows.Forms.Label lblCodeNum;
         private System.Windows.Forms.ListView lvwMain;
         private System.Windows.Forms.Label lblCountItemListView;
-        private System.Windows.Forms.ComboBox cboSort;
-        private System.Windows.Forms.ComboBox cboFilter;
         private System.Windows.Forms.ComboBox cboFaculty;
         private System.Windows.Forms.Label lblFaculty;
         private System.Windows.Forms.TextBox txtSearch;
@@ -562,8 +528,8 @@
         private System.Windows.Forms.CheckedListBox chkListManager;
         private System.Windows.Forms.ContextMenuStrip mnuStripListView;
         private System.Windows.Forms.ToolStripMenuItem xóaToolStripMenuItem;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.CheckBox chkRandomCodeNum;
+        private System.Windows.Forms.Label label2;
     }
 }
 

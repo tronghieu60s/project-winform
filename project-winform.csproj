@@ -61,6 +61,7 @@
     <Compile Include="src\config\Config.cs" />
     <Compile Include="src\constants\text\MessageBox.cs" />
     <Compile Include="src\helpers\FormSetup.cs" />
+    <Compile Include="src\helpers\ItemComparer.cs" />
     <Compile Include="src\helpers\Window.cs" />
     <Compile Include="src\themes\Color.cs" />
     <Compile Include="src\themes\Icon.cs" />
