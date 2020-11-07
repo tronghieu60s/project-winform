@@ -22,8 +22,9 @@ namespace project_winform
             dtpBirthday.Format = DateTimePickerFormat.Custom;
             dtpBirthday.CustomFormat = "dd / MM / yyyy";
 
-            // Combobox Default
+            // Default Input Data
             cboTypeUser.SelectedIndex = 1;
+            radSearchCodeNum.Checked = true;
             #endregion
 
             #region * Color - Text
@@ -379,7 +380,7 @@ namespace project_winform
             {
                 lvwMain.Items.Remove(itemMain);
                 foreach (ListViewItem itemMainState in lvwMainState.Items)
-                    if(itemMainState.SubItems[0].Text == itemMain.SubItems[0].Text)
+                    if (itemMainState.SubItems[0].Text == itemMain.SubItems[0].Text)
                         lvwMainState.Items.Remove(itemMainState);
             }
             CountNumberListView();
@@ -399,6 +400,11 @@ namespace project_winform
             if (chkRandomCodeNum.Checked)
                 txtCodeNum.Enabled = false;
             else txtCodeNum.Enabled = true;
+        }
+
+        private void radCheckedSearch(object sender, EventArgs e)
+        {
+            txtSearch.Focus();
         }
 
         #endregion
@@ -519,8 +525,12 @@ namespace project_winform
             foreach (ListViewItem item in lvwMainState.Items)
             {
                 itemClone = item.Clone() as ListViewItem;
-                if (item.SubItems[1].Text.Trim().ToLower() == txtSearch.Text.Trim().ToLower())
-                    lvwTemporary.Items.Add(itemClone);
+                if (radSearchCodeNum.Checked)
+                    if (item.SubItems[0].Text.Trim().ToLower() == txtSearch.Text.Trim().ToLower())
+                        lvwTemporary.Items.Add(itemClone);
+                if (radSearchName.Checked)
+                    if (item.SubItems[1].Text.Trim().ToLower() == txtSearch.Text.Trim().ToLower())
+                        lvwTemporary.Items.Add(itemClone);
             }
 
             lvwMain.Items.Clear();

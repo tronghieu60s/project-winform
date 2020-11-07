@@ -66,6 +66,8 @@
             this.mnuStripListView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.xóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
+            this.radSearchCodeNum = new System.Windows.Forms.RadioButton();
+            this.radSearchName = new System.Windows.Forms.RadioButton();
             this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picResize)).BeginInit();
@@ -453,12 +455,38 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "Tìm kiếm:";
             // 
+            // radSearchCodeNum
+            // 
+            this.radSearchCodeNum.AutoSize = true;
+            this.radSearchCodeNum.Location = new System.Drawing.Point(783, 80);
+            this.radSearchCodeNum.Name = "radSearchCodeNum";
+            this.radSearchCodeNum.Size = new System.Drawing.Size(120, 24);
+            this.radSearchCodeNum.TabIndex = 12;
+            this.radSearchCodeNum.TabStop = true;
+            this.radSearchCodeNum.Text = "Theo Mã Số";
+            this.radSearchCodeNum.UseVisualStyleBackColor = true;
+            this.radSearchCodeNum.CheckedChanged += new System.EventHandler(this.radCheckedSearch);
+            // 
+            // radSearchName
+            // 
+            this.radSearchName.AutoSize = true;
+            this.radSearchName.Location = new System.Drawing.Point(925, 80);
+            this.radSearchName.Name = "radSearchName";
+            this.radSearchName.Size = new System.Drawing.Size(101, 24);
+            this.radSearchName.TabIndex = 12;
+            this.radSearchName.TabStop = true;
+            this.radSearchName.Text = "Theo Tên";
+            this.radSearchName.UseVisualStyleBackColor = true;
+            this.radSearchName.CheckedChanged += new System.EventHandler(this.radCheckedSearch);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1182, 694);
+            this.Controls.Add(this.radSearchName);
+            this.Controls.Add(this.radSearchCodeNum);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.lblCountItemListView);
@@ -530,6 +558,8 @@
         private System.Windows.Forms.ToolStripMenuItem xóaToolStripMenuItem;
         private System.Windows.Forms.CheckBox chkRandomCodeNum;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RadioButton radSearchCodeNum;
+        private System.Windows.Forms.RadioButton radSearchName;
     }
 }
 
