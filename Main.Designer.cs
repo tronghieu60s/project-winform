@@ -65,6 +65,7 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.mnuStripListView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.xóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xóaNhiềuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.radSearchCodeNum = new System.Windows.Forms.RadioButton();
             this.radSearchName = new System.Windows.Forms.RadioButton();
@@ -279,6 +280,7 @@
             this.btnUpdate.TabIndex = 9;
             this.btnUpdate.Text = "Cập Nhật";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // cboClass
             // 
@@ -299,6 +301,7 @@
             this.btnDelete.TabIndex = 8;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // cboFaculty
             // 
@@ -411,6 +414,7 @@
             this.lvwMain.TabIndex = 6;
             this.lvwMain.UseCompatibleStateImageBehavior = false;
             this.lvwMain.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwMain_ColumnClick);
+            this.lvwMain.SelectedIndexChanged += new System.EventHandler(this.lvwMain_SelectedIndexChanged);
             this.lvwMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lvwMain_MouseClick);
             // 
             // lblCountItemListView
@@ -435,16 +439,24 @@
             // 
             this.mnuStripListView.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.mnuStripListView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.xóaToolStripMenuItem});
+            this.xóaToolStripMenuItem,
+            this.xóaNhiềuToolStripMenuItem});
             this.mnuStripListView.Name = "contextMenuStrip1";
-            this.mnuStripListView.Size = new System.Drawing.Size(116, 36);
+            this.mnuStripListView.Size = new System.Drawing.Size(167, 68);
             // 
             // xóaToolStripMenuItem
             // 
             this.xóaToolStripMenuItem.Name = "xóaToolStripMenuItem";
-            this.xóaToolStripMenuItem.Size = new System.Drawing.Size(115, 32);
+            this.xóaToolStripMenuItem.Size = new System.Drawing.Size(166, 32);
             this.xóaToolStripMenuItem.Text = "Xóa";
             this.xóaToolStripMenuItem.Click += new System.EventHandler(this.xóaToolStripMenuItem_Click);
+            // 
+            // xóaNhiềuToolStripMenuItem
+            // 
+            this.xóaNhiềuToolStripMenuItem.Name = "xóaNhiềuToolStripMenuItem";
+            this.xóaNhiềuToolStripMenuItem.Size = new System.Drawing.Size(166, 32);
+            this.xóaNhiềuToolStripMenuItem.Text = "Xóa Nhiều";
+            this.xóaNhiềuToolStripMenuItem.Click += new System.EventHandler(this.xóaNhiềuToolStripMenuItem_Click);
             // 
             // label2
             // 
@@ -560,6 +572,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RadioButton radSearchCodeNum;
         private System.Windows.Forms.RadioButton radSearchName;
+        private System.Windows.Forms.ToolStripMenuItem xóaNhiềuToolStripMenuItem;
     }
 }
 
