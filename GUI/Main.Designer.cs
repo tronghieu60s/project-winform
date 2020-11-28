@@ -69,6 +69,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.radSearchCodeNum = new System.Windows.Forms.RadioButton();
             this.radSearchName = new System.Windows.Forms.RadioButton();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picResize)).BeginInit();
@@ -470,7 +471,7 @@
             // radSearchCodeNum
             // 
             this.radSearchCodeNum.AutoSize = true;
-            this.radSearchCodeNum.Location = new System.Drawing.Point(783, 80);
+            this.radSearchCodeNum.Location = new System.Drawing.Point(783, 83);
             this.radSearchCodeNum.Name = "radSearchCodeNum";
             this.radSearchCodeNum.Size = new System.Drawing.Size(120, 24);
             this.radSearchCodeNum.TabIndex = 12;
@@ -482,7 +483,7 @@
             // radSearchName
             // 
             this.radSearchName.AutoSize = true;
-            this.radSearchName.Location = new System.Drawing.Point(925, 80);
+            this.radSearchName.Location = new System.Drawing.Point(909, 83);
             this.radSearchName.Name = "radSearchName";
             this.radSearchName.Size = new System.Drawing.Size(101, 24);
             this.radSearchName.TabIndex = 12;
@@ -491,12 +492,25 @@
             this.radSearchName.UseVisualStyleBackColor = true;
             this.radSearchName.CheckedChanged += new System.EventHandler(this.radCheckedSearch);
             // 
+            // btnSearch
+            // 
+            this.btnSearch.BackColor = System.Drawing.SystemColors.Menu;
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.ForeColor = System.Drawing.Color.Black;
+            this.btnSearch.Location = new System.Drawing.Point(1016, 76);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(85, 37);
+            this.btnSearch.TabIndex = 13;
+            this.btnSearch.Text = "Tìm Kiếm";
+            this.btnSearch.UseVisualStyleBackColor = false;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1182, 694);
+            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.radSearchName);
             this.Controls.Add(this.radSearchCodeNum);
             this.Controls.Add(this.label2);
@@ -573,6 +587,7 @@
         private System.Windows.Forms.RadioButton radSearchCodeNum;
         private System.Windows.Forms.RadioButton radSearchName;
         private System.Windows.Forms.ToolStripMenuItem xóaNhiềuToolStripMenuItem;
+        private System.Windows.Forms.Button btnSearch;
     }
 }
 

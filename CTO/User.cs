@@ -14,7 +14,7 @@ namespace project_winform.CTO
         private string permission;
         private DateTime birthday;
         private string course;
-        private string idClass;
+        private Class classModel;
 
         public string IdUser { get => idUser; set => idUser = value; }
         public string Password { get => password; set => password = value; }
@@ -22,9 +22,20 @@ namespace project_winform.CTO
         public string Permission { get => permission; set => permission = value; }
         public DateTime Birthday { get => birthday; set => birthday = value; }
         public string Course { get => course; set => course = value; }
-        public string IdClass { get => idClass; set => idClass = value; }
+        internal Class ClassModel { get => classModel; set => classModel = value; }
 
-        public User(string idUser, string password, string name, string permission, DateTime birthday, string course, string idClass)
+        public User(string idUser, string password)
+        {
+            this.idUser = idUser;
+            this.password = password;
+            this.name = "";
+            this.permission = "";
+            this.birthday = new DateTime();
+            this.course = "";
+            this.classModel = new Class();
+        }
+
+        public User(string idUser, string password, string name, string permission, DateTime birthday, string course, Class classModel)
         {
             this.idUser = idUser;
             this.password = password;
@@ -32,7 +43,7 @@ namespace project_winform.CTO
             this.permission = permission;
             this.birthday = birthday;
             this.course = course;
-            this.idClass = idClass;
+            this.classModel = classModel;
         }
     }
 }

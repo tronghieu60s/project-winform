@@ -15,5 +15,11 @@ namespace project_winform.src.constants
 
         public static string CaptionDuplicatedCodeNum = "Trùng Mã Số";
         public static string DuplicatedCodeNum = "Mã số không được trùng trong dữ liệu đã có.";
+
+        public static string CaptionLoginIncorrect = "Đăng Nhập Thất Bại";
+        public static string LoginIncorrect = "Tài khoản hoặc mật khẩu không chính xác.";
+
+        public static string CaptionForgotPass= "Quên Mật Khẩu";
+        public static string ForgotPass = "Vui lòng liên hệ quản trị viên để cấp lại mật khẩu.";
     }
 }

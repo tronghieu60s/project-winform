@@ -4,9 +4,9 @@ using MySql.Data.MySqlClient;
 
 namespace project_winform.dal
 {
-    public class DatabaseUtils
+    class DatabaseUtils
     {
-        private readonly MySqlConnection connectDB = new MySqlConnection();
+        public static MySqlConnection connectDB = new MySqlConnection();
         private readonly string strConnect = 
             $"Server={DatabaseConfig.Host};"+
             $"Database={DatabaseConfig.Database};"+
@@ -20,7 +20,6 @@ namespace project_winform.dal
             {
                 connectDB.ConnectionString = strConnect;
                 connectDB.Open();
-                MessageBox.Show("Connect Success!");
             }
             catch (SqlException error)
             {

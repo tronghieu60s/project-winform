@@ -1,6 +1,11 @@
 ﻿using System;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using project_winform.BUS;
+using project_winform.CTO;
+using project_winform.DAL;
+using project_winform.src.constants;
 using project_winform.src.helpers;
 using project_winform.src.themes;
 
@@ -12,8 +17,8 @@ namespace project_winform
         {
             InitializeComponent();
             FormSetup.FormLoad(this);
-            
-            #region * Color - Text
+
+            #region * UI STYLE
             BackColor = Color.FromArgb(54, 57, 63);
 
             // Style Panel
@@ -49,7 +54,7 @@ namespace project_winform
             #endregion
         }
 
-        #region * Control General
+        #region * CONTROL STYLE
         /* Title Bar Hover Style */
         private void picIcon_MouseHover(object sender, EventArgs e)
         {
@@ -164,14 +169,19 @@ namespace project_winform
         {
             if (ValidatingTxtCodeNumLogin() && ValidatingTxtPasswordLogin())
             {
-                Control.frmMain.Show();
-                Control.frmLogin.Hide();
+                bool checkLogin = UserBUS.HandleUserLogin(txtCodeNum.Text.Trim(), txtPassword.Text.Trim());
+                if (checkLogin)
+                {
+                    Control.frmMain.Show();
+                    Control.frmLogin.Hide();
+                }
+                else MessageBox.Show(MessageBoxText.LoginIncorrect, MessageBoxText.CaptionLoginIncorrect, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
         private void lblForgetPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show("Bạn vui lòng liên hệ Administrator để tạo lại mật khẩu.", "Quên Mật Khẩu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(MessageBoxText.ForgotPass, MessageBoxText.CaptionForgotPass, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

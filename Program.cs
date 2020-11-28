@@ -13,7 +13,7 @@ namespace project_winform
         {
             Application.EnableVisualStyles();
             // Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(Control.frmLogin);
+            Application.Run(Control.frmMain);
         }
     }
 }

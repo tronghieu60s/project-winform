@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using project_winform.BUS;
+using project_winform.CTO;
+using project_winform.DAL;
 using project_winform.src.constants;
 using project_winform.src.helpers;
 using project_winform.src.themes;
@@ -27,7 +31,7 @@ namespace project_winform
             lvwMain.MultiSelect = false;
             #endregion
 
-            #region * Color - Text
+            #region * UI STYLE
             BackColor = ColorTheme.getTheme("secondary");
             picLogout.Image = Image.FromFile(IconTheme.logout);
             lblWelcome.ForeColor = ColorTheme.getTheme("text-bold");
@@ -48,11 +52,14 @@ namespace project_winform
             btnAdd.BackColor = ColorTheme.getTheme("primary");
             btnDelete.BackColor = ColorTheme.getTheme("danger");
             btnUpdate.BackColor = ColorTheme.getTheme("warning");
+            btnSearch.BackColor = ColorTheme.getTheme("primary");
             #endregion
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            UserBUS.RenderListViewAllDataUser(lvwMain);
+
             #region * Structor ListView
             // List View
             lvwMain.View = View.Details;
