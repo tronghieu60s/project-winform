@@ -1,10 +1,11 @@
-﻿using System;
+﻿using project_winform.dal;
 using System.Windows.Forms;
 
 namespace project_winform
 {
     class Control
     {
+        static public DatabaseUtils db = new DatabaseUtils();
         static public Form frmMain = new frmMain();
         static public Form frmLogin = new frmLogin();
 

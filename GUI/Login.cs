@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using project_winform.src.helpers;
 using project_winform.src.themes;
 
@@ -13,7 +12,7 @@ namespace project_winform
         {
             InitializeComponent();
             FormSetup.FormLoad(this);
-
+            
             #region * Color - Text
             BackColor = Color.FromArgb(54, 57, 63);
 
