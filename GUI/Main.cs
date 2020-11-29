@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 using project_winform.BUS;
 using project_winform.CTO;
@@ -20,7 +21,12 @@ namespace project_winform
             InitializeComponent();
             FormSetup.FormLoad(this);
 
-            #region * Setup Input
+            #region * UI SETUP 
+            // List View
+            lvwMain.View = View.Details;
+            lvwMain.GridLines = true;
+            lvwMain.FullRowSelect = true;
+
             // Custom Format DateTime Picker
             dtpBirthday.Format = DateTimePickerFormat.Custom;
             dtpBirthday.CustomFormat = "dd / MM / yyyy";
@@ -58,39 +64,11 @@ namespace project_winform
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            UserBUS.RenderListViewAllDataUser(lvwMain);
-
-            #region * Structor ListView
-            // List View
-            lvwMain.View = View.Details;
-            lvwMain.GridLines = true;
-            lvwMain.FullRowSelect = true;
-
+            UserBUS.RenderListViewAllDataUser();
             SelectTypeUser();
-            #endregion
-
-            #region * Fake Data ComboBox
-            cboCourse.Items.Add("K17");
-            cboCourse.Items.Add("K18");
-            cboCourse.Items.Add("K19");
-            cboCourse.Items.Add("K20");
-
-            cboFaculty.Items.Add("Công Nghệ Thông Tin");
-            cboFaculty.Items.Add("Quản Trị Kinh Doanh");
-            cboFaculty.Items.Add("Tiếng Anh");
-            cboFaculty.Items.Add("Tiếng Hàn");
-
-            cboClass.Items.Add("CD19TT1");
-            cboClass.Items.Add("CD19TT2");
-            cboClass.Items.Add("CD19TT3");
-            cboClass.Items.Add("CD19TT4");
-            cboClass.Items.Add("CD19TT5");
-            cboClass.Items.Add("CD19TT6");
-            cboClass.Items.Add("CD19TT7");
-            #endregion
         }
 
-        #region * Control General
+        #region * UI TAB BAR
         /* Title Bar Hover Style */
         private void picIcon_MouseHover(object sender, EventArgs e)
         {
@@ -140,6 +118,79 @@ namespace project_winform
             e.Graphics.DrawRectangle(new Pen(ColorTheme.getTheme(), 8), DisplayRectangle);
         }
 
+        #endregion
+
+        #region * FILTER TYPE USER
+        private void SelectTypeUser()
+        {
+            if (cboTypeUser.SelectedIndex == 0)
+                TypeUserAdmin();
+            if (cboTypeUser.SelectedIndex == 1)
+                TypeUserStudent();
+            if (cboTypeUser.SelectedIndex == 2)
+                TypeUserTeacher();
+        }
+
+        private void TypeUserAdmin()
+        {
+            UserBUS.ListViewRenderWithPermission(lvwMain, "AD");
+
+            lvwMain.Columns.Clear();
+            lvwMain.Columns.Add("Mã Số", 100);
+            lvwMain.Columns.Add("Họ Tên", 200);
+            lvwMain.Columns.Add("Ngày Sinh", 100);
+
+            lblCourse.Hide();
+            cboCourse.Hide();
+            lblFaculty.Hide();
+            cboFaculty.Hide();
+            lblClass.Hide();
+            cboClass.Hide();
+            lblManager.Hide();
+            chkListManager.Hide();
+        }
+
+        private void TypeUserStudent()
+        {
+            UserBUS.ListViewRenderWithPermission(lvwMain, "SD");
+
+            lvwMain.Columns.Clear();
+            lvwMain.Columns.Add("Mã Số", 100);
+            lvwMain.Columns.Add("Họ Tên", 100);
+            lvwMain.Columns.Add("Ngày Sinh", 70);
+            lvwMain.Columns.Add("Khóa", 50);
+            lvwMain.Columns.Add("Khoa", 100);
+            lvwMain.Columns.Add("Lớp", 70);
+
+            lblManager.Hide();
+            chkListManager.Hide();
+
+            lblCourse.Show();
+            cboCourse.Show();
+            lblFaculty.Show();
+            cboFaculty.Show();
+            lblClass.Show();
+            cboClass.Show();
+        }
+
+        private void TypeUserTeacher()
+        {
+            lvwMain.Columns.Clear();
+            lvwMain.Columns.Add("Mã Số", 100);
+            lvwMain.Columns.Add("Họ Tên", 200);
+            lvwMain.Columns.Add("Ngày Sinh", 70);
+            lvwMain.Columns.Add("Khoa", 130);
+
+            lblCourse.Hide();
+            cboCourse.Hide();
+            lblClass.Hide();
+            cboClass.Hide();
+
+            lblFaculty.Show();
+            cboFaculty.Show();
+            lblManager.Show();
+            chkListManager.Show();
+        }
         #endregion
 
         #region * Validating Input
@@ -230,75 +281,6 @@ namespace project_winform
             ValidatingCboClass();
         }
 
-        #endregion
-
-        #region * Select TypeUser Filter
-        private void SelectTypeUser()
-        {
-            if (cboTypeUser.SelectedIndex == 0)
-                TypeUserAdmin();
-            if (cboTypeUser.SelectedIndex == 1)
-                TypeUserStudent();
-            if (cboTypeUser.SelectedIndex == 2)
-                TypeUserTeacher();
-        }
-
-        private void TypeUserAdmin()
-        {
-            lvwMain.Columns.Clear();
-            lvwMain.Columns.Add("Mã Số", 100);
-            lvwMain.Columns.Add("Họ Tên", 200);
-            lvwMain.Columns.Add("Ngày Sinh", 100);
-
-            lblCourse.Hide();
-            cboCourse.Hide();
-            lblFaculty.Hide();
-            cboFaculty.Hide();
-            lblClass.Hide();
-            cboClass.Hide();
-            lblManager.Hide();
-            chkListManager.Hide();
-        }
-
-        private void TypeUserStudent()
-        {
-            lvwMain.Columns.Clear();
-            lvwMain.Columns.Add("Mã Số", 100);
-            lvwMain.Columns.Add("Họ Tên", 100);
-            lvwMain.Columns.Add("Ngày Sinh", 70);
-            lvwMain.Columns.Add("Khóa", 50);
-            lvwMain.Columns.Add("Khoa", 100);
-            lvwMain.Columns.Add("Lớp", 70);
-
-            lblManager.Hide();
-            chkListManager.Hide();
-
-            lblCourse.Show();
-            cboCourse.Show();
-            lblFaculty.Show();
-            cboFaculty.Show();
-            lblClass.Show();
-            cboClass.Show();
-        }
-
-        private void TypeUserTeacher()
-        {
-            lvwMain.Columns.Clear();
-            lvwMain.Columns.Add("Mã Số", 100);
-            lvwMain.Columns.Add("Họ Tên", 200);
-            lvwMain.Columns.Add("Ngày Sinh", 70);
-            lvwMain.Columns.Add("Khoa", 130);
-
-            lblCourse.Hide();
-            cboCourse.Hide();
-            lblClass.Hide();
-            cboClass.Hide();
-
-            lblFaculty.Show();
-            cboFaculty.Show();
-            lblManager.Show();
-            chkListManager.Show();
-        }
         #endregion
 
         #region * Add Data User
@@ -501,7 +483,7 @@ namespace project_winform
         {
             foreach (ListViewItem item in lvwMain.Items)
             {
-                if(item.SubItems[0].Text == txtCodeNum.Text)
+                if (item.SubItems[0].Text == txtCodeNum.Text)
                 {
                     item.SubItems[1].Text = txtFullName.Text;
                     item.SubItems[2].Text = dtpBirthday.Text;
@@ -603,7 +585,7 @@ namespace project_winform
             {
                 txtCodeNum.Text = item.SubItems[0].Text;
                 txtFullName.Text = item.SubItems[1].Text;
-                dtpBirthday.Text = item.SubItems[2].Text;
+                dtpBirthday.Value = DateTime.ParseExact(item.SubItems[2].Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 cboCourse.Text = item.SubItems[3].Text;
                 cboFaculty.Text = item.SubItems[4].Text;
                 cboClass.Text = item.SubItems[5].Text;

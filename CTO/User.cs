@@ -24,17 +24,6 @@ namespace project_winform.CTO
         public string Course { get => course; set => course = value; }
         internal Class ClassModel { get => classModel; set => classModel = value; }
 
-        public User(string idUser, string password)
-        {
-            this.idUser = idUser;
-            this.password = password;
-            this.name = "";
-            this.permission = "";
-            this.birthday = new DateTime();
-            this.course = "";
-            this.classModel = new Class();
-        }
-
         public User(string idUser, string password, string name, string permission, DateTime birthday, string course, Class classModel)
         {
             this.idUser = idUser;
