@@ -13,7 +13,6 @@ namespace project_winform.CTO
         private string name;
         private string permission;
         private DateTime birthday;
-        private string course;
         private Class classModel;
 
         public string IdUser { get => idUser; set => idUser = value; }
@@ -21,17 +20,15 @@ namespace project_winform.CTO
         public string Name { get => name; set => name = value; }
         public string Permission { get => permission; set => permission = value; }
         public DateTime Birthday { get => birthday; set => birthday = value; }
-        public string Course { get => course; set => course = value; }
         internal Class ClassModel { get => classModel; set => classModel = value; }
 
-        public User(string idUser, string password, string name, string permission, DateTime birthday, string course, Class classModel)
+        public User(string idUser, string password, string name, string permission, DateTime birthday, Class classModel)
         {
             this.idUser = idUser;
             this.password = password;
             this.name = name;
             this.permission = permission;
             this.birthday = birthday;
-            this.course = course;
             this.classModel = classModel;
         }
     }

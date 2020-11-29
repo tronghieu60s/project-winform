@@ -21,5 +21,8 @@ namespace project_winform.src.constants
 
         public static string CaptionForgotPass= "Quên Mật Khẩu";
         public static string ForgotPass = "Vui lòng liên hệ quản trị viên để cấp lại mật khẩu.";
+
+        public static string CaptionException = "Có Lỗi Xảy Ra";
+        public static string Exception = "Có lỗi xảy ra không như ý muốn. Vui lòng thử lại sau.";
     }
 }

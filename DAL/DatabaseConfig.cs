@@ -2,10 +2,16 @@
 {
     class DatabaseConfig
     {
-        public static string Host = "localhost";
-        public static int Port = 3306;
-        public static string Database = "quanlysinhvien";
-        public static string Username = "root";
-        public static string Password = "";
+        private static string host = "localhost";
+        private static int port = 3306;
+        private static string database = "quanlysinhvien";
+        private static string username = "root";
+        private static string password = "";
+
+        public static string Host { get => host; }
+        public static int Port { get => port; }
+        public static string Database { get => database; }
+        public static string Username { get => username; }
+        public static string Password { get => password; }
     }
 }

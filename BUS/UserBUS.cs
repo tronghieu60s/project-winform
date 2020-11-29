@@ -13,6 +13,40 @@ namespace project_winform.BUS
     {
         private static ListView lvwMainState = new ListView();
 
+        public static ListView LvwMainState { get => lvwMainState; set => lvwMainState = value; }
+
+        public UserBUS()
+        {
+            List<User> users = UserDAL.getUsers();
+            foreach (User user in users)
+                lvwMainState.Items.Add(AddUserToListViewItem(user));
+        }
+
+        public static int RandomCodeNum(string permission)
+        {
+            Random rd = new Random();
+            int random = rd.Next(10000, 99999);
+            // Recursive Random
+            foreach (ListViewItem item in LvwMainState.Items)
+                if (item.SubItems[0].Text == $"{permission}{random}".ToString())
+                    return RandomCodeNum(permission);
+            return random;
+        }
+
+        public static ListViewItem AddUserToListViewItem(User user)
+        {
+            ListViewItem item = new ListViewItem(user.IdUser);
+            item.SubItems.Add(user.Name);
+            item.SubItems.Add(user.Birthday.ToString("dd/MM/yyyy"));
+            if (user.ClassModel != null)
+            {
+                item.SubItems.Add(user.ClassModel.Course.Name);
+                item.SubItems.Add(user.ClassModel.Faculty.Name);
+                item.SubItems.Add(user.ClassModel.Name);
+            }
+            return item;
+        }
+
         public static bool HandleUserLogin(string username, string password)
         {
             User user = UserDAL.getUserWithId(username);
@@ -21,23 +55,8 @@ namespace project_winform.BUS
                     return true;
             return false;
         }
-    
-        public static void RenderListViewAllDataUser()
-        {
-            List<User> users = UserDAL.getAllUsers();
-            foreach (User user in users)
-            {
-                ListViewItem item = new ListViewItem(user.IdUser);
-                item.SubItems.Add(user.Name);
-                item.SubItems.Add(user.Birthday.ToString("dd/MM/yyyy"));
-                item.SubItems.Add(user.Course);
-                item.SubItems.Add(user.ClassModel.Faculty.Name);
-                item.SubItems.Add(user.ClassModel.Name);
-                lvwMainState.Items.Add(item);
-            }
-        }
 
-        public static void ListViewRenderWithPermission(ListView lvwMain, string permission)
+        public static void RenderListViewDataUsersWithPermission(ListView lvwMain, string permission)
         {
             lvwMain.Items.Clear();
             ListViewItem itemClone;
@@ -45,8 +64,20 @@ namespace project_winform.BUS
             {
                 itemClone = item.Clone() as ListViewItem;
                 string id_user = itemClone.SubItems[0].Text;
+                Console.WriteLine(item.SubItems[0].Text);
                 if (id_user.Substring(0, 2) == permission)
                     lvwMain.Items.Add(itemClone);
+            }
+        }
+
+        public static void HandleAddUserToListView(ListView lvwMain, User user)
+        {
+            bool userResult = UserDAL.addUser(user);
+            if (userResult)
+            {
+                ListViewItem item = AddUserToListViewItem(user);
+                lvwMain.Items.Add(item.Clone() as ListViewItem);
+                lvwMainState.Items.Add(item.Clone() as ListViewItem);
             }
         }
     }

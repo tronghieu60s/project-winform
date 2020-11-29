@@ -1,0 +1,231 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.1
+-- https://www.phpmyadmin.net/
+--
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th10 29, 2020 lúc 02:00 PM
+-- Phiên bản máy phục vụ: 10.4.11-MariaDB
+-- Phiên bản PHP: 7.4.2
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Cơ sở dữ liệu: `quanlysinhvien`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `classes`
+--
+
+CREATE TABLE `classes` (
+  `id_class` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_course` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_faculty` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `class_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `classes`
+--
+
+INSERT INTO `classes` (`id_class`, `id_course`, `id_faculty`, `class_name`) VALUES
+('CL1', 'K19', 'FA1', 'CD19TT2'),
+('CL2', 'K19', 'FA2', 'CD19TD3'),
+('CL3', 'K20', 'FA3', 'CD19TH5'),
+('CL4', 'K20', 'FA3', 'CD19TH6'),
+('CL5', 'K20', 'FA3', 'CD19TH7');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `courses`
+--
+
+CREATE TABLE `courses` (
+  `id_course` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `course_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `courses`
+--
+
+INSERT INTO `courses` (`id_course`, `course_name`) VALUES
+('K18', 'Khóa 18'),
+('K19', 'Khóa 19'),
+('K20', 'Khóa 20');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `faculties`
+--
+
+CREATE TABLE `faculties` (
+  `id_faculty` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `faculty_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `faculties`
+--
+
+INSERT INTO `faculties` (`id_faculty`, `faculty_name`) VALUES
+('FA1', 'Công Nghệ Thông Tin'),
+('FA2', 'Công Nghệ Tự Động'),
+('FA3', 'Tiếng Hàn');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `registers_user_subject`
+--
+
+CREATE TABLE `registers_user_subject` (
+  `id_user` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_subjects` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `registers_user_subject`
+--
+
+INSERT INTO `registers_user_subject` (`id_user`, `id_subjects`) VALUES
+('SD4322', 'SJ3'),
+('SD6537', 'SJ1'),
+('SD6537', 'SJ2');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `subjects`
+--
+
+CREATE TABLE `subjects` (
+  `id_subjects` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `credit` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `subjects`
+--
+
+INSERT INTO `subjects` (`id_subjects`, `name`, `credit`) VALUES
+('SJ1', 'Nhập Môn Lập Trình', 3),
+('SJ2', 'Lập Trình Ứng Dụng', 4),
+('SJ3', 'Tiếng Hàn Cơ Bản', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `users`
+--
+
+CREATE TABLE `users` (
+  `id_user` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `permission` tinyint(4) DEFAULT NULL,
+  `birthday` date DEFAULT NULL,
+  `id_class` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `users`
+--
+
+INSERT INTO `users` (`id_user`, `password`, `name`, `permission`, `birthday`, `id_class`) VALUES
+('AD12160', '123456', 'Depdsads', 0, '1900-01-01', NULL),
+('AD15640', '123456', 'dsadsad', 0, '2020-11-29', NULL),
+('AD6537', '123456', 'Admin', 1, NULL, NULL),
+('ADMIN', '123', 'Hiếu Đẹp Troai', 1, NULL, NULL),
+('SD12160', '123456', 'Depdsads', 0, '1900-01-01', 'CL1'),
+('SD4322', '123456', 'Ngoc Truong', 1, '2001-01-15', 'CL3'),
+('SD63472', '123456', 'Depdsads', 0, '1900-01-01', 'CL1'),
+('SD634726', '123456', 'Depdsads', 0, '1900-01-01', 'CL1'),
+('SD6537', '123456', 'Trong Hieu', 0, '2001-12-20', 'CL1');
+
+--
+-- Chỉ mục cho các bảng đã đổ
+--
+
+--
+-- Chỉ mục cho bảng `classes`
+--
+ALTER TABLE `classes`
+  ADD PRIMARY KEY (`id_class`),
+  ADD KEY `FK01_Class` (`id_faculty`),
+  ADD KEY `FK01_classes` (`id_course`);
+
+--
+-- Chỉ mục cho bảng `courses`
+--
+ALTER TABLE `courses`
+  ADD PRIMARY KEY (`id_course`);
+
+--
+-- Chỉ mục cho bảng `faculties`
+--
+ALTER TABLE `faculties`
+  ADD PRIMARY KEY (`id_faculty`);
+
+--
+-- Chỉ mục cho bảng `registers_user_subject`
+--
+ALTER TABLE `registers_user_subject`
+  ADD PRIMARY KEY (`id_user`,`id_subjects`),
+  ADD KEY `FK02_Register` (`id_subjects`);
+
+--
+-- Chỉ mục cho bảng `subjects`
+--
+ALTER TABLE `subjects`
+  ADD PRIMARY KEY (`id_subjects`);
+
+--
+-- Chỉ mục cho bảng `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id_user`),
+  ADD KEY `FK01_Users` (`id_class`);
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `classes`
+--
+ALTER TABLE `classes`
+  ADD CONSTRAINT `FK01_Class` FOREIGN KEY (`id_faculty`) REFERENCES `faculties` (`id_faculty`),
+  ADD CONSTRAINT `FK01_classes` FOREIGN KEY (`id_course`) REFERENCES `courses` (`id_course`);
+
+--
+-- Các ràng buộc cho bảng `registers_user_subject`
+--
+ALTER TABLE `registers_user_subject`
+  ADD CONSTRAINT `FK01_Register` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`),
+  ADD CONSTRAINT `FK02_Register` FOREIGN KEY (`id_subjects`) REFERENCES `subjects` (`id_subjects`);
+
+--
+-- Các ràng buộc cho bảng `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `FK01_Users` FOREIGN KEY (`id_class`) REFERENCES `classes` (`id_class`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

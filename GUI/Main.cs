@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using project_winform.BUS;
 using project_winform.CTO;
 using project_winform.DAL;
+using project_winform.src.config;
 using project_winform.src.constants;
 using project_winform.src.helpers;
 using project_winform.src.themes;
@@ -14,8 +15,6 @@ namespace project_winform
 {
     public partial class frmMain : Form
     {
-        private ListView lvwMainState = new ListView();
-
         public frmMain()
         {
             InitializeComponent();
@@ -35,6 +34,29 @@ namespace project_winform
             cboTypeUser.SelectedIndex = 1;
             radSearchCodeNum.Checked = true;
             lvwMain.MultiSelect = false;
+
+            // ComboBox Custom
+            cboFaculty.DisplayMember = "Text";
+            cboFaculty.ValueMember = "Value";
+            cboCourse.DisplayMember = "Text";
+            cboCourse.ValueMember = "Value";
+            cboClass.DisplayMember = "Text";
+            cboClass.ValueMember = "Value";
+
+            cboFaculty.Format += (s, e) =>
+            {
+                e.Value = ((Faculty)e.Value).Name;
+            };
+
+            cboCourse.Format += (s, e) =>
+            {
+                e.Value = ((Course)e.Value).Name;
+            };
+
+            cboClass.Format += (s, e) =>
+            {
+                e.Value = ((Class)e.Value).Name;
+            };
             #endregion
 
             #region * UI STYLE
@@ -59,16 +81,32 @@ namespace project_winform
             btnDelete.BackColor = ColorTheme.getTheme("danger");
             btnUpdate.BackColor = ColorTheme.getTheme("warning");
             btnSearch.BackColor = ColorTheme.getTheme("primary");
+            btnAddCourse.BackColor = ColorTheme.getTheme("primary");
+            btnAddFaculty.BackColor = ColorTheme.getTheme("primary");
+            btnAddClass.BackColor = ColorTheme.getTheme("primary");
             #endregion
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            UserBUS.RenderListViewAllDataUser();
+            new UserBUS();
+            FacultyBUS.RenderComboBoxDataFaculties(cboFaculty);
+            CourseBUS.RenderComboBoxDataCourses(cboCourse);
+
             SelectTypeUser();
         }
 
-        #region * UI TAB BAR
+        private string ConfigComboBoxTypeUser()
+        {
+            if (cboTypeUser.SelectedIndex == 0)
+                return Config.typeAdmin;
+            if (cboTypeUser.SelectedIndex == 1)
+                return Config.typeStudent;
+            return String.Empty;
+        }
+
+        // UI CUSTOM
+        #region * UI CUSTOM
         /* Title Bar Hover Style */
         private void picIcon_MouseHover(object sender, EventArgs e)
         {
@@ -101,7 +139,6 @@ namespace project_winform
             Control.CloseWindow();
         }
 
-
         /* Move Window Action */
         private void pnlTitleBar_MouseDown(object sender, MouseEventArgs e)
         {
@@ -118,22 +155,63 @@ namespace project_winform
             e.Graphics.DrawRectangle(new Pen(ColorTheme.getTheme(), 8), DisplayRectangle);
         }
 
+        /* Logout Button */
+        private void picLogout_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(MessageBoxText.Logout, MessageBoxText.CaptionLogout, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Control.frmLogin.Show();
+                Control.frmMain.Hide();
+            }
+        }
+
+        #endregion
+
+        #region * RENDER COMBOBOX CLASSES
+        private void RenderComboBoxClasses()
+        {
+            cboClass.Items.Clear();
+            cboClass.SelectedIndex = -1;
+            cboClass.Text = String.Empty;
+            if (cboFaculty.SelectedIndex != -1 && cboCourse.SelectedIndex != -1)
+            {
+                string id_course = ((Course)cboCourse.SelectedItem).IdCourse;
+                string id_faculty = ((Faculty)cboFaculty.SelectedItem).IdFaculty;
+                ClassBUS.RenderComboBoxDataClasses(cboClass, id_course, id_faculty);
+            }
+        }
+
+        private void cboFaculty_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RenderComboBoxClasses();
+        }
+
+        private void cboCourse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RenderComboBoxClasses();
+        }
+
         #endregion
 
         #region * FILTER TYPE USER
+        private void cboTypeUser_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectTypeUser();
+        }
+
         private void SelectTypeUser()
         {
             if (cboTypeUser.SelectedIndex == 0)
                 TypeUserAdmin();
             if (cboTypeUser.SelectedIndex == 1)
                 TypeUserStudent();
-            if (cboTypeUser.SelectedIndex == 2)
-                TypeUserTeacher();
+            CountNumberListView();
         }
 
         private void TypeUserAdmin()
         {
-            UserBUS.ListViewRenderWithPermission(lvwMain, "AD");
+            UserBUS.RenderListViewDataUsersWithPermission(lvwMain, ConfigComboBoxTypeUser());
 
             lvwMain.Columns.Clear();
             lvwMain.Columns.Add("Mã Số", 100);
@@ -146,13 +224,15 @@ namespace project_winform
             cboFaculty.Hide();
             lblClass.Hide();
             cboClass.Hide();
-            lblManager.Hide();
-            chkListManager.Hide();
+
+            btnAddCourse.Hide();
+            btnAddFaculty.Hide();
+            btnAddClass.Hide();
         }
 
         private void TypeUserStudent()
         {
-            UserBUS.ListViewRenderWithPermission(lvwMain, "SD");
+            UserBUS.RenderListViewDataUsersWithPermission(lvwMain, ConfigComboBoxTypeUser());
 
             lvwMain.Columns.Clear();
             lvwMain.Columns.Add("Mã Số", 100);
@@ -162,38 +242,20 @@ namespace project_winform
             lvwMain.Columns.Add("Khoa", 100);
             lvwMain.Columns.Add("Lớp", 70);
 
-            lblManager.Hide();
-            chkListManager.Hide();
-
             lblCourse.Show();
             cboCourse.Show();
             lblFaculty.Show();
             cboFaculty.Show();
             lblClass.Show();
             cboClass.Show();
-        }
 
-        private void TypeUserTeacher()
-        {
-            lvwMain.Columns.Clear();
-            lvwMain.Columns.Add("Mã Số", 100);
-            lvwMain.Columns.Add("Họ Tên", 200);
-            lvwMain.Columns.Add("Ngày Sinh", 70);
-            lvwMain.Columns.Add("Khoa", 130);
-
-            lblCourse.Hide();
-            cboCourse.Hide();
-            lblClass.Hide();
-            cboClass.Hide();
-
-            lblFaculty.Show();
-            cboFaculty.Show();
-            lblManager.Show();
-            chkListManager.Show();
+            btnAddCourse.Show();
+            btnAddFaculty.Show();
+            btnAddClass.Show();
         }
         #endregion
 
-        #region * Validating Input
+        #region * VALIDATING INPUT
 
         private bool ValidatingTxtCodeNum()
         {
@@ -220,42 +282,6 @@ namespace project_winform
             return true;
         }
 
-        private bool ValidatingCboCourse()
-        {
-            if (cboCourse.Text.Trim().Length <= 0 || cboCourse.SelectedIndex == -1)
-            {
-                cboCourse.Focus();
-                lblCourse.ForeColor = ColorTheme.getTheme("danger");
-                return false;
-            }
-            else lblCourse.ForeColor = Color.Black;
-            return true;
-        }
-
-        private bool ValidatingCboFaculty()
-        {
-            if (cboFaculty.Text.Trim().Length <= 0 || cboFaculty.SelectedIndex == -1)
-            {
-                cboFaculty.Focus();
-                lblFaculty.ForeColor = ColorTheme.getTheme("danger");
-                return false;
-            }
-            else lblFaculty.ForeColor = Color.Black;
-            return true;
-        }
-
-        private bool ValidatingCboClass()
-        {
-            if (cboClass.Text.Trim().Length <= 0 || cboClass.SelectedIndex == -1)
-            {
-                cboClass.Focus();
-                lblClass.ForeColor = ColorTheme.getTheme("danger");
-                return false;
-            }
-            else lblClass.ForeColor = Color.Black;
-            return true;
-        }
-
         private void txtCodeNum_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             ValidatingTxtCodeNum();
@@ -265,90 +291,26 @@ namespace project_winform
         {
             ValidatingTxtFullName();
         }
-
-        private void cboCourse_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            ValidatingCboCourse();
-        }
-
-        private void cboFaculty_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            ValidatingCboFaculty();
-        }
-
-        private void cboClass_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            ValidatingCboClass();
-        }
-
         #endregion
 
-        #region * Add Data User
-        private int RandomCodeNum()
+        #region * ADD DATA USER
+
+        private void AddUser()
         {
-            Random rd = new Random();
-            int random = rd.Next(10000000, 99999999);
-            // Recursive Random
-            foreach (ListViewItem item in lvwMainState.Items)
-                if (item.SubItems[0].Text == random.ToString())
-                    return RandomCodeNum();
-            return random;
+            string id_user = chkRandomCodeNum.Checked ?
+                txtCodeNum.Text = UserBUS.RandomCodeNum(ConfigComboBoxTypeUser()).ToString() : txtCodeNum.Text;
+            id_user = ConfigComboBoxTypeUser() + id_user;
+
+            string password = "123456";
+            string name = txtFullName.Text;
+            string permission = "0";
+            DateTime birthday = DateTime.Parse(dtpBirthday.Text);
+            Class classModal = ((Class)cboClass.SelectedItem);
+            User user = new User(id_user, password, name, permission, birthday, classModal);
+
+            UserBUS.HandleAddUserToListView(lvwMain, user);
         }
 
-        private void AddUserAdmin()
-        {
-            if (ValidatingTxtCodeNum() && ValidatingTxtFullName())
-            {
-                string[] arrData = new string[3];
-                if (chkRandomCodeNum.Checked)
-                    arrData[0] = txtCodeNum.Text = RandomCodeNum().ToString();
-                else arrData[0] = txtCodeNum.Text;
-                arrData[1] = txtFullName.Text;
-                arrData[2] = dtpBirthday.Text;
-
-                ListViewItem item = new ListViewItem(arrData);
-                lvwMain.Items.Add(item);
-            }
-            else MessageBox.Show(MessageBoxText.RequiredInput, MessageBoxText.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
-
-        private void AddUserStudent()
-        {
-            if (ValidatingTxtCodeNum() && ValidatingTxtFullName() && ValidatingCboCourse() && ValidatingCboFaculty() && ValidatingCboClass())
-            {
-                string[] arrData = new string[6];
-                if (chkRandomCodeNum.Checked)
-                    arrData[0] = txtCodeNum.Text = RandomCodeNum().ToString();
-                else arrData[0] = txtCodeNum.Text;
-                arrData[1] = txtFullName.Text;
-                arrData[2] = dtpBirthday.Text;
-                arrData[3] = cboCourse.SelectedItem.ToString();
-                arrData[4] = cboFaculty.SelectedItem.ToString();
-                arrData[5] = cboClass.SelectedItem.ToString();
-
-                ListViewItem item = new ListViewItem(arrData);
-                lvwMain.Items.Add(item);
-            }
-            else MessageBox.Show(MessageBoxText.RequiredInput, MessageBoxText.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
-
-        private void AddUserTeacher()
-        {
-            if (ValidatingTxtCodeNum() && ValidatingTxtFullName() && ValidatingCboFaculty())
-            {
-                string[] arrData = new string[6];
-                if (chkRandomCodeNum.Checked)
-                    arrData[0] = txtCodeNum.Text = RandomCodeNum().ToString();
-                else arrData[0] = txtCodeNum.Text;
-                arrData[1] = txtFullName.Text;
-                arrData[2] = dtpBirthday.Text;
-                arrData[3] = cboFaculty.SelectedItem.ToString();
-
-                ListViewItem item = new ListViewItem(arrData);
-                lvwMain.Items.Add(item);
-            }
-            else MessageBox.Show(MessageBoxText.RequiredInput, MessageBoxText.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
         #endregion
 
         #region * Menu Strip List View
@@ -357,9 +319,9 @@ namespace project_winform
             foreach (ListViewItem itemMain in lvwMain.SelectedItems)
             {
                 lvwMain.Items.Remove(itemMain);
-                foreach (ListViewItem itemMainState in lvwMainState.Items)
+                foreach (ListViewItem itemMainState in UserBUS.LvwMainState.Items)
                     if (itemMainState.SubItems[0].Text == itemMain.SubItems[0].Text)
-                        lvwMainState.Items.Remove(itemMainState);
+                        UserBUS.LvwMainState.Items.Remove(itemMainState);
             }
             CountNumberListView();
         }
@@ -457,20 +419,22 @@ namespace project_winform
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (!chkRandomCodeNum.Checked)
-                foreach (ListViewItem item in lvwMainState.Items)
-                    if (item.SubItems[0].Text == txtCodeNum.Text)
+                foreach (ListViewItem item in UserBUS.LvwMainState.Items)
+                    if (item.SubItems[0].Text == $"{ConfigComboBoxTypeUser()}{txtCodeNum.Text}")
                     {
                         MessageBox.Show(MessageBoxText.DuplicatedCodeNum, MessageBoxText.CaptionDuplicatedCodeNum, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
-            if (cboTypeUser.SelectedIndex == 0)
-                AddUserAdmin();
-            if (cboTypeUser.SelectedIndex == 1)
-                AddUserStudent();
-            if (cboTypeUser.SelectedIndex == 2)
-                AddUserTeacher();
-            SaveListViewToBase();
+            if (!ValidatingTxtCodeNum() || !ValidatingTxtFullName())
+            {
+                MessageBox.Show(MessageBoxText.RequiredInput, MessageBoxText.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (cboTypeUser.SelectedIndex != -1)
+                AddUser();
+
             CountNumberListView();
         }
 
@@ -501,54 +465,13 @@ namespace project_winform
             lblCountItemListView.Text = $"{number} mục";
         }
 
-        private void SaveListViewToBase()
-        {
-            lvwMainState.Items.Clear();
-            ListViewItem itemClone;
-            foreach (ListViewItem item in lvwMain.Items)
-            {
-                itemClone = item.Clone() as ListViewItem;
-                lvwMainState.Items.Add(itemClone);
-            }
-        }
-
-        private void picLogout_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show(MessageBoxText.Logout, MessageBoxText.CaptionLogout, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                Control.frmLogin.Show();
-                Control.frmMain.Hide();
-            }
-        }
-
-        private void cboTypeUser_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SelectTypeUser();
-        }
-
-        private void cboFaculty_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            chkListManager.Items.Clear();
-            if (cboFaculty.SelectedIndex == 0)
-            {
-                // while or for
-                chkListManager.Items.Add("CD19TT1");
-                chkListManager.Items.Add("CD19TT2");
-                chkListManager.Items.Add("CD19TT3");
-                chkListManager.Items.Add("CD19TT4");
-                chkListManager.Items.Add("CD19TT5");
-                chkListManager.Items.Add("CD19TT6");
-            }
-        }
-
         private void SearchNameListView(object sender, EventArgs e)
         {
             ListViewItem itemClone;
             if (txtSearch.Text == string.Empty)
             {
                 lvwMain.Items.Clear();
-                foreach (ListViewItem item in lvwMainState.Items)
+                foreach (ListViewItem item in UserBUS.LvwMainState.Items)
                 {
                     itemClone = item.Clone() as ListViewItem;
                     lvwMain.Items.Add(itemClone);
@@ -558,7 +481,7 @@ namespace project_winform
             }
 
             ListView lvwTemporary = new ListView();
-            foreach (ListViewItem item in lvwMainState.Items)
+            foreach (ListViewItem item in UserBUS.LvwMainState.Items)
             {
                 itemClone = item.Clone() as ListViewItem;
                 if (radSearchCodeNum.Checked)
@@ -583,7 +506,8 @@ namespace project_winform
         {
             foreach (ListViewItem item in lvwMain.SelectedItems)
             {
-                txtCodeNum.Text = item.SubItems[0].Text;
+                string id = item.SubItems[0].Text;
+                txtCodeNum.Text = id.Substring(2, id.Length - 2);
                 txtFullName.Text = item.SubItems[1].Text;
                 dtpBirthday.Value = DateTime.ParseExact(item.SubItems[2].Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 cboCourse.Text = item.SubItems[3].Text;

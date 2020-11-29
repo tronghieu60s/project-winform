@@ -43,8 +43,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chkRandomCodeNum = new System.Windows.Forms.CheckBox();
-            this.chkListManager = new System.Windows.Forms.CheckedListBox();
-            this.lblManager = new System.Windows.Forms.Label();
             this.dtpBirthday = new System.Windows.Forms.DateTimePicker();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.cboClass = new System.Windows.Forms.ComboBox();
@@ -70,6 +68,9 @@
             this.radSearchCodeNum = new System.Windows.Forms.RadioButton();
             this.radSearchName = new System.Windows.Forms.RadioButton();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.btnAddCourse = new System.Windows.Forms.Button();
+            this.btnAddFaculty = new System.Windows.Forms.Button();
+            this.btnAddClass = new System.Windows.Forms.Button();
             this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picResize)).BeginInit();
@@ -191,8 +192,7 @@
             this.cboTypeUser.FormattingEnabled = true;
             this.cboTypeUser.Items.AddRange(new object[] {
             "Quản Trị Viên",
-            "Học Sinh",
-            "Giáo Viên"});
+            "Học Sinh"});
             this.cboTypeUser.Location = new System.Drawing.Point(159, 43);
             this.cboTypeUser.Name = "cboTypeUser";
             this.cboTypeUser.Size = new System.Drawing.Size(252, 28);
@@ -212,13 +212,14 @@
             // 
             this.groupBox2.BackColor = System.Drawing.Color.Transparent;
             this.groupBox2.Controls.Add(this.chkRandomCodeNum);
-            this.groupBox2.Controls.Add(this.chkListManager);
-            this.groupBox2.Controls.Add(this.lblManager);
             this.groupBox2.Controls.Add(this.dtpBirthday);
             this.groupBox2.Controls.Add(this.btnUpdate);
             this.groupBox2.Controls.Add(this.cboClass);
             this.groupBox2.Controls.Add(this.btnDelete);
             this.groupBox2.Controls.Add(this.cboFaculty);
+            this.groupBox2.Controls.Add(this.btnAddClass);
+            this.groupBox2.Controls.Add(this.btnAddFaculty);
+            this.groupBox2.Controls.Add(this.btnAddCourse);
             this.groupBox2.Controls.Add(this.btnAdd);
             this.groupBox2.Controls.Add(this.cboCourse);
             this.groupBox2.Controls.Add(this.txtFullName);
@@ -239,6 +240,8 @@
             // chkRandomCodeNum
             // 
             this.chkRandomCodeNum.AutoSize = true;
+            this.chkRandomCodeNum.Checked = true;
+            this.chkRandomCodeNum.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkRandomCodeNum.Location = new System.Drawing.Point(327, 30);
             this.chkRandomCodeNum.Name = "chkRandomCodeNum";
             this.chkRandomCodeNum.Size = new System.Drawing.Size(114, 24);
@@ -247,28 +250,11 @@
             this.chkRandomCodeNum.UseVisualStyleBackColor = true;
             this.chkRandomCodeNum.CheckedChanged += new System.EventHandler(this.chkRandomCodeNum_CheckedChanged);
             // 
-            // chkListManager
-            // 
-            this.chkListManager.FormattingEnabled = true;
-            this.chkListManager.Location = new System.Drawing.Point(164, 178);
-            this.chkListManager.Name = "chkListManager";
-            this.chkListManager.Size = new System.Drawing.Size(216, 73);
-            this.chkListManager.TabIndex = 14;
-            // 
-            // lblManager
-            // 
-            this.lblManager.AutoSize = true;
-            this.lblManager.Location = new System.Drawing.Point(49, 181);
-            this.lblManager.Name = "lblManager";
-            this.lblManager.Size = new System.Drawing.Size(106, 20);
-            this.lblManager.TabIndex = 13;
-            this.lblManager.Text = "Phụ trách lớp:";
-            // 
             // dtpBirthday
             // 
             this.dtpBirthday.Location = new System.Drawing.Point(164, 103);
             this.dtpBirthday.Name = "dtpBirthday";
-            this.dtpBirthday.Size = new System.Drawing.Size(180, 26);
+            this.dtpBirthday.Size = new System.Drawing.Size(216, 26);
             this.dtpBirthday.TabIndex = 3;
             // 
             // btnUpdate
@@ -288,9 +274,8 @@
             this.cboClass.FormattingEnabled = true;
             this.cboClass.Location = new System.Drawing.Point(164, 218);
             this.cboClass.Name = "cboClass";
-            this.cboClass.Size = new System.Drawing.Size(156, 28);
+            this.cboClass.Size = new System.Drawing.Size(173, 28);
             this.cboClass.TabIndex = 6;
-            this.cboClass.Validating += new System.ComponentModel.CancelEventHandler(this.cboClass_Validating);
             // 
             // btnDelete
             // 
@@ -307,12 +292,11 @@
             // cboFaculty
             // 
             this.cboFaculty.FormattingEnabled = true;
-            this.cboFaculty.Location = new System.Drawing.Point(164, 140);
+            this.cboFaculty.Location = new System.Drawing.Point(164, 181);
             this.cboFaculty.Name = "cboFaculty";
-            this.cboFaculty.Size = new System.Drawing.Size(216, 28);
+            this.cboFaculty.Size = new System.Drawing.Size(173, 28);
             this.cboFaculty.TabIndex = 5;
             this.cboFaculty.SelectedIndexChanged += new System.EventHandler(this.cboFaculty_SelectedIndexChanged);
-            this.cboFaculty.Validating += new System.ComponentModel.CancelEventHandler(this.cboFaculty_Validating);
             // 
             // btnAdd
             // 
@@ -329,11 +313,11 @@
             // cboCourse
             // 
             this.cboCourse.FormattingEnabled = true;
-            this.cboCourse.Location = new System.Drawing.Point(164, 178);
+            this.cboCourse.Location = new System.Drawing.Point(164, 143);
             this.cboCourse.Name = "cboCourse";
-            this.cboCourse.Size = new System.Drawing.Size(122, 28);
+            this.cboCourse.Size = new System.Drawing.Size(173, 28);
             this.cboCourse.TabIndex = 4;
-            this.cboCourse.Validating += new System.ComponentModel.CancelEventHandler(this.cboCourse_Validating);
+            this.cboCourse.SelectedIndexChanged += new System.EventHandler(this.cboCourse_SelectedIndexChanged);
             // 
             // txtFullName
             // 
@@ -345,6 +329,7 @@
             // 
             // txtCodeNum
             // 
+            this.txtCodeNum.Enabled = false;
             this.txtCodeNum.Location = new System.Drawing.Point(164, 29);
             this.txtCodeNum.Name = "txtCodeNum";
             this.txtCodeNum.Size = new System.Drawing.Size(156, 26);
@@ -355,7 +340,7 @@
             // lblFaculty
             // 
             this.lblFaculty.AutoSize = true;
-            this.lblFaculty.Location = new System.Drawing.Point(49, 143);
+            this.lblFaculty.Location = new System.Drawing.Point(49, 184);
             this.lblFaculty.Name = "lblFaculty";
             this.lblFaculty.Size = new System.Drawing.Size(50, 20);
             this.lblFaculty.TabIndex = 0;
@@ -373,7 +358,7 @@
             // lblCourse
             // 
             this.lblCourse.AutoSize = true;
-            this.lblCourse.Location = new System.Drawing.Point(49, 181);
+            this.lblCourse.Location = new System.Drawing.Point(49, 146);
             this.lblCourse.Name = "lblCourse";
             this.lblCourse.Size = new System.Drawing.Size(50, 20);
             this.lblCourse.TabIndex = 0;
@@ -504,6 +489,42 @@
             this.btnSearch.Text = "Tìm Kiếm";
             this.btnSearch.UseVisualStyleBackColor = false;
             // 
+            // btnAddCourse
+            // 
+            this.btnAddCourse.BackColor = System.Drawing.SystemColors.Menu;
+            this.btnAddCourse.ForeColor = System.Drawing.Color.Black;
+            this.btnAddCourse.Location = new System.Drawing.Point(343, 143);
+            this.btnAddCourse.Name = "btnAddCourse";
+            this.btnAddCourse.Size = new System.Drawing.Size(67, 33);
+            this.btnAddCourse.TabIndex = 7;
+            this.btnAddCourse.Text = "Thêm";
+            this.btnAddCourse.UseVisualStyleBackColor = false;
+            this.btnAddCourse.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnAddFaculty
+            // 
+            this.btnAddFaculty.BackColor = System.Drawing.SystemColors.Menu;
+            this.btnAddFaculty.ForeColor = System.Drawing.Color.Black;
+            this.btnAddFaculty.Location = new System.Drawing.Point(343, 181);
+            this.btnAddFaculty.Name = "btnAddFaculty";
+            this.btnAddFaculty.Size = new System.Drawing.Size(67, 33);
+            this.btnAddFaculty.TabIndex = 7;
+            this.btnAddFaculty.Text = "Thêm";
+            this.btnAddFaculty.UseVisualStyleBackColor = false;
+            this.btnAddFaculty.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnAddClass
+            // 
+            this.btnAddClass.BackColor = System.Drawing.SystemColors.Menu;
+            this.btnAddClass.ForeColor = System.Drawing.Color.Black;
+            this.btnAddClass.Location = new System.Drawing.Point(344, 218);
+            this.btnAddClass.Name = "btnAddClass";
+            this.btnAddClass.Size = new System.Drawing.Size(67, 33);
+            this.btnAddClass.TabIndex = 7;
+            this.btnAddClass.Text = "Thêm";
+            this.btnAddClass.UseVisualStyleBackColor = false;
+            this.btnAddClass.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -578,8 +599,6 @@
         private System.Windows.Forms.ComboBox cboFaculty;
         private System.Windows.Forms.Label lblFaculty;
         private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.Label lblManager;
-        private System.Windows.Forms.CheckedListBox chkListManager;
         private System.Windows.Forms.ContextMenuStrip mnuStripListView;
         private System.Windows.Forms.ToolStripMenuItem xóaToolStripMenuItem;
         private System.Windows.Forms.CheckBox chkRandomCodeNum;
@@ -588,6 +607,9 @@
         private System.Windows.Forms.RadioButton radSearchName;
         private System.Windows.Forms.ToolStripMenuItem xóaNhiềuToolStripMenuItem;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnAddCourse;
+        private System.Windows.Forms.Button btnAddClass;
+        private System.Windows.Forms.Button btnAddFaculty;
     }
 }
 
