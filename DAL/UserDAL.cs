@@ -13,7 +13,7 @@ namespace project_winform.DAL
     class UserDAL : DatabaseUtils
     {
 
-        private static User getUserFromDataRow(DataRow user)
+        private static User GetUserFromDataRow(DataRow user)
         {
             string sBirthday = user["birthday"].ToString();
             if (sBirthday.Length > 0) sBirthday = sBirthday.Substring(0, 10);
@@ -30,7 +30,7 @@ namespace project_winform.DAL
             return new User(id_user, password, name, permission, birthday, classModal);
         }
 
-        public static List<User> getUsers()
+        public static List<User> GetUsers()
         {
             try
             {
@@ -44,7 +44,7 @@ namespace project_winform.DAL
 
                 List<User> users = new List<User>();
                 foreach (DataRow user in usersData.Tables[0].Rows)
-                    users.Add(getUserFromDataRow(user));
+                    users.Add(GetUserFromDataRow(user));
                 return users;
             }
             catch (Exception)
@@ -55,7 +55,7 @@ namespace project_winform.DAL
             return null;
         }
 
-        public static User getUserWithId(string id)
+        public static User GetUserWithId(string id)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace project_winform.DAL
                 if (usersData.Tables[0].Rows.Count <= 0) return null;
                 DataRow user = usersData.Tables[0].Rows[0];
 
-                return getUserFromDataRow(user);
+                return GetUserFromDataRow(user);
             }
             catch (Exception)
             {
@@ -80,7 +80,7 @@ namespace project_winform.DAL
             return null;
         }
 
-        public static bool addUser(User user)
+        public static bool AddUser(User user)
         {
             try
             {
@@ -92,7 +92,51 @@ namespace project_winform.DAL
                 command.Parameters.Add(new MySqlParameter("@name", user.Name));
                 command.Parameters.Add(new MySqlParameter("@permission", user.Permission));
                 command.Parameters.Add(new MySqlParameter("@birthday", user.Birthday));
-                command.Parameters.Add(new MySqlParameter("@id_class", classModel != null ? classModel.IdClass : null));
+                command.Parameters.Add(new MySqlParameter("@id_class", classModel?.IdClass));
+                int result = command.ExecuteNonQuery();
+                if (result == 1)
+                    return true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return false;
+        }
+
+        public static bool DeleteUserWithId(string id_user)
+        {
+            try
+            {
+                MySqlCommand command = connectDB.CreateCommand();
+                command.CommandText = "DELETE FROM `users` WHERE `users`.`id_user` = @id_user";
+                command.Parameters.Add(new MySqlParameter("@id_user", id_user));
+                int result = command.ExecuteNonQuery();
+                if (result == 1)
+                    return true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return false;
+        }
+
+        public static bool UpdateUserWithId(User user)
+        {
+            try
+            {
+                MySqlCommand command = connectDB.CreateCommand();
+                Class classModel = user.ClassModel;
+                command.CommandText = "UPDATE `users` SET `password`= @password, `name`= @name, `permission`= @permission,`birthday`= @birthday, `id_class`= @id_class WHERE `id_user`= @id_user";
+                command.Parameters.Add(new MySqlParameter("@id_user", user.IdUser));
+                command.Parameters.Add(new MySqlParameter("@password", user.Password));
+                command.Parameters.Add(new MySqlParameter("@name", user.Name));
+                command.Parameters.Add(new MySqlParameter("@permission", user.Permission));
+                command.Parameters.Add(new MySqlParameter("@birthday", user.Birthday));
+                command.Parameters.Add(new MySqlParameter("@id_class", classModel?.IdClass));
                 int result = command.ExecuteNonQuery();
                 if (result == 1)
                     return true;

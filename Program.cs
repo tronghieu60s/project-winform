@@ -1,4 +1,5 @@
-﻿using System;
+﻿using project_winform.dal;
+using System;
 using System.Windows.Forms;
 
 namespace project_winform
@@ -11,6 +12,8 @@ namespace project_winform
         [STAThread]
         static void Main()
         {
+            /* Database Initialization */
+            new DatabaseUtils();
             Application.EnableVisualStyles();
             // Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(Control.frmMain);

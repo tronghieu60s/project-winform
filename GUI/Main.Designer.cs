@@ -48,6 +48,9 @@
             this.cboClass = new System.Windows.Forms.ComboBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.cboFaculty = new System.Windows.Forms.ComboBox();
+            this.btnAddClass = new System.Windows.Forms.Button();
+            this.btnAddFaculty = new System.Windows.Forms.Button();
+            this.btnAddCourse = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.cboCourse = new System.Windows.Forms.ComboBox();
             this.txtFullName = new System.Windows.Forms.TextBox();
@@ -68,9 +71,6 @@
             this.radSearchCodeNum = new System.Windows.Forms.RadioButton();
             this.radSearchName = new System.Windows.Forms.RadioButton();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.btnAddCourse = new System.Windows.Forms.Button();
-            this.btnAddFaculty = new System.Windows.Forms.Button();
-            this.btnAddClass = new System.Windows.Forms.Button();
             this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picResize)).BeginInit();
@@ -267,7 +267,7 @@
             this.btnUpdate.TabIndex = 9;
             this.btnUpdate.Text = "Cập Nhật";
             this.btnUpdate.UseVisualStyleBackColor = false;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.btnUpdate.Click += new System.EventHandler(this.UpdateUser);
             // 
             // cboClass
             // 
@@ -287,7 +287,7 @@
             this.btnDelete.TabIndex = 8;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.btnDelete.Click += new System.EventHandler(this.DeleteUser);
             // 
             // cboFaculty
             // 
@@ -297,6 +297,39 @@
             this.cboFaculty.Size = new System.Drawing.Size(173, 28);
             this.cboFaculty.TabIndex = 5;
             this.cboFaculty.SelectedIndexChanged += new System.EventHandler(this.cboFaculty_SelectedIndexChanged);
+            // 
+            // btnAddClass
+            // 
+            this.btnAddClass.BackColor = System.Drawing.SystemColors.Menu;
+            this.btnAddClass.ForeColor = System.Drawing.Color.Black;
+            this.btnAddClass.Location = new System.Drawing.Point(344, 218);
+            this.btnAddClass.Name = "btnAddClass";
+            this.btnAddClass.Size = new System.Drawing.Size(67, 33);
+            this.btnAddClass.TabIndex = 7;
+            this.btnAddClass.Text = "Thêm";
+            this.btnAddClass.UseVisualStyleBackColor = false;
+            // 
+            // btnAddFaculty
+            // 
+            this.btnAddFaculty.BackColor = System.Drawing.SystemColors.Menu;
+            this.btnAddFaculty.ForeColor = System.Drawing.Color.Black;
+            this.btnAddFaculty.Location = new System.Drawing.Point(343, 181);
+            this.btnAddFaculty.Name = "btnAddFaculty";
+            this.btnAddFaculty.Size = new System.Drawing.Size(67, 33);
+            this.btnAddFaculty.TabIndex = 7;
+            this.btnAddFaculty.Text = "Thêm";
+            this.btnAddFaculty.UseVisualStyleBackColor = false;
+            // 
+            // btnAddCourse
+            // 
+            this.btnAddCourse.BackColor = System.Drawing.SystemColors.Menu;
+            this.btnAddCourse.ForeColor = System.Drawing.Color.Black;
+            this.btnAddCourse.Location = new System.Drawing.Point(343, 143);
+            this.btnAddCourse.Name = "btnAddCourse";
+            this.btnAddCourse.Size = new System.Drawing.Size(67, 33);
+            this.btnAddCourse.TabIndex = 7;
+            this.btnAddCourse.Text = "Thêm";
+            this.btnAddCourse.UseVisualStyleBackColor = false;
             // 
             // btnAdd
             // 
@@ -308,7 +341,7 @@
             this.btnAdd.TabIndex = 7;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnAdd.Click += new System.EventHandler(this.AddUser);
             // 
             // cboCourse
             // 
@@ -435,7 +468,7 @@
             this.xóaToolStripMenuItem.Name = "xóaToolStripMenuItem";
             this.xóaToolStripMenuItem.Size = new System.Drawing.Size(166, 32);
             this.xóaToolStripMenuItem.Text = "Xóa";
-            this.xóaToolStripMenuItem.Click += new System.EventHandler(this.xóaToolStripMenuItem_Click);
+            this.xóaToolStripMenuItem.Click += new System.EventHandler(this.DeleteUser);
             // 
             // xóaNhiềuToolStripMenuItem
             // 
@@ -488,42 +521,6 @@
             this.btnSearch.TabIndex = 13;
             this.btnSearch.Text = "Tìm Kiếm";
             this.btnSearch.UseVisualStyleBackColor = false;
-            // 
-            // btnAddCourse
-            // 
-            this.btnAddCourse.BackColor = System.Drawing.SystemColors.Menu;
-            this.btnAddCourse.ForeColor = System.Drawing.Color.Black;
-            this.btnAddCourse.Location = new System.Drawing.Point(343, 143);
-            this.btnAddCourse.Name = "btnAddCourse";
-            this.btnAddCourse.Size = new System.Drawing.Size(67, 33);
-            this.btnAddCourse.TabIndex = 7;
-            this.btnAddCourse.Text = "Thêm";
-            this.btnAddCourse.UseVisualStyleBackColor = false;
-            this.btnAddCourse.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnAddFaculty
-            // 
-            this.btnAddFaculty.BackColor = System.Drawing.SystemColors.Menu;
-            this.btnAddFaculty.ForeColor = System.Drawing.Color.Black;
-            this.btnAddFaculty.Location = new System.Drawing.Point(343, 181);
-            this.btnAddFaculty.Name = "btnAddFaculty";
-            this.btnAddFaculty.Size = new System.Drawing.Size(67, 33);
-            this.btnAddFaculty.TabIndex = 7;
-            this.btnAddFaculty.Text = "Thêm";
-            this.btnAddFaculty.UseVisualStyleBackColor = false;
-            this.btnAddFaculty.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnAddClass
-            // 
-            this.btnAddClass.BackColor = System.Drawing.SystemColors.Menu;
-            this.btnAddClass.ForeColor = System.Drawing.Color.Black;
-            this.btnAddClass.Location = new System.Drawing.Point(344, 218);
-            this.btnAddClass.Name = "btnAddClass";
-            this.btnAddClass.Size = new System.Drawing.Size(67, 33);
-            this.btnAddClass.TabIndex = 7;
-            this.btnAddClass.Text = "Thêm";
-            this.btnAddClass.UseVisualStyleBackColor = false;
-            this.btnAddClass.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // frmMain
             // 

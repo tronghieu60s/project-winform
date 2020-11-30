@@ -5,7 +5,6 @@ using System.Globalization;
 using System.Windows.Forms;
 using project_winform.BUS;
 using project_winform.CTO;
-using project_winform.DAL;
 using project_winform.src.config;
 using project_winform.src.constants;
 using project_winform.src.helpers;
@@ -94,15 +93,6 @@ namespace project_winform
             CourseBUS.RenderComboBoxDataCourses(cboCourse);
 
             SelectTypeUser();
-        }
-
-        private string ConfigComboBoxTypeUser()
-        {
-            if (cboTypeUser.SelectedIndex == 0)
-                return Config.typeAdmin;
-            if (cboTypeUser.SelectedIndex == 1)
-                return Config.typeStudent;
-            return String.Empty;
         }
 
         // UI CUSTOM
@@ -206,12 +196,14 @@ namespace project_winform
                 TypeUserAdmin();
             if (cboTypeUser.SelectedIndex == 1)
                 TypeUserStudent();
+
+            UserBUS.RenderListViewDataUsersWithPermission(lvwMain);
             CountNumberListView();
         }
 
         private void TypeUserAdmin()
         {
-            UserBUS.RenderListViewDataUsersWithPermission(lvwMain, ConfigComboBoxTypeUser());
+            UserBUS.TypeSelectUser = Config.typeAdmin;
 
             lvwMain.Columns.Clear();
             lvwMain.Columns.Add("Mã Số", 100);
@@ -232,7 +224,7 @@ namespace project_winform
 
         private void TypeUserStudent()
         {
-            UserBUS.RenderListViewDataUsersWithPermission(lvwMain, ConfigComboBoxTypeUser());
+            UserBUS.TypeSelectUser = Config.typeStudent;
 
             lvwMain.Columns.Clear();
             lvwMain.Columns.Add("Mã Số", 100);
@@ -256,6 +248,18 @@ namespace project_winform
         #endregion
 
         #region * VALIDATING INPUT
+
+        private bool CodeNumExists()
+        {
+            if (!chkRandomCodeNum.Checked)
+                foreach (ListViewItem item in UserBUS.LvwMainState.Items)
+                    if (item.SubItems[0].Text == $"{UserBUS.TypeSelectUser}{txtCodeNum.Text}")
+                    {
+                        MessageBox.Show(MessageBoxText.DuplicatedCodeNum, MessageBoxText.CaptionDuplicatedCodeNum, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return true;
+                    }
+            return false;
+        }
 
         private bool ValidatingTxtCodeNum()
         {
@@ -293,38 +297,68 @@ namespace project_winform
         }
         #endregion
 
-        #region * ADD DATA USER
+        #region * ADD - UPDATE - DELETE USER
 
-        private void AddUser()
+        private void AddUser(object sender, EventArgs e)
         {
-            string id_user = chkRandomCodeNum.Checked ?
-                txtCodeNum.Text = UserBUS.RandomCodeNum(ConfigComboBoxTypeUser()).ToString() : txtCodeNum.Text;
-            id_user = ConfigComboBoxTypeUser() + id_user;
+            // Validating
+            if (CodeNumExists()) return;
+            if (!ValidatingTxtCodeNum() || !ValidatingTxtFullName())
+            {
+                MessageBox.Show(MessageBoxText.RequiredInput, MessageBoxText.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            string password = "123456";
-            string name = txtFullName.Text;
-            string permission = "0";
-            DateTime birthday = DateTime.Parse(dtpBirthday.Text);
-            Class classModal = ((Class)cboClass.SelectedItem);
-            User user = new User(id_user, password, name, permission, birthday, classModal);
+            if (cboTypeUser.SelectedIndex != -1)
+            {
+                string id_user = chkRandomCodeNum.Checked ?
+                    txtCodeNum.Text = UserBUS.RandomCodeNum(UserBUS.TypeSelectUser).ToString() : txtCodeNum.Text;
+                id_user = UserBUS.TypeSelectUser + id_user;
 
-            UserBUS.HandleAddUserToListView(lvwMain, user);
+                string password = "123456";
+                string name = txtFullName.Text;
+                string permission = "0";
+                DateTime birthday = DateTime.Parse(dtpBirthday.Text);
+                Class classModal = ((Class)cboClass.SelectedItem);
+                User user = new User(id_user, password, name, permission, birthday, classModal);
+
+                UserBUS.HandleAddUser(lvwMain, user);
+                CountNumberListView();
+            }
+        }
+
+        private void DeleteUser(object sender, EventArgs e)
+        {
+            UserBUS.HandleDeleteUsers(lvwMain);
+            CountNumberListView();
+        }
+
+        private void UpdateUser(object sender, EventArgs e)
+        {
+            if (!ValidatingTxtCodeNum() || !ValidatingTxtFullName())
+            {
+                MessageBox.Show(MessageBoxText.RequiredInput, MessageBoxText.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (cboTypeUser.SelectedIndex != -1)
+            {
+                string id_user = UserBUS.TypeSelectUser + txtCodeNum.Text;
+                string password = null;
+                string permission = null;
+                string name = txtFullName.Text;
+                DateTime birthday = DateTime.Parse(dtpBirthday.Text);
+                Class classModal = ((Class)cboClass.SelectedItem);
+                User user = new User(id_user, password, name, permission, birthday, classModal);
+
+                UserBUS.HandleUpdateUsers(lvwMain, user);
+                CountNumberListView();
+            }
         }
 
         #endregion
 
-        #region * Menu Strip List View
-        private void DeleteItemListView()
-        {
-            foreach (ListViewItem itemMain in lvwMain.SelectedItems)
-            {
-                lvwMain.Items.Remove(itemMain);
-                foreach (ListViewItem itemMainState in UserBUS.LvwMainState.Items)
-                    if (itemMainState.SubItems[0].Text == itemMain.SubItems[0].Text)
-                        UserBUS.LvwMainState.Items.Remove(itemMainState);
-            }
-            CountNumberListView();
-        }
+        #region * TOOL STRIP MENU
 
         private void lvwMain_MouseClick(object sender, MouseEventArgs e)
         {
@@ -335,11 +369,6 @@ namespace project_winform
                     mnuStripListView.Show(Cursor.Position);
                 }
             }
-        }
-
-        private void xóaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DeleteItemListView();
         }
 
         private void xóaNhiềuToolStripMenuItem_Click(object sender, EventArgs e)
@@ -415,50 +444,6 @@ namespace project_winform
         }
         #endregion
 
-        #region * Handle Button Add, Edit, Delete
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            if (!chkRandomCodeNum.Checked)
-                foreach (ListViewItem item in UserBUS.LvwMainState.Items)
-                    if (item.SubItems[0].Text == $"{ConfigComboBoxTypeUser()}{txtCodeNum.Text}")
-                    {
-                        MessageBox.Show(MessageBoxText.DuplicatedCodeNum, MessageBoxText.CaptionDuplicatedCodeNum, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-            if (!ValidatingTxtCodeNum() || !ValidatingTxtFullName())
-            {
-                MessageBox.Show(MessageBoxText.RequiredInput, MessageBoxText.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (cboTypeUser.SelectedIndex != -1)
-                AddUser();
-
-            CountNumberListView();
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            DeleteItemListView();
-        }
-
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            foreach (ListViewItem item in lvwMain.Items)
-            {
-                if (item.SubItems[0].Text == txtCodeNum.Text)
-                {
-                    item.SubItems[1].Text = txtFullName.Text;
-                    item.SubItems[2].Text = dtpBirthday.Text;
-                    item.SubItems[3].Text = cboCourse.Text;
-                    item.SubItems[4].Text = cboFaculty.Text;
-                    item.SubItems[5].Text = cboClass.Text;
-                }
-            }
-        }
-        #endregion
-
         private void CountNumberListView()
         {
             int number = lvwMain.Items.Count;
@@ -510,10 +495,14 @@ namespace project_winform
                 txtCodeNum.Text = id.Substring(2, id.Length - 2);
                 txtFullName.Text = item.SubItems[1].Text;
                 dtpBirthday.Value = DateTime.ParseExact(item.SubItems[2].Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                cboCourse.Text = item.SubItems[3].Text;
-                cboFaculty.Text = item.SubItems[4].Text;
-                cboClass.Text = item.SubItems[5].Text;
+                if (UserBUS.TypeSelectUser == Config.typeStudent)
+                {
+                    cboCourse.Text = item.SubItems[3].Text;
+                    cboFaculty.Text = item.SubItems[4].Text;
+                    cboClass.Text = item.SubItems[5].Text;
+                }
             }
         }
+
     }
 }
