@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 29, 2020 lúc 02:00 PM
+-- Thời gian đã tạo: Th10 30, 2020 lúc 04:17 PM
 -- Phiên bản máy phục vụ: 10.4.11-MariaDB
 -- Phiên bản PHP: 7.4.2
 
@@ -137,25 +137,19 @@ CREATE TABLE `users` (
   `id_user` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `permission` tinyint(4) DEFAULT NULL,
   `birthday` date DEFAULT NULL,
-  `id_class` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `id_class` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `users` (`id_user`, `password`, `name`, `permission`, `birthday`, `id_class`) VALUES
-('AD12160', '123456', 'Depdsads', 0, '1900-01-01', NULL),
-('AD15640', '123456', 'dsadsad', 0, '2020-11-29', NULL),
-('AD6537', '123456', 'Admin', 1, NULL, NULL),
-('ADMIN', '123', 'Hiếu Đẹp Troai', 1, NULL, NULL),
-('SD12160', '123456', 'Depdsads', 0, '1900-01-01', 'CL1'),
-('SD4322', '123456', 'Ngoc Truong', 1, '2001-01-15', 'CL3'),
-('SD63472', '123456', 'Depdsads', 0, '1900-01-01', 'CL1'),
-('SD634726', '123456', 'Depdsads', 0, '1900-01-01', 'CL1'),
-('SD6537', '123456', 'Trong Hieu', 0, '2001-12-20', 'CL1');
+INSERT INTO `users` (`id_user`, `password`, `name`, `birthday`, `id_class`, `date`) VALUES
+('ADMIN', '123456', 'Trần Trọng Hiếu', '2020-12-26', 'CL1', '2020-11-30 21:53:48'),
+('SD4322', '123456', 'Nguyễn Ngọc Trường', '2001-01-05', 'CL3', '2020-11-30 21:53:48'),
+('SD6537', '123456', 'Trọng Hiếu', '2001-12-02', 'CL1', '2020-11-30 21:53:48');
 
 --
 -- Chỉ mục cho các bảng đã đổ

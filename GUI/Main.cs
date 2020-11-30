@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
@@ -317,10 +316,9 @@ namespace project_winform
 
                 string password = "123456";
                 string name = txtFullName.Text;
-                string permission = "0";
                 DateTime birthday = DateTime.Parse(dtpBirthday.Text);
                 Class classModal = ((Class)cboClass.SelectedItem);
-                User user = new User(id_user, password, name, permission, birthday, classModal);
+                User user = new User(id_user, password, name, birthday, classModal);
 
                 UserBUS.HandleAddUser(lvwMain, user);
                 CountNumberListView();
@@ -344,12 +342,10 @@ namespace project_winform
             if (cboTypeUser.SelectedIndex != -1)
             {
                 string id_user = UserBUS.TypeSelectUser + txtCodeNum.Text;
-                string password = null;
-                string permission = null;
                 string name = txtFullName.Text;
                 DateTime birthday = DateTime.Parse(dtpBirthday.Text);
                 Class classModal = ((Class)cboClass.SelectedItem);
-                User user = new User(id_user, password, name, permission, birthday, classModal);
+                User user = new User(id_user, null, name, birthday, classModal);
 
                 UserBUS.HandleUpdateUsers(lvwMain, user);
                 CountNumberListView();

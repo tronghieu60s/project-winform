@@ -5,7 +5,6 @@ using project_winform.src.constants;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
 using System.Windows.Forms;
 
 namespace project_winform.DAL
@@ -22,12 +21,11 @@ namespace project_winform.DAL
             string id_user = user["id_user"].ToString();
             string password = user["password"].ToString();
             string name = user["name"].ToString();
-            string permission = user["permission"].ToString();
             DateTime birthday = DateTime.Parse(sBirthday);
             Faculty faculty = new Faculty(user["id_faculty"].ToString(), user["faculty_name"].ToString());
             Course course = new Course(user["id_course"].ToString(), user["course_name"].ToString());
             Class classModal = new Class(user["id_class"].ToString(), user["class_name"].ToString(), faculty, course);
-            return new User(id_user, password, name, permission, birthday, classModal);
+            return new User(id_user, password, name, birthday, classModal);
         }
 
         public static List<User> GetUsers()
@@ -36,7 +34,7 @@ namespace project_winform.DAL
             {
                 DataSet usersData = new DataSet();
                 MySqlCommand command = connectDB.CreateCommand();
-                command.CommandText = "SELECT *  FROM `users` LEFT JOIN `classes` ON `classes`.`id_class`= `users`.`id_class` LEFT JOIN `courses` ON `courses`.`id_course` = `classes`.`id_course` LEFT JOIN `faculties` ON `faculties`.`id_faculty` = `classes`.`id_faculty`";
+                command.CommandText = "SELECT *  FROM `users` LEFT JOIN `classes` ON `classes`.`id_class`= `users`.`id_class` LEFT JOIN `courses` ON `courses`.`id_course` = `classes`.`id_course` LEFT JOIN `faculties` ON `faculties`.`id_faculty` = `classes`.`id_faculty` ORDER BY date DESC";
                 // command.CommandType = CommandType.StoredProcedure;
 
                 MySqlDataAdapter sqlData = new MySqlDataAdapter(command);
@@ -86,11 +84,10 @@ namespace project_winform.DAL
             {
                 MySqlCommand command = connectDB.CreateCommand();
                 Class classModel = user.ClassModel;
-                command.CommandText = "INSERT INTO `users`(`id_user`, `password`, `name`, `permission`, `birthday`, `id_class`) VALUES (@id_user, @password, @name, @permission, @birthday, @id_class)";
+                command.CommandText = "INSERT INTO `users`(`id_user`, `password`, `name`, `birthday`, `id_class`) VALUES (@id_user, @password, @name, @birthday, @id_class)";
                 command.Parameters.Add(new MySqlParameter("@id_user", user.IdUser));
                 command.Parameters.Add(new MySqlParameter("@password", user.Password));
                 command.Parameters.Add(new MySqlParameter("@name", user.Name));
-                command.Parameters.Add(new MySqlParameter("@permission", user.Permission));
                 command.Parameters.Add(new MySqlParameter("@birthday", user.Birthday));
                 command.Parameters.Add(new MySqlParameter("@id_class", classModel?.IdClass));
                 int result = command.ExecuteNonQuery();
@@ -124,17 +121,15 @@ namespace project_winform.DAL
             return false;
         }
 
-        public static bool UpdateUserWithId(User user)
+        public static bool UpdateUserFromAdminWithId(User user)
         {
             try
             {
                 MySqlCommand command = connectDB.CreateCommand();
                 Class classModel = user.ClassModel;
-                command.CommandText = "UPDATE `users` SET `password`= @password, `name`= @name, `permission`= @permission,`birthday`= @birthday, `id_class`= @id_class WHERE `id_user`= @id_user";
+                command.CommandText = "UPDATE `users` SET `name`= @name,`birthday`= @birthday, `id_class`= @id_class WHERE `id_user`= @id_user";
                 command.Parameters.Add(new MySqlParameter("@id_user", user.IdUser));
-                command.Parameters.Add(new MySqlParameter("@password", user.Password));
                 command.Parameters.Add(new MySqlParameter("@name", user.Name));
-                command.Parameters.Add(new MySqlParameter("@permission", user.Permission));
                 command.Parameters.Add(new MySqlParameter("@birthday", user.Birthday));
                 command.Parameters.Add(new MySqlParameter("@id_class", classModel?.IdClass));
                 int result = command.ExecuteNonQuery();

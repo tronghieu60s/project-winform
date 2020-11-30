@@ -3,9 +3,6 @@ using project_winform.DAL;
 using project_winform.src.config;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace project_winform.BUS
@@ -77,8 +74,13 @@ namespace project_winform.BUS
             bool userResult = UserDAL.AddUser(user);
             if (userResult)
             {
-                lvwMainState.Items.Add(UserModelToListViewItem(user));
-                RenderListViewDataUsersWithPermission(lvwMain);
+                ListViewItem item = UserModelToListViewItem(user);
+                lvwMainState.Items.Insert(0, item.Clone() as ListViewItem);
+                lvwMain.Items.Insert(0, item.Clone() as ListViewItem);
+
+                // Select New Item When Create
+                lvwMain.Items[0].Selected = true;
+                lvwMain.Select();
             }
         }
 
@@ -105,7 +107,7 @@ namespace project_winform.BUS
 
         public static void HandleUpdateUsers(ListView lvwMain, User user)
         {
-            bool userResult = UserDAL.UpdateUserWithId(user);
+            bool userResult = UserDAL.UpdateUserFromAdminWithId(user);
             if (userResult)
             {
                 foreach (ListViewItem item in lvwMainState.Items)
