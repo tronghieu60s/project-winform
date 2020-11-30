@@ -113,7 +113,8 @@ namespace project_winform.BUS
                     {
                         ListViewItem itemUser = UserModelToListViewItem(user);
                         for (int i = 0; i < item.SubItems.Count; i++)
-                            item.SubItems[i] = i < itemUser.SubItems.Count ? itemUser.SubItems[i] ?? null : null;
+                            item.SubItems[i].Text = i < itemUser.SubItems.Count ? 
+                                itemUser.SubItems[i].Text ?? null : string.Empty;
                     }
                 RenderListViewDataUsersWithPermission(lvwMain);
             }

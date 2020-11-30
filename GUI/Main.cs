@@ -495,8 +495,12 @@ namespace project_winform
                 txtCodeNum.Text = id.Substring(2, id.Length - 2);
                 txtFullName.Text = item.SubItems[1].Text;
                 dtpBirthday.Value = DateTime.ParseExact(item.SubItems[2].Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                if (UserBUS.TypeSelectUser == Config.typeStudent)
+                if (UserBUS.TypeSelectUser == Config.typeStudent && item.SubItems.Count > 3)
                 {
+                    cboCourse.SelectedIndex = -1;
+                    cboFaculty.SelectedIndex =-1;
+                    cboClass.SelectedIndex = -1;
+
                     cboCourse.Text = item.SubItems[3].Text;
                     cboFaculty.Text = item.SubItems[4].Text;
                     cboClass.Text = item.SubItems[5].Text;
