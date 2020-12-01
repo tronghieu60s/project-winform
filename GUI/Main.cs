@@ -451,6 +451,10 @@ namespace project_winform
             lblCountItemListView.Text = $"{number} mục";
         }
 
+        #endregion
+
+        #region * OTHERS METHODS FORM
+
         private void lvwMain_SelectedIndexChanged(object sender, EventArgs e)
         {
             foreach (ListViewItem item in lvwMain.SelectedItems)
@@ -472,10 +476,6 @@ namespace project_winform
             }
         }
 
-        #endregion
-
-        #region * OTHERS METHODS FORM
-
         private void chkRandomCodeNum_CheckedChanged(object sender, EventArgs e)
         {
             if (chkRandomCodeNum.Checked)
@@ -486,6 +486,11 @@ namespace project_winform
         private void radCheckedSearch(object sender, EventArgs e)
         {
             txtSearch.Focus();
+        }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            Excel.ExportDataToExcel(lvwMain);
         }
 
         #endregion

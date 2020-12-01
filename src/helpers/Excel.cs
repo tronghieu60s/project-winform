@@ -1,30 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using project_winform.src.constants;
+using System;
+using System.IO;
+using System.Windows.Forms;
 
 namespace project_winform.src.helpers
 {
     class Excel
     {
-        private void ExportDataToExcel()
+        public static void ExportDataToExcel(ListView lvwMain)
         {
-            Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
-            app.Visible = true;
-            Microsoft.Office.Interop.Excel.Workbook wb = app.Workbooks.Add(1);
-            Microsoft.Office.Interop.Excel.Worksheet ws = (Microsoft.Office.Interop.Excel.Worksheet)wb.Worksheets[1];
-            int i = 1;
-            int i2 = 1;
-            foreach (ListViewItem lvi in myList.Items)
-            {
-                i = 1;
-                foreach (ListViewItem.ListViewSubItem lvs in lvi.SubItems)
+			try
+			{
+                SaveFileDialog savefile = new SaveFileDialog();
+                // File Name
+                DateTime timeNow = DateTime.Now;
+                savefile.FileName = "Data_" + timeNow.ToString("dd_MM_yyyy_hhmmss") + ".csv";
+                savefile.Filter = "CSV Files (*.csv)|*.csv";
+
+                if (savefile.ShowDialog() == DialogResult.OK)
                 {
-                    ws.Cells[i2, i] = lvs.Text;
-                    i++;
+                    using (StreamWriter sw = new StreamWriter(savefile.FileName, false, System.Text.Encoding.Unicode))
+                    {
+                        sw.AutoFlush = true;
+                        for (int col = 0; col < lvwMain.Columns.Count; col++)
+                            sw.Write(lvwMain.Columns[col].Text.ToString() + "\t");
+
+                        sw.Write("\n");
+                        string st = "";
+                        for (int row = 0; row < lvwMain.Items.Count; row++)
+                        {
+                            st = "";
+                            for (int col = 0; col < lvwMain.Columns.Count; col++)
+                                st = st + lvwMain.Items[row].SubItems[col].Text.ToString() + "\t";
+                            sw.WriteLine(st);
+                        }
+                        sw.Close();
+                        FileInfo fil = new FileInfo(savefile.FileName);
+                        if (fil.Exists == true)
+                            MessageBox.Show(MessageBoxText.ExportSuccess + lvwMain.Items.Count, MessageBoxText.CaptionExportSuccess, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
-                i2++;
+            }
+			catch (Exception)
+			{
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionException, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

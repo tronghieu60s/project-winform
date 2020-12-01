@@ -27,5 +27,8 @@ namespace project_winform.src.constants
 
         public static string CaptionNotSelectListView = "Chưa Chọn Mục.";
         public static string NotSelectListView = "Vui lòng chọn ít nhất 1 mục để thực hiện hành động.";
+
+        public static string CaptionExportSuccess = "Xuất Thành công";
+        public static string ExportSuccess = "Bạn đã xuất dữ liệu thành công. Số Dòng: ";
     }
 }
