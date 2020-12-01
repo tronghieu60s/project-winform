@@ -186,6 +186,7 @@
             this.btnImportExcel.TabIndex = 6;
             this.btnImportExcel.Text = "Nhập từ Excel";
             this.btnImportExcel.UseVisualStyleBackColor = false;
+            this.btnImportExcel.Click += new System.EventHandler(this.btnImportExcel_Click);
             // 
             // cboTypeUser
             // 

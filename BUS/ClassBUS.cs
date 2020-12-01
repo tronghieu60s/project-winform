@@ -13,7 +13,7 @@ namespace project_winform.BUS
     {
         public static void RenderComboBoxDataClasses(ComboBox cboClass, string id_course, string id_faculty)
         {
-            List<Class> classes = ClassDAL.getClassesWithIdCourseAndIdFaculty(id_course, id_faculty);
+            List<Class> classes = ClassDAL.GetClassesWithIdCourseAndIdFaculty(id_course, id_faculty);
             foreach (Class classItem in classes)
                 cboClass.Items.Add(classItem);
         }

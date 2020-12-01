@@ -488,9 +488,14 @@ namespace project_winform
             txtSearch.Focus();
         }
 
+        private void btnImportExcel_Click(object sender, EventArgs e)
+        {
+            UserBUS.HandleImportDataExcelToListView(lvwMain);
+        }
+
         private void btnExportExcel_Click(object sender, EventArgs e)
         {
-            Excel.ExportDataToExcel(lvwMain);
+            Excel.ExportDataListViewToExcel(lvwMain);
         }
 
         #endregion

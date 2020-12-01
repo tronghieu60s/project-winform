@@ -7,10 +7,45 @@ namespace project_winform.src.helpers
 {
     class Excel
     {
-        public static void ExportDataToExcel(ListView lvwMain)
+        public static ListView ImportDataExcelToListView()
         {
-			try
-			{
+            ListView lvwMain = new ListView();
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "CSV Files (*.csv)|*.csv";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    using (StreamReader reader = new StreamReader(openFileDialog.OpenFile(), System.Text.Encoding.Default))
+                    {
+                        reader.ReadLine();
+                        while (!reader.EndOfStream)
+                        {
+                            var line = reader.ReadLine();
+                            var values = line.Split('\t');
+
+                            ListViewItem item = new ListViewItem(values);
+                            lvwMain.Items.Add(item);
+                        }
+                    }
+                }
+                return lvwMain;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return null;
+        }
+
+        public static void ExportDataListViewToExcel(ListView lvwMain)
+        {
+            try
+            {
                 SaveFileDialog savefile = new SaveFileDialog();
                 // File Name
                 DateTime timeNow = DateTime.Now;
@@ -41,8 +76,8 @@ namespace project_winform.src.helpers
                     }
                 }
             }
-			catch (Exception)
-			{
+            catch (Exception)
+            {
                 MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionException, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

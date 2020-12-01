@@ -78,7 +78,7 @@ namespace project_winform.DAL
             return null;
         }
 
-        public static bool AddUser(User user)
+        public static bool CreateUser(User user)
         {
             try
             {

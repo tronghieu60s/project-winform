@@ -2,6 +2,7 @@
 using project_winform.DAL;
 using project_winform.src.config;
 using project_winform.src.constants;
+using project_winform.src.helpers;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -75,7 +76,7 @@ namespace project_winform.BUS
         /* ADD - UPDATE - DELETE */
         public static void HandleAddUser(ListView lvwMain, User user)
         {
-            bool userResult = UserDAL.AddUser(user);
+            bool userResult = UserDAL.CreateUser(user);
             if (userResult)
             {
                 ListViewItem item = UserModelToListViewItem(user);
@@ -159,6 +160,24 @@ namespace project_winform.BUS
             {
                 itemClone = item.Clone() as ListViewItem;
                 lvwMain.Items.Add(itemClone);
+            }
+        }
+
+        /* Import Data */
+        public static void HandleImportDataExcelToListView(ListView lvwMain)
+        {
+            ListView lvwExcel = Excel.ImportDataExcelToListView();
+            foreach (ListViewItem item in lvwExcel.Items)
+            {
+                string id_user = RandomCodeNum(TypeSelectUser).ToString();
+                id_user = TypeSelectUser + id_user;
+
+                string password = "123456";
+                string name = item.SubItems[1].Text;
+                DateTime birthday = DateTime.Parse(item.SubItems[2].Text);
+                Class classModal = ClassDAL.GetClassWithName(item.SubItems[5].Text);
+                User user = new User(id_user, password, name, birthday, classModal);
+                HandleAddUser(lvwMain, user);
             }
         }
     }
