@@ -24,5 +24,8 @@ namespace project_winform.src.constants
 
         public static string CaptionException = "Có Lỗi Xảy Ra";
         public static string Exception = "Có lỗi xảy ra không như ý muốn. Vui lòng thử lại sau.";
+
+        public static string CaptionNotSelectListView = "Chưa Chọn Mục.";
+        public static string NotSelectListView = "Vui lòng chọn ít nhất 1 mục để thực hiện hành động.";
     }
 }

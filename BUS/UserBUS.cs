@@ -1,6 +1,7 @@
 ﻿using project_winform.CTO;
 using project_winform.DAL;
 using project_winform.src.config;
+using project_winform.src.constants;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -47,6 +48,7 @@ namespace project_winform.BUS
             return item;
         }
 
+        /* HANDLE LOGIN */
         public static bool HandleUserLogin(string username, string password)
         {
             User user = UserDAL.GetUserWithId(username);
@@ -56,6 +58,7 @@ namespace project_winform.BUS
             return false;
         }
 
+        /* RENDER LIST FROM BASE */
         public static void RenderListViewDataUsersWithPermission(ListView lvwMain)
         {
             lvwMain.Items.Clear();
@@ -69,6 +72,7 @@ namespace project_winform.BUS
             }
         }
 
+        /* ADD - UPDATE - DELETE */
         public static void HandleAddUser(ListView lvwMain, User user)
         {
             bool userResult = UserDAL.AddUser(user);
@@ -103,22 +107,58 @@ namespace project_winform.BUS
                         }
                 }
             }
+            else MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionNotSelectListView, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         public static void HandleUpdateUsers(ListView lvwMain, User user)
         {
-            bool userResult = UserDAL.UpdateUserFromAdminWithId(user);
-            if (userResult)
+            if (lvwMain.SelectedItems.Count > 0)
             {
-                foreach (ListViewItem item in lvwMainState.Items)
-                    if (item.SubItems[0].Text == user.IdUser)
-                    {
-                        ListViewItem itemUser = UserModelToListViewItem(user);
-                        for (int i = 0; i < item.SubItems.Count; i++)
-                            item.SubItems[i].Text = i < itemUser.SubItems.Count ? 
-                                itemUser.SubItems[i].Text ?? null : string.Empty;
-                    }
+                bool userResult = UserDAL.UpdateUserFromAdminWithId(user);
+                if (userResult)
+                {
+                    foreach (ListViewItem item in lvwMainState.Items)
+                        if (item.SubItems[0].Text == user.IdUser)
+                        {
+                            ListViewItem itemUser = UserModelToListViewItem(user);
+                            for (int i = 0; i < item.SubItems.Count; i++)
+                                item.SubItems[i].Text = i < itemUser.SubItems.Count ?
+                                    itemUser.SubItems[i].Text ?? null : string.Empty;
+                        }
+                    RenderListViewDataUsersWithPermission(lvwMain);
+                }
+            }
+            else MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionNotSelectListView, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        /* SEACRH LISTVIEW */
+        public static void HandleSearchOnListView(ListView lvwMain, string search, int index)
+        {
+            if (index < 0) return;
+
+            ListViewItem itemClone;
+            if (search == string.Empty)
+            {
                 RenderListViewDataUsersWithPermission(lvwMain);
+                return;
+            }
+
+            ListView lvwTemporary = new ListView();
+            foreach (ListViewItem item in LvwMainState.Items)
+            {
+                itemClone = item.Clone() as ListViewItem;
+                string itemTextSearch = item.SubItems[index].Text.Trim().ToLower();
+                string searchText = search.Trim().ToLower();
+                if (itemTextSearch.IndexOf(searchText) != -1 
+                    && item.SubItems[0].Text.Substring(0, 2) == TypeSelectUser)
+                    lvwTemporary.Items.Add(itemClone);
+            }
+
+            lvwMain.Items.Clear();
+            foreach (ListViewItem item in lvwTemporary.Items)
+            {
+                itemClone = item.Clone() as ListViewItem;
+                lvwMain.Items.Add(itemClone);
             }
         }
     }

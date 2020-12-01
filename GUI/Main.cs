@@ -18,6 +18,7 @@ namespace project_winform
             InitializeComponent();
             FormSetup.FormLoad(this);
 
+            /* STYLE */
             #region * UI SETUP 
             // List View
             lvwMain.View = View.Details;
@@ -78,7 +79,6 @@ namespace project_winform
             btnAdd.BackColor = ColorTheme.getTheme("primary");
             btnDelete.BackColor = ColorTheme.getTheme("danger");
             btnUpdate.BackColor = ColorTheme.getTheme("warning");
-            btnSearch.BackColor = ColorTheme.getTheme("primary");
             btnAddCourse.BackColor = ColorTheme.getTheme("primary");
             btnAddFaculty.BackColor = ColorTheme.getTheme("primary");
             btnAddClass.BackColor = ColorTheme.getTheme("primary");
@@ -94,8 +94,8 @@ namespace project_winform
             SelectTypeUser();
         }
 
-        // UI CUSTOM
-        #region * UI CUSTOM
+        /* UI CUSTOM */
+        #region * (UI) CUSTOM
         /* Title Bar Hover Style */
         private void picIcon_MouseHover(object sender, EventArgs e)
         {
@@ -157,6 +157,38 @@ namespace project_winform
 
         #endregion
 
+        /* SORT */
+        #region * (LIB) SORT COLUMN IN LISTVIEW
+        private void lvwMain_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ItemComparer sorter = lvwMain.ListViewItemSorter as ItemComparer;
+
+            if (sorter == null)
+            {
+                sorter = new ItemComparer(e.Column);
+                sorter.Order = SortOrder.Ascending;
+                lvwMain.ListViewItemSorter = sorter;
+            }
+            // if clicked column is already the column that is being sorted
+            if (e.Column == sorter.Column)
+            {
+                // Reverse the current sort direction
+                if (sorter.Order == SortOrder.Ascending)
+                    sorter.Order = SortOrder.Descending;
+                else
+                    sorter.Order = SortOrder.Ascending;
+            }
+            else
+            {
+                // Set the column number that is to be sorted; default to ascending.
+                sorter.Column = e.Column;
+                sorter.Order = SortOrder.Ascending;
+            }
+            lvwMain.Sort();
+        }
+        #endregion
+
+        /* METHODS */
         #region * RENDER COMBOBOX CLASSES
         private void RenderComboBoxClasses()
         {
@@ -294,6 +326,14 @@ namespace project_winform
         {
             ValidatingTxtFullName();
         }
+
+        private void txtCodeNum_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                e.Handled = true;
+        }
+
+        
         #endregion
 
         #region * ADD - UPDATE - DELETE USER
@@ -354,6 +394,20 @@ namespace project_winform
 
         #endregion
 
+        #region * SEARCH MODULES
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            int searchIndex = -1;
+            if (radSearchCodeNum.Checked)
+                searchIndex = 0;
+            if (radSearchName.Checked)
+                searchIndex = 1;
+            UserBUS.HandleSearchOnListView(lvwMain, txtSearch.Text, searchIndex);
+
+            CountNumberListView();
+        }
+        #endregion
+
         #region * TOOL STRIP MENU
 
         private void lvwMain_MouseClick(object sender, MouseEventArgs e)
@@ -389,12 +443,38 @@ namespace project_winform
 
         #endregion
 
-        #region * Handle Small Modules
-        private void txtCodeNum_KeyPress(object sender, KeyPressEventArgs e)
+        #region * OTHERS METHODS
+
+        private void CountNumberListView()
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-                e.Handled = true;
+            int number = lvwMain.Items.Count;
+            lblCountItemListView.Text = $"{number} mục";
         }
+
+        private void lvwMain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in lvwMain.SelectedItems)
+            {
+                string id = item.SubItems[0].Text;
+                txtCodeNum.Text = id.Substring(2, id.Length - 2);
+                txtFullName.Text = item.SubItems[1].Text;
+                dtpBirthday.Value = DateTime.ParseExact(item.SubItems[2].Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                if (UserBUS.TypeSelectUser == Config.typeStudent && item.SubItems.Count > 3)
+                {
+                    cboCourse.SelectedIndex = -1;
+                    cboFaculty.SelectedIndex = -1;
+                    cboClass.SelectedIndex = -1;
+
+                    cboCourse.Text = item.SubItems[3].Text;
+                    cboFaculty.Text = item.SubItems[4].Text;
+                    cboClass.Text = item.SubItems[5].Text;
+                }
+            }
+        }
+
+        #endregion
+
+        #region * OTHERS METHODS FORM
 
         private void chkRandomCodeNum_CheckedChanged(object sender, EventArgs e)
         {
@@ -409,100 +489,5 @@ namespace project_winform
         }
 
         #endregion
-
-        #region * Sort Column in ListView
-        private void lvwMain_ColumnClick(object sender, ColumnClickEventArgs e)
-        {
-            ItemComparer sorter = lvwMain.ListViewItemSorter as ItemComparer;
-
-            if (sorter == null)
-            {
-                sorter = new ItemComparer(e.Column);
-                sorter.Order = SortOrder.Ascending;
-                lvwMain.ListViewItemSorter = sorter;
-            }
-            // if clicked column is already the column that is being sorted
-            if (e.Column == sorter.Column)
-            {
-                // Reverse the current sort direction
-                if (sorter.Order == SortOrder.Ascending)
-                    sorter.Order = SortOrder.Descending;
-                else
-                    sorter.Order = SortOrder.Ascending;
-            }
-            else
-            {
-                // Set the column number that is to be sorted; default to ascending.
-                sorter.Column = e.Column;
-                sorter.Order = SortOrder.Ascending;
-            }
-            lvwMain.Sort();
-        }
-        #endregion
-
-        private void CountNumberListView()
-        {
-            int number = lvwMain.Items.Count;
-            lblCountItemListView.Text = $"{number} mục";
-        }
-
-        private void SearchNameListView(object sender, EventArgs e)
-        {
-            ListViewItem itemClone;
-            if (txtSearch.Text == string.Empty)
-            {
-                lvwMain.Items.Clear();
-                foreach (ListViewItem item in UserBUS.LvwMainState.Items)
-                {
-                    itemClone = item.Clone() as ListViewItem;
-                    lvwMain.Items.Add(itemClone);
-                }
-                CountNumberListView();
-                return;
-            }
-
-            ListView lvwTemporary = new ListView();
-            foreach (ListViewItem item in UserBUS.LvwMainState.Items)
-            {
-                itemClone = item.Clone() as ListViewItem;
-                if (radSearchCodeNum.Checked)
-                    if (item.SubItems[0].Text.Trim().ToLower() == txtSearch.Text.Trim().ToLower())
-                        lvwTemporary.Items.Add(itemClone);
-                if (radSearchName.Checked)
-                    if (item.SubItems[1].Text.Trim().ToLower() == txtSearch.Text.Trim().ToLower())
-                        lvwTemporary.Items.Add(itemClone);
-            }
-
-            lvwMain.Items.Clear();
-            foreach (ListViewItem item in lvwTemporary.Items)
-            {
-                itemClone = item.Clone() as ListViewItem;
-                lvwMain.Items.Add(itemClone);
-            }
-
-            CountNumberListView();
-        }
-
-        private void lvwMain_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            foreach (ListViewItem item in lvwMain.SelectedItems)
-            {
-                string id = item.SubItems[0].Text;
-                txtCodeNum.Text = id.Substring(2, id.Length - 2);
-                txtFullName.Text = item.SubItems[1].Text;
-                dtpBirthday.Value = DateTime.ParseExact(item.SubItems[2].Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                if (UserBUS.TypeSelectUser == Config.typeStudent && item.SubItems.Count > 3)
-                {
-                    cboCourse.SelectedIndex = -1;
-                    cboFaculty.SelectedIndex =-1;
-                    cboClass.SelectedIndex = -1;
-
-                    cboCourse.Text = item.SubItems[3].Text;
-                    cboFaculty.Text = item.SubItems[4].Text;
-                    cboClass.Text = item.SubItems[5].Text;
-                }
-            }
-        }
-
     }
 }
