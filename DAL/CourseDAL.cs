@@ -12,11 +12,11 @@ namespace project_winform.DAL
 {
     class CourseDAL: DatabaseUtils
     {
-        public static List<Course> getAllCourses()
+        public static List<Course> GetCourses()
         {
             DataSet coursesData = new DataSet();
             MySqlCommand command = connectDB.CreateCommand();
-            command.CommandText = "SELECT * FROM `courses`";
+            command.CommandText = "SELECT * FROM `courses` ORDER BY date DESC";
 
             MySqlDataAdapter sqlData = new MySqlDataAdapter(command);
             sqlData.Fill(coursesData);

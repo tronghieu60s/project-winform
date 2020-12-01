@@ -166,6 +166,7 @@ namespace project_winform.BUS
         /* Import Data */
         public static void HandleImportDataExcelToListView(ListView lvwMain)
         {
+            int count = 0;
             ListView lvwExcel = Excel.ImportDataExcelToListView();
             foreach (ListViewItem item in lvwExcel.Items)
             {
@@ -178,7 +179,11 @@ namespace project_winform.BUS
                 Class classModal = ClassDAL.GetClassWithName(item.SubItems[5].Text);
                 User user = new User(id_user, password, name, birthday, classModal);
                 HandleAddUser(lvwMain, user);
+                count += 1;
             }
+
+            if (count == lvwExcel.Items.Count)
+                MessageBox.Show(MessageBoxText.ImportSuccess + count, MessageBoxText.CaptionImportSuccess, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

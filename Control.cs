@@ -1,10 +1,12 @@
-﻿using project_winform.dal;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace project_winform
 {
     class Control
     {
+        static public Form frmCourse = new frmCourse();
+        static public Form frmFaculty = new frmFaculty();
+        static public Form frmClass = new frmClass();
         static public Form frmMain = new frmMain();
         static public Form frmLogin = new frmLogin();
 
@@ -15,6 +17,9 @@ namespace project_winform
             {
                 frmMain.Close();
                 frmLogin.Close();
+                frmCourse.Close();
+                frmFaculty.Close();
+                frmClass.Close();
             }
         }
     }

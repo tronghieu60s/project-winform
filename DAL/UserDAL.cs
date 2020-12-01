@@ -34,7 +34,7 @@ namespace project_winform.DAL
             {
                 DataSet usersData = new DataSet();
                 MySqlCommand command = connectDB.CreateCommand();
-                command.CommandText = "SELECT *  FROM `users` LEFT JOIN `classes` ON `classes`.`id_class`= `users`.`id_class` LEFT JOIN `courses` ON `courses`.`id_course` = `classes`.`id_course` LEFT JOIN `faculties` ON `faculties`.`id_faculty` = `classes`.`id_faculty` ORDER BY date DESC";
+                command.CommandText = "SELECT * FROM `users` LEFT JOIN `classes` ON `classes`.`id_class`= `users`.`id_class` LEFT JOIN `courses` ON `courses`.`id_course` = `classes`.`id_course` LEFT JOIN `faculties` ON `faculties`.`id_faculty` = `classes`.`id_faculty` ORDER BY `users`.`date` DESC";
                 // command.CommandType = CommandType.StoredProcedure;
 
                 MySqlDataAdapter sqlData = new MySqlDataAdapter(command);

@@ -75,6 +75,24 @@
     <Compile Include="DAL\DatabaseUtils.cs" />
     <Compile Include="DAL\FacultyDAL.cs" />
     <Compile Include="DAL\UserDAL.cs" />
+    <Compile Include="GUI\Class.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Class.Designer.cs">
+      <DependentUpon>Class.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Course.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Course.Designer.cs">
+      <DependentUpon>Course.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Faculty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Faculty.Designer.cs">
+      <DependentUpon>Faculty.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +116,15 @@
     <Compile Include="src\themes\Color.cs" />
     <Compile Include="src\themes\Icon.cs" />
     <Compile Include="src\themes\Image.cs" />
+    <EmbeddedResource Include="GUI\Class.resx">
+      <DependentUpon>Class.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Course.resx">
+      <DependentUpon>Course.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Faculty.resx">
+      <DependentUpon>Faculty.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>

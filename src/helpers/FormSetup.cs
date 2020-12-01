@@ -42,6 +42,13 @@ namespace project_winform.src.helpers
                 (item as Panel).BackgroundImageLayout = ImageLayout.Stretch;
                 (item as Panel).Cursor = Cursors.Hand;
             }
+
+            foreach (var item in GetAll(control, typeof(ListView)))
+            {
+                (item as ListView).View = View.Details;
+                (item as ListView).GridLines = true;
+                (item as ListView).FullRowSelect = true;
+            }
         }
     }
 }

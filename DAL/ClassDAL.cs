@@ -18,6 +18,30 @@ namespace project_winform.DAL
             return new Class(user["id_class"].ToString(), user["class_name"].ToString(), faculty, course);
         }
 
+        public static List<Class> GetClasses()
+        {
+            try
+            {
+                DataSet classesData = new DataSet();
+                MySqlCommand command = connectDB.CreateCommand();
+                command.CommandText = "SELECT * FROM `classes` LEFT JOIN `faculties` ON `faculties`.`id_faculty`= `classes`.`id_faculty` LEFT JOIN `courses` ON `courses`.`id_course` = `classes`.`id_course` ORDER BY `classes`.`date` DESC";
+
+                MySqlDataAdapter sqlData = new MySqlDataAdapter(command);
+                sqlData.Fill(classesData);
+
+                List<Class> classList = new List<Class>();
+                foreach (DataRow classItem in classesData.Tables[0].Rows)
+                    classList.Add(GetClassFromDataRow(classItem));
+                return classList;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return null;
+        }
+
         public static Class GetClassWithName(string class_name)
         {
             try

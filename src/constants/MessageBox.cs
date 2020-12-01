@@ -7,6 +7,9 @@ namespace project_winform.src.constants
 {
     class MessageBoxText
     {
+        public static string CaptionDatabaseConnectFalse = "Lỗi Kết Nối";
+        public static string DatabaseConnectFalse = "Không thể kết nối được với dữ liệu, vui lòng thử lại.";
+
         public static string Warning = "Cảnh Báo";
         public static string RequiredInput = "Vui lòng nhập các trường dữ liệu bắt buộc.";
 
@@ -30,5 +33,8 @@ namespace project_winform.src.constants
 
         public static string CaptionExportSuccess = "Xuất Thành công";
         public static string ExportSuccess = "Bạn đã xuất dữ liệu thành công. Số Dòng: ";
+
+        public static string CaptionImportSuccess = "Nhập Thành công";
+        public static string ImportSuccess = "Bạn đã nhập dữ liệu thành công. Số Dòng: ";
     }
 }

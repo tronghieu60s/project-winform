@@ -1,30 +1,34 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using project_winform.src.constants;
 
 namespace project_winform.dal
 {
     class DatabaseUtils
     {
         public static MySqlConnection connectDB = new MySqlConnection();
-        private readonly string strConnect = 
+        private static string strConnect = 
             $"Server={DatabaseConfig.Host};"+
             $"Database={DatabaseConfig.Database};"+
             $"Port={DatabaseConfig.Port};"+
             $"User Id={DatabaseConfig.Username};"+
             $"Password={DatabaseConfig.Password}";
 
-        public DatabaseUtils()
+        public static bool DatabaseUtilsConnect()
         {
             try
             {
                 connectDB.ConnectionString = strConnect;
                 connectDB.Open();
+                return true;
             }
-            catch (SqlException error)
+            catch (Exception)
             {
-                MessageBox.Show(error.ToString());
+                MessageBox.Show(MessageBoxText.DatabaseConnectFalse, MessageBoxText.CaptionDatabaseConnectFalse, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            return false;
         }
     }
 }

@@ -13,10 +13,12 @@ namespace project_winform
         static void Main()
         {
             /* Database Initialization */
-            new DatabaseUtils();
-            Application.EnableVisualStyles();
-            // Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(Control.frmMain);
+            if (DatabaseUtils.DatabaseUtilsConnect())
+            {
+                Application.EnableVisualStyles();
+                // Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(Control.frmMain);
+            }
         }
     }
 }

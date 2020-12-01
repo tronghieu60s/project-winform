@@ -20,10 +20,6 @@ namespace project_winform
 
             /* STYLE */
             #region * UI SETUP 
-            // List View
-            lvwMain.View = View.Details;
-            lvwMain.GridLines = true;
-            lvwMain.FullRowSelect = true;
 
             // Custom Format DateTime Picker
             dtpBirthday.Format = DateTimePickerFormat.Custom;
@@ -56,6 +52,7 @@ namespace project_winform
             {
                 e.Value = ((Class)e.Value).Name;
             };
+
             #endregion
 
             #region * UI STYLE
@@ -70,7 +67,6 @@ namespace project_winform
             // Style Title Bar
             pnlTitleBar.BackColor = ColorTheme.getTheme();
             picExit.Image = Image.FromFile(IconTheme.exit);
-            picResize.Image = Image.FromFile(IconTheme.resize);
             picMinimize.Image = Image.FromFile(IconTheme.minimize);
 
             // Color Button Style
@@ -101,8 +97,6 @@ namespace project_winform
         {
             if ((sender as PictureBox).Name == "picExit")
                 picExit.Image = Image.FromFile(IconTheme.exitHover);
-            if ((sender as PictureBox).Name == "picResize")
-                picResize.Image = Image.FromFile(IconTheme.resizeHover);
             if ((sender as PictureBox).Name == "picMinimize")
                 picMinimize.Image = Image.FromFile(IconTheme.minimizeHover);
         }
@@ -111,8 +105,6 @@ namespace project_winform
         {
             if ((sender as PictureBox).Name == "picExit")
                 picExit.Image = Image.FromFile(IconTheme.exit);
-            if ((sender as PictureBox).Name == "picResize")
-                picResize.Image = Image.FromFile(IconTheme.resize);
             if ((sender as PictureBox).Name == "picMinimize")
                 picMinimize.Image = Image.FromFile(IconTheme.minimize);
         }
@@ -496,6 +488,25 @@ namespace project_winform
         private void btnExportExcel_Click(object sender, EventArgs e)
         {
             Excel.ExportDataListViewToExcel(lvwMain);
+        }
+
+        #endregion
+
+        #region * OPEN OTHER FORM
+
+        private void btnAddCourse_Click(object sender, EventArgs e)
+        {
+            Control.frmCourse.Show();
+        }
+
+        private void btnAddFaculty_Click(object sender, EventArgs e)
+        {
+            Control.frmFaculty.Show();
+        }
+
+        private void btnAddClass_Click(object sender, EventArgs e)
+        {
+            Control.frmClass.Show();
         }
 
         #endregion

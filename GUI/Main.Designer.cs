@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.pnlTitleBar = new System.Windows.Forms.Panel();
             this.picMinimize = new System.Windows.Forms.PictureBox();
-            this.picResize = new System.Windows.Forms.PictureBox();
             this.picExit = new System.Windows.Forms.PictureBox();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.lblWelcomeSlogan = new System.Windows.Forms.Label();
@@ -72,7 +71,6 @@
             this.radSearchName = new System.Windows.Forms.RadioButton();
             this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picResize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogout)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -83,7 +81,6 @@
             // pnlTitleBar
             // 
             this.pnlTitleBar.Controls.Add(this.picMinimize);
-            this.pnlTitleBar.Controls.Add(this.picResize);
             this.pnlTitleBar.Controls.Add(this.picExit);
             this.pnlTitleBar.Location = new System.Drawing.Point(-2, -2);
             this.pnlTitleBar.Name = "pnlTitleBar";
@@ -93,7 +90,7 @@
             // 
             // picMinimize
             // 
-            this.picMinimize.Location = new System.Drawing.Point(1065, 9);
+            this.picMinimize.Location = new System.Drawing.Point(1119, 9);
             this.picMinimize.Name = "picMinimize";
             this.picMinimize.Size = new System.Drawing.Size(27, 28);
             this.picMinimize.TabIndex = 0;
@@ -101,16 +98,6 @@
             this.picMinimize.Click += new System.EventHandler(this.picMinimize_Click);
             this.picMinimize.MouseLeave += new System.EventHandler(this.picIcon_MouseLeave);
             this.picMinimize.MouseHover += new System.EventHandler(this.picIcon_MouseHover);
-            // 
-            // picResize
-            // 
-            this.picResize.Location = new System.Drawing.Point(1113, 9);
-            this.picResize.Name = "picResize";
-            this.picResize.Size = new System.Drawing.Size(27, 28);
-            this.picResize.TabIndex = 0;
-            this.picResize.TabStop = false;
-            this.picResize.MouseLeave += new System.EventHandler(this.picIcon_MouseLeave);
-            this.picResize.MouseHover += new System.EventHandler(this.picIcon_MouseHover);
             // 
             // picExit
             // 
@@ -309,6 +296,7 @@
             this.btnAddClass.TabIndex = 7;
             this.btnAddClass.Text = "Thêm";
             this.btnAddClass.UseVisualStyleBackColor = false;
+            this.btnAddClass.Click += new System.EventHandler(this.btnAddClass_Click);
             // 
             // btnAddFaculty
             // 
@@ -320,6 +308,7 @@
             this.btnAddFaculty.TabIndex = 7;
             this.btnAddFaculty.Text = "Thêm";
             this.btnAddFaculty.UseVisualStyleBackColor = false;
+            this.btnAddFaculty.Click += new System.EventHandler(this.btnAddFaculty_Click);
             // 
             // btnAddCourse
             // 
@@ -331,6 +320,7 @@
             this.btnAddCourse.TabIndex = 7;
             this.btnAddCourse.Text = "Thêm";
             this.btnAddCourse.UseVisualStyleBackColor = false;
+            this.btnAddCourse.Click += new System.EventHandler(this.btnAddCourse_Click);
             // 
             // btnAdd
             // 
@@ -538,7 +528,6 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmMain_Paint);
             this.pnlTitleBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picMinimize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picResize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogout)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -556,7 +545,6 @@
         private System.Windows.Forms.Panel pnlTitleBar;
         private System.Windows.Forms.PictureBox picExit;
         private System.Windows.Forms.PictureBox picMinimize;
-        private System.Windows.Forms.PictureBox picResize;
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.Label lblWelcomeSlogan;
         private System.Windows.Forms.PictureBox picLogout;

@@ -12,11 +12,11 @@ namespace project_winform.DAL
 {
     class FacultyDAL: DatabaseUtils
     {
-        public static List<Faculty> getAllFaculties()
+        public static List<Faculty> GetFaculties()
         {
             DataSet facultiesData = new DataSet();
             MySqlCommand command = connectDB.CreateCommand();
-            command.CommandText = "SELECT * FROM `faculties`";
+            command.CommandText = "SELECT * FROM `faculties` ORDER BY date DESC";
 
             MySqlDataAdapter sqlData = new MySqlDataAdapter(command);
             sqlData.Fill(facultiesData);
