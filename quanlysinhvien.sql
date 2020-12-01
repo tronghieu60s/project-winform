@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 30, 2020 lúc 04:17 PM
+-- Thời gian đã tạo: Th12 01, 2020 lúc 05:13 PM
 -- Phiên bản máy phục vụ: 10.4.11-MariaDB
 -- Phiên bản PHP: 7.4.2
 
@@ -32,19 +32,20 @@ CREATE TABLE `classes` (
   `id_class` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_course` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `id_faculty` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `class_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `class_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date` int(11) NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `classes`
 --
 
-INSERT INTO `classes` (`id_class`, `id_course`, `id_faculty`, `class_name`) VALUES
-('CL1', 'K19', 'FA1', 'CD19TT2'),
-('CL2', 'K19', 'FA2', 'CD19TD3'),
-('CL3', 'K20', 'FA3', 'CD19TH5'),
-('CL4', 'K20', 'FA3', 'CD19TH6'),
-('CL5', 'K20', 'FA3', 'CD19TH7');
+INSERT INTO `classes` (`id_class`, `id_course`, `id_faculty`, `class_name`, `date`) VALUES
+('CL1', 'K19', 'FA1', 'CD19TT2', 2147483647),
+('CL2', 'K19', 'FA2', 'CD19TD3', 2147483647),
+('CL3', 'K20', 'FA3', 'CD19TH5', 2147483647),
+('CL4', 'K20', 'FA3', 'CD19TH6', 2147483647),
+('CL5', 'K20', 'FA3', 'CD19TH7', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -54,17 +55,18 @@ INSERT INTO `classes` (`id_class`, `id_course`, `id_faculty`, `class_name`) VALU
 
 CREATE TABLE `courses` (
   `id_course` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `course_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `course_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date` int(11) NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `courses`
 --
 
-INSERT INTO `courses` (`id_course`, `course_name`) VALUES
-('K18', 'Khóa 18'),
-('K19', 'Khóa 19'),
-('K20', 'Khóa 20');
+INSERT INTO `courses` (`id_course`, `course_name`, `date`) VALUES
+('K18', 'Khóa 18', 2147483647),
+('K19', 'Khóa 19', 2147483647),
+('K20', 'Khóa 20', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -74,17 +76,18 @@ INSERT INTO `courses` (`id_course`, `course_name`) VALUES
 
 CREATE TABLE `faculties` (
   `id_faculty` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `faculty_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `faculty_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date` int(11) NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `faculties`
 --
 
-INSERT INTO `faculties` (`id_faculty`, `faculty_name`) VALUES
-('FA1', 'Công Nghệ Thông Tin'),
-('FA2', 'Công Nghệ Tự Động'),
-('FA3', 'Tiếng Hàn');
+INSERT INTO `faculties` (`id_faculty`, `faculty_name`, `date`) VALUES
+('FA1', 'Công Nghệ Thông Tin', 2147483647),
+('FA2', 'Công Nghệ Tự Động', 2147483647),
+('FA3', 'Tiếng Hàn', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -94,17 +97,9 @@ INSERT INTO `faculties` (`id_faculty`, `faculty_name`) VALUES
 
 CREATE TABLE `registers_user_subject` (
   `id_user` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_subjects` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL
+  `id_subjects` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date` int(11) NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `registers_user_subject`
---
-
-INSERT INTO `registers_user_subject` (`id_user`, `id_subjects`) VALUES
-('SD4322', 'SJ3'),
-('SD6537', 'SJ1'),
-('SD6537', 'SJ2');
 
 -- --------------------------------------------------------
 
@@ -115,17 +110,18 @@ INSERT INTO `registers_user_subject` (`id_user`, `id_subjects`) VALUES
 CREATE TABLE `subjects` (
   `id_subjects` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `credit` int(11) DEFAULT NULL
+  `credit` int(11) DEFAULT NULL,
+  `date` int(11) NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `subjects`
 --
 
-INSERT INTO `subjects` (`id_subjects`, `name`, `credit`) VALUES
-('SJ1', 'Nhập Môn Lập Trình', 3),
-('SJ2', 'Lập Trình Ứng Dụng', 4),
-('SJ3', 'Tiếng Hàn Cơ Bản', 3);
+INSERT INTO `subjects` (`id_subjects`, `name`, `credit`, `date`) VALUES
+('SJ1', 'Nhập Môn Lập Trình', 3, 2147483647),
+('SJ2', 'Lập Trình Ứng Dụng', 4, 2147483647),
+('SJ3', 'Tiếng Hàn Cơ Bản', 3, 2147483647);
 
 -- --------------------------------------------------------
 
@@ -147,9 +143,15 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `password`, `name`, `birthday`, `id_class`, `date`) VALUES
-('ADMIN', '123456', 'Trần Trọng Hiếu', '2020-12-26', 'CL1', '2020-11-30 21:53:48'),
-('SD4322', '123456', 'Nguyễn Ngọc Trường', '2001-01-05', 'CL3', '2020-11-30 21:53:48'),
-('SD6537', '123456', 'Trọng Hiếu', '2001-12-02', 'CL1', '2020-11-30 21:53:48');
+('ADMIN', '123456', 'Trần Trọng Hiếu', '2020-12-17', NULL, '2020-11-30 21:53:48'),
+('SD12831', '123456', 'Nguyễn Ngọc Trường', '2001-01-18', 'CL3', '2020-12-01 18:55:09'),
+('SD19901', '123456', 'Trọng Hiếu', '2001-12-02', 'CL1', '2020-12-01 11:58:12'),
+('SD22742', '123456', 'Nguyễn Ngọc Trường', '2001-01-18', 'CL3', '2020-12-01 11:58:12'),
+('SD24765', '123456', 'Trọng Hiếu', '2001-12-02', 'CL1', '2020-12-01 18:54:39'),
+('SD32679', '123456', 'Nguyễn Ngọc Trường', '2001-01-18', 'CL3', '2020-12-01 18:40:08'),
+('SD67812', '123456', 'Trọng Hiếu', '2001-12-02', 'CL1', '2020-12-01 18:40:08'),
+('SD79631', '123456', 'Nguyễn Ngọc Trường', '2001-01-18', 'CL3', '2020-12-01 18:54:39'),
+('SD94982', '123456', 'Trọng Hiếu', '2001-12-02', 'CL1', '2020-12-01 18:55:09');
 
 --
 -- Chỉ mục cho các bảng đã đổ
