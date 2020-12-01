@@ -110,6 +110,7 @@
     <Compile Include="src\config\Config.cs" />
     <Compile Include="src\constants\MessageBox.cs" />
     <Compile Include="src\helpers\Excel.cs" />
+    <Compile Include="src\helpers\SelectListView.cs" />
     <Compile Include="src\helpers\FormSetup.cs" />
     <Compile Include="src\helpers\ItemComparer.cs" />
     <Compile Include="src\helpers\Window.cs" />

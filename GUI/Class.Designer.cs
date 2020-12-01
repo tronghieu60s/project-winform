@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlTitleBar = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.picMinimize = new System.Windows.Forms.PictureBox();
             this.picExit = new System.Windows.Forms.PictureBox();
             this.txtClassName = new System.Windows.Forms.TextBox();
@@ -43,7 +44,6 @@
             this.lvwCourse = new System.Windows.Forms.ListView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lvwFaculty = new System.Windows.Forms.ListView();
-            this.label1 = new System.Windows.Forms.Label();
             this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
@@ -61,6 +61,16 @@
             this.pnlTitleBar.Size = new System.Drawing.Size(802, 46);
             this.pnlTitleBar.TabIndex = 10;
             this.pnlTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlTitleBar_MouseDown);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
+            this.label1.Location = new System.Drawing.Point(16, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(36, 20);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "Lớp";
             // 
             // picMinimize
             // 
@@ -172,6 +182,7 @@
             this.lvwCourse.Size = new System.Drawing.Size(346, 203);
             this.lvwCourse.TabIndex = 6;
             this.lvwCourse.UseCompatibleStateImageBehavior = false;
+            this.lvwCourse.SelectedIndexChanged += new System.EventHandler(this.lvwCourse_SelectedIndexChanged);
             // 
             // groupBox2
             // 
@@ -191,16 +202,7 @@
             this.lvwFaculty.Size = new System.Drawing.Size(346, 203);
             this.lvwFaculty.TabIndex = 7;
             this.lvwFaculty.UseCompatibleStateImageBehavior = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(16, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 20);
-            this.label1.TabIndex = 30;
-            this.label1.Text = "Lớp";
+            this.lvwFaculty.SelectedIndexChanged += new System.EventHandler(this.lvwFaculty_SelectedIndexChanged);
             // 
             // frmClass
             // 

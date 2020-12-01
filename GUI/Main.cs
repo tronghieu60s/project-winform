@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 using project_winform.BUS;
 using project_winform.CTO;
@@ -325,7 +326,7 @@ namespace project_winform
                 e.Handled = true;
         }
 
-        
+
         #endregion
 
         #region * ADD - UPDATE - DELETE USER
@@ -510,5 +511,6 @@ namespace project_winform
         }
 
         #endregion
+    
     }
 }
