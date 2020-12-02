@@ -169,9 +169,12 @@ namespace project_winform
         {
             if (ValidatingTxtCodeNumLogin() && ValidatingTxtPasswordLogin())
             {
-                User userLogin = UserBUS.HandleUserLogin(txtCodeNum.Text.Trim(), Password.HashPassword(txtPassword.Text.Trim()));
+                string username = txtCodeNum.Text.Trim();
+                string password = Password.HashPassword(txtPassword.Text.Trim());
+                User userLogin = UserBUS.HandleUserLogin(username, password);
                 if (userLogin != null)
                 {
+                    UserBUS.HandleSaveLogin(username, password);
                     Control.userLogin = userLogin;
                     Control.frmMain.Show();
                     Control.frmLogin.Hide();

@@ -5,6 +5,7 @@ using project_winform.src.constants;
 using project_winform.src.helpers;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
 namespace project_winform.BUS
@@ -52,13 +53,13 @@ namespace project_winform.BUS
         /* CHANGE PASSWORD */
         public static void HandleChangePassword(string oldPass, string newPass, string reNewPass)
         {
-            if(newPass != reNewPass)
+            if (newPass != reNewPass)
             {
                 MessageBox.Show(MessageBoxText.PassWordNotMatch, MessageBoxText.CaptionPassWord, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if(Control.userLogin.Password != Password.HashPassword(oldPass))
+            if (Control.userLogin.Password != Password.HashPassword(oldPass))
             {
                 MessageBox.Show(MessageBoxText.PassWordIncorrect, MessageBoxText.CaptionPassWord, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -82,6 +83,41 @@ namespace project_winform.BUS
                 if (user.Password == password)
                     return user;
             return null;
+        }
+
+        public static void HandleSaveLogin(string username, string password)
+        {
+            using (StreamWriter sw = new StreamWriter(Config.fileNameConfig))
+            {
+                sw.WriteLine(Config.configUsername + username);
+                sw.WriteLine(Config.configPassword + password);
+            }
+        }
+
+        public static bool HandleCheckLoginLocalStorage()
+        {
+            string line = "";
+            bool fileValid = File.Exists(Config.fileNameConfig);
+            if (!fileValid) return false;
+
+            string username = String.Empty;
+            string password = String.Empty;
+            using (StreamReader sr = new StreamReader(Config.fileNameConfig))
+            {
+                if ((line = sr.ReadLine()) == null) return false;
+                username = line.Substring(Config.configUsername.Length, line.Length - Config.configUsername.Length);
+
+                if ((line = sr.ReadLine()) == null) return false;
+                password = line.Substring(Config.configPassword.Length, line.Length - Config.configPassword.Length);
+            }
+
+            User user = HandleUserLogin(username, password);
+            if (user != null)
+            {
+                Control.userLogin = user;
+                return true;
+            }
+            return false;
         }
 
         /* RENDER LIST FROM BASE */

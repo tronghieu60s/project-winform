@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 using project_winform.BUS;
 using project_winform.CTO;
@@ -155,6 +156,8 @@ namespace project_winform
             DialogResult result = MessageBox.Show(MessageBoxText.Logout, MessageBoxText.CaptionLogout, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
+                File.Delete(Config.fileNameConfig);
+                Control.userLogin = null;
                 Control.frmLogin.Show();
                 Control.frmMain.Hide();
             }
