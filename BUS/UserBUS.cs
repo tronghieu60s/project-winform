@@ -89,19 +89,30 @@ namespace project_winform.BUS
             }
         }
 
-        public static void HandleDeleteUsers(ListView lvwMain, bool withCheckedItems)
+        public static void HandleDeleteUsersWithChecked(ListView lvwMain)
         {
-            if (lvwMain.SelectedItems.Count <= 0 && lvwMain.CheckedItems.Count <= 0)
+            if (lvwMain.CheckedItems.Count <= 0)
             {
                 MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionNotSelectListView, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (withCheckedItems)
-                foreach (ListViewItem itemSelect in lvwMain.CheckedItems)
-                    DeleteUserWithListViewItem(lvwMain, itemSelect);
-            else foreach (ListViewItem itemSelect in lvwMain.SelectedItems)
-                    DeleteUserWithListViewItem(lvwMain, itemSelect);
+            foreach (ListViewItem itemSelect in lvwMain.CheckedItems)
+                DeleteUserWithListViewItem(lvwMain, itemSelect);
+        }
+
+        public static void HandleDeleteUserWithId(ListView lvwMain, string id_user)
+        {
+            foreach (ListViewItem item in lvwMain.Items)
+            {
+                if (item.SubItems[0].Text == typeSelectUser + id_user)
+                {
+                    DeleteUserWithListViewItem(lvwMain, item);
+                    return;
+                }
+            }
+
+            MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionNotSelectListView, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private static void DeleteUserWithListViewItem(ListView lvwMain, ListViewItem itemSelect)

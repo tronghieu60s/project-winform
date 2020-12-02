@@ -20,7 +20,6 @@ namespace project_winform
             /* STYLE */
             #region * UI SETUP 
             lvwMain.CheckBoxes = true;
-            lvwMain.LabelEdit = true;
             lvwMain.AllowColumnReorder = true;
 
             // Custom Format DateTime Picker
@@ -223,7 +222,7 @@ namespace project_winform
             lvwMain.Columns.Clear();
             lvwMain.Columns.Add("Mã Số", 100);
             lvwMain.Columns.Add("Họ Tên", 200);
-            lvwMain.Columns.Add("Ngày Sinh", 100);
+            lvwMain.Columns.Add("Ngày Sinh", 175);
 
             lblCourse.Hide();
             cboCourse.Hide();
@@ -254,8 +253,8 @@ namespace project_winform
             lvwMain.Columns.Add("Họ Tên", 100);
             lvwMain.Columns.Add("Ngày Sinh", 70);
             lvwMain.Columns.Add("Khóa", 50);
-            lvwMain.Columns.Add("Khoa", 100);
-            lvwMain.Columns.Add("Lớp", 70);
+            lvwMain.Columns.Add("Khoa", 90);
+            lvwMain.Columns.Add("Lớp", 65);
 
             lblCourse.Show();
             cboCourse.Show();
@@ -337,7 +336,7 @@ namespace project_winform
                 DialogResult result = MessageBox.Show(MessageBoxText.ConfigDelete, MessageBoxText.CaptionConfigDelete, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
-                    UserBUS.HandleDeleteUsers(lvwMain, true);
+                    UserBUS.HandleDeleteUsersWithChecked(lvwMain);
                     CountNumberListView();
                 }
             }
@@ -372,7 +371,13 @@ namespace project_winform
 
         private void DeleteUser(object sender, EventArgs e)
         {
-            UserBUS.HandleDeleteUsers(lvwMain, false);
+            if(txtCodeNum.Text.Length <= 0)
+            {
+                MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionNotSelectListView, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            UserBUS.HandleDeleteUserWithId(lvwMain, txtCodeNum.Text);
             CountNumberListView();
         }
 
@@ -456,6 +461,7 @@ namespace project_winform
                     cboClass.Text = item.SubItems[5].Text;
                 }
             }
+            SelectListView.SelectListViewColorForMultipleListView(lvwMain);
         }
 
         private void chkRandomCodeNum_CheckedChanged(object sender, EventArgs e)

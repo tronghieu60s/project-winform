@@ -103,5 +103,10 @@ namespace project_winform
         }
 
         #endregion
+
+        private void lvwFaculty_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectListView.SelectListViewColorForMultipleListView(lvwFaculty);
+        }
     }
 }

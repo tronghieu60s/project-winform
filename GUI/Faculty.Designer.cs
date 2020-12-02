@@ -131,6 +131,7 @@
             this.lvwFaculty.TabIndex = 5;
             this.lvwFaculty.UseCompatibleStateImageBehavior = false;
             this.lvwFaculty.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwFaculty_ColumnClick);
+            this.lvwFaculty.SelectedIndexChanged += new System.EventHandler(this.lvwFaculty_SelectedIndexChanged);
             // 
             // txtFacultyName
             // 

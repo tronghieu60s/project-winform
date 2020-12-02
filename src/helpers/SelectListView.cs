@@ -11,7 +11,7 @@ namespace project_winform.src.helpers
 {
     class SelectListView
     {
-        public static void SelectListViewForMultipleListView(ListView listView)
+        public static void SelectListViewColorForMultipleListView(ListView listView)
         {
             listView.HideSelection = false;
             listView.MultiSelect = false;

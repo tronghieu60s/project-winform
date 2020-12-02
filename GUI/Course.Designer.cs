@@ -125,6 +125,7 @@
             this.lvwCourse.TabIndex = 5;
             this.lvwCourse.UseCompatibleStateImageBehavior = false;
             this.lvwCourse.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwCourse_ColumnClick);
+            this.lvwCourse.SelectedIndexChanged += new System.EventHandler(this.lvwCourse_SelectedIndexChanged);
             // 
             // btnAdd
             // 

@@ -133,6 +133,7 @@
             this.lvwClass.TabIndex = 5;
             this.lvwClass.UseCompatibleStateImageBehavior = false;
             this.lvwClass.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwClass_ColumnClick);
+            this.lvwClass.SelectedIndexChanged += new System.EventHandler(this.lvwClass_SelectedIndexChanged);
             // 
             // btnDelete
             // 
