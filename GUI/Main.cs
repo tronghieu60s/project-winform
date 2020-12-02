@@ -21,6 +21,9 @@ namespace project_winform
 
             /* STYLE */
             #region * UI SETUP 
+            lvwMain.CheckBoxes = true;
+            lvwMain.LabelEdit = true;
+            lvwMain.AllowColumnReorder = true;
 
             // Custom Format DateTime Picker
             dtpBirthday.Format = DateTimePickerFormat.Custom;
@@ -28,7 +31,8 @@ namespace project_winform
 
             // Default Input Data
             cboTypeUser.SelectedIndex = 1;
-            radSearchCodeNum.Checked = true;
+            cboSelectSearch.SelectedIndex = 0;
+            cboAction.SelectedIndex = 0;
             lvwMain.MultiSelect = false;
 
             // ComboBox Custom
@@ -79,6 +83,7 @@ namespace project_winform
             btnAddCourse.BackColor = ColorTheme.getTheme("primary");
             btnAddFaculty.BackColor = ColorTheme.getTheme("primary");
             btnAddClass.BackColor = ColorTheme.getTheme("primary");
+            btnAction.BackColor = ColorTheme.getTheme("primary");
             #endregion
         }
 
@@ -152,33 +157,12 @@ namespace project_winform
 
         /* SORT */
         #region * (LIB) SORT COLUMN IN LISTVIEW
+
         private void lvwMain_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            ItemComparer sorter = lvwMain.ListViewItemSorter as ItemComparer;
-
-            if (sorter == null)
-            {
-                sorter = new ItemComparer(e.Column);
-                sorter.Order = SortOrder.Ascending;
-                lvwMain.ListViewItemSorter = sorter;
-            }
-            // if clicked column is already the column that is being sorted
-            if (e.Column == sorter.Column)
-            {
-                // Reverse the current sort direction
-                if (sorter.Order == SortOrder.Ascending)
-                    sorter.Order = SortOrder.Descending;
-                else
-                    sorter.Order = SortOrder.Ascending;
-            }
-            else
-            {
-                // Set the column number that is to be sorted; default to ascending.
-                sorter.Column = e.Column;
-                sorter.Order = SortOrder.Ascending;
-            }
-            lvwMain.Sort();
+            Sort.SortColumnsListView(e, lvwMain);
         }
+
         #endregion
 
         /* METHODS */
@@ -209,6 +193,7 @@ namespace project_winform
         #endregion
 
         #region * FILTER TYPE USER
+
         private void cboTypeUser_SelectedIndexChanged(object sender, EventArgs e)
         {
             SelectTypeUser();
@@ -229,10 +214,18 @@ namespace project_winform
         {
             UserBUS.TypeSelectUser = Config.typeAdmin;
 
+            cboSelectSearch.Items.Clear();
+            cboSelectSearch.Items.Add("Mã Số ^");
+            cboSelectSearch.Items.Add("Họ Tên");
+            cboSelectSearch.Items.Add("Ngày Sinh");
+
             lvwMain.Columns.Clear();
             lvwMain.Columns.Add("Mã Số", 100);
             lvwMain.Columns.Add("Họ Tên", 200);
             lvwMain.Columns.Add("Ngày Sinh", 100);
+
+            for (int i = 0; i < lvwMain.Columns.Count; i++)
+                Sort.SetSortArrow(lvwMain.Columns[i], SortOrder.Ascending);
 
             lblCourse.Hide();
             cboCourse.Hide();
@@ -250,6 +243,14 @@ namespace project_winform
         {
             UserBUS.TypeSelectUser = Config.typeStudent;
 
+            cboSelectSearch.Items.Clear();
+            cboSelectSearch.Items.Add("Mã Số");
+            cboSelectSearch.Items.Add("Họ Tên");
+            cboSelectSearch.Items.Add("Ngày Sinh");
+            cboSelectSearch.Items.Add("Khóa");
+            cboSelectSearch.Items.Add("Khoa");
+            cboSelectSearch.Items.Add("Lớp");
+
             lvwMain.Columns.Clear();
             lvwMain.Columns.Add("Mã Số", 100);
             lvwMain.Columns.Add("Họ Tên", 100);
@@ -257,6 +258,9 @@ namespace project_winform
             lvwMain.Columns.Add("Khóa", 50);
             lvwMain.Columns.Add("Khoa", 100);
             lvwMain.Columns.Add("Lớp", 70);
+
+            for (int i = 0; i < lvwMain.Columns.Count; i++)
+                Sort.SetSortArrow(lvwMain.Columns[i], SortOrder.Ascending);
 
             lblCourse.Show();
             cboCourse.Show();
@@ -269,6 +273,7 @@ namespace project_winform
             btnAddFaculty.Show();
             btnAddClass.Show();
         }
+
         #endregion
 
         #region * VALIDATING INPUT
@@ -330,6 +335,18 @@ namespace project_winform
         #endregion
 
         #region * ADD - UPDATE - DELETE USER
+        private void btnAction_Click(object sender, EventArgs e)
+        {
+            if (cboAction.SelectedItem.ToString() == "Xóa")
+            {
+                DialogResult result = MessageBox.Show(MessageBoxText.ConfigDelete, MessageBoxText.CaptionConfigDelete, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    UserBUS.HandleDeleteUsers(lvwMain, true);
+                    CountNumberListView();
+                }
+            }
+        }
 
         private void AddUser(object sender, EventArgs e)
         {
@@ -360,7 +377,7 @@ namespace project_winform
 
         private void DeleteUser(object sender, EventArgs e)
         {
-            UserBUS.HandleDeleteUsers(lvwMain);
+            UserBUS.HandleDeleteUsers(lvwMain, false);
             CountNumberListView();
         }
 
@@ -388,17 +405,14 @@ namespace project_winform
         #endregion
 
         #region * SEARCH MODULES
+
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            int searchIndex = -1;
-            if (radSearchCodeNum.Checked)
-                searchIndex = 0;
-            if (radSearchName.Checked)
-                searchIndex = 1;
-            UserBUS.HandleSearchOnListView(lvwMain, txtSearch.Text, searchIndex);
-
+            int selectIndex = cboSelectSearch.SelectedIndex == -1 ? 0 : cboSelectSearch.SelectedIndex;
+            UserBUS.HandleSearchOnListView(lvwMain, txtSearch.Text, selectIndex);
             CountNumberListView();
         }
+
         #endregion
 
         #region * TOOL STRIP MENU
@@ -411,26 +425,6 @@ namespace project_winform
                 {
                     mnuStripListView.Show(Cursor.Position);
                 }
-            }
-        }
-
-        private void xóaNhiềuToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (xóaNhiềuToolStripMenuItem.Text == "Xóa Nhiều")
-            {
-                xóaNhiềuToolStripMenuItem.Text = "Hủy Xóa Nhiều";
-                lvwMain.MultiSelect = true;
-                btnAdd.Enabled = false;
-                btnDelete.Enabled = false;
-                btnUpdate.Enabled = false;
-            }
-            else
-            {
-                xóaNhiềuToolStripMenuItem.Text = "Hủy Xóa Nhiều";
-                lvwMain.MultiSelect = false;
-                btnAdd.Enabled = true;
-                btnDelete.Enabled = true;
-                btnUpdate.Enabled = true;
             }
         }
 
@@ -511,6 +505,6 @@ namespace project_winform
         }
 
         #endregion
-    
+
     }
 }

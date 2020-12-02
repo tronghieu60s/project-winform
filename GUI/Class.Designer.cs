@@ -130,6 +130,7 @@
             this.lvwClass.Size = new System.Drawing.Size(416, 316);
             this.lvwClass.TabIndex = 5;
             this.lvwClass.UseCompatibleStateImageBehavior = false;
+            this.lvwClass.SelectedIndexChanged += new System.EventHandler(this.lvwClass_SelectedIndexChanged);
             // 
             // btnDelete
             // 

@@ -113,6 +113,7 @@
     <Compile Include="src\helpers\SelectListView.cs" />
     <Compile Include="src\helpers\FormSetup.cs" />
     <Compile Include="src\helpers\ItemComparer.cs" />
+    <Compile Include="src\helpers\Sort.cs" />
     <Compile Include="src\helpers\Window.cs" />
     <Compile Include="src\themes\Color.cs" />
     <Compile Include="src\themes\Icon.cs" />

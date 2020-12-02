@@ -112,5 +112,10 @@ namespace project_winform
         {
             SelectListView.SelectListViewForMultipleListView(lvwFaculty);
         }
+
+        private void lvwClass_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectListView.SelectListViewForMultipleListView(lvwClass);
+        }
     }
 }

@@ -65,10 +65,10 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.mnuStripListView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.xóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.xóaNhiềuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
-            this.radSearchCodeNum = new System.Windows.Forms.RadioButton();
-            this.radSearchName = new System.Windows.Forms.RadioButton();
+            this.cboSelectSearch = new System.Windows.Forms.ComboBox();
+            this.cboAction = new System.Windows.Forms.ComboBox();
+            this.btnAction = new System.Windows.Forms.Button();
             this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
@@ -430,7 +430,7 @@
             // lblCountItemListView
             // 
             this.lblCountItemListView.AutoSize = true;
-            this.lblCountItemListView.Location = new System.Drawing.Point(1123, 82);
+            this.lblCountItemListView.Location = new System.Drawing.Point(1141, 84);
             this.lblCountItemListView.Name = "lblCountItemListView";
             this.lblCountItemListView.Size = new System.Drawing.Size(52, 20);
             this.lblCountItemListView.TabIndex = 7;
@@ -438,7 +438,7 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(567, 79);
+            this.txtSearch.Location = new System.Drawing.Point(842, 81);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(193, 26);
@@ -449,57 +449,54 @@
             // 
             this.mnuStripListView.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.mnuStripListView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.xóaToolStripMenuItem,
-            this.xóaNhiềuToolStripMenuItem});
+            this.xóaToolStripMenuItem});
             this.mnuStripListView.Name = "contextMenuStrip1";
-            this.mnuStripListView.Size = new System.Drawing.Size(167, 68);
+            this.mnuStripListView.Size = new System.Drawing.Size(116, 36);
             // 
             // xóaToolStripMenuItem
             // 
             this.xóaToolStripMenuItem.Name = "xóaToolStripMenuItem";
-            this.xóaToolStripMenuItem.Size = new System.Drawing.Size(166, 32);
+            this.xóaToolStripMenuItem.Size = new System.Drawing.Size(115, 32);
             this.xóaToolStripMenuItem.Text = "Xóa";
             this.xóaToolStripMenuItem.Click += new System.EventHandler(this.DeleteUser);
-            // 
-            // xóaNhiềuToolStripMenuItem
-            // 
-            this.xóaNhiềuToolStripMenuItem.Name = "xóaNhiềuToolStripMenuItem";
-            this.xóaNhiềuToolStripMenuItem.Size = new System.Drawing.Size(166, 32);
-            this.xóaNhiềuToolStripMenuItem.Text = "Xóa Nhiều";
-            this.xóaNhiềuToolStripMenuItem.Click += new System.EventHandler(this.xóaNhiềuToolStripMenuItem_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(474, 85);
+            this.label2.Location = new System.Drawing.Point(749, 87);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(75, 20);
             this.label2.TabIndex = 11;
             this.label2.Text = "Tìm kiếm:";
             // 
-            // radSearchCodeNum
+            // cboSelectSearch
             // 
-            this.radSearchCodeNum.AutoSize = true;
-            this.radSearchCodeNum.Location = new System.Drawing.Point(783, 83);
-            this.radSearchCodeNum.Name = "radSearchCodeNum";
-            this.radSearchCodeNum.Size = new System.Drawing.Size(120, 24);
-            this.radSearchCodeNum.TabIndex = 12;
-            this.radSearchCodeNum.TabStop = true;
-            this.radSearchCodeNum.Text = "Theo Mã Số";
-            this.radSearchCodeNum.UseVisualStyleBackColor = true;
-            this.radSearchCodeNum.CheckedChanged += new System.EventHandler(this.radCheckedSearch);
+            this.cboSelectSearch.FormattingEnabled = true;
+            this.cboSelectSearch.Location = new System.Drawing.Point(1042, 80);
+            this.cboSelectSearch.Name = "cboSelectSearch";
+            this.cboSelectSearch.Size = new System.Drawing.Size(84, 28);
+            this.cboSelectSearch.TabIndex = 12;
             // 
-            // radSearchName
+            // cboAction
             // 
-            this.radSearchName.AutoSize = true;
-            this.radSearchName.Location = new System.Drawing.Point(909, 83);
-            this.radSearchName.Name = "radSearchName";
-            this.radSearchName.Size = new System.Drawing.Size(101, 24);
-            this.radSearchName.TabIndex = 12;
-            this.radSearchName.TabStop = true;
-            this.radSearchName.Text = "Theo Tên";
-            this.radSearchName.UseVisualStyleBackColor = true;
-            this.radSearchName.CheckedChanged += new System.EventHandler(this.radCheckedSearch);
+            this.cboAction.FormattingEnabled = true;
+            this.cboAction.Items.AddRange(new object[] {
+            "Hành Động",
+            "Xóa"});
+            this.cboAction.Location = new System.Drawing.Point(478, 82);
+            this.cboAction.Name = "cboAction";
+            this.cboAction.Size = new System.Drawing.Size(121, 28);
+            this.cboAction.TabIndex = 13;
+            // 
+            // btnAction
+            // 
+            this.btnAction.Location = new System.Drawing.Point(605, 80);
+            this.btnAction.Name = "btnAction";
+            this.btnAction.Size = new System.Drawing.Size(99, 35);
+            this.btnAction.TabIndex = 14;
+            this.btnAction.Text = "Thực Hiện";
+            this.btnAction.UseVisualStyleBackColor = true;
+            this.btnAction.Click += new System.EventHandler(this.btnAction_Click);
             // 
             // frmMain
             // 
@@ -507,8 +504,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1182, 694);
-            this.Controls.Add(this.radSearchName);
-            this.Controls.Add(this.radSearchCodeNum);
+            this.Controls.Add(this.btnAction);
+            this.Controls.Add(this.cboAction);
+            this.Controls.Add(this.cboSelectSearch);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.lblCountItemListView);
@@ -576,12 +574,12 @@
         private System.Windows.Forms.ToolStripMenuItem xóaToolStripMenuItem;
         private System.Windows.Forms.CheckBox chkRandomCodeNum;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RadioButton radSearchCodeNum;
-        private System.Windows.Forms.RadioButton radSearchName;
-        private System.Windows.Forms.ToolStripMenuItem xóaNhiềuToolStripMenuItem;
         private System.Windows.Forms.Button btnAddCourse;
         private System.Windows.Forms.Button btnAddClass;
         private System.Windows.Forms.Button btnAddFaculty;
+        private System.Windows.Forms.ComboBox cboSelectSearch;
+        private System.Windows.Forms.ComboBox cboAction;
+        private System.Windows.Forms.Button btnAction;
     }
 }
 

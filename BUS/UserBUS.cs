@@ -89,26 +89,34 @@ namespace project_winform.BUS
             }
         }
 
-        public static void HandleDeleteUsers(ListView lvwMain)
+        public static void HandleDeleteUsers(ListView lvwMain, bool withCheckedItems)
         {
-            if (lvwMain.SelectedItems.Count > 0)
+            if (lvwMain.SelectedItems.Count <= 0 && lvwMain.CheckedItems.Count <= 0)
             {
-                foreach (ListViewItem itemSelect in lvwMain.SelectedItems)
-                {
-                    string id_user = itemSelect.SubItems[0].Text;
-                    foreach (ListViewItem itemMainState in LvwMainState.Items)
-                        if (itemMainState.SubItems[0].Text == id_user)
-                        {
-                            bool result = UserDAL.DeleteUserWithId(id_user);
-                            if (result)
-                            {
-                                LvwMainState.Items.Remove(itemMainState);
-                                RenderListViewDataUsersWithPermission(lvwMain);
-                            }
-                        }
-                }
+                MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionNotSelectListView, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionNotSelectListView, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            if (withCheckedItems)
+                foreach (ListViewItem itemSelect in lvwMain.CheckedItems)
+                    DeleteUserWithListViewItem(lvwMain, itemSelect);
+            else foreach (ListViewItem itemSelect in lvwMain.SelectedItems)
+                    DeleteUserWithListViewItem(lvwMain, itemSelect);
+        }
+
+        private static void DeleteUserWithListViewItem(ListView lvwMain, ListViewItem itemSelect)
+        {
+            string id_user = itemSelect.SubItems[0].Text;
+            foreach (ListViewItem itemMainState in LvwMainState.Items)
+                if (itemMainState.SubItems[0].Text == id_user)
+                {
+                    bool result = UserDAL.DeleteUserWithId(id_user);
+                    if (result)
+                    {
+                        LvwMainState.Items.Remove(itemMainState);
+                        RenderListViewDataUsersWithPermission(lvwMain);
+                    }
+                }
         }
 
         public static void HandleUpdateUsers(ListView lvwMain, User user)
@@ -150,7 +158,7 @@ namespace project_winform.BUS
                 itemClone = item.Clone() as ListViewItem;
                 string itemTextSearch = item.SubItems[index].Text.Trim().ToLower();
                 string searchText = search.Trim().ToLower();
-                if (itemTextSearch.IndexOf(searchText) != -1 
+                if (itemTextSearch.IndexOf(searchText) != -1
                     && item.SubItems[0].Text.Substring(0, 2) == TypeSelectUser)
                     lvwTemporary.Items.Add(itemClone);
             }

@@ -36,5 +36,8 @@ namespace project_winform.src.constants
 
         public static string CaptionImportSuccess = "Nhập Thành công";
         public static string ImportSuccess = "Bạn đã nhập dữ liệu thành công. Số Dòng: ";
+
+        public static string CaptionConfigDelete = "Xóa Dữ Liệu";
+        public static string ConfigDelete = "Bạn có chắc chắn muốn xóa dữ liệu được chọn không?";
     }
 }
