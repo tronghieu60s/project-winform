@@ -126,13 +126,17 @@ namespace project_winform
 
         private void lvwCourse_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (lvwCourse.SelectedItems.Count > 0)
+                txtCourse.Text = lvwCourse.SelectedItems[0].SubItems[1].Text;
             SelectListView.SelectListViewForMultipleListView(lvwCourse);
         }
 
         private void lvwFaculty_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (lvwFaculty.SelectedItems.Count > 0)
+                txtFaculty.Text = lvwFaculty.SelectedItems[0].SubItems[1].Text;
             SelectListView.SelectListViewForMultipleListView(lvwFaculty);
         }
-        
+
     }
 }

@@ -44,6 +44,8 @@
             this.lvwCourse = new System.Windows.Forms.ListView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lvwFaculty = new System.Windows.Forms.ListView();
+            this.txtCourse = new System.Windows.Forms.TextBox();
+            this.txtFaculty = new System.Windows.Forms.TextBox();
             this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
@@ -125,9 +127,9 @@
             // lvwClass
             // 
             this.lvwClass.HideSelection = false;
-            this.lvwClass.Location = new System.Drawing.Point(12, 200);
+            this.lvwClass.Location = new System.Drawing.Point(12, 226);
             this.lvwClass.Name = "lvwClass";
-            this.lvwClass.Size = new System.Drawing.Size(416, 316);
+            this.lvwClass.Size = new System.Drawing.Size(416, 290);
             this.lvwClass.TabIndex = 5;
             this.lvwClass.UseCompatibleStateImageBehavior = false;
             this.lvwClass.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwClass_ColumnClick);
@@ -136,7 +138,7 @@
             // 
             this.btnDelete.BackColor = System.Drawing.SystemColors.Menu;
             this.btnDelete.ForeColor = System.Drawing.Color.Black;
-            this.btnDelete.Location = new System.Drawing.Point(177, 149);
+            this.btnDelete.Location = new System.Drawing.Point(177, 178);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(67, 33);
             this.btnDelete.TabIndex = 3;
@@ -147,7 +149,7 @@
             // 
             this.btnEdit.BackColor = System.Drawing.SystemColors.Menu;
             this.btnEdit.ForeColor = System.Drawing.Color.Black;
-            this.btnEdit.Location = new System.Drawing.Point(276, 149);
+            this.btnEdit.Location = new System.Drawing.Point(276, 178);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(67, 33);
             this.btnEdit.TabIndex = 4;
@@ -158,7 +160,7 @@
             // 
             this.btnAdd.BackColor = System.Drawing.SystemColors.Menu;
             this.btnAdd.ForeColor = System.Drawing.Color.Black;
-            this.btnAdd.Location = new System.Drawing.Point(78, 149);
+            this.btnAdd.Location = new System.Drawing.Point(78, 178);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(67, 33);
             this.btnAdd.TabIndex = 2;
@@ -207,11 +209,33 @@
             this.lvwFaculty.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwFaculty_ColumnClick);
             this.lvwFaculty.SelectedIndexChanged += new System.EventHandler(this.lvwFaculty_SelectedIndexChanged);
             // 
+            // txtCourse
+            // 
+            this.txtCourse.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtCourse.Enabled = false;
+            this.txtCourse.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.txtCourse.Location = new System.Drawing.Point(44, 137);
+            this.txtCourse.Name = "txtCourse";
+            this.txtCourse.Size = new System.Drawing.Size(120, 26);
+            this.txtCourse.TabIndex = 27;
+            // 
+            // txtFaculty
+            // 
+            this.txtFaculty.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtFaculty.Enabled = false;
+            this.txtFaculty.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.txtFaculty.Location = new System.Drawing.Point(170, 137);
+            this.txtFaculty.Name = "txtFaculty";
+            this.txtFaculty.Size = new System.Drawing.Size(201, 26);
+            this.txtFaculty.TabIndex = 28;
+            // 
             // frmClass
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 531);
+            this.Controls.Add(this.txtFaculty);
+            this.Controls.Add(this.txtCourse);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnDelete);
@@ -257,5 +281,7 @@
         private System.Windows.Forms.PictureBox picMinimize;
         private System.Windows.Forms.PictureBox picExit;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtCourse;
+        private System.Windows.Forms.TextBox txtFaculty;
     }
 }
