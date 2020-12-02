@@ -2,6 +2,7 @@
 using project_winform.CTO;
 using project_winform.dal;
 using project_winform.src.constants;
+using project_winform.src.helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -86,7 +87,7 @@ namespace project_winform.DAL
                 Class classModel = user.ClassModel;
                 command.CommandText = "INSERT INTO `users`(`id_user`, `password`, `name`, `birthday`, `id_class`) VALUES (@id_user, @password, @name, @birthday, @id_class)";
                 command.Parameters.Add(new MySqlParameter("@id_user", user.IdUser));
-                command.Parameters.Add(new MySqlParameter("@password", user.Password));
+                command.Parameters.Add(new MySqlParameter("@password", Password.HashPassword(user.Password)));
                 command.Parameters.Add(new MySqlParameter("@name", user.Name));
                 command.Parameters.Add(new MySqlParameter("@birthday", user.Birthday));
                 command.Parameters.Add(new MySqlParameter("@id_class", classModel?.IdClass));
@@ -132,6 +133,30 @@ namespace project_winform.DAL
                 command.Parameters.Add(new MySqlParameter("@name", user.Name));
                 command.Parameters.Add(new MySqlParameter("@birthday", user.Birthday));
                 command.Parameters.Add(new MySqlParameter("@id_class", classModel?.IdClass));
+                int result = command.ExecuteNonQuery();
+                if (result == 1)
+                    return true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return false;
+        }
+
+        public static bool UpdateUserWithId(User user)
+        {
+            try
+            {
+                MySqlCommand command = connectDB.CreateCommand();
+                Class classModel = user.ClassModel;
+                command.CommandText = "UPDATE `users` SET `password`= @password, `name`= @name,`birthday`= @birthday, `id_class`= @id_class WHERE `id_user`= @id_user";
+                command.Parameters.Add(new MySqlParameter("@id_user", user.IdUser));
+                command.Parameters.Add(new MySqlParameter("@password", user.Password));
+                command.Parameters.Add(new MySqlParameter("@name", user.Name));
+                command.Parameters.Add(new MySqlParameter("@birthday", user.Birthday));
+                command.Parameters.Add(new MySqlParameter("@id_class", classModel.IdClass.Length > 0 ? classModel?.IdClass : null));
                 int result = command.ExecuteNonQuery();
                 if (result == 1)
                     return true;

@@ -44,6 +44,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>lib\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="MySql.Data, Version=8.0.22.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\MySql.Data.dll</HintPath>
@@ -110,10 +111,12 @@
     <Compile Include="src\config\Config.cs" />
     <Compile Include="src\constants\MessageBox.cs" />
     <Compile Include="src\helpers\Excel.cs" />
+    <Compile Include="src\helpers\Password.cs" />
     <Compile Include="src\helpers\SelectListView.cs" />
     <Compile Include="src\helpers\FormSetup.cs" />
     <Compile Include="src\helpers\ItemComparer.cs" />
     <Compile Include="src\helpers\Sort.cs" />
+    <Compile Include="src\helpers\ValidatingInput.cs" />
     <Compile Include="src\helpers\Window.cs" />
     <Compile Include="src\themes\Color.cs" />
     <Compile Include="src\themes\Icon.cs" />

@@ -20,6 +20,15 @@ namespace project_winform.CTO
         public DateTime Birthday { get => birthday; set => birthday = value; }
         internal Class ClassModel { get => classModel; set => classModel = value; }
 
+        public User(string idUser, string password)
+        {
+            this.idUser = idUser;
+            this.password = password;
+            this.name = "";
+            this.birthday = new DateTime();
+            this.classModel = new Class();
+        }
+
         public User(string idUser, string password, string name, DateTime birthday, Class classModel)
         {
             this.idUser = idUser;

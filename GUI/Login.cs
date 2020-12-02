@@ -54,7 +54,7 @@ namespace project_winform
             #endregion
         }
 
-        #region * CONTROL STYLE
+        #region * UI CUSTOM
         /* Title Bar Hover Style */
         private void picIcon_MouseHover(object sender, EventArgs e)
         {
@@ -118,7 +118,7 @@ namespace project_winform
 
         #endregion
 
-        #region * Validating Input
+        #region * VALIDATING INPUT
         private bool ValidatingTxtCodeNumLogin()
         {
             if (txtCodeNum.Text.Trim().Length <= 0)
@@ -169,9 +169,10 @@ namespace project_winform
         {
             if (ValidatingTxtCodeNumLogin() && ValidatingTxtPasswordLogin())
             {
-                bool checkLogin = UserBUS.HandleUserLogin(txtCodeNum.Text.Trim(), txtPassword.Text.Trim());
-                if (checkLogin)
+                User userLogin = UserBUS.HandleUserLogin(txtCodeNum.Text.Trim(), Password.HashPassword(txtPassword.Text.Trim()));
+                if (userLogin != null)
                 {
+                    Control.userLogin = userLogin;
                     Control.frmMain.Show();
                     Control.frmLogin.Hide();
                 }

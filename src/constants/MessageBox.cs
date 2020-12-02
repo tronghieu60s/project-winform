@@ -39,5 +39,13 @@ namespace project_winform.src.constants
 
         public static string CaptionConfigDelete = "Xóa Dữ Liệu";
         public static string ConfigDelete = "Bạn có chắc chắn muốn xóa dữ liệu được chọn không?";
+
+        public static string CaptionGeneratorPassword = "Mật Khẩu Tự Động";
+        public static string GeneratorPassword = "Đây là mật khẩu hệ thống tạo cho bạn.\nVui lòng sao chép và ghi nhớ nó.";
+
+        public static string CaptionPassWord= "Mật Khẩu";
+        public static string PassWordNotMatch = "Nhập lại mật khẩu không giống, vui lòng nhập lại.";
+        public static string PassWordIncorrect = "Mật khẩu cũ không chính xác, vui lòng nhập lại.";
+        public static string ChangePassWordSuccess = "Bạn đã thay đổi mật khẩu thành công.";
     }
 }

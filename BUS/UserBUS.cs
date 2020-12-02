@@ -49,14 +49,39 @@ namespace project_winform.BUS
             return item;
         }
 
+        /* CHANGE PASSWORD */
+        public static void HandleChangePassword(string oldPass, string newPass, string reNewPass)
+        {
+            if(newPass != reNewPass)
+            {
+                MessageBox.Show(MessageBoxText.PassWordNotMatch, MessageBoxText.CaptionPassWord, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if(Control.userLogin.Password != Password.HashPassword(oldPass))
+            {
+                MessageBox.Show(MessageBoxText.PassWordIncorrect, MessageBoxText.CaptionPassWord, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            User updateUser = Control.userLogin;
+            updateUser.Password = Password.HashPassword(newPass);
+            bool result = UserDAL.UpdateUserWithId(updateUser);
+            if (result)
+            {
+                Control.userLogin = updateUser;
+                MessageBox.Show(MessageBoxText.ChangePassWordSuccess, MessageBoxText.CaptionPassWord, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         /* HANDLE LOGIN */
-        public static bool HandleUserLogin(string username, string password)
+        public static User HandleUserLogin(string username, string password)
         {
             User user = UserDAL.GetUserWithId(username);
             if (user != null)
                 if (user.Password == password)
-                    return true;
-            return false;
+                    return user;
+            return null;
         }
 
         /* RENDER LIST FROM BASE */
@@ -132,23 +157,19 @@ namespace project_winform.BUS
 
         public static void HandleUpdateUsers(ListView lvwMain, User user)
         {
-            if (lvwMain.SelectedItems.Count > 0)
+            bool userResult = UserDAL.UpdateUserWithId(user);
+            if (userResult)
             {
-                bool userResult = UserDAL.UpdateUserFromAdminWithId(user);
-                if (userResult)
-                {
-                    foreach (ListViewItem item in lvwMainState.Items)
-                        if (item.SubItems[0].Text == user.IdUser)
-                        {
-                            ListViewItem itemUser = UserModelToListViewItem(user);
-                            for (int i = 0; i < item.SubItems.Count; i++)
-                                item.SubItems[i].Text = i < itemUser.SubItems.Count ?
-                                    itemUser.SubItems[i].Text ?? null : string.Empty;
-                        }
-                    RenderListViewDataUsersWithPermission(lvwMain);
-                }
+                foreach (ListViewItem item in lvwMainState.Items)
+                    if (item.SubItems[0].Text == user.IdUser)
+                    {
+                        ListViewItem itemUser = UserModelToListViewItem(user);
+                        for (int i = 0; i < item.SubItems.Count; i++)
+                            item.SubItems[i].Text = i < itemUser.SubItems.Count ?
+                                itemUser.SubItems[i].Text ?? null : string.Empty;
+                    }
+                RenderListViewDataUsersWithPermission(lvwMain);
             }
-            else MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionNotSelectListView, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         /* SEACRH LISTVIEW */

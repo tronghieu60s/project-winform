@@ -17,7 +17,9 @@ namespace project_winform
             {
                 Application.EnableVisualStyles();
                 // Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(Control.frmMain);
+                if (Control.userLogin != null)
+                    Application.Run(Control.frmMain);
+                else Application.Run(Control.frmLogin);
             }
         }
     }

@@ -22,6 +22,11 @@ namespace project_winform
             lvwMain.CheckBoxes = true;
             lvwMain.AllowColumnReorder = true;
 
+            // Password Char
+            txtPassOld.PasswordChar = '\u25CF';
+            txtPassNew.PasswordChar = '\u25CF';
+            txtRePassNew.PasswordChar = '\u25CF';
+
             // Custom Format DateTime Picker
             dtpBirthday.Format = DateTimePickerFormat.Custom;
             dtpBirthday.CustomFormat = "dd / MM / yyyy";
@@ -81,6 +86,8 @@ namespace project_winform
             btnAddFaculty.BackColor = ColorTheme.getTheme("primary");
             btnAddClass.BackColor = ColorTheme.getTheme("primary");
             btnAction.BackColor = ColorTheme.getTheme("primary");
+            btnChangePassword.BackColor = ColorTheme.getTheme("primary");
+            btnPassGenerator.BackColor = ColorTheme.getTheme("success");
             #endregion
         }
 
@@ -166,6 +173,27 @@ namespace project_winform
         #endregion
 
         /* METHODS */
+        #region * PASSWORD
+
+        private void btnChangePassword_Click(object sender, EventArgs e)
+        {
+            if (!ValidatingTxtPassOld() || !ValidatingTxtPassNew() || !ValidatingTxtRePassNew())
+            {
+                MessageBox.Show(MessageBoxText.RequiredInput, MessageBoxText.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            UserBUS.HandleChangePassword(txtPassOld.Text, txtPassNew.Text, txtRePassNew.Text);
+        }
+
+        private void btnPassGenerator_Click(object sender, EventArgs e)
+        {
+            string result = Microsoft.VisualBasic.Interaction.InputBox(MessageBoxText.GeneratorPassword, MessageBoxText.CaptionGeneratorPassword, Password.GeneratorPassword(12));
+            if (result.Length > 0) txtPassNew.Text = result;
+        }
+
+        #endregion
+
         #region * RENDER COMBOBOX CLASSES
         private void RenderComboBoxClasses()
         {
@@ -287,26 +315,27 @@ namespace project_winform
         private bool ValidatingTxtCodeNum()
         {
             if (chkRandomCodeNum.Checked) return true;
-            if (txtCodeNum.Text.Trim().Length <= 0)
-            {
-                txtCodeNum.Focus();
-                lblCodeNum.ForeColor = ColorTheme.getTheme("danger");
-                return false;
-            }
-            else lblCodeNum.ForeColor = Color.Black;
-            return true;
+            return ValidatingInput.ValidatingInputText(txtCodeNum, lblCodeNum);
         }
 
         private bool ValidatingTxtFullName()
         {
-            if (txtFullName.Text.Trim().Length <= 0)
-            {
-                txtFullName.Focus();
-                lblFullName.ForeColor = ColorTheme.getTheme("danger");
-                return false;
-            }
-            else lblFullName.ForeColor = Color.Black;
-            return true;
+            return ValidatingInput.ValidatingInputText(txtFullName, lblFullName);
+        }
+
+        private bool ValidatingTxtPassOld()
+        {
+            return ValidatingInput.ValidatingInputText(txtPassOld, lblPassOld);
+        }
+
+        private bool ValidatingTxtPassNew()
+        {
+            return ValidatingInput.ValidatingInputText(txtPassNew, lblPassNew);
+        }
+
+        private bool ValidatingTxtRePassNew()
+        {
+            return ValidatingInput.ValidatingInputText(txtRePassNew, lblRePassNew);
         }
 
         private void txtCodeNum_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -319,12 +348,26 @@ namespace project_winform
             ValidatingTxtFullName();
         }
 
+        private void txtPassOld_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidatingTxtPassOld();
+        }
+
+        private void txtPassNew_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidatingTxtPassNew();
+        }
+
+        private void txtRePassNew_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidatingTxtRePassNew();
+        }
+
         private void txtCodeNum_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 e.Handled = true;
         }
-
 
         #endregion
 
@@ -371,7 +414,7 @@ namespace project_winform
 
         private void DeleteUser(object sender, EventArgs e)
         {
-            if(txtCodeNum.Text.Length <= 0)
+            if (txtCodeNum.Text.Length <= 0)
             {
                 MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionNotSelectListView, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -383,23 +426,26 @@ namespace project_winform
 
         private void UpdateUser(object sender, EventArgs e)
         {
+            if (txtCodeNum.Text.Length <= 0)
+            {
+                MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionNotSelectListView, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (!ValidatingTxtCodeNum() || !ValidatingTxtFullName())
             {
                 MessageBox.Show(MessageBoxText.RequiredInput, MessageBoxText.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (cboTypeUser.SelectedIndex != -1)
-            {
-                string id_user = UserBUS.TypeSelectUser + txtCodeNum.Text;
-                string name = txtFullName.Text;
-                DateTime birthday = DateTime.Parse(dtpBirthday.Text);
-                Class classModal = ((Class)cboClass.SelectedItem);
-                User user = new User(id_user, null, name, birthday, classModal);
+            string id_user = UserBUS.TypeSelectUser + txtCodeNum.Text;
+            string name = txtFullName.Text;
+            DateTime birthday = DateTime.Parse(dtpBirthday.Text);
+            Class classModal = ((Class)cboClass.SelectedItem);
+            User user = new User(id_user, null, name, birthday, classModal);
 
-                UserBUS.HandleUpdateUsers(lvwMain, user);
-                CountNumberListView();
-            }
+            UserBUS.HandleUpdateUsers(lvwMain, user);
+            CountNumberListView();
         }
 
         #endregion
@@ -411,6 +457,25 @@ namespace project_winform
             int selectIndex = cboSelectSearch.SelectedIndex == -1 ? 0 : cboSelectSearch.SelectedIndex;
             UserBUS.HandleSearchOnListView(lvwMain, txtSearch.Text, selectIndex);
             CountNumberListView();
+        }
+
+        private void radCheckedSearch(object sender, EventArgs e)
+        {
+            txtSearch.Focus();
+        }
+
+        #endregion
+
+        #region * EXCEL
+
+        private void btnImportExcel_Click(object sender, EventArgs e)
+        {
+            UserBUS.HandleImportDataExcelToListView(lvwMain);
+        }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            Excel.ExportDataListViewToExcel(lvwMain);
         }
 
         #endregion
@@ -437,10 +502,6 @@ namespace project_winform
             int number = lvwMain.Items.Count;
             lblCountItemListView.Text = $"{number} mục";
         }
-
-        #endregion
-
-        #region * OTHERS METHODS FORM
 
         private void lvwMain_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -471,21 +532,6 @@ namespace project_winform
             else txtCodeNum.Enabled = true;
         }
 
-        private void radCheckedSearch(object sender, EventArgs e)
-        {
-            txtSearch.Focus();
-        }
-
-        private void btnImportExcel_Click(object sender, EventArgs e)
-        {
-            UserBUS.HandleImportDataExcelToListView(lvwMain);
-        }
-
-        private void btnExportExcel_Click(object sender, EventArgs e)
-        {
-            Excel.ExportDataListViewToExcel(lvwMain);
-        }
-
         #endregion
 
         #region * OPEN OTHER FORM
@@ -506,6 +552,5 @@ namespace project_winform
         }
 
         #endregion
-
     }
 }
