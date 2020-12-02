@@ -130,6 +130,7 @@
             this.lvwFaculty.Size = new System.Drawing.Size(492, 269);
             this.lvwFaculty.TabIndex = 5;
             this.lvwFaculty.UseCompatibleStateImageBehavior = false;
+            this.lvwFaculty.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwFaculty_ColumnClick);
             // 
             // txtFacultyName
             // 

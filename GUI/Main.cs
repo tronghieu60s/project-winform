@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
 using System.Windows.Forms;
 using project_winform.BUS;
 using project_winform.CTO;
@@ -17,7 +16,6 @@ namespace project_winform
         public frmMain()
         {
             InitializeComponent();
-            FormSetup.FormLoad(this);
 
             /* STYLE */
             #region * UI SETUP 
@@ -94,6 +92,9 @@ namespace project_winform
             CourseBUS.RenderComboBoxDataCourses(cboCourse);
 
             SelectTypeUser();
+
+            // Load Initial Config
+            FormSetup.FormLoad(this);
         }
 
         /* UI CUSTOM */
@@ -224,9 +225,6 @@ namespace project_winform
             lvwMain.Columns.Add("Họ Tên", 200);
             lvwMain.Columns.Add("Ngày Sinh", 100);
 
-            for (int i = 0; i < lvwMain.Columns.Count; i++)
-                Sort.SetSortArrow(lvwMain.Columns[i], SortOrder.Ascending);
-
             lblCourse.Hide();
             cboCourse.Hide();
             lblFaculty.Hide();
@@ -258,9 +256,6 @@ namespace project_winform
             lvwMain.Columns.Add("Khóa", 50);
             lvwMain.Columns.Add("Khoa", 100);
             lvwMain.Columns.Add("Lớp", 70);
-
-            for (int i = 0; i < lvwMain.Columns.Count; i++)
-                Sort.SetSortArrow(lvwMain.Columns[i], SortOrder.Ascending);
 
             lblCourse.Show();
             cboCourse.Show();

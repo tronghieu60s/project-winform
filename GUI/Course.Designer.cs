@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlTitleBar = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.picMinimize = new System.Windows.Forms.PictureBox();
             this.picExit = new System.Windows.Forms.PictureBox();
             this.txtCourseId = new System.Windows.Forms.TextBox();
@@ -39,7 +40,6 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
@@ -55,6 +55,16 @@
             this.pnlTitleBar.Size = new System.Drawing.Size(517, 46);
             this.pnlTitleBar.TabIndex = 1;
             this.pnlTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlTitleBar_MouseDown);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
+            this.label1.Location = new System.Drawing.Point(16, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 20);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Khóa";
             // 
             // picMinimize
             // 
@@ -114,6 +124,7 @@
             this.lvwCourse.Size = new System.Drawing.Size(492, 269);
             this.lvwCourse.TabIndex = 5;
             this.lvwCourse.UseCompatibleStateImageBehavior = false;
+            this.lvwCourse.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwCourse_ColumnClick);
             // 
             // btnAdd
             // 
@@ -147,16 +158,6 @@
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(16, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 20);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Khóa";
             // 
             // frmCourse
             // 

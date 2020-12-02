@@ -12,7 +12,6 @@ namespace project_winform
         public frmCourse()
         {
             InitializeComponent();
-            FormSetup.FormLoad(this);
 
             /* STYLE */
             #region * UI SETUP 
@@ -43,6 +42,9 @@ namespace project_winform
         private void frmCourse_Load(object sender, EventArgs e)
         {
             CourseBUS.RenderListViewDataCourses(lvwCourse);
+
+            // Load Initial Config
+            FormSetup.FormLoad(this);
         }
 
         #region * (UI) CUSTOM
@@ -91,5 +93,16 @@ namespace project_winform
         }
 
         #endregion
+
+        /* SORT */
+        #region * (LIB) SORT COLUMN IN LISTVIEW
+
+        private void lvwCourse_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            Sort.SortColumnsListView(e, lvwCourse);
+        }
+
+        #endregion
+
     }
 }

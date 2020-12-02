@@ -48,6 +48,9 @@ namespace project_winform.src.helpers
                 (item as ListView).View = View.Details;
                 (item as ListView).GridLines = true;
                 (item as ListView).FullRowSelect = true;
+
+                for (int i = 0; i < (item as ListView).Columns.Count; i++)
+                    Sort.SetSortArrow((item as ListView).Columns[i], SortOrder.Ascending);
             }
         }
     }

@@ -130,7 +130,7 @@
             this.lvwClass.Size = new System.Drawing.Size(416, 316);
             this.lvwClass.TabIndex = 5;
             this.lvwClass.UseCompatibleStateImageBehavior = false;
-            this.lvwClass.SelectedIndexChanged += new System.EventHandler(this.lvwClass_SelectedIndexChanged);
+            this.lvwClass.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwClass_ColumnClick);
             // 
             // btnDelete
             // 
@@ -183,6 +183,7 @@
             this.lvwCourse.Size = new System.Drawing.Size(346, 203);
             this.lvwCourse.TabIndex = 6;
             this.lvwCourse.UseCompatibleStateImageBehavior = false;
+            this.lvwCourse.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwCourse_ColumnClick);
             this.lvwCourse.SelectedIndexChanged += new System.EventHandler(this.lvwCourse_SelectedIndexChanged);
             // 
             // groupBox2
@@ -203,6 +204,7 @@
             this.lvwFaculty.Size = new System.Drawing.Size(346, 203);
             this.lvwFaculty.TabIndex = 7;
             this.lvwFaculty.UseCompatibleStateImageBehavior = false;
+            this.lvwFaculty.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwFaculty_ColumnClick);
             this.lvwFaculty.SelectedIndexChanged += new System.EventHandler(this.lvwFaculty_SelectedIndexChanged);
             // 
             // frmClass

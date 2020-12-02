@@ -12,7 +12,6 @@ namespace project_winform
         public frmFaculty()
         {
             InitializeComponent();
-            FormSetup.FormLoad(this);
 
             /* STYLE */
             #region * UI SETUP 
@@ -43,6 +42,9 @@ namespace project_winform
         private void frmFaculty_Load(object sender, EventArgs e)
         {
             FacultyBUS.RenderListViewDataFaculty(lvwFaculty);
+
+            // Load Initial Config
+            FormSetup.FormLoad(this);
         }
 
         #region * (UI) CUSTOM
@@ -88,6 +90,16 @@ namespace project_winform
         private void frmMain_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.DrawRectangle(new Pen(ColorTheme.getTheme(), 8), DisplayRectangle);
+        }
+
+        #endregion
+
+        /* SORT */
+        #region * (LIB) SORT COLUMN IN LISTVIEW
+
+        private void lvwFaculty_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            Sort.SortColumnsListView(e, lvwFaculty);
         }
 
         #endregion

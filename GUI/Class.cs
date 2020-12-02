@@ -13,8 +13,6 @@ namespace project_winform
         {
             InitializeComponent();
 
-            FormSetup.FormLoad(this);
-
             /* STYLE */
             #region * UI SETUP 
 
@@ -54,6 +52,9 @@ namespace project_winform
             CourseBUS.RenderListViewDataCourses(lvwCourse);
             FacultyBUS.RenderListViewDataFaculty(lvwFaculty);
             ClassBUS.RenderListViewDataClass(lvwClass);
+
+            // Load Initial Config
+            FormSetup.FormLoad(this);
         }
 
         #region * (UI) CUSTOM
@@ -103,6 +104,26 @@ namespace project_winform
 
         #endregion
 
+        /* SORT */
+        #region * (LIB) SORT COLUMN IN LISTVIEW
+
+        private void lvwCourse_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            Sort.SortColumnsListView(e, lvwCourse);
+        }
+
+        private void lvwFaculty_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            Sort.SortColumnsListView(e, lvwFaculty);
+        }
+
+        private void lvwClass_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            Sort.SortColumnsListView(e, lvwClass);
+        }
+
+        #endregion
+
         private void lvwCourse_SelectedIndexChanged(object sender, EventArgs e)
         {
             SelectListView.SelectListViewForMultipleListView(lvwCourse);
@@ -112,10 +133,6 @@ namespace project_winform
         {
             SelectListView.SelectListViewForMultipleListView(lvwFaculty);
         }
-
-        private void lvwClass_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SelectListView.SelectListViewForMultipleListView(lvwClass);
-        }
+        
     }
 }
