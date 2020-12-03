@@ -105,10 +105,12 @@ namespace project_winform.BUS
             using (StreamReader sr = new StreamReader(Config.fileNameConfig))
             {
                 if ((line = sr.ReadLine()) == null) return false;
-                username = line.Substring(Config.configUsername.Length, line.Length - Config.configUsername.Length);
+                username = line.StartsWith(Config.configUsername) ?
+                    line.Substring(Config.configUsername.Length, line.Length - Config.configUsername.Length) : String.Empty;
 
                 if ((line = sr.ReadLine()) == null) return false;
-                password = line.Substring(Config.configPassword.Length, line.Length - Config.configPassword.Length);
+                password = line.StartsWith(Config.configPassword) ?
+                    line.Substring(Config.configPassword.Length, line.Length - Config.configPassword.Length) : String.Empty;
             }
 
             User user = HandleUserLogin(username, password);
