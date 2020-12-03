@@ -193,7 +193,7 @@ namespace project_winform.BUS
                 }
         }
 
-        public static void HandleUpdateUsers(ListView lvwMain, User user)
+        public static void HandleUpdateUser(ListView lvwMain, User user)
         {
             bool userResult = UserDAL.UpdateUserWithId(user);
             if (userResult)
@@ -241,7 +241,7 @@ namespace project_winform.BUS
             }
         }
 
-        /* Import Data */
+        /* IMPORT DATA */
         public static void HandleImportDataExcelToListView(ListView lvwMain)
         {
             int count = 0;

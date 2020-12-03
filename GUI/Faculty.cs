@@ -1,4 +1,7 @@
 ﻿using project_winform.BUS;
+using project_winform.CTO;
+using project_winform.DAL;
+using project_winform.src.constants;
 using project_winform.src.helpers;
 using project_winform.src.themes;
 using System;
@@ -104,8 +107,47 @@ namespace project_winform
 
         #endregion
 
+        #region * ADD - UPDATE - DELETE FACULTY
+
+        private bool CodeNumExists()
+        {
+            foreach (ListViewItem item in lvwFaculty.Items)
+                if (item.SubItems[0].Text == txtFacultyId.Text)
+                {
+                    MessageBox.Show(MessageBoxText.DuplicatedCodeNum, MessageBoxText.CaptionDuplicatedCodeNum, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return true;
+                }
+            return false;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (CodeNumExists()) return;
+            Faculty faculty = new Faculty(txtFacultyId.Text, txtFacultyName.Text);
+            FacultyBUS.HandleAddFaculty(lvwFaculty, faculty);
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            FacultyBUS.HandleDeleteFaculty(lvwFaculty, txtFacultyId.Text);
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            Faculty faculty = new Faculty(txtFacultyId.Text, txtFacultyName.Text);
+            FacultyBUS.HandleUpdateFaculty(lvwFaculty, faculty);
+        }
+
+        #endregion
+
         private void lvwFaculty_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (lvwFaculty.SelectedItems.Count > 0)
+            {
+                ListViewItem item = lvwFaculty.SelectedItems[0];
+                txtFacultyId.Text = item.SubItems[0].Text;
+                txtFacultyName.Text = item.SubItems[1].Text;
+            }
             SelectListView.SelectListViewColorForMultipleListView(lvwFaculty);
         }
     }

@@ -98,5 +98,68 @@ namespace project_winform.DAL
 
             return null;
         }
+
+        public static bool CreateClass(Class classModel)
+        {
+            try
+            {
+                MySqlCommand command = connectDB.CreateCommand();
+                command.CommandText = "INSERT INTO `classes`(`id_class`, `id_course`, `id_faculty`, `class_name`) VALUES (@id_class, @id_course, @id_faculty, @class_name)";
+                command.Parameters.Add(new MySqlParameter("@id_class", classModel.IdClass));
+                command.Parameters.Add(new MySqlParameter("@id_course", classModel.Course.IdCourse));
+                command.Parameters.Add(new MySqlParameter("@id_faculty", classModel.Faculty.IdFaculty));
+                command.Parameters.Add(new MySqlParameter("@class_name", classModel.Name));
+                int result = command.ExecuteNonQuery();
+                if (result == 1)
+                    return true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return false;
+        }
+
+        public static bool DeleteClassWithId(string id_class)
+        {
+            try
+            {
+                MySqlCommand command = connectDB.CreateCommand();
+                command.CommandText = "DELETE FROM `classes` WHERE `classes`.`id_class` = @id_class";
+                command.Parameters.Add(new MySqlParameter("@id_class", id_class));
+                int result = command.ExecuteNonQuery();
+                if (result == 1)
+                    return true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return false;
+        }
+
+        public static bool UpdateClassWithId(Class classModel)
+        {
+            try
+            {
+                MySqlCommand command = connectDB.CreateCommand();
+                command.CommandText = "UPDATE `classes` SET `id_course`= @id_course,`id_faculty`= @id_faculty,`class_name`= @class_name WHERE `id_class`= @id_class";
+                command.Parameters.Add(new MySqlParameter("@id_class", classModel.IdClass));
+                command.Parameters.Add(new MySqlParameter("@id_course", classModel.Course.IdCourse));
+                command.Parameters.Add(new MySqlParameter("@id_faculty", classModel.Faculty.IdFaculty));
+                command.Parameters.Add(new MySqlParameter("@class_name", classModel.Name));
+                int result = command.ExecuteNonQuery();
+                if (result == 1)
+                    return true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return false;
+        }
     }
 }

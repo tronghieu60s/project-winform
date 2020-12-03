@@ -1,4 +1,6 @@
 ﻿using project_winform.BUS;
+using project_winform.CTO;
+using project_winform.src.constants;
 using project_winform.src.helpers;
 using project_winform.src.themes;
 using System;
@@ -124,23 +126,68 @@ namespace project_winform
 
         #endregion
 
+        #region * LISTVIEW SELECTED CHANGED
+
         private void lvwCourse_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lvwCourse.SelectedItems.Count > 0)
-                txtCourse.Text = lvwCourse.SelectedItems[0].SubItems[1].Text;
+                txtCourse.Text = lvwCourse.SelectedItems[0].SubItems[0].Text;
             SelectListView.SelectListViewColorForMultipleListView(lvwCourse);
         }
 
         private void lvwFaculty_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lvwFaculty.SelectedItems.Count > 0)
-                txtFaculty.Text = lvwFaculty.SelectedItems[0].SubItems[1].Text;
+                txtFaculty.Text = lvwFaculty.SelectedItems[0].SubItems[0].Text;
             SelectListView.SelectListViewColorForMultipleListView(lvwFaculty);
         }
 
         private void lvwClass_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (lvwClass.SelectedItems.Count > 0)
+            {
+                ListViewItem item = lvwClass.SelectedItems[0];
+                txtClassId.Text = item.SubItems[0].Text;
+                txtClassName.Text = item.SubItems[1].Text;
+                txtCourse.Text = item.SubItems[2].Text;
+                txtFaculty.Text = item.SubItems[3].Text;
+            }
             SelectListView.SelectListViewColorForMultipleListView(lvwClass);
         }
+
+        #endregion
+
+        #region * ADD - UPDATE - DELETE CLASS
+
+        private bool CodeNumExists()
+        {
+            foreach (ListViewItem item in lvwClass.Items)
+                if (item.SubItems[0].Text == txtClassId.Text)
+                {
+                    MessageBox.Show(MessageBoxText.DuplicatedCodeNum, MessageBoxText.CaptionDuplicatedCodeNum, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return true;
+                }
+            return false;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (CodeNumExists()) return;
+            Class classModel = new Class(txtClassId.Text, txtClassName.Text, new Faculty(txtFaculty.Text, ""), new Course(txtCourse.Text, ""));
+            ClassBUS.HandleAddClass(lvwClass, classModel);
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            ClassBUS.HandleDeleteClass(lvwClass, txtClassId.Text);
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            Class classModel = new Class(txtClassId.Text, txtClassName.Text, new Faculty(txtFaculty.Text, ""), new Course(txtCourse.Text, ""));
+            ClassBUS.HandleUpdateClass(lvwClass, classModel);
+        }
+
+        #endregion
     }
 }

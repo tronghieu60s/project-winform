@@ -4,6 +4,8 @@ using System.Drawing;
 using project_winform.src.helpers;
 using System.Windows.Forms;
 using project_winform.BUS;
+using project_winform.CTO;
+using project_winform.src.constants;
 
 namespace project_winform
 {
@@ -104,8 +106,47 @@ namespace project_winform
 
         #endregion
 
+        #region * ADD - UPDATE - DELETE COURSES
+
+        private bool CodeNumExists()
+        {
+            foreach (ListViewItem item in lvwCourse.Items)
+                if (item.SubItems[0].Text == txtCourseId.Text)
+                {
+                    MessageBox.Show(MessageBoxText.DuplicatedCodeNum, MessageBoxText.CaptionDuplicatedCodeNum, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return true;
+                }
+            return false;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (CodeNumExists()) return;
+            Course course = new Course(txtCourseId.Text, txtCourseName.Text);
+            CourseBUS.HandleAddCourse(lvwCourse, course);
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            Course course = new Course(txtCourseId.Text, txtCourseName.Text);
+            CourseBUS.HandleUpdateCourse(lvwCourse, course);
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            CourseBUS.HandleDeleteCourse(lvwCourse, txtCourseId.Text);
+        }
+
+        #endregion
+
         private void lvwCourse_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (lvwCourse.SelectedItems.Count > 0)
+            {
+                ListViewItem item = lvwCourse.SelectedItems[0];
+                txtCourseId.Text = item.SubItems[0].Text;
+                txtCourseName.Text = item.SubItems[1].Text;
+            }
             SelectListView.SelectListViewColorForMultipleListView(lvwCourse);
         }
     }

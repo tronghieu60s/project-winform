@@ -34,7 +34,7 @@ namespace project_winform
 
             // Default Input Data
             cboTypeUser.SelectedIndex = 1;
-            cboSelectSearch.SelectedIndex = 0;
+            cboSelectSearch.SelectedIndex = 1;
             cboAction.SelectedIndex = 0;
             lvwMain.MultiSelect = false;
 
@@ -447,7 +447,7 @@ namespace project_winform
             Class classModal = ((Class)cboClass.SelectedItem);
             User user = new User(id_user, null, name, birthday, classModal);
 
-            UserBUS.HandleUpdateUsers(lvwMain, user);
+            UserBUS.HandleUpdateUser(lvwMain, user);
             CountNumberListView();
         }
 
@@ -457,7 +457,7 @@ namespace project_winform
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            int selectIndex = cboSelectSearch.SelectedIndex == -1 ? 0 : cboSelectSearch.SelectedIndex;
+            int selectIndex = cboSelectSearch.SelectedIndex == -1 ? 1 : cboSelectSearch.SelectedIndex;
             UserBUS.HandleSearchOnListView(lvwMain, txtSearch.Text, selectIndex);
             CountNumberListView();
         }

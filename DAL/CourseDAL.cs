@@ -1,12 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
 using project_winform.CTO;
 using project_winform.dal;
+using project_winform.src.constants;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace project_winform.DAL
 {
@@ -29,6 +28,65 @@ namespace project_winform.DAL
                 courses.Add(new Course(id_course, course_name));
             }
             return courses;
+        }
+
+        public static bool CreateCourse(Course course)
+        {
+            try
+            {
+                MySqlCommand command = connectDB.CreateCommand();
+                command.CommandText = "INSERT INTO `courses`(`id_course`, `course_name`) VALUES (@id_course, @course_name)";
+                command.Parameters.Add(new MySqlParameter("@id_course", course.IdCourse));
+                command.Parameters.Add(new MySqlParameter("@course_name", course.Name));
+                int result = command.ExecuteNonQuery();
+                if (result == 1)
+                    return true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return false;
+        }
+
+        public static bool DeleteCourseWithId(string id_course)
+        {
+            try
+            {
+                MySqlCommand command = connectDB.CreateCommand();
+                command.CommandText = "DELETE FROM `courses` WHERE `courses`.`id_course` = @id_course";
+                command.Parameters.Add(new MySqlParameter("@id_course", id_course));
+                int result = command.ExecuteNonQuery();
+                if (result == 1)
+                    return true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return false;
+        }
+
+        public static bool UpdateCourseWithId(Course course)
+        {
+            try
+            {
+                MySqlCommand command = connectDB.CreateCommand();
+                command.CommandText = "UPDATE `courses` SET `course_name`= @course_name WHERE `id_course`= @id_course";
+                command.Parameters.Add(new MySqlParameter("@id_course", course.IdCourse));
+                command.Parameters.Add(new MySqlParameter("@course_name", course.Name));
+                int result = command.ExecuteNonQuery();
+                if (result == 1)
+                    return true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return false;
         }
     }
 }
