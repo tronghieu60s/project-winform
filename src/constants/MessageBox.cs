@@ -14,6 +14,7 @@ namespace project_winform.src.constants
 
         public static string RequiredInput = "Vui lòng nhập các trường dữ liệu bắt buộc.";
         public static string DatabaseConnectFalse = "Không thể kết nối được với dữ liệu, vui lòng thử lại.";
+        public static string DatabaseConnectTrue = "Kết nối với cơ sở dữ liệu thành công.";
         public static string Logout = "Bạn có muốn đăng xuất không?";
         public static string DuplicatedCodeNum = "Mã số không được trùng trong dữ liệu đã có.";
         public static string LoginIncorrect = "Tài khoản hoặc mật khẩu không chính xác.";
@@ -28,5 +29,6 @@ namespace project_winform.src.constants
         public static string PassWordIncorrect = "Mật khẩu cũ không chính xác, vui lòng nhập lại.";
         public static string ChangePassWordSuccess = "Bạn đã thay đổi mật khẩu thành công.";
         public static string ReloadDataSuccess = "Tải lại dữ liệu thành công!";
+        public static string SaveFileSuccess = "Lưu dữ liệu thành công, vui lòng khởi động lại ứng dụng.";
     }
 }

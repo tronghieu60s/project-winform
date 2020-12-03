@@ -87,7 +87,7 @@ namespace project_winform.BUS
 
         public static void HandleSaveLogin(string username, string password)
         {
-            using (StreamWriter sw = new StreamWriter(Config.fileNameConfig))
+            using (StreamWriter sw = new StreamWriter(Config.fileUserConfig))
             {
                 sw.WriteLine(Config.configUsername + username);
                 sw.WriteLine(Config.configPassword + password);
@@ -97,12 +97,12 @@ namespace project_winform.BUS
         public static bool HandleCheckLoginLocalStorage()
         {
             string line = "";
-            bool fileValid = File.Exists(Config.fileNameConfig);
+            bool fileValid = File.Exists(Config.fileUserConfig);
             if (!fileValid) return false;
 
             string username = String.Empty;
             string password = String.Empty;
-            using (StreamReader sr = new StreamReader(Config.fileNameConfig))
+            using (StreamReader sr = new StreamReader(Config.fileUserConfig))
             {
                 if ((line = sr.ReadLine()) == null) return false;
                 username = line.StartsWith(Config.configUsername) ?

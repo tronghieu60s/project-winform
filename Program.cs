@@ -13,15 +13,19 @@ namespace project_winform
         [STAThread]
         static void Main()
         {
+            Application.EnableVisualStyles();
+            // Application.SetCompatibleTextRenderingDefault(false);
+
             /* Database Initialization */
-            if (DatabaseUtils.DatabaseUtilsConnect())
+            if (DatabaseConfig.GetLocalStorageConfig())
             {
-                Application.EnableVisualStyles();
-                // Application.SetCompatibleTextRenderingDefault(false);
-                if (UserBUS.HandleCheckLoginLocalStorage())
-                    Application.Run(Control.frmMain);
-                else Application.Run(Control.frmLogin);
-            }
+                if (DatabaseUtils.DatabaseUtilsConnect())
+                {
+                    if (UserBUS.HandleCheckLoginLocalStorage())
+                        Application.Run(Control.frmMain);
+                    else Application.Run(Control.frmLogin);
+                }
+            }else Application.Run(Control.frmConfigDatabase);
         }
     }
 }

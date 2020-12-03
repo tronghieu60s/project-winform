@@ -158,7 +158,7 @@ namespace project_winform
            DialogResult result = MessageBox.Show(MessageBoxText.Logout, MessageBoxText.CaptionInformation, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                File.Delete(Config.fileNameConfig);
+                File.Delete(Config.fileUserConfig);
                 Control.userLogin = null;
                 Control.frmLogin.Show();
                 Control.frmMain.Hide();

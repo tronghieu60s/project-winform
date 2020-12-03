@@ -82,6 +82,8 @@
             this.picMinimize.TabIndex = 27;
             this.picMinimize.TabStop = false;
             this.picMinimize.Click += new System.EventHandler(this.picMinimize_Click);
+            this.picMinimize.MouseLeave += new System.EventHandler(this.picIcon_MouseLeave);
+            this.picMinimize.MouseHover += new System.EventHandler(this.picIcon_MouseHover);
             // 
             // picExit
             // 
@@ -91,6 +93,8 @@
             this.picExit.TabIndex = 29;
             this.picExit.TabStop = false;
             this.picExit.Click += new System.EventHandler(this.picExit_Click);
+            this.picExit.MouseLeave += new System.EventHandler(this.picIcon_MouseLeave);
+            this.picExit.MouseHover += new System.EventHandler(this.picIcon_MouseHover);
             // 
             // txtClassName
             // 

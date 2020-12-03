@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 01, 2020 lúc 05:13 PM
+-- Thời gian đã tạo: Th12 03, 2020 lúc 03:16 PM
 -- Phiên bản máy phục vụ: 10.4.11-MariaDB
 -- Phiên bản PHP: 7.4.2
 
@@ -36,17 +36,6 @@ CREATE TABLE `classes` (
   `date` int(11) NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Đang đổ dữ liệu cho bảng `classes`
---
-
-INSERT INTO `classes` (`id_class`, `id_course`, `id_faculty`, `class_name`, `date`) VALUES
-('CL1', 'K19', 'FA1', 'CD19TT2', 2147483647),
-('CL2', 'K19', 'FA2', 'CD19TD3', 2147483647),
-('CL3', 'K20', 'FA3', 'CD19TH5', 2147483647),
-('CL4', 'K20', 'FA3', 'CD19TH6', 2147483647),
-('CL5', 'K20', 'FA3', 'CD19TH7', 2147483647);
-
 -- --------------------------------------------------------
 
 --
@@ -59,15 +48,6 @@ CREATE TABLE `courses` (
   `date` int(11) NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Đang đổ dữ liệu cho bảng `courses`
---
-
-INSERT INTO `courses` (`id_course`, `course_name`, `date`) VALUES
-('K18', 'Khóa 18', 2147483647),
-('K19', 'Khóa 19', 2147483647),
-('K20', 'Khóa 20', 2147483647);
-
 -- --------------------------------------------------------
 
 --
@@ -79,15 +59,6 @@ CREATE TABLE `faculties` (
   `faculty_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `date` int(11) NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `faculties`
---
-
-INSERT INTO `faculties` (`id_faculty`, `faculty_name`, `date`) VALUES
-('FA1', 'Công Nghệ Thông Tin', 2147483647),
-('FA2', 'Công Nghệ Tự Động', 2147483647),
-('FA3', 'Tiếng Hàn', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -143,15 +114,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `password`, `name`, `birthday`, `id_class`, `date`) VALUES
-('ADMIN', '123456', 'Trần Trọng Hiếu', '2020-12-17', NULL, '2020-11-30 21:53:48'),
-('SD12831', '123456', 'Nguyễn Ngọc Trường', '2001-01-18', 'CL3', '2020-12-01 18:55:09'),
-('SD19901', '123456', 'Trọng Hiếu', '2001-12-02', 'CL1', '2020-12-01 11:58:12'),
-('SD22742', '123456', 'Nguyễn Ngọc Trường', '2001-01-18', 'CL3', '2020-12-01 11:58:12'),
-('SD24765', '123456', 'Trọng Hiếu', '2001-12-02', 'CL1', '2020-12-01 18:54:39'),
-('SD32679', '123456', 'Nguyễn Ngọc Trường', '2001-01-18', 'CL3', '2020-12-01 18:40:08'),
-('SD67812', '123456', 'Trọng Hiếu', '2001-12-02', 'CL1', '2020-12-01 18:40:08'),
-('SD79631', '123456', 'Nguyễn Ngọc Trường', '2001-01-18', 'CL3', '2020-12-01 18:54:39'),
-('SD94982', '123456', 'Trọng Hiếu', '2001-12-02', 'CL1', '2020-12-01 18:55:09');
+('ADMIN', 'LyQWujvPXbGDYsrSDKkAiVFavg8=', 'Trần Trọng Hiếu', '2020-12-17', NULL, '2020-11-30 21:53:48');
 
 --
 -- Chỉ mục cho các bảng đã đổ
