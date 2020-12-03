@@ -48,7 +48,7 @@ namespace project_winform.DAL
             }
             catch (Exception)
             {
-                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return null;
@@ -73,7 +73,7 @@ namespace project_winform.DAL
             }
             catch (Exception)
             {
-                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return null;
@@ -97,7 +97,7 @@ namespace project_winform.DAL
             }
             catch (Exception)
             {
-                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return false;
@@ -116,7 +116,7 @@ namespace project_winform.DAL
             }
             catch (Exception)
             {
-                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return false;
@@ -139,7 +139,7 @@ namespace project_winform.DAL
             }
             catch (Exception)
             {
-                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return false;
@@ -163,7 +163,7 @@ namespace project_winform.DAL
             }
             catch (Exception)
             {
-                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return false;

@@ -26,7 +26,7 @@ namespace project_winform.dal
             }
             catch (Exception)
             {
-                MessageBox.Show(MessageBoxText.DatabaseConnectFalse, MessageBoxText.CaptionDatabaseConnectFalse, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(MessageBoxText.DatabaseConnectFalse, MessageBoxText.CaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return false;
         }

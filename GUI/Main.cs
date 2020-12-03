@@ -66,6 +66,8 @@ namespace project_winform
             #region * UI STYLE
             BackColor = ColorTheme.getTheme("secondary");
             picLogout.Image = Image.FromFile(IconTheme.logout);
+            picReloadCourse.Image = Image.FromFile(IconTheme.reload);
+            picReloadFaculty.Image = Image.FromFile(IconTheme.reload);
             lblWelcome.ForeColor = ColorTheme.getTheme("text-bold");
             lblWelcomeSlogan.ForeColor = ColorTheme.getTheme("text-normal");
 
@@ -153,7 +155,7 @@ namespace project_winform
         /* Logout Button */
         private void picLogout_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show(MessageBoxText.Logout, MessageBoxText.CaptionLogout, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+           DialogResult result = MessageBox.Show(MessageBoxText.Logout, MessageBoxText.CaptionInformation, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 File.Delete(Config.fileNameConfig);
@@ -182,7 +184,7 @@ namespace project_winform
         {
             if (!ValidatingTxtPassOld() || !ValidatingTxtPassNew() || !ValidatingTxtRePassNew())
             {
-                MessageBox.Show(MessageBoxText.RequiredInput, MessageBoxText.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(MessageBoxText.RequiredInput, MessageBoxText.CaptionWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -191,7 +193,7 @@ namespace project_winform
 
         private void btnPassGenerator_Click(object sender, EventArgs e)
         {
-            string result = Microsoft.VisualBasic.Interaction.InputBox(MessageBoxText.GeneratorPassword, MessageBoxText.CaptionGeneratorPassword, Password.GeneratorPassword(12));
+            string result = Microsoft.VisualBasic.Interaction.InputBox(MessageBoxText.GeneratorPassword, MessageBoxText.CaptionSuccess, Password.GeneratorPassword(12));
             if (result.Length > 0) txtPassNew.Text = result;
         }
 
@@ -261,6 +263,8 @@ namespace project_winform
             cboFaculty.Hide();
             lblClass.Hide();
             cboClass.Hide();
+            picReloadCourse.Hide();
+            picReloadFaculty.Hide();
 
             btnAddCourse.Hide();
             btnAddFaculty.Hide();
@@ -293,6 +297,8 @@ namespace project_winform
             cboFaculty.Show();
             lblClass.Show();
             cboClass.Show();
+            picReloadCourse.Show();
+            picReloadFaculty.Show();
 
             btnAddCourse.Show();
             btnAddFaculty.Show();
@@ -309,7 +315,7 @@ namespace project_winform
                 foreach (ListViewItem item in UserBUS.LvwMainState.Items)
                     if (item.SubItems[0].Text == $"{UserBUS.TypeSelectUser}{txtCodeNum.Text}")
                     {
-                        MessageBox.Show(MessageBoxText.DuplicatedCodeNum, MessageBoxText.CaptionDuplicatedCodeNum, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(MessageBoxText.DuplicatedCodeNum, MessageBoxText.CaptionWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return true;
                     }
             return false;
@@ -374,12 +380,28 @@ namespace project_winform
 
         #endregion
 
+        #region * RELOAD COMBO BOX
+
+        private void picReloadFaculty_Click(object sender, EventArgs e)
+        {
+            FacultyBUS.RenderComboBoxDataFaculties(cboFaculty);
+            MessageBox.Show(MessageBoxText.ReloadDataSuccess, MessageBoxText.CaptionSuccess, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void picReloadCourse_Click(object sender, EventArgs e)
+        {
+            CourseBUS.RenderComboBoxDataCourses(cboCourse);
+            MessageBox.Show(MessageBoxText.ReloadDataSuccess, MessageBoxText.CaptionSuccess, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        #endregion
+
         #region * ADD - UPDATE - DELETE USER
         private void btnAction_Click(object sender, EventArgs e)
         {
             if (cboAction.SelectedItem.ToString() == "Xóa")
             {
-                DialogResult result = MessageBox.Show(MessageBoxText.ConfigDelete, MessageBoxText.CaptionConfigDelete, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show(MessageBoxText.ConfigDelete, MessageBoxText.CaptionInformation, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     UserBUS.HandleDeleteUsersWithChecked(lvwMain);
@@ -394,7 +416,7 @@ namespace project_winform
             if (CodeNumExists()) return;
             if (!ValidatingTxtCodeNum() || !ValidatingTxtFullName())
             {
-                MessageBox.Show(MessageBoxText.RequiredInput, MessageBoxText.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(MessageBoxText.RequiredInput, MessageBoxText.CaptionWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -419,7 +441,7 @@ namespace project_winform
         {
             if (txtCodeNum.Text.Length <= 0)
             {
-                MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionNotSelectListView, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -431,13 +453,13 @@ namespace project_winform
         {
             if (txtCodeNum.Text.Length <= 0)
             {
-                MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionNotSelectListView, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!ValidatingTxtCodeNum() || !ValidatingTxtFullName())
             {
-                MessageBox.Show(MessageBoxText.RequiredInput, MessageBoxText.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(MessageBoxText.RequiredInput, MessageBoxText.CaptionWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

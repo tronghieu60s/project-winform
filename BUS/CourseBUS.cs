@@ -21,6 +21,7 @@ namespace project_winform.BUS
 
         public static void RenderComboBoxDataCourses(ComboBox cboCourse)
         {
+            cboCourse.Items.Clear();
             List<Course> courses = CourseDAL.GetCourses();
             foreach (Course course in courses)
                 cboCourse.Items.Add(course);
@@ -64,7 +65,7 @@ namespace project_winform.BUS
                 }
             }
 
-            MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionNotSelectListView, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         public static void HandleUpdateCourse(ListView lvwMain, Course course)

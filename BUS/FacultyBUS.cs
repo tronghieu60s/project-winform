@@ -21,6 +21,7 @@ namespace project_winform.BUS
 
         public static void RenderComboBoxDataFaculties(ComboBox cboFaculty)
         {
+            cboFaculty.Items.Clear();
             List<Faculty> faculties = FacultyDAL.GetFaculties();
             foreach (Faculty faculty in faculties)
                 cboFaculty.Items.Add(faculty);
@@ -64,7 +65,7 @@ namespace project_winform.BUS
                 }
             }
 
-            MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionNotSelectListView, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         public static void HandleUpdateFaculty(ListView lvwMain, Faculty faculty)

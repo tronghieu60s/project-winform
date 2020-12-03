@@ -55,13 +55,13 @@ namespace project_winform.BUS
         {
             if (newPass != reNewPass)
             {
-                MessageBox.Show(MessageBoxText.PassWordNotMatch, MessageBoxText.CaptionPassWord, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(MessageBoxText.PassWordNotMatch, MessageBoxText.CaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (Control.userLogin.Password != Password.HashPassword(oldPass))
             {
-                MessageBox.Show(MessageBoxText.PassWordIncorrect, MessageBoxText.CaptionPassWord, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(MessageBoxText.PassWordIncorrect, MessageBoxText.CaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -71,7 +71,7 @@ namespace project_winform.BUS
             if (result)
             {
                 Control.userLogin = updateUser;
-                MessageBox.Show(MessageBoxText.ChangePassWordSuccess, MessageBoxText.CaptionPassWord, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(MessageBoxText.ChangePassWordSuccess, MessageBoxText.CaptionSuccess, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -156,7 +156,7 @@ namespace project_winform.BUS
         {
             if (lvwMain.CheckedItems.Count <= 0)
             {
-                MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionNotSelectListView, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -175,7 +175,7 @@ namespace project_winform.BUS
                 }
             }
 
-            MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionNotSelectListView, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private static void DeleteUserWithListViewItem(ListView lvwMain, ListViewItem itemSelect)
@@ -261,7 +261,7 @@ namespace project_winform.BUS
             }
 
             if (count == lvwExcel.Items.Count)
-                MessageBox.Show(MessageBoxText.ImportSuccess + count, MessageBoxText.CaptionImportSuccess, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(MessageBoxText.ImportSuccess + count, MessageBoxText.CaptionSuccess, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

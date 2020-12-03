@@ -179,13 +179,13 @@ namespace project_winform
                     Control.frmMain.Show();
                     Control.frmLogin.Hide();
                 }
-                else MessageBox.Show(MessageBoxText.LoginIncorrect, MessageBoxText.CaptionLoginIncorrect, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else MessageBox.Show(MessageBoxText.LoginIncorrect, MessageBoxText.CaptionWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
         private void lblForgetPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show(MessageBoxText.ForgotPass, MessageBoxText.CaptionForgotPass, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(MessageBoxText.ForgotPass, MessageBoxText.CaptionInformation, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

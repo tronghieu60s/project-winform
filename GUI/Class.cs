@@ -164,7 +164,7 @@ namespace project_winform
             foreach (ListViewItem item in lvwClass.Items)
                 if (item.SubItems[0].Text == txtClassId.Text)
                 {
-                    MessageBox.Show(MessageBoxText.DuplicatedCodeNum, MessageBoxText.CaptionDuplicatedCodeNum, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(MessageBoxText.DuplicatedCodeNum, MessageBoxText.CaptionWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return true;
                 }
             return false;

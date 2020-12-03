@@ -66,7 +66,7 @@ namespace project_winform.BUS
                 }
             }
 
-            MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionNotSelectListView, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         public static void HandleUpdateClass(ListView lvwMain, Class classModel)

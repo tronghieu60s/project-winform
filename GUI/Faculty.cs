@@ -114,7 +114,7 @@ namespace project_winform
             foreach (ListViewItem item in lvwFaculty.Items)
                 if (item.SubItems[0].Text == txtFacultyId.Text)
                 {
-                    MessageBox.Show(MessageBoxText.DuplicatedCodeNum, MessageBoxText.CaptionDuplicatedCodeNum, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(MessageBoxText.DuplicatedCodeNum, MessageBoxText.CaptionWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return true;
                 }
             return false;

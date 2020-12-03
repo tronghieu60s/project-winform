@@ -52,6 +52,8 @@
             this.cboCourse = new System.Windows.Forms.ComboBox();
             this.txtFullName = new System.Windows.Forms.TextBox();
             this.txtCodeNum = new System.Windows.Forms.TextBox();
+            this.picReloadFaculty = new System.Windows.Forms.PictureBox();
+            this.picReloadCourse = new System.Windows.Forms.PictureBox();
             this.lblFaculty = new System.Windows.Forms.Label();
             this.lblClass = new System.Windows.Forms.Label();
             this.lblCourse = new System.Windows.Forms.Label();
@@ -81,6 +83,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogout)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picReloadFaculty)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picReloadCourse)).BeginInit();
             this.mnuStripListView.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -197,6 +201,8 @@
             this.groupBox2.Controls.Add(this.cboCourse);
             this.groupBox2.Controls.Add(this.txtFullName);
             this.groupBox2.Controls.Add(this.txtCodeNum);
+            this.groupBox2.Controls.Add(this.picReloadFaculty);
+            this.groupBox2.Controls.Add(this.picReloadCourse);
             this.groupBox2.Controls.Add(this.lblFaculty);
             this.groupBox2.Controls.Add(this.lblClass);
             this.groupBox2.Controls.Add(this.lblCourse);
@@ -214,7 +220,7 @@
             // 
             this.btnAddClass.BackColor = System.Drawing.SystemColors.Menu;
             this.btnAddClass.ForeColor = System.Drawing.Color.Black;
-            this.btnAddClass.Location = new System.Drawing.Point(326, 226);
+            this.btnAddClass.Location = new System.Drawing.Point(314, 226);
             this.btnAddClass.Name = "btnAddClass";
             this.btnAddClass.Size = new System.Drawing.Size(74, 33);
             this.btnAddClass.TabIndex = 15;
@@ -226,7 +232,7 @@
             // 
             this.btnAddFaculty.BackColor = System.Drawing.SystemColors.Menu;
             this.btnAddFaculty.ForeColor = System.Drawing.Color.Black;
-            this.btnAddFaculty.Location = new System.Drawing.Point(335, 190);
+            this.btnAddFaculty.Location = new System.Drawing.Point(314, 189);
             this.btnAddFaculty.Name = "btnAddFaculty";
             this.btnAddFaculty.Size = new System.Drawing.Size(74, 33);
             this.btnAddFaculty.TabIndex = 13;
@@ -238,7 +244,7 @@
             // 
             this.btnAddCourse.BackColor = System.Drawing.SystemColors.Menu;
             this.btnAddCourse.ForeColor = System.Drawing.Color.Black;
-            this.btnAddCourse.Location = new System.Drawing.Point(295, 150);
+            this.btnAddCourse.Location = new System.Drawing.Point(283, 150);
             this.btnAddCourse.Name = "btnAddCourse";
             this.btnAddCourse.Size = new System.Drawing.Size(74, 33);
             this.btnAddCourse.TabIndex = 11;
@@ -251,7 +257,7 @@
             this.chkRandomCodeNum.AutoSize = true;
             this.chkRandomCodeNum.Checked = true;
             this.chkRandomCodeNum.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkRandomCodeNum.Location = new System.Drawing.Point(327, 38);
+            this.chkRandomCodeNum.Location = new System.Drawing.Point(315, 38);
             this.chkRandomCodeNum.Name = "chkRandomCodeNum";
             this.chkRandomCodeNum.Size = new System.Drawing.Size(114, 24);
             this.chkRandomCodeNum.TabIndex = 7;
@@ -261,7 +267,7 @@
             // 
             // dtpBirthday
             // 
-            this.dtpBirthday.Location = new System.Drawing.Point(164, 111);
+            this.dtpBirthday.Location = new System.Drawing.Point(152, 111);
             this.dtpBirthday.Name = "dtpBirthday";
             this.dtpBirthday.Size = new System.Drawing.Size(175, 26);
             this.dtpBirthday.TabIndex = 9;
@@ -270,7 +276,7 @@
             // 
             this.btnUpdate.BackColor = System.Drawing.SystemColors.Menu;
             this.btnUpdate.ForeColor = System.Drawing.Color.Black;
-            this.btnUpdate.Location = new System.Drawing.Point(282, 272);
+            this.btnUpdate.Location = new System.Drawing.Point(270, 272);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(116, 46);
             this.btnUpdate.TabIndex = 18;
@@ -281,7 +287,7 @@
             // cboClass
             // 
             this.cboClass.FormattingEnabled = true;
-            this.cboClass.Location = new System.Drawing.Point(164, 226);
+            this.cboClass.Location = new System.Drawing.Point(152, 226);
             this.cboClass.Name = "cboClass";
             this.cboClass.Size = new System.Drawing.Size(156, 28);
             this.cboClass.TabIndex = 14;
@@ -290,7 +296,7 @@
             // 
             this.btnDelete.BackColor = System.Drawing.SystemColors.Menu;
             this.btnDelete.ForeColor = System.Drawing.Color.Black;
-            this.btnDelete.Location = new System.Drawing.Point(161, 272);
+            this.btnDelete.Location = new System.Drawing.Point(149, 272);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(92, 46);
             this.btnDelete.TabIndex = 17;
@@ -301,9 +307,9 @@
             // cboFaculty
             // 
             this.cboFaculty.FormattingEnabled = true;
-            this.cboFaculty.Location = new System.Drawing.Point(164, 189);
+            this.cboFaculty.Location = new System.Drawing.Point(152, 189);
             this.cboFaculty.Name = "cboFaculty";
-            this.cboFaculty.Size = new System.Drawing.Size(165, 28);
+            this.cboFaculty.Size = new System.Drawing.Size(156, 28);
             this.cboFaculty.TabIndex = 12;
             this.cboFaculty.SelectedIndexChanged += new System.EventHandler(this.cboFaculty_SelectedIndexChanged);
             // 
@@ -311,7 +317,7 @@
             // 
             this.btnAdd.BackColor = System.Drawing.SystemColors.Menu;
             this.btnAdd.ForeColor = System.Drawing.Color.Black;
-            this.btnAdd.Location = new System.Drawing.Point(40, 272);
+            this.btnAdd.Location = new System.Drawing.Point(28, 272);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(92, 46);
             this.btnAdd.TabIndex = 16;
@@ -322,7 +328,7 @@
             // cboCourse
             // 
             this.cboCourse.FormattingEnabled = true;
-            this.cboCourse.Location = new System.Drawing.Point(164, 151);
+            this.cboCourse.Location = new System.Drawing.Point(152, 151);
             this.cboCourse.Name = "cboCourse";
             this.cboCourse.Size = new System.Drawing.Size(125, 28);
             this.cboCourse.TabIndex = 10;
@@ -330,7 +336,7 @@
             // 
             // txtFullName
             // 
-            this.txtFullName.Location = new System.Drawing.Point(164, 74);
+            this.txtFullName.Location = new System.Drawing.Point(152, 74);
             this.txtFullName.Name = "txtFullName";
             this.txtFullName.Size = new System.Drawing.Size(216, 26);
             this.txtFullName.TabIndex = 8;
@@ -339,17 +345,35 @@
             // txtCodeNum
             // 
             this.txtCodeNum.Enabled = false;
-            this.txtCodeNum.Location = new System.Drawing.Point(164, 37);
+            this.txtCodeNum.Location = new System.Drawing.Point(152, 37);
             this.txtCodeNum.Name = "txtCodeNum";
             this.txtCodeNum.Size = new System.Drawing.Size(156, 26);
             this.txtCodeNum.TabIndex = 6;
             this.txtCodeNum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodeNum_KeyPress);
             this.txtCodeNum.Validating += new System.ComponentModel.CancelEventHandler(this.txtCodeNum_Validating);
             // 
+            // picReloadFaculty
+            // 
+            this.picReloadFaculty.Location = new System.Drawing.Point(394, 192);
+            this.picReloadFaculty.Name = "picReloadFaculty";
+            this.picReloadFaculty.Size = new System.Drawing.Size(26, 25);
+            this.picReloadFaculty.TabIndex = 3;
+            this.picReloadFaculty.TabStop = false;
+            this.picReloadFaculty.Click += new System.EventHandler(this.picReloadFaculty_Click);
+            // 
+            // picReloadCourse
+            // 
+            this.picReloadCourse.Location = new System.Drawing.Point(363, 154);
+            this.picReloadCourse.Name = "picReloadCourse";
+            this.picReloadCourse.Size = new System.Drawing.Size(26, 25);
+            this.picReloadCourse.TabIndex = 3;
+            this.picReloadCourse.TabStop = false;
+            this.picReloadCourse.Click += new System.EventHandler(this.picReloadCourse_Click);
+            // 
             // lblFaculty
             // 
             this.lblFaculty.AutoSize = true;
-            this.lblFaculty.Location = new System.Drawing.Point(49, 192);
+            this.lblFaculty.Location = new System.Drawing.Point(37, 192);
             this.lblFaculty.Name = "lblFaculty";
             this.lblFaculty.Size = new System.Drawing.Size(50, 20);
             this.lblFaculty.TabIndex = 0;
@@ -358,7 +382,7 @@
             // lblClass
             // 
             this.lblClass.AutoSize = true;
-            this.lblClass.Location = new System.Drawing.Point(49, 229);
+            this.lblClass.Location = new System.Drawing.Point(37, 229);
             this.lblClass.Name = "lblClass";
             this.lblClass.Size = new System.Drawing.Size(40, 20);
             this.lblClass.TabIndex = 0;
@@ -367,7 +391,7 @@
             // lblCourse
             // 
             this.lblCourse.AutoSize = true;
-            this.lblCourse.Location = new System.Drawing.Point(49, 154);
+            this.lblCourse.Location = new System.Drawing.Point(37, 154);
             this.lblCourse.Name = "lblCourse";
             this.lblCourse.Size = new System.Drawing.Size(50, 20);
             this.lblCourse.TabIndex = 0;
@@ -376,7 +400,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(49, 116);
+            this.label4.Location = new System.Drawing.Point(37, 116);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 20);
             this.label4.TabIndex = 0;
@@ -385,7 +409,7 @@
             // lblFullName
             // 
             this.lblFullName.AutoSize = true;
-            this.lblFullName.Location = new System.Drawing.Point(49, 77);
+            this.lblFullName.Location = new System.Drawing.Point(37, 77);
             this.lblFullName.Name = "lblFullName";
             this.lblFullName.Size = new System.Drawing.Size(65, 20);
             this.lblFullName.TabIndex = 0;
@@ -394,7 +418,7 @@
             // lblCodeNum
             // 
             this.lblCodeNum.AutoSize = true;
-            this.lblCodeNum.Location = new System.Drawing.Point(49, 40);
+            this.lblCodeNum.Location = new System.Drawing.Point(37, 40);
             this.lblCodeNum.Name = "lblCodeNum";
             this.lblCodeNum.Size = new System.Drawing.Size(59, 20);
             this.lblCodeNum.TabIndex = 0;
@@ -611,6 +635,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.picLogout)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picReloadFaculty)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picReloadCourse)).EndInit();
             this.mnuStripListView.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -668,6 +694,8 @@
         private System.Windows.Forms.TextBox txtPassOld;
         private System.Windows.Forms.Label lblPassOld;
         private System.Windows.Forms.Button btnPassGenerator;
+        private System.Windows.Forms.PictureBox picReloadFaculty;
+        private System.Windows.Forms.PictureBox picReloadCourse;
     }
 }
 

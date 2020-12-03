@@ -36,7 +36,7 @@ namespace project_winform.src.helpers
             }
             catch (Exception)
             {
-                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return null;
@@ -72,13 +72,13 @@ namespace project_winform.src.helpers
                         sw.Close();
                         FileInfo fil = new FileInfo(savefile.FileName);
                         if (fil.Exists == true)
-                            MessageBox.Show(MessageBoxText.ExportSuccess + lvwMain.Items.Count, MessageBoxText.CaptionExportSuccess, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(MessageBoxText.ExportSuccess + lvwMain.Items.Count, MessageBoxText.CaptionSuccess, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
