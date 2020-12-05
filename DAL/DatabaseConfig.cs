@@ -52,11 +52,11 @@ namespace project_winform.dal
             return connect;
         }
 
-        public static bool GetLocalStorageConfig()
+        public static int GetLocalStorageConfig()
         {
             string line = "";
             bool fileValid = File.Exists(Config.fileDatabaseConfig);
-            if (!fileValid) return false;
+            if (!fileValid) return -1;
 
             string server = String.Empty;
             string database = String.Empty;
@@ -65,23 +65,23 @@ namespace project_winform.dal
             string password = String.Empty;
             using (StreamReader sr = new StreamReader(Config.fileDatabaseConfig))
             {
-                if ((line = sr.ReadLine()) == null) return false;
+                if ((line = sr.ReadLine()) == null) return -1;
                 server = line.StartsWith(Config.configServer) ?
                     line.Substring(Config.configServer.Length, line.Length - Config.configServer.Length) : String.Empty;
 
-                if ((line = sr.ReadLine()) == null) return false;
+                if ((line = sr.ReadLine()) == null) return -1;
                 database = line.StartsWith(Config.configDatabaseName) ?
                     line.Substring(Config.configDatabaseName.Length, line.Length - Config.configDatabaseName.Length) : String.Empty;
 
-                if ((line = sr.ReadLine()) == null) return false;
+                if ((line = sr.ReadLine()) == null) return -1;
                 port = line.StartsWith(Config.configPort) ?
                     line.Substring(Config.configPort.Length, line.Length - Config.configPort.Length) : String.Empty;
 
-                if ((line = sr.ReadLine()) == null) return false;
+                if ((line = sr.ReadLine()) == null) return -1;
                 username = line.StartsWith(Config.configUsername) ?
                     line.Substring(Config.configUsername.Length, line.Length - Config.configUsername.Length) : String.Empty;
 
-                if ((line = sr.ReadLine()) == null) return false;
+                if ((line = sr.ReadLine()) == null) return -1;
                 password = line.StartsWith(Config.configPassword) ?
                     line.Substring(Config.configPassword.Length, line.Length - Config.configPassword.Length) : String.Empty;
             }
@@ -94,9 +94,15 @@ namespace project_winform.dal
                 int.TryParse(port, out DatabaseConfig.port);
                 DatabaseConfig.username = username;
                 DatabaseConfig.password = password;
-                return true;
+                return 1;
             }
-            return false;
+            else
+            {
+                DialogResult result = MessageBox.Show(MessageBoxText.QuestionConfigDatabase, MessageBoxText.CaptionInformation, MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                if (result == DialogResult.Yes)
+                    return 0;
+            }
+            return -1;
         }
 
         public static void SaveLocalStorageConfig(string server, string database, string port, string username, string password)

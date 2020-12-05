@@ -30,5 +30,6 @@ namespace project_winform.src.constants
         public static string ChangePassWordSuccess = "Bạn đã thay đổi mật khẩu thành công.";
         public static string ReloadDataSuccess = "Tải lại dữ liệu thành công!";
         public static string SaveFileSuccess = "Lưu dữ liệu thành công, vui lòng khởi động lại ứng dụng.";
+        public static string QuestionConfigDatabase = "Kết nối dữ liệu không thành công.\nBạn có muốn kết nối cơ sở dữ liệu khác không?";
     }
 }

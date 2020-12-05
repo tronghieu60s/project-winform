@@ -17,7 +17,8 @@ namespace project_winform
             // Application.SetCompatibleTextRenderingDefault(false);
 
             /* Database Initialization */
-            if (DatabaseConfig.GetLocalStorageConfig())
+            int config = DatabaseConfig.GetLocalStorageConfig();
+            if (config == 1)
             {
                 if (DatabaseUtils.DatabaseUtilsConnect())
                 {
@@ -25,7 +26,9 @@ namespace project_winform
                         Application.Run(Control.frmMain);
                     else Application.Run(Control.frmLogin);
                 }
-            }else Application.Run(Control.frmConfigDatabase);
+            }
+            else if (config == 0)
+                Application.Run(Control.frmConfigDatabase);
         }
     }
 }
