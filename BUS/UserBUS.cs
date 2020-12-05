@@ -195,7 +195,7 @@ namespace project_winform.BUS
 
         public static void HandleUpdateUser(ListView lvwMain, User user)
         {
-            bool userResult = UserDAL.UpdateUserWithId(user);
+            bool userResult = UserDAL.UpdateUserFromAdminWithId(user);
             if (userResult)
             {
                 foreach (ListViewItem item in lvwMainState.Items)

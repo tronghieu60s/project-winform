@@ -563,17 +563,20 @@ namespace project_winform
 
         private void btnAddCourse_Click(object sender, EventArgs e)
         {
-            Control.frmCourse.Show();
+            frmCourse frmCourse = new frmCourse();
+            frmCourse.Show();
         }
 
         private void btnAddFaculty_Click(object sender, EventArgs e)
         {
-            Control.frmFaculty.Show();
+            frmFaculty frmFaculty = new frmFaculty();
+            frmFaculty.Show();
         }
 
         private void btnAddClass_Click(object sender, EventArgs e)
         {
-            Control.frmClass.Show();
+            frmClass frmClass = new frmClass();
+            frmClass.Show();
         }
 
         #endregion

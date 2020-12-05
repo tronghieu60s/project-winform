@@ -51,9 +51,10 @@ namespace project_winform
 
         private void frmClass_Load(object sender, EventArgs e)
         {
+            new ClassBUS();
             CourseBUS.RenderListViewDataCourses(lvwCourse);
             FacultyBUS.RenderListViewDataFaculty(lvwFaculty);
-            ClassBUS.RenderListViewDataClass(lvwClass);
+            ClassBUS.RenderListViewFromState(lvwClass);
 
             // Load Initial Config
             FormSetup.FormLoad(this);
@@ -85,7 +86,7 @@ namespace project_winform
 
         private void picExit_Click(object sender, EventArgs e)
         {
-            Control.frmClass.Hide();
+            this.Close();
         }
 
         /* Move Window Action */
@@ -131,14 +132,22 @@ namespace project_winform
         private void lvwCourse_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lvwCourse.SelectedItems.Count > 0)
+            {
                 txtCourse.Text = lvwCourse.SelectedItems[0].SubItems[0].Text;
+                ClassBUS.id_course = txtCourse.Text;
+                ClassBUS.RenderListViewWithCourseAndFaculty(lvwClass);
+            }
             SelectListView.SelectListViewColorForMultipleListView(lvwCourse);
         }
 
         private void lvwFaculty_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lvwFaculty.SelectedItems.Count > 0)
+            {
                 txtFaculty.Text = lvwFaculty.SelectedItems[0].SubItems[0].Text;
+                ClassBUS.id_faculty = txtFaculty.Text;
+                ClassBUS.RenderListViewWithCourseAndFaculty(lvwClass);
+            }
             SelectListView.SelectListViewColorForMultipleListView(lvwFaculty);
         }
 
@@ -161,7 +170,7 @@ namespace project_winform
 
         private bool CodeNumExists()
         {
-            foreach (ListViewItem item in lvwClass.Items)
+            foreach (ListViewItem item in ClassBUS.lvwClassState.Items)
                 if (item.SubItems[0].Text == txtClassId.Text)
                 {
                     MessageBox.Show(MessageBoxText.DuplicatedCodeNum, MessageBoxText.CaptionWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning);

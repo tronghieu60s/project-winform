@@ -75,7 +75,7 @@ namespace project_winform
 
         private void picExit_Click(object sender, EventArgs e)
         {
-            Control.frmCourse.Hide();
+            this.Close();
         }
 
         /* Move Window Action */
