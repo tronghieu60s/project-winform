@@ -23,7 +23,7 @@ namespace project_winform
                 if (DatabaseUtils.DatabaseUtilsConnect())
                 {
                     if (UserBUS.HandleCheckLoginLocalStorage())
-                        Application.Run(Control.frmMain);
+                        Application.Run(Control.frmMainStudent);
                     else Application.Run(Control.frmLogin);
                 }
             }

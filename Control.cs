@@ -8,11 +8,13 @@ namespace project_winform
         static public User userLogin = null;
         static public Form frmConfigDatabase = new frmConfigDatabase();
         static public Form frmMain = new frmMain();
+        static public Form frmMainStudent = new frmMainStudent();
         static public Form frmLogin = new frmLogin();
 
         public static void HandleCloseWindow()
         {
             frmMain.Close();
+            frmMainStudent.Close();
             frmConfigDatabase.Close();
             frmLogin.Close();
         }
