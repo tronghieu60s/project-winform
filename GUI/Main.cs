@@ -162,6 +162,7 @@ namespace project_winform
                 Control.userLogin = null;
                 Control.frmLogin.Show();
                 Control.frmMain.Hide();
+                Control.frmMainStudent.Hide();
             }
         }
 

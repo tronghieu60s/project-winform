@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using project_winform.BUS;
 using project_winform.CTO;
 using project_winform.DAL;
+using project_winform.src.config;
 using project_winform.src.constants;
 using project_winform.src.helpers;
 using project_winform.src.themes;
@@ -176,8 +177,12 @@ namespace project_winform
                 {
                     UserBUS.HandleSaveLogin(username, password);
                     Control.userLogin = userLogin;
-                    Control.frmMain.Show();
                     Control.frmLogin.Hide();
+                    if (Control.userLogin.IdUser.Substring(0, 2) == Config.typeAdmin)
+                        Control.frmMain.Show();
+                    if (Control.userLogin.IdUser.Substring(0, 2) == Config.typeStudent)
+                        Control.frmMainStudent.Show();
+
                 }
                 else MessageBox.Show(MessageBoxText.LoginIncorrect, MessageBoxText.CaptionWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }

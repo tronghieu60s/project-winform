@@ -1,5 +1,6 @@
 ﻿using project_winform.BUS;
 using project_winform.dal;
+using project_winform.src.config;
 using System;
 using System.Windows.Forms;
 
@@ -23,7 +24,12 @@ namespace project_winform
                 if (DatabaseUtils.DatabaseUtilsConnect())
                 {
                     if (UserBUS.HandleCheckLoginLocalStorage())
-                        Application.Run(Control.frmMainStudent);
+                    {
+                        if (Control.userLogin.IdUser.Substring(0, 2) == Config.typeAdmin)
+                            Application.Run(Control.frmMain);
+                        else if (Control.userLogin.IdUser.Substring(0, 2) == Config.typeStudent)
+                            Application.Run(Control.frmMainStudent);
+                    }
                     else Application.Run(Control.frmLogin);
                 }
             }
