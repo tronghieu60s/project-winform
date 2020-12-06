@@ -18,6 +18,7 @@ namespace project_winform.BUS
 
         public ClassBUS()
         {
+            lvwClassState.Items.Clear();
             List<Class> classes = ClassDAL.GetClasses();
             foreach (Class classItem in classes)
             {
@@ -44,6 +45,7 @@ namespace project_winform.BUS
 
         public static void RenderListViewFromState(ListView lvwClass)
         {
+            lvwClass.Items.Clear();
             foreach (ListViewItem item in lvwClassState.Items)
             {
                 lvwClass.Items.Add(item.Clone() as ListViewItem);
@@ -85,7 +87,7 @@ namespace project_winform.BUS
                     if (result)
                     {
                         lvwClassState.Items.Remove(item);
-                        RenderListViewWithCourseAndFaculty(lvwClass);
+                        RenderListViewFromState(lvwClass);
                     }
                     return;
                 }

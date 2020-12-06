@@ -44,6 +44,7 @@
             this.btnAddCourse = new System.Windows.Forms.Button();
             this.chkRandomCodeNum = new System.Windows.Forms.CheckBox();
             this.dtpBirthday = new System.Windows.Forms.DateTimePicker();
+            this.btnShowSubject = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.cboClass = new System.Windows.Forms.ComboBox();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -193,6 +194,7 @@
             this.groupBox2.Controls.Add(this.btnAddCourse);
             this.groupBox2.Controls.Add(this.chkRandomCodeNum);
             this.groupBox2.Controls.Add(this.dtpBirthday);
+            this.groupBox2.Controls.Add(this.btnShowSubject);
             this.groupBox2.Controls.Add(this.btnUpdate);
             this.groupBox2.Controls.Add(this.cboClass);
             this.groupBox2.Controls.Add(this.btnDelete);
@@ -272,13 +274,25 @@
             this.dtpBirthday.Size = new System.Drawing.Size(175, 26);
             this.dtpBirthday.TabIndex = 9;
             // 
+            // btnShowSubject
+            // 
+            this.btnShowSubject.BackColor = System.Drawing.SystemColors.Menu;
+            this.btnShowSubject.ForeColor = System.Drawing.Color.Black;
+            this.btnShowSubject.Location = new System.Drawing.Point(323, 272);
+            this.btnShowSubject.Name = "btnShowSubject";
+            this.btnShowSubject.Size = new System.Drawing.Size(97, 46);
+            this.btnShowSubject.TabIndex = 18;
+            this.btnShowSubject.Text = "Môn Học";
+            this.btnShowSubject.UseVisualStyleBackColor = false;
+            this.btnShowSubject.Click += new System.EventHandler(this.btnShowSubject_Click);
+            // 
             // btnUpdate
             // 
             this.btnUpdate.BackColor = System.Drawing.SystemColors.Menu;
             this.btnUpdate.ForeColor = System.Drawing.Color.Black;
-            this.btnUpdate.Location = new System.Drawing.Point(270, 272);
+            this.btnUpdate.Location = new System.Drawing.Point(211, 272);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(116, 46);
+            this.btnUpdate.Size = new System.Drawing.Size(97, 46);
             this.btnUpdate.TabIndex = 18;
             this.btnUpdate.Text = "Cập Nhật";
             this.btnUpdate.UseVisualStyleBackColor = false;
@@ -296,9 +310,9 @@
             // 
             this.btnDelete.BackColor = System.Drawing.SystemColors.Menu;
             this.btnDelete.ForeColor = System.Drawing.Color.Black;
-            this.btnDelete.Location = new System.Drawing.Point(149, 272);
+            this.btnDelete.Location = new System.Drawing.Point(116, 272);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(92, 46);
+            this.btnDelete.Size = new System.Drawing.Size(79, 46);
             this.btnDelete.TabIndex = 17;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = false;
@@ -317,9 +331,9 @@
             // 
             this.btnAdd.BackColor = System.Drawing.SystemColors.Menu;
             this.btnAdd.ForeColor = System.Drawing.Color.Black;
-            this.btnAdd.Location = new System.Drawing.Point(28, 272);
+            this.btnAdd.Location = new System.Drawing.Point(22, 272);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(92, 46);
+            this.btnAdd.Size = new System.Drawing.Size(74, 46);
             this.btnAdd.TabIndex = 16;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -696,6 +710,7 @@
         private System.Windows.Forms.Button btnPassGenerator;
         private System.Windows.Forms.PictureBox picReloadFaculty;
         private System.Windows.Forms.PictureBox picReloadCourse;
+        private System.Windows.Forms.Button btnShowSubject;
     }
 }
 

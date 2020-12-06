@@ -1,5 +1,5 @@
 ﻿using project_winform.BUS;
-using project_winform.dal;
+using project_winform.DAL;
 using project_winform.src.config;
 using System;
 using System.Windows.Forms;

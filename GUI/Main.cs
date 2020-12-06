@@ -28,10 +28,6 @@ namespace project_winform
             txtPassNew.PasswordChar = '\u25CF';
             txtRePassNew.PasswordChar = '\u25CF';
 
-            // Custom Format DateTime Picker
-            dtpBirthday.Format = DateTimePickerFormat.Custom;
-            dtpBirthday.CustomFormat = "dd / MM / yyyy";
-
             // Default Input Data
             cboTypeUser.SelectedIndex = 1;
             cboSelectSearch.SelectedIndex = 1;
@@ -91,6 +87,7 @@ namespace project_winform
             btnAction.BackColor = ColorTheme.getTheme("primary");
             btnChangePassword.BackColor = ColorTheme.getTheme("primary");
             btnPassGenerator.BackColor = ColorTheme.getTheme("success");
+            btnShowSubject.BackColor = ColorTheme.getTheme();
             #endregion
         }
 
@@ -581,5 +578,11 @@ namespace project_winform
         }
 
         #endregion
+
+        private void btnShowSubject_Click(object sender, EventArgs e)
+        {
+            frmSubject frmSubject = new frmSubject();
+            frmSubject.Show();
+        }
     }
 }

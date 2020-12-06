@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using project_winform.src.constants;
 
-namespace project_winform.dal
+namespace project_winform.DAL
 {
     class DatabaseUtils
     {

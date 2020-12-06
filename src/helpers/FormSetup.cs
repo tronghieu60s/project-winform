@@ -52,6 +52,12 @@ namespace project_winform.src.helpers
                 for (int i = 0; i < (item as ListView).Columns.Count; i++)
                     Sort.SetSortArrow((item as ListView).Columns[i], SortOrder.Ascending);
             }
+
+            foreach (var item in GetAll(control, typeof(DateTimePicker)))
+            {
+                (item as DateTimePicker).Format = DateTimePickerFormat.Custom;
+                (item as DateTimePicker).CustomFormat = "dd / MM / yyyy";
+            }
         }
     }
 }
