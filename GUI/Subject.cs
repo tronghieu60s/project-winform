@@ -237,12 +237,15 @@ namespace project_winform
                 txtSubjectId.Text = item.SubItems[0].Text;
                 txtName.Text = item.SubItems[1].Text;
                 txtCredit.Text = item.SubItems[2].Text;
-                txtLecturerName.Text = item.SubItems[3].Text;
-                txtInformation.Text = item.SubItems[4].Text;
+                txtInformation.Text = item.SubItems[3].Text;
+                txtLecturerName.Text = item.SubItems[4].Text;
                 dtpStartDay.Value = DateTime.ParseExact(item.SubItems[5].Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 dtpEndDay.Value = DateTime.ParseExact(item.SubItems[6].Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 txtCourse.Text = item.SubItems[7].Text;
                 txtFaculty.Text = item.SubItems[8].Text;
+
+                SubjectBUS.id_course = item.SubItems[7].Text;
+                SubjectBUS.id_faculty = item.SubItems[8].Text;
             }
             SelectListView.SelectListViewColorForMultipleListView(lvwSubject);
         }
