@@ -38,7 +38,7 @@
             this.lvwFaculty = new System.Windows.Forms.ListView();
             this.lvwSubject = new System.Windows.Forms.ListView();
             this.txtSubjectId = new System.Windows.Forms.TextBox();
-            this.lblClassId = new System.Windows.Forms.Label();
+            this.lblSubjectId = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -166,14 +166,14 @@
             this.txtSubjectId.Size = new System.Drawing.Size(107, 26);
             this.txtSubjectId.TabIndex = 29;
             // 
-            // lblClassId
+            // lblSubjectId
             // 
-            this.lblClassId.AutoSize = true;
-            this.lblClassId.Location = new System.Drawing.Point(16, 65);
-            this.lblClassId.Name = "lblClassId";
-            this.lblClassId.Size = new System.Drawing.Size(70, 20);
-            this.lblClassId.TabIndex = 30;
-            this.lblClassId.Text = "Mã Môn:";
+            this.lblSubjectId.AutoSize = true;
+            this.lblSubjectId.Location = new System.Drawing.Point(16, 65);
+            this.lblSubjectId.Name = "lblSubjectId";
+            this.lblSubjectId.Size = new System.Drawing.Size(70, 20);
+            this.lblSubjectId.TabIndex = 30;
+            this.lblSubjectId.Text = "Mã Môn:";
             // 
             // label2
             // 
@@ -345,7 +345,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtSubjectId);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.lblClassId);
+            this.Controls.Add(this.lblSubjectId);
             this.Controls.Add(this.lvwSubject);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -378,7 +378,7 @@
         private System.Windows.Forms.ListView lvwFaculty;
         private System.Windows.Forms.ListView lvwSubject;
         private System.Windows.Forms.TextBox txtSubjectId;
-        private System.Windows.Forms.Label lblClassId;
+        private System.Windows.Forms.Label lblSubjectId;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label3;

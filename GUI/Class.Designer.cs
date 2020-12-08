@@ -60,7 +60,7 @@
             this.pnlTitleBar.Controls.Add(this.picExit);
             this.pnlTitleBar.Location = new System.Drawing.Point(0, 0);
             this.pnlTitleBar.Name = "pnlTitleBar";
-            this.pnlTitleBar.Size = new System.Drawing.Size(802, 46);
+            this.pnlTitleBar.Size = new System.Drawing.Size(868, 46);
             this.pnlTitleBar.TabIndex = 10;
             this.pnlTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlTitleBar_MouseDown);
             // 
@@ -76,7 +76,7 @@
             // 
             // picMinimize
             // 
-            this.picMinimize.Location = new System.Drawing.Point(718, 9);
+            this.picMinimize.Location = new System.Drawing.Point(779, 9);
             this.picMinimize.Name = "picMinimize";
             this.picMinimize.Size = new System.Drawing.Size(27, 28);
             this.picMinimize.TabIndex = 27;
@@ -87,7 +87,7 @@
             // 
             // picExit
             // 
-            this.picExit.Location = new System.Drawing.Point(761, 9);
+            this.picExit.Location = new System.Drawing.Point(822, 9);
             this.picExit.Name = "picExit";
             this.picExit.Size = new System.Drawing.Size(27, 28);
             this.picExit.TabIndex = 29;
@@ -98,14 +98,15 @@
             // 
             // txtClassName
             // 
-            this.txtClassName.Location = new System.Drawing.Point(155, 102);
+            this.txtClassName.ForeColor = System.Drawing.Color.Transparent;
+            this.txtClassName.Location = new System.Drawing.Point(155, 115);
             this.txtClassName.Name = "txtClassName";
             this.txtClassName.Size = new System.Drawing.Size(216, 26);
             this.txtClassName.TabIndex = 1;
             // 
             // txtClassId
             // 
-            this.txtClassId.Location = new System.Drawing.Point(155, 66);
+            this.txtClassId.Location = new System.Drawing.Point(155, 79);
             this.txtClassId.Name = "txtClassId";
             this.txtClassId.Size = new System.Drawing.Size(107, 26);
             this.txtClassId.TabIndex = 0;
@@ -113,7 +114,7 @@
             // lblClassName
             // 
             this.lblClassName.AutoSize = true;
-            this.lblClassName.Location = new System.Drawing.Point(40, 105);
+            this.lblClassName.Location = new System.Drawing.Point(40, 118);
             this.lblClassName.Name = "lblClassName";
             this.lblClassName.Size = new System.Drawing.Size(71, 20);
             this.lblClassName.TabIndex = 19;
@@ -122,7 +123,7 @@
             // lblClassId
             // 
             this.lblClassId.AutoSize = true;
-            this.lblClassId.Location = new System.Drawing.Point(40, 69);
+            this.lblClassId.Location = new System.Drawing.Point(40, 82);
             this.lblClassId.Name = "lblClassId";
             this.lblClassId.Size = new System.Drawing.Size(66, 20);
             this.lblClassId.TabIndex = 20;
@@ -133,7 +134,7 @@
             this.lvwClass.HideSelection = false;
             this.lvwClass.Location = new System.Drawing.Point(12, 226);
             this.lvwClass.Name = "lvwClass";
-            this.lvwClass.Size = new System.Drawing.Size(416, 290);
+            this.lvwClass.Size = new System.Drawing.Size(488, 290);
             this.lvwClass.TabIndex = 5;
             this.lvwClass.UseCompatibleStateImageBehavior = false;
             this.lvwClass.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwClass_ColumnClick);
@@ -143,7 +144,7 @@
             // 
             this.btnDelete.BackColor = System.Drawing.SystemColors.Menu;
             this.btnDelete.ForeColor = System.Drawing.Color.Black;
-            this.btnDelete.Location = new System.Drawing.Point(177, 178);
+            this.btnDelete.Location = new System.Drawing.Point(405, 114);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(67, 33);
             this.btnDelete.TabIndex = 3;
@@ -155,7 +156,7 @@
             // 
             this.btnEdit.BackColor = System.Drawing.SystemColors.Menu;
             this.btnEdit.ForeColor = System.Drawing.Color.Black;
-            this.btnEdit.Location = new System.Drawing.Point(276, 178);
+            this.btnEdit.Location = new System.Drawing.Point(405, 163);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(67, 33);
             this.btnEdit.TabIndex = 4;
@@ -167,7 +168,7 @@
             // 
             this.btnAdd.BackColor = System.Drawing.SystemColors.Menu;
             this.btnAdd.ForeColor = System.Drawing.Color.Black;
-            this.btnAdd.Location = new System.Drawing.Point(78, 178);
+            this.btnAdd.Location = new System.Drawing.Point(405, 66);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(67, 33);
             this.btnAdd.TabIndex = 2;
@@ -178,7 +179,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lvwCourse);
-            this.groupBox1.Location = new System.Drawing.Point(438, 52);
+            this.groupBox1.Location = new System.Drawing.Point(516, 52);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(350, 231);
             this.groupBox1.TabIndex = 25;
@@ -199,7 +200,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.lvwFaculty);
-            this.groupBox2.Location = new System.Drawing.Point(438, 289);
+            this.groupBox2.Location = new System.Drawing.Point(516, 289);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(350, 231);
             this.groupBox2.TabIndex = 26;
@@ -222,7 +223,7 @@
             this.txtCourse.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txtCourse.Enabled = false;
             this.txtCourse.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.txtCourse.Location = new System.Drawing.Point(44, 137);
+            this.txtCourse.Location = new System.Drawing.Point(44, 159);
             this.txtCourse.Name = "txtCourse";
             this.txtCourse.Size = new System.Drawing.Size(120, 26);
             this.txtCourse.TabIndex = 27;
@@ -232,7 +233,7 @@
             this.txtFaculty.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txtFaculty.Enabled = false;
             this.txtFaculty.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.txtFaculty.Location = new System.Drawing.Point(170, 137);
+            this.txtFaculty.Location = new System.Drawing.Point(181, 159);
             this.txtFaculty.Name = "txtFaculty";
             this.txtFaculty.Size = new System.Drawing.Size(201, 26);
             this.txtFaculty.TabIndex = 28;
@@ -241,7 +242,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 531);
+            this.ClientSize = new System.Drawing.Size(867, 531);
             this.Controls.Add(this.txtFaculty);
             this.Controls.Add(this.txtCourse);
             this.Controls.Add(this.groupBox2);

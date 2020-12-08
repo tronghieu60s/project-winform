@@ -123,17 +123,43 @@ namespace project_winform
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (CodeNumExists()) return;
+            if (txtFacultyId.Text.Length <= 0)
+            {
+                lblFacultyId.ForeColor = ColorTheme.getTheme("danger");
+                txtFacultyId.Focus();
+                MessageBox.Show(MessageBoxText.RequiredInput, MessageBoxText.CaptionInformation, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             Faculty faculty = new Faculty(txtFacultyId.Text, txtFacultyName.Text);
             FacultyBUS.HandleAddFaculty(lvwFaculty, faculty);
+
+            txtFacultyId.Text = String.Empty;
+            txtFacultyName.Text = String.Empty;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (txtFacultyId.Text.Length <= 0)
+            {
+                MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionInformation, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             FacultyBUS.HandleDeleteFaculty(lvwFaculty, txtFacultyId.Text);
+
+            txtFacultyId.Text = String.Empty;
+            txtFacultyName.Text = String.Empty;
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            if (txtFacultyId.Text.Length <= 0)
+            {
+                MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionInformation, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             Faculty faculty = new Faculty(txtFacultyId.Text, txtFacultyName.Text);
             FacultyBUS.HandleUpdateFaculty(lvwFaculty, faculty);
         }

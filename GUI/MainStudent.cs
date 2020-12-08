@@ -1,20 +1,12 @@
 ﻿using project_winform.BUS;
 using project_winform.CTO;
-using project_winform.DAL;
 using project_winform.src.config;
 using project_winform.src.constants;
 using project_winform.src.helpers;
 using project_winform.src.themes;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace project_winform
@@ -249,15 +241,35 @@ namespace project_winform
         {
             string id_user = txtCodeNum.Text;
             string id_subject = txtIdRegister.Text;
+
+            if (id_user.Length <= 0 || id_subject.Length <= 0)
+            {
+                MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionInformation, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             RegisterSubject registerSubject = new RegisterSubject(id_user, id_subject);
             RegisterSubjectBUS.HandleCreateRegisterSubject(lvwRegister, lvwRegistered, registerSubject);
+
+            txtIdRegister.Text = String.Empty;
+            txtNameRegister.Text = String.Empty;
         }
 
         private void btnCancelRegister_Click(object sender, EventArgs e)
         {
             string id_user = txtCodeNum.Text;
             string id_subject = txtCancelIdRegister.Text;
+
+            if (id_user.Length <= 0 || id_subject.Length <= 0)
+            {
+                MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionInformation, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             RegisterSubjectBUS.HandleCancelRegisteredSubject(lvwRegister, lvwRegistered, id_user, id_subject);
+
+            txtCancelIdRegister.Text = String.Empty;
+            txtCancelNameRegister.Text = String.Empty;
         }
 
         #endregion

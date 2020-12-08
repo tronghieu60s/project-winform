@@ -18,10 +18,10 @@ namespace project_winform
             /* STYLE */
             #region * UI SETUP 
 
-            lvwClass.Columns.Add("Mã Lớp", 60);
-            lvwClass.Columns.Add("Tên Lớp", 95);
-            lvwClass.Columns.Add("Mã Khóa", 60);
-            lvwClass.Columns.Add("Mã Khoa", 60);
+            lvwClass.Columns.Add("Mã Lớp", 70);
+            lvwClass.Columns.Add("Tên Lớp", 80);
+            lvwClass.Columns.Add("Mã Khóa", 78);
+            lvwClass.Columns.Add("Mã Khoa", 78);
 
             lvwCourse.Columns.Add("Mã Khóa", 80);
             lvwCourse.Columns.Add("Tên Khóa", 148);
@@ -182,17 +182,47 @@ namespace project_winform
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (CodeNumExists()) return;
+            if(txtClassId.Text.Length <= 0)
+            {
+                lblClassId.ForeColor = ColorTheme.getTheme("danger");
+                txtClassId.Focus();
+                MessageBox.Show(MessageBoxText.RequiredInput, MessageBoxText.CaptionInformation, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             Class classModel = new Class(txtClassId.Text, txtClassName.Text, new Faculty(txtFaculty.Text, ""), new Course(txtCourse.Text, ""));
             ClassBUS.HandleAddClass(lvwClass, classModel);
+
+            txtClassId.Text = String.Empty;
+            txtClassName.Text = String.Empty;
+            txtCourse.Text = String.Empty;
+            txtFaculty.Text = String.Empty;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (txtClassId.Text.Length <= 0)
+            {
+                MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionInformation, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             ClassBUS.HandleDeleteClass(lvwClass, txtClassId.Text);
+
+            txtClassId.Text = String.Empty;
+            txtClassName.Text = String.Empty;
+            txtCourse.Text = String.Empty;
+            txtFaculty.Text = String.Empty;
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            if (txtClassId.Text.Length <= 0)
+            {
+                MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionInformation, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             Class classModel = new Class(txtClassId.Text, txtClassName.Text, new Faculty(txtFaculty.Text, ""), new Course(txtCourse.Text, ""));
             ClassBUS.HandleUpdateClass(lvwClass, classModel);
         }

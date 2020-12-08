@@ -134,6 +134,79 @@ namespace project_winform
 
         #endregion
 
+        #region * ADD - UPDATE - DELETE SUBJECT
+
+        private bool CodeNumExists()
+        {
+            foreach (ListViewItem item in SubjectBUS.lvwSubjectState.Items)
+                if (item.SubItems[0].Text == txtSubjectId.Text)
+                {
+                    MessageBox.Show(MessageBoxText.DuplicatedCodeNum, MessageBoxText.CaptionWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return true;
+                }
+            return false;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (CodeNumExists()) return;
+            if (txtSubjectId.Text.Length <= 0)
+            {
+                lblSubjectId.ForeColor = ColorTheme.getTheme("danger");
+                txtSubjectId.Focus();
+                MessageBox.Show(MessageBoxText.RequiredInput, MessageBoxText.CaptionInformation, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string idSubject = txtSubjectId.Text;
+            string name = txtName.Text;
+            int credit = int.Parse(txtCredit.Text);
+            string information = txtInformation.Text;
+            string lecturerName = txtLecturerName.Text;
+            DateTime startDay = DateTime.Parse(dtpStartDay.Text);
+            DateTime endDay = DateTime.Parse(dtpEndDay.Text);
+            Faculty faculty = new Faculty(txtFaculty.Text, "");
+            Course course = new Course(txtCourse.Text, "");
+            Subject subject = new Subject(idSubject, name, credit, information, lecturerName, startDay, endDay, faculty, course);
+            SubjectBUS.HandleAddSubject(lvwSubject, subject);
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (txtSubjectId.Text.Length <= 0)
+            {
+                MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionInformation, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            SubjectBUS.HandleDeleteSubject(lvwSubject, txtSubjectId.Text);
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (txtSubjectId.Text.Length <= 0)
+            {
+                MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionInformation, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string idSubject = txtSubjectId.Text;
+            string name = txtName.Text;
+            int credit = int.Parse(txtCredit.Text);
+            string information = txtInformation.Text;
+            string lecturerName = txtLecturerName.Text;
+            DateTime startDay = DateTime.Parse(dtpStartDay.Text);
+            DateTime endDay = DateTime.Parse(dtpEndDay.Text);
+            Faculty faculty = new Faculty(txtFaculty.Text, "");
+            Course course = new Course(txtCourse.Text, "");
+            Subject subject = new Subject(idSubject, name, credit, information, lecturerName, startDay, endDay, faculty, course);
+            SubjectBUS.HandleUpdateSubject(lvwSubject, subject);
+        }
+
+        #endregion
+
+        #region * SELECT LISTVIEW
+
         private void lvwCourse_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lvwCourse.SelectedItems.Count > 0)
@@ -156,58 +229,6 @@ namespace project_winform
             SelectListView.SelectListViewColorForMultipleListView(lvwFaculty);
         }
 
-        #region * ADD - UPDATE - DELETE SUBJECT
-
-        private bool CodeNumExists()
-        {
-            foreach (ListViewItem item in SubjectBUS.lvwSubjectState.Items)
-                if (item.SubItems[0].Text == txtSubjectId.Text)
-                {
-                    MessageBox.Show(MessageBoxText.DuplicatedCodeNum, MessageBoxText.CaptionWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return true;
-                }
-            return false;
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            if (CodeNumExists()) return;
-
-            string idSubject = txtSubjectId.Text;
-            string name = txtName.Text;
-            int credit = int.Parse(txtCredit.Text);
-            string information = txtInformation.Text;
-            string lecturerName = txtLecturerName.Text;
-            DateTime startDay = DateTime.Parse(dtpStartDay.Text);
-            DateTime endDay = DateTime.Parse(dtpEndDay.Text);
-            Faculty faculty = new Faculty(txtFaculty.Text, "");
-            Course course = new Course(txtCourse.Text, "");
-            Subject subject = new Subject(idSubject, name, credit, information, lecturerName, startDay, endDay, faculty, course);
-            SubjectBUS.HandleAddSubject(lvwSubject, subject);
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            SubjectBUS.HandleDeleteSubject(lvwSubject, txtSubjectId.Text);
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            string idSubject = txtSubjectId.Text;
-            string name = txtName.Text;
-            int credit = int.Parse(txtCredit.Text);
-            string information = txtInformation.Text;
-            string lecturerName = txtLecturerName.Text;
-            DateTime startDay = DateTime.Parse(dtpStartDay.Text);
-            DateTime endDay = DateTime.Parse(dtpEndDay.Text);
-            Faculty faculty = new Faculty(txtFaculty.Text, "");
-            Course course = new Course(txtCourse.Text, "");
-            Subject subject = new Subject(idSubject, name, credit, information, lecturerName, startDay, endDay, faculty, course);
-            SubjectBUS.HandleUpdateSubject(lvwSubject, subject);
-        }
-
-        #endregion
-
         private void lvwSubject_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lvwSubject.SelectedItems.Count > 0)
@@ -225,5 +246,9 @@ namespace project_winform
             }
             SelectListView.SelectListViewColorForMultipleListView(lvwSubject);
         }
+
+        #endregion
+
+
     }
 }

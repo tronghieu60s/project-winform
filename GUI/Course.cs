@@ -122,19 +122,39 @@ namespace project_winform
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (CodeNumExists()) return;
+            if (txtCourseId.Text.Length <= 0)
+            {
+                lblCourseId.ForeColor = ColorTheme.getTheme("danger");
+                txtCourseId.Focus();
+                MessageBox.Show(MessageBoxText.RequiredInput, MessageBoxText.CaptionInformation, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             Course course = new Course(txtCourseId.Text, txtCourseName.Text);
             CourseBUS.HandleAddCourse(lvwCourse, course);
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            Course course = new Course(txtCourseId.Text, txtCourseName.Text);
-            CourseBUS.HandleUpdateCourse(lvwCourse, course);
-        }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (txtCourseId.Text.Length <= 0)
+            {
+                MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionInformation, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             CourseBUS.HandleDeleteCourse(lvwCourse, txtCourseId.Text);
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (txtCourseId.Text.Length <= 0)
+            {
+                MessageBox.Show(MessageBoxText.NotSelectListView, MessageBoxText.CaptionInformation, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Course course = new Course(txtCourseId.Text, txtCourseName.Text);
+            CourseBUS.HandleUpdateCourse(lvwCourse, course);
         }
 
         #endregion
