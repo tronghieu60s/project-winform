@@ -12,6 +12,7 @@ namespace project_winform.src.constants
         public static string CaptionInformation = "Thông Báo";
         public static string CaptionSuccess = "Thành Công";
 
+        public static string ConfigExit = "Bạn có muốn thoát không?";
         public static string RequiredInput = "Vui lòng nhập các trường dữ liệu bắt buộc.";
         public static string DatabaseConnectFalse = "Không thể kết nối được với dữ liệu, vui lòng thử lại.";
         public static string DatabaseConnectTrue = "Kết nối với cơ sở dữ liệu thành công.";

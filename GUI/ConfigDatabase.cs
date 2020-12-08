@@ -65,7 +65,9 @@ namespace project_winform
 
         private void picExit_Click(object sender, EventArgs e)
         {
-            Control.CloseWindow();
+            DialogResult result = MessageBox.Show(MessageBoxText.ConfigExit, MessageBoxText.CaptionInformation, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+                Application.Exit();
         }
 
         /* Move Window Action */
@@ -99,7 +101,7 @@ namespace project_winform
                 DatabaseConfig.SaveLocalStorageConfig(server, database, port, username, password);
                 DialogResult resultBox = MessageBox.Show(MessageBoxText.SaveFileSuccess, MessageBoxText.CaptionSuccess, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (resultBox == DialogResult.OK)
-                    Control.HandleCloseWindow();
+                    Application.Exit();
             }
             else MessageBox.Show(MessageBoxText.DatabaseConnectFalse, MessageBoxText.CaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }

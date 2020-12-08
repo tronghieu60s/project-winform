@@ -98,7 +98,9 @@ namespace project_winform
 
         private void picExit_Click(object sender, EventArgs e)
         {
-            Control.CloseWindow();
+            DialogResult result = MessageBox.Show(MessageBoxText.ConfigExit, MessageBoxText.CaptionInformation, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+                Application.Exit();
         }
 
         /* Move Window Action */
@@ -125,9 +127,8 @@ namespace project_winform
             {
                 File.Delete(Config.fileUserConfig);
                 Control.userLogin = null;
-                Control.frmLogin.Show();
-                Control.frmMain.Hide();
-                Control.frmMainStudent.Hide();
+                this.Hide();
+                new frmLogin().Show();
             }
         }
 

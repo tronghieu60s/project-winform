@@ -101,11 +101,12 @@ namespace project_winform
             lblForgetPass.LinkBehavior = LinkBehavior.NeverUnderline;
         }
 
-
         /* Title Bar Icon Action */
         private void picExit_Click(object sender, EventArgs e)
         {
-            Control.CloseWindow();
+            DialogResult result = MessageBox.Show(MessageBoxText.ConfigExit, MessageBoxText.CaptionInformation, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+                Application.Exit();
         }
 
         private void picMove_MouseDown(object sender, MouseEventArgs e)
@@ -177,11 +178,11 @@ namespace project_winform
                 {
                     UserBUS.HandleSaveLogin(username, password);
                     Control.userLogin = userLogin;
-                    Control.frmLogin.Hide();
+                    this.Hide();
                     if (Control.userLogin.IdUser.Substring(0, 2) == Config.typeAdmin)
-                        Control.frmMain.Show();
+                        new frmMain().Show();
                     if (Control.userLogin.IdUser.Substring(0, 2) == Config.typeStudent)
-                        Control.frmMainStudent.Show();
+                        new frmMainStudent().Show();
 
                 }
                 else MessageBox.Show(MessageBoxText.LoginIncorrect, MessageBoxText.CaptionWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning);

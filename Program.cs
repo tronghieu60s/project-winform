@@ -26,15 +26,15 @@ namespace project_winform
                     if (UserBUS.HandleCheckLoginLocalStorage())
                     {
                         if (Control.userLogin.IdUser.Substring(0, 2) == Config.typeAdmin)
-                            Application.Run(Control.frmMain);
+                            Application.Run(new frmMain());
                         else if (Control.userLogin.IdUser.Substring(0, 2) == Config.typeStudent)
-                            Application.Run(Control.frmMainStudent);
+                            Application.Run(new frmMainStudent());
                     }
-                    else Application.Run(Control.frmLogin);
+                    else Application.Run(new frmLogin());
                 }
             }
             else if (config == 0)
-                Application.Run(Control.frmConfigDatabase);
+                Application.Run(new frmConfigDatabase());
         }
     }
 }
