@@ -226,6 +226,8 @@ namespace project_winform
             ListViewItem item = lvwRegister.SelectedItems[0];
             txtIdRegister.Text = item.SubItems[0].Text;
             txtNameRegister.Text = item.SubItems[1].Text;
+
+            SelectListView.SelectListViewColorForMultipleListView(lvwRegister);
         }
 
         private void lvwRegistered_SelectedIndexChanged(object sender, EventArgs e)
@@ -235,6 +237,8 @@ namespace project_winform
             ListViewItem item = lvwRegistered.SelectedItems[0];
             txtCancelIdRegister.Text = item.SubItems[0].Text;
             txtCancelNameRegister.Text = item.SubItems[1].Text;
+
+            SelectListView.SelectListViewColorForMultipleListView(lvwRegistered);
         }
 
         #endregion

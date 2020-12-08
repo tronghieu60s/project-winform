@@ -39,6 +39,7 @@ namespace project_winform.BUS
 
         public static ListViewItem RegisterSubjectModelToListViewItem(RegisterSubject registerSubject)
         {
+            Console.WriteLine(lvwRegisterSubjectState.Items.Count);
             foreach (ListViewItem item in lvwRegisterSubjectState.Items)
                 if (item.SubItems[0].Text == registerSubject.Id_subject)
                     return item;
@@ -94,12 +95,11 @@ namespace project_winform.BUS
                     if (lvwRegisteredItem.SubItems[0].Text == id_subject)
                     {
                         lvwRegisteredSubjectState.Items.Remove(lvwRegisteredItem);
-                        lvwRegister.Items.Add(lvwRegisteredItem.Clone() as ListViewItem);
+                        lvwRegisterSubjectState.Items.Add(lvwRegisteredItem.Clone() as ListViewItem);
                     }
 
                 RenderListViewRegisteredFromState(lvwRegistered);
-                foreach (ListViewItem item in lvwRegisterSubjectState.Items)
-                    lvwRegister.Items.Add(item.Clone() as ListViewItem);
+                RenderListViewRegisterFromState(lvwRegister);
             }
         }
     }

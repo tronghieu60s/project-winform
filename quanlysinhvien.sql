@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 03, 2020 lúc 03:16 PM
+-- Thời gian đã tạo: Th12 08, 2020 lúc 01:18 PM
 -- Phiên bản máy phục vụ: 10.4.11-MariaDB
 -- Phiên bản PHP: 7.4.2
 
@@ -36,6 +36,34 @@ CREATE TABLE `classes` (
   `date` int(11) NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `classes`
+--
+
+INSERT INTO `classes` (`id_class`, `id_course`, `id_faculty`, `class_name`, `date`) VALUES
+('CD19TA1', 'K19', 'FA01', 'CD19TA1', 2147483647),
+('CD19TA2', 'K19', 'FA01', 'CD19TA2', 2147483647),
+('CD19TA3', 'K19', 'FA01', 'CD19TA3', 2147483647),
+('CD19TA4', 'K19', 'FA01', 'CD19TA4', 2147483647),
+('CD19TA5', 'K19', 'FA01', 'CD19TA5', 2147483647),
+('CD19TH1', 'K19', 'FA02', 'CD19TH1', 2147483647),
+('CD19TH2', 'K19', 'FA02', 'CD19TH2', 2147483647),
+('CD19TH3', 'K19', 'FA02', 'CD19TH3', 2147483647),
+('CD19TH4', 'K19', 'FA02', 'CD19TH4', 2147483647),
+('CD19TN1', 'K19', 'FA03', 'CD19TN1', 2147483647),
+('CD19TN2', 'K19', 'FA03', 'CD19TN2', 2147483647),
+('CD20TA1', 'K20', 'FA01', 'CD20TA1', 2147483647),
+('CD20TA2', 'K20', 'FA01', 'CD20TA2', 2147483647),
+('CD20TA3', 'K20', 'FA01', 'CD20TA3', 2147483647),
+('CD20TH1', 'K20', 'FA02', 'CD20TH1', 2147483647),
+('CD20TH3', 'K20', 'FA02', 'CD20TH3', 2147483647),
+('CD20TN1', 'K20', 'FA03', 'CD20TN1', 2147483647),
+('CD20TN2', 'K20', 'FA03', 'CD20TN2', 2147483647),
+('CD20TN3', 'K20', 'FA03', 'CD20TN3', 2147483647),
+('CD20TN4', 'K20', 'FA03', 'CD20TN4', 2147483647),
+('CD20TN5', 'K20', 'FA03', 'CD20TN5', 2147483647),
+('CD20TN6', 'K20', 'FA03', 'CD20TN6', 2147483647);
+
 -- --------------------------------------------------------
 
 --
@@ -47,6 +75,15 @@ CREATE TABLE `courses` (
   `course_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `date` int(11) NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `courses`
+--
+
+INSERT INTO `courses` (`id_course`, `course_name`, `date`) VALUES
+('K18', 'Khóa 18', 2147483647),
+('K19', 'Khóa 19', 2147483647),
+('K20', 'Khóa 20', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -60,6 +97,15 @@ CREATE TABLE `faculties` (
   `date` int(11) NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `faculties`
+--
+
+INSERT INTO `faculties` (`id_faculty`, `faculty_name`, `date`) VALUES
+('FA01', 'Tiếng Anh', 2147483647),
+('FA02', 'Tiếng Hàn', 2147483647),
+('FA03', 'Tiếng Nhật', 2147483647);
+
 -- --------------------------------------------------------
 
 --
@@ -68,9 +114,16 @@ CREATE TABLE `faculties` (
 
 CREATE TABLE `registers_user_subject` (
   `id_user` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_subjects` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_subject` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `date` int(11) NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `registers_user_subject`
+--
+
+INSERT INTO `registers_user_subject` (`id_user`, `id_subject`, `date`) VALUES
+('SD22440', 'SJ2', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -80,8 +133,14 @@ CREATE TABLE `registers_user_subject` (
 
 CREATE TABLE `subjects` (
   `id_subjects` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `subject_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `credit` int(11) DEFAULT NULL,
+  `information` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lecturer_name` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `start_day` datetime DEFAULT NULL,
+  `end_day` datetime DEFAULT NULL,
+  `id_course` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_faculty` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `date` int(11) NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -89,10 +148,9 @@ CREATE TABLE `subjects` (
 -- Đang đổ dữ liệu cho bảng `subjects`
 --
 
-INSERT INTO `subjects` (`id_subjects`, `name`, `credit`, `date`) VALUES
-('SJ1', 'Nhập Môn Lập Trình', 3, 2147483647),
-('SJ2', 'Lập Trình Ứng Dụng', 4, 2147483647),
-('SJ3', 'Tiếng Hàn Cơ Bản', 3, 2147483647);
+INSERT INTO `subjects` (`id_subjects`, `subject_name`, `credit`, `information`, `lecturer_name`, `start_day`, `end_day`, `id_course`, `id_faculty`, `date`) VALUES
+('SJ1', 'Tiếng Anh Cơ Bản', 3, 'Thứ Hai, 07h00 - 12h00, B102B, 53 Võ Văn Ngân, P.Linh Chiểu, Q.Thủ Đức, TpHCM', 'Trần Dần', '2020-12-06 00:00:00', '2020-12-06 00:00:00', 'K20', 'FA01', 2147483647),
+('SJ2', 'Tiếng Anh Giao Tiếp', 3, 'Thứ Hai, 15h25 - 17h40, A113, 53 Võ Văn Ngân, P.Linh Chiểu, Q.Thủ Đức, TpHCM', 'Khá Bảnh', '2020-12-06 00:00:00', '2020-12-06 00:00:00', 'K20', 'FA01', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -114,7 +172,30 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `password`, `name`, `birthday`, `id_class`, `date`) VALUES
-('ADMIN', 'LyQWujvPXbGDYsrSDKkAiVFavg8=', 'Trần Trọng Hiếu', '2020-12-17', NULL, '2020-11-30 21:53:48');
+('ADMIN', 'LyQWujvPXbGDYsrSDKkAiVFavg8=', 'Trần Trọng Hiếu', '2020-12-17', NULL, '2020-11-30 21:53:48'),
+('SD11089', 'DVOZUIQnznlVbNpxkYAgwejRW1M=', 'Sử Bình', '2020-12-01', 'CD19TA3', '2020-12-05 20:40:10'),
+('SD11529', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Ung Khúc Lan', '2020-12-01', 'CD20TN6', '2020-12-05 20:43:20'),
+('SD11993', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Lục Nhật Minh', '2020-12-01', 'CD19TA3', '2020-12-05 20:40:24'),
+('SD17436', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Lục Thảo', '2020-12-01', 'CD20TH1', '2020-12-05 20:41:00'),
+('SD17833', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Bình Hạ', '2020-12-01', 'CD19TA1', '2020-12-05 20:39:47'),
+('SD22440', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Âu Nguyệt', '2020-12-01', 'CD20TA3', '2020-12-05 20:43:33'),
+('SD29707', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Trần Diễm Chiêu', '2020-12-01', 'CD20TN4', '2020-12-05 20:42:19'),
+('SD30440', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Bạch Uyên Diễm', '2020-12-01', 'CD20TN5', '2020-12-05 20:42:55'),
+('SD40763', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Âu Nguyệt', '2020-12-01', 'CD20TN1', '2020-12-05 20:41:52'),
+('SD42648', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Khuất Phúc', '2020-12-01', 'CD19TA1', '2020-12-05 20:39:34'),
+('SD58691', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Nông Gia Khanh', '2020-12-01', 'CD19TA4', '2020-12-05 20:42:41'),
+('SD63382', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Lô Hải Lam', '2020-12-01', 'CD20TN4', '2020-12-05 20:42:25'),
+('SD69074', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Bình Hạ', '2020-12-01', 'CD19TA1', '2020-12-05 20:39:54'),
+('SD70101', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Đặng Uyển', '2020-12-01', 'CD20TN5', '2020-12-05 20:43:02'),
+('SD74038', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Phi Xuân', '2020-12-01', 'CD19TA4', '2020-12-05 20:40:37'),
+('SD74836', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Khúc Lan', '2020-12-01', 'CD20TN3', '2020-12-05 20:42:02'),
+('SD79060', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Liễu Đài', '2020-12-01', 'CD20TA3', '2020-12-05 20:42:09'),
+('SD83814', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Nhâm Kiếm', '2020-12-01', 'CD20TN6', '2020-12-05 20:41:25'),
+('SD84969', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Ngô Hợp', '2020-12-01', 'CD20TH1', '2020-12-05 20:41:06'),
+('SD86310', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Cái Liên', '2020-12-01', 'CD20TN3', '2020-12-05 20:43:13'),
+('SD91688', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Lã Cảnh Ẩn', '2020-12-01', 'CD20TN2', '2020-12-05 20:41:43'),
+('SD92446', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Lâm Huynh', '2020-12-01', 'CD20TN2', '2020-12-05 20:41:19'),
+('SD95015', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Vũ Đan', '2020-12-01', 'CD20TN2', '2020-12-05 20:41:36');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -144,14 +225,16 @@ ALTER TABLE `faculties`
 -- Chỉ mục cho bảng `registers_user_subject`
 --
 ALTER TABLE `registers_user_subject`
-  ADD PRIMARY KEY (`id_user`,`id_subjects`),
-  ADD KEY `FK02_Register` (`id_subjects`);
+  ADD PRIMARY KEY (`id_user`,`id_subject`),
+  ADD KEY `FK02_Register` (`id_subject`);
 
 --
 -- Chỉ mục cho bảng `subjects`
 --
 ALTER TABLE `subjects`
-  ADD PRIMARY KEY (`id_subjects`);
+  ADD PRIMARY KEY (`id_subjects`),
+  ADD KEY `FK01_subjects` (`id_course`),
+  ADD KEY `FK02_subjects` (`id_faculty`);
 
 --
 -- Chỉ mục cho bảng `users`
@@ -176,7 +259,15 @@ ALTER TABLE `classes`
 --
 ALTER TABLE `registers_user_subject`
   ADD CONSTRAINT `FK01_Register` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`),
-  ADD CONSTRAINT `FK02_Register` FOREIGN KEY (`id_subjects`) REFERENCES `subjects` (`id_subjects`);
+  ADD CONSTRAINT `FK02_Register` FOREIGN KEY (`id_subject`) REFERENCES `subjects` (`id_subjects`),
+  ADD CONSTRAINT `FK03_Register` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
+
+--
+-- Các ràng buộc cho bảng `subjects`
+--
+ALTER TABLE `subjects`
+  ADD CONSTRAINT `FK01_subjects` FOREIGN KEY (`id_course`) REFERENCES `courses` (`id_course`),
+  ADD CONSTRAINT `FK02_subjects` FOREIGN KEY (`id_faculty`) REFERENCES `faculties` (`id_faculty`);
 
 --
 -- Các ràng buộc cho bảng `users`
