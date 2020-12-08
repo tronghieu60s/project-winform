@@ -1,14 +1,11 @@
 ﻿using project_winform.BUS;
 using project_winform.CTO;
-using project_winform.DAL;
-using project_winform.src.config;
 using project_winform.src.constants;
 using project_winform.src.helpers;
 using project_winform.src.themes;
 using System;
 using System.Drawing;
 using System.Globalization;
-using System.IO;
 using System.Windows.Forms;
 
 namespace project_winform
@@ -22,15 +19,15 @@ namespace project_winform
             /* STYLE */
             #region * UI SETUP 
 
-            lvwSubject.Columns.Add("Mã Môn", 60);
-            lvwSubject.Columns.Add("Tên Môn", 95);
-            lvwSubject.Columns.Add("Số Tín Chỉ", 60);
-            lvwSubject.Columns.Add("Tên Giảng Viên", 60);
-            lvwSubject.Columns.Add("Thông Tin", 60);
-            lvwSubject.Columns.Add("Ngày Bắt Đầu", 60);
-            lvwSubject.Columns.Add("Ngày Kết Thúc", 60);
-            lvwSubject.Columns.Add("Mã Khóa", 60);
-            lvwSubject.Columns.Add("Mã Khoa", 60);
+            lvwSubject.Columns.Add("Mã Môn", 70);
+            lvwSubject.Columns.Add("Tên Môn", 85);
+            lvwSubject.Columns.Add("Số Tín Chỉ", 85);
+            lvwSubject.Columns.Add("Thông Tin", 80);
+            lvwSubject.Columns.Add("Tên Giảng Viên", 100);
+            lvwSubject.Columns.Add("Ngày Bắt Đầu", 100);
+            lvwSubject.Columns.Add("Ngày Kết Thúc", 100);
+            lvwSubject.Columns.Add("Mã Khóa", 80);
+            lvwSubject.Columns.Add("Mã Khoa", 80);
 
             lvwCourse.Columns.Add("Mã Khóa", 80);
             lvwCourse.Columns.Add("Tên Khóa", 148);

@@ -21,13 +21,11 @@ namespace project_winform.BUS
             lvwSubjectState.Items.Clear();
             List<Subject> subjects = SubjectDAL.GetSubjects();
             if(subjects != null)
-            {
                 foreach (Subject subject in subjects)
                 {
                     ListViewItem item = SubjectModelToListViewItem(subject);
                     lvwSubjectState.Items.Add(item.Clone() as ListViewItem);
                 }
-            }
         }
 
         public static ListViewItem SubjectModelToListViewItem(Subject subject)
@@ -48,15 +46,7 @@ namespace project_winform.BUS
         {
             lvwSubject.Items.Clear();
             foreach (ListViewItem item in lvwSubjectState.Items)
-            {
                 lvwSubject.Items.Add(item.Clone() as ListViewItem);
-                if (lvwSubject.Items.Count > 0)
-                {
-                    // Select New Item When Create
-                    lvwSubject.Items[0].Selected = true;
-                    lvwSubject.Select();
-                }
-            }
         }
 
         public static void RenderListViewWithCourseAndFaculty(ListView lvwSubject)

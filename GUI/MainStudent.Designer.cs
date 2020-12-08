@@ -29,13 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.lvwMain = new System.Windows.Forms.ListView();
+            this.lvwRegister = new System.Windows.Forms.ListView();
             this.mnuStripListView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.xóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cboSelectSearch = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblCountItemListView = new System.Windows.Forms.Label();
             this.dtpBirthday = new System.Windows.Forms.DateTimePicker();
             this.txtPassNew = new System.Windows.Forms.TextBox();
             this.lblPassNew = new System.Windows.Forms.Label();
@@ -53,7 +49,6 @@
             this.txtPassOld = new System.Windows.Forms.TextBox();
             this.picMinimize = new System.Windows.Forms.PictureBox();
             this.picExit = new System.Windows.Forms.PictureBox();
-            this.cboTypeUser = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblFaculty = new System.Windows.Forms.Label();
             this.lblClass = new System.Windows.Forms.Label();
@@ -65,6 +60,15 @@
             this.lblWelcomeSlogan = new System.Windows.Forms.Label();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.pnlTitleBar = new System.Windows.Forms.Panel();
+            this.lvwRegistered = new System.Windows.Forms.ListView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtNameRegister = new System.Windows.Forms.TextBox();
+            this.txtIdRegister = new System.Windows.Forms.TextBox();
+            this.btnRegister = new System.Windows.Forms.Button();
+            this.btnCancelRegister = new System.Windows.Forms.Button();
+            this.txtCancelIdRegister = new System.Windows.Forms.TextBox();
+            this.txtCancelNameRegister = new System.Windows.Forms.TextBox();
             this.mnuStripListView.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimize)).BeginInit();
@@ -74,22 +78,15 @@
             this.pnlTitleBar.SuspendLayout();
             this.SuspendLayout();
             // 
-            // txtSearch
+            // lvwRegister
             // 
-            this.txtSearch.Location = new System.Drawing.Point(833, 83);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(178, 26);
-            this.txtSearch.TabIndex = 35;
-            // 
-            // lvwMain
-            // 
-            this.lvwMain.HideSelection = false;
-            this.lvwMain.Location = new System.Drawing.Point(469, 121);
-            this.lvwMain.Name = "lvwMain";
-            this.lvwMain.Size = new System.Drawing.Size(703, 558);
-            this.lvwMain.TabIndex = 38;
-            this.lvwMain.UseCompatibleStateImageBehavior = false;
+            this.lvwRegister.HideSelection = false;
+            this.lvwRegister.Location = new System.Drawing.Point(469, 99);
+            this.lvwRegister.Name = "lvwRegister";
+            this.lvwRegister.Size = new System.Drawing.Size(703, 264);
+            this.lvwRegister.TabIndex = 0;
+            this.lvwRegister.UseCompatibleStateImageBehavior = false;
+            this.lvwRegister.SelectedIndexChanged += new System.EventHandler(this.lvwRegister_SelectedIndexChanged);
             // 
             // mnuStripListView
             // 
@@ -105,32 +102,6 @@
             this.xóaToolStripMenuItem.Size = new System.Drawing.Size(115, 32);
             this.xóaToolStripMenuItem.Text = "Xóa";
             // 
-            // cboSelectSearch
-            // 
-            this.cboSelectSearch.FormattingEnabled = true;
-            this.cboSelectSearch.Location = new System.Drawing.Point(1033, 82);
-            this.cboSelectSearch.Name = "cboSelectSearch";
-            this.cboSelectSearch.Size = new System.Drawing.Size(69, 28);
-            this.cboSelectSearch.TabIndex = 36;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(740, 89);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 20);
-            this.label2.TabIndex = 33;
-            this.label2.Text = "Tìm kiếm:";
-            // 
-            // lblCountItemListView
-            // 
-            this.lblCountItemListView.AutoSize = true;
-            this.lblCountItemListView.Location = new System.Drawing.Point(1127, 90);
-            this.lblCountItemListView.Name = "lblCountItemListView";
-            this.lblCountItemListView.Size = new System.Drawing.Size(52, 20);
-            this.lblCountItemListView.TabIndex = 37;
-            this.lblCountItemListView.Text = "0 mục";
-            // 
             // dtpBirthday
             // 
             this.dtpBirthday.Enabled = false;
@@ -145,6 +116,7 @@
             this.txtPassNew.Name = "txtPassNew";
             this.txtPassNew.Size = new System.Drawing.Size(179, 26);
             this.txtPassNew.TabIndex = 2;
+            this.txtPassNew.Validating += new System.ComponentModel.CancelEventHandler(this.txtPassNew_Validating);
             // 
             // lblPassNew
             // 
@@ -201,6 +173,7 @@
             this.btnChangePassword.TabIndex = 4;
             this.btnChangePassword.Text = "Đổi Mật Khẩu";
             this.btnChangePassword.UseVisualStyleBackColor = false;
+            this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
             // 
             // txtRePassNew
             // 
@@ -208,6 +181,7 @@
             this.txtRePassNew.Name = "txtRePassNew";
             this.txtRePassNew.Size = new System.Drawing.Size(179, 26);
             this.txtRePassNew.TabIndex = 3;
+            this.txtRePassNew.Validating += new System.ComponentModel.CancelEventHandler(this.txtRePassNew_Validating);
             // 
             // lblRePassNew
             // 
@@ -246,6 +220,7 @@
             this.btnPassGenerator.TabIndex = 5;
             this.btnPassGenerator.Text = "Tự Tạo Mật Khẩu";
             this.btnPassGenerator.UseVisualStyleBackColor = false;
+            this.btnPassGenerator.Click += new System.EventHandler(this.btnPassGenerator_Click);
             // 
             // groupBox1
             // 
@@ -271,6 +246,7 @@
             this.txtPassOld.Name = "txtPassOld";
             this.txtPassOld.Size = new System.Drawing.Size(151, 26);
             this.txtPassOld.TabIndex = 1;
+            this.txtPassOld.Validating += new System.ComponentModel.CancelEventHandler(this.txtPassOld_Validating);
             // 
             // picMinimize
             // 
@@ -293,17 +269,6 @@
             this.picExit.Click += new System.EventHandler(this.picExit_Click);
             this.picExit.MouseLeave += new System.EventHandler(this.picIcon_MouseLeave);
             this.picExit.MouseHover += new System.EventHandler(this.picIcon_MouseHover);
-            // 
-            // cboTypeUser
-            // 
-            this.cboTypeUser.FormattingEnabled = true;
-            this.cboTypeUser.Items.AddRange(new object[] {
-            "Quản Trị Viên",
-            "Học Sinh"});
-            this.cboTypeUser.Location = new System.Drawing.Point(469, 83);
-            this.cboTypeUser.Name = "cboTypeUser";
-            this.cboTypeUser.Size = new System.Drawing.Size(161, 28);
-            this.cboTypeUser.TabIndex = 28;
             // 
             // groupBox2
             // 
@@ -407,7 +372,7 @@
             this.lblWelcome.Location = new System.Drawing.Point(9, 61);
             this.lblWelcome.Name = "lblWelcome";
             this.lblWelcome.Size = new System.Drawing.Size(225, 24);
-            this.lblWelcome.TabIndex = 29;
+            this.lblWelcome.TabIndex = 28;
             this.lblWelcome.Text = "Xin chào Administrator";
             // 
             // pnlTitleBar
@@ -421,18 +386,102 @@
             this.pnlTitleBar.Paint += new System.Windows.Forms.PaintEventHandler(this.frmMain_Paint);
             this.pnlTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlTitleBar_MouseDown);
             // 
+            // lvwRegistered
+            // 
+            this.lvwRegistered.HideSelection = false;
+            this.lvwRegistered.Location = new System.Drawing.Point(469, 417);
+            this.lvwRegistered.Name = "lvwRegistered";
+            this.lvwRegistered.Size = new System.Drawing.Size(703, 264);
+            this.lvwRegistered.TabIndex = 39;
+            this.lvwRegistered.UseCompatibleStateImageBehavior = false;
+            this.lvwRegistered.SelectedIndexChanged += new System.EventHandler(this.lvwRegistered_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(465, 70);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(146, 20);
+            this.label1.TabIndex = 40;
+            this.label1.Text = "Môn Chưa Đăng Ký";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(465, 388);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(129, 20);
+            this.label2.TabIndex = 41;
+            this.label2.Text = "Môn Đã Đăng Ký";
+            // 
+            // txtNameRegister
+            // 
+            this.txtNameRegister.Enabled = false;
+            this.txtNameRegister.Location = new System.Drawing.Point(883, 61);
+            this.txtNameRegister.Name = "txtNameRegister";
+            this.txtNameRegister.Size = new System.Drawing.Size(193, 26);
+            this.txtNameRegister.TabIndex = 42;
+            // 
+            // txtIdRegister
+            // 
+            this.txtIdRegister.Enabled = false;
+            this.txtIdRegister.Location = new System.Drawing.Point(777, 61);
+            this.txtIdRegister.Name = "txtIdRegister";
+            this.txtIdRegister.Size = new System.Drawing.Size(100, 26);
+            this.txtIdRegister.TabIndex = 28;
+            // 
+            // btnRegister
+            // 
+            this.btnRegister.Location = new System.Drawing.Point(1082, 58);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(90, 35);
+            this.btnRegister.TabIndex = 44;
+            this.btnRegister.Text = "Đăng Ký";
+            this.btnRegister.UseVisualStyleBackColor = true;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
+            // 
+            // btnCancelRegister
+            // 
+            this.btnCancelRegister.Location = new System.Drawing.Point(1038, 378);
+            this.btnCancelRegister.Name = "btnCancelRegister";
+            this.btnCancelRegister.Size = new System.Drawing.Size(134, 35);
+            this.btnCancelRegister.TabIndex = 47;
+            this.btnCancelRegister.Text = "Hủy Đăng Ký";
+            this.btnCancelRegister.UseVisualStyleBackColor = true;
+            this.btnCancelRegister.Click += new System.EventHandler(this.btnCancelRegister_Click);
+            // 
+            // txtCancelIdRegister
+            // 
+            this.txtCancelIdRegister.Enabled = false;
+            this.txtCancelIdRegister.Location = new System.Drawing.Point(733, 382);
+            this.txtCancelIdRegister.Name = "txtCancelIdRegister";
+            this.txtCancelIdRegister.Size = new System.Drawing.Size(100, 26);
+            this.txtCancelIdRegister.TabIndex = 45;
+            // 
+            // txtCancelNameRegister
+            // 
+            this.txtCancelNameRegister.Enabled = false;
+            this.txtCancelNameRegister.Location = new System.Drawing.Point(839, 382);
+            this.txtCancelNameRegister.Name = "txtCancelNameRegister";
+            this.txtCancelNameRegister.Size = new System.Drawing.Size(193, 26);
+            this.txtCancelNameRegister.TabIndex = 46;
+            // 
             // frmMainStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1182, 694);
-            this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.lvwMain);
-            this.Controls.Add(this.cboSelectSearch);
+            this.Controls.Add(this.btnCancelRegister);
+            this.Controls.Add(this.txtCancelIdRegister);
+            this.Controls.Add(this.txtCancelNameRegister);
+            this.Controls.Add(this.btnRegister);
+            this.Controls.Add(this.txtIdRegister);
+            this.Controls.Add(this.txtNameRegister);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.lblCountItemListView);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lvwRegistered);
+            this.Controls.Add(this.lvwRegister);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.cboTypeUser);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.picLogout);
             this.Controls.Add(this.lblWelcomeSlogan);
@@ -457,14 +506,9 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.ListView lvwMain;
+        private System.Windows.Forms.ListView lvwRegister;
         private System.Windows.Forms.ContextMenuStrip mnuStripListView;
         private System.Windows.Forms.ToolStripMenuItem xóaToolStripMenuItem;
-        private System.Windows.Forms.ComboBox cboSelectSearch;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblCountItemListView;
         private System.Windows.Forms.DateTimePicker dtpBirthday;
         private System.Windows.Forms.TextBox txtPassNew;
         private System.Windows.Forms.Label lblPassNew;
@@ -482,7 +526,6 @@
         private System.Windows.Forms.TextBox txtPassOld;
         private System.Windows.Forms.PictureBox picMinimize;
         private System.Windows.Forms.PictureBox picExit;
-        private System.Windows.Forms.ComboBox cboTypeUser;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lblFaculty;
         private System.Windows.Forms.Label lblClass;
@@ -494,5 +537,14 @@
         private System.Windows.Forms.Label lblWelcomeSlogan;
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.Panel pnlTitleBar;
+        private System.Windows.Forms.ListView lvwRegistered;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtNameRegister;
+        private System.Windows.Forms.TextBox txtIdRegister;
+        private System.Windows.Forms.Button btnRegister;
+        private System.Windows.Forms.Button btnCancelRegister;
+        private System.Windows.Forms.TextBox txtCancelIdRegister;
+        private System.Windows.Forms.TextBox txtCancelNameRegister;
     }
 }

@@ -84,12 +84,14 @@
     <Compile Include="BUS\ClassBUS.cs" />
     <Compile Include="BUS\CourseBUS.cs" />
     <Compile Include="BUS\FacultyBUS.cs" />
+    <Compile Include="BUS\RegisterSubjectBUS.cs" />
     <Compile Include="BUS\SubjectBUS.cs" />
     <Compile Include="BUS\UserBUS.cs" />
     <Compile Include="Control.cs" />
     <Compile Include="CTO\Class.cs" />
     <Compile Include="CTO\Course.cs" />
     <Compile Include="CTO\Faculty.cs" />
+    <Compile Include="CTO\RegisterSubject.cs" />
     <Compile Include="CTO\Subject.cs" />
     <Compile Include="CTO\User.cs" />
     <Compile Include="DAL\ClassDAL.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="DAL\DatabaseConfig.cs" />
     <Compile Include="DAL\DatabaseUtils.cs" />
     <Compile Include="DAL\FacultyDAL.cs" />
+    <Compile Include="DAL\RegisterSubjectDAL.cs" />
     <Compile Include="DAL\SubjectDAL.cs" />
     <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="GUI\Class.cs">

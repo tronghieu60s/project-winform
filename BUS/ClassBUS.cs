@@ -47,15 +47,7 @@ namespace project_winform.BUS
         {
             lvwClass.Items.Clear();
             foreach (ListViewItem item in lvwClassState.Items)
-            {
                 lvwClass.Items.Add(item.Clone() as ListViewItem);
-                if (lvwClass.Items.Count > 0)
-                {
-                    // Select New Item When Create
-                    lvwClass.Items[0].Selected = true;
-                    lvwClass.Select();
-                }
-            }
         }
 
         public static void RenderListViewWithCourseAndFaculty(ListView lvwClass)

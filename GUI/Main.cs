@@ -154,7 +154,7 @@ namespace project_winform
         /* Logout Button */
         private void picLogout_Click(object sender, EventArgs e)
         {
-           DialogResult result = MessageBox.Show(MessageBoxText.Logout, MessageBoxText.CaptionInformation, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show(MessageBoxText.Logout, MessageBoxText.CaptionInformation, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 File.Delete(Config.fileUserConfig);
@@ -285,8 +285,8 @@ namespace project_winform
             lvwMain.Columns.Clear();
             lvwMain.Columns.Add("Mã Số", 100);
             lvwMain.Columns.Add("Họ Tên", 100);
-            lvwMain.Columns.Add("Ngày Sinh", 70);
-            lvwMain.Columns.Add("Khóa", 50);
+            lvwMain.Columns.Add("Ngày Sinh", 85);
+            lvwMain.Columns.Add("Khóa", 60);
             lvwMain.Columns.Add("Khoa", 90);
             lvwMain.Columns.Add("Lớp", 65);
 
@@ -529,23 +529,24 @@ namespace project_winform
 
         private void lvwMain_SelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach (ListViewItem item in lvwMain.SelectedItems)
-            {
-                string id = item.SubItems[0].Text;
-                txtCodeNum.Text = id.Substring(2, id.Length - 2);
-                txtFullName.Text = item.SubItems[1].Text;
-                dtpBirthday.Value = DateTime.ParseExact(item.SubItems[2].Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                if (UserBUS.TypeSelectUser == Config.typeStudent && item.SubItems.Count > 3)
-                {
-                    cboCourse.SelectedIndex = -1;
-                    cboFaculty.SelectedIndex = -1;
-                    cboClass.SelectedIndex = -1;
+            if (lvwMain.SelectedItems.Count <= 0) return;
 
-                    cboCourse.Text = item.SubItems[3].Text;
-                    cboFaculty.Text = item.SubItems[4].Text;
-                    cboClass.Text = item.SubItems[5].Text;
-                }
+            ListViewItem item = lvwMain.SelectedItems[0];
+            string id = item.SubItems[0].Text;
+            txtCodeNum.Text = id.Substring(2, id.Length - 2);
+            txtFullName.Text = item.SubItems[1].Text;
+            dtpBirthday.Value = DateTime.ParseExact(item.SubItems[2].Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            if (UserBUS.TypeSelectUser == Config.typeStudent && item.SubItems.Count > 3)
+            {
+                cboCourse.SelectedIndex = -1;
+                cboFaculty.SelectedIndex = -1;
+                cboClass.SelectedIndex = -1;
+
+                cboCourse.Text = item.SubItems[3].Text;
+                cboFaculty.Text = item.SubItems[4].Text;
+                cboClass.Text = item.SubItems[5].Text;
             }
+
             SelectListView.SelectListViewColorForMultipleListView(lvwMain);
         }
 

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace project_winform.DAL
 {
-    class SubjectDAL: DatabaseUtils
+    class SubjectDAL : DatabaseUtils
     {
         private static Subject GetSubjectFromDataRow(DataRow subject)
         {
@@ -32,6 +32,28 @@ namespace project_winform.DAL
             return new Subject(idSubject, name, credit, information, lecturerName, startDay, endDay, faculty, course);
         }
 
+        private static Subject GetSubjectRegisterFromDataRow(DataRow subject)
+        {
+            string sStartDay = subject["start_day"].ToString();
+            if (sStartDay.Length > 0) sStartDay = sStartDay.Substring(0, 10);
+            else sStartDay = new DateTime(1900, 1, 1).ToString();
+
+            string sEndDay = subject["end_day"].ToString();
+            if (sEndDay.Length > 0) sEndDay = sEndDay.Substring(0, 10);
+            else sEndDay = new DateTime(1900, 1, 1).ToString();
+
+            string idSubject = subject["id_subjects"].ToString();
+            string name = subject["subject_name"].ToString();
+            int credit = int.Parse(subject["credit"].ToString());
+            string information = subject["information"].ToString();
+            string lecturerName = subject["lecturer_name"].ToString();
+            DateTime startDay = DateTime.Parse(sStartDay);
+            DateTime endDay = DateTime.Parse(sEndDay);
+            Faculty faculty = new Faculty(subject["id_faculty"].ToString(), "");
+            Course course = new Course(subject["id_course"].ToString(), "");
+            return new Subject(idSubject, name, credit, information, lecturerName, startDay, endDay, faculty, course);
+        }
+
         public static List<Subject> GetSubjects()
         {
             try
@@ -46,6 +68,31 @@ namespace project_winform.DAL
                 List<Subject> subjectList = new List<Subject>();
                 foreach (DataRow subject in subjectsData.Tables[0].Rows)
                     subjectList.Add(GetSubjectFromDataRow(subject));
+                return subjectList;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return null;
+        }
+
+        public static List<Subject> GetSubjectsWithRegisterIdUser(string id_user)
+        {
+            try
+            {
+                DataSet subjectsData = new DataSet();
+                MySqlCommand command = connectDB.CreateCommand();
+                command.CommandText = "SELECT * FROM `registers_user_subject` LEFT JOIN `users` ON `users`.`id_user` = `registers_user_subject`.`id_user` LEFT JOIN `subjects` ON `subjects`.`id_subjects` = `registers_user_subject`.`id_subject` WHERE `registers_user_subject`.`id_user` = @id_user ORDER BY `registers_user_subject`.`date` DESC";
+                command.Parameters.Add(new MySqlParameter("@id_user", id_user));
+
+                MySqlDataAdapter sqlData = new MySqlDataAdapter(command);
+                sqlData.Fill(subjectsData);
+
+                List<Subject> subjectList = new List<Subject>();
+                foreach (DataRow subject in subjectsData.Tables[0].Rows)
+                    subjectList.Add(GetSubjectRegisterFromDataRow(subject));
                 return subjectList;
             }
             catch (Exception)
