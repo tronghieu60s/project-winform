@@ -99,6 +99,8 @@ namespace project_winform
 
             SelectTypeUser();
 
+            lblWelcome.Text = "Xin chào ADMIN " + Control.userLogin.Name;
+
             // Load Initial Config
             FormSetup.FormLoad(this);
         }
