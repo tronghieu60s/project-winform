@@ -98,7 +98,7 @@
             // 
             // txtClassName
             // 
-            this.txtClassName.ForeColor = System.Drawing.Color.Transparent;
+            this.txtClassName.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtClassName.Location = new System.Drawing.Point(155, 115);
             this.txtClassName.Name = "txtClassName";
             this.txtClassName.Size = new System.Drawing.Size(216, 26);
