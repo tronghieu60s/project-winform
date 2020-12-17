@@ -160,7 +160,7 @@ namespace project_winform.DAL
                 MySqlCommand command = connectDB.CreateCommand();
                 command.CommandText = "updateSubjectWithId";
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new MySqlParameter("@id_subjects", subject.IdSubject));
+                command.Parameters.Add(new MySqlParameter("@v_id_subjects", subject.IdSubject));
                 command.Parameters.Add(new MySqlParameter("@subject_name", subject.Name));
                 command.Parameters.Add(new MySqlParameter("@credit", subject.Credit));
                 command.Parameters.Add(new MySqlParameter("@information", subject.Information));

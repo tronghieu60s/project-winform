@@ -132,7 +132,7 @@ namespace project_winform.DAL
                 Class classModel = user.ClassModel;
                 command.CommandText = "updateUserFromAdminWithId";
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new MySqlParameter("@id_user", user.IdUser));
+                command.Parameters.Add(new MySqlParameter("@v_id_user", user.IdUser));
                 command.Parameters.Add(new MySqlParameter("@name", user.Name));
                 command.Parameters.Add(new MySqlParameter("@birthday", user.Birthday));
                 command.Parameters.Add(new MySqlParameter("@id_class", classModel?.IdClass));

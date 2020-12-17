@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 08, 2020 lúc 01:18 PM
+-- Thời gian đã tạo: Th12 17, 2020 lúc 11:21 AM
 -- Phiên bản máy phục vụ: 10.4.11-MariaDB
 -- Phiên bản PHP: 7.4.2
 
@@ -21,6 +21,94 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `quanlysinhvien`
 --
+
+DELIMITER $$
+--
+-- Thủ tục
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createClass` (IN `id_class` VARCHAR(10), IN `id_course` VARCHAR(10), IN `id_faculty` VARCHAR(10), IN `class_name` VARCHAR(100))  NO SQL
+INSERT INTO `classes`(`id_class`, `id_course`, `id_faculty`, `class_name`) VALUES (id_class, id_course, id_faculty, class_name)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createCourse` (IN `id_course` VARCHAR(10), IN `course_name` VARCHAR(100))  NO SQL
+INSERT INTO `courses`(`id_course`, `course_name`) VALUES (id_course, course_name)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createFaculty` (IN `id_faculty` VARCHAR(10), IN `faculty_name` VARCHAR(100))  NO SQL
+INSERT INTO `faculties`(`id_faculty`, `faculty_name`) VALUES (id_faculty, faculty_name)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createRegisterSubject` (IN `id_user` VARCHAR(10), IN `id_subject` VARCHAR(10))  NO SQL
+INSERT INTO `registers_user_subject`(`id_user`, `id_subject`) VALUES (id_user, id_subject)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createSubject` (IN `id_subjects` VARCHAR(10), IN `subject_name` VARCHAR(100), IN `credit` INT, IN `information` TEXT, IN `lecturer_name` VARCHAR(200), IN `start_day` DATETIME, IN `end_day` DATETIME, IN `id_course` VARCHAR(10), IN `id_faculty` VARCHAR(10))  NO SQL
+INSERT INTO `subjects`(`id_subjects`, `subject_name`, `credit`, `information`, `lecturer_name`, `start_day`, `end_day`, `id_course`, `id_faculty`) VALUES (id_subjects, subject_name, credit, information, lecturer_name, start_day, end_day, id_course, id_faculty)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createUser` (IN `id_user` VARCHAR(10), IN `textpassword` TEXT, IN `name` VARCHAR(100), IN `birthday` DATE, IN `id_class` VARCHAR(10))  NO SQL
+INSERT INTO `users`(`id_user`, `password`, `name`, `birthday`, `id_class`) VALUES (id_user, textpassword, name, birthday, id_class)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteClassWithId` (IN `id_class` VARCHAR(10))  NO SQL
+DELETE FROM `classes` WHERE `classes`.`id_class` = id_class$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteCourseWithId` (IN `id_course` VARCHAR(10))  NO SQL
+DELETE FROM `courses` WHERE `courses`.`id_course` = id_course$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteFacultyWithId` (IN `id_faculty` VARCHAR(10))  NO SQL
+DELETE FROM `faculties` WHERE `faculties`.`id_faculty` = id_faculty$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteRegisterSubjectWithId` (IN `id_userFROM ``registers_user_subject`` WHERE ``registers_user_subject``.``id_user`` = @id_user AND ``registers_user_subject``.``id_subject`` = @id_subject` VARCHAR(10), IN `id_subject` VARCHAR(10))  NO SQL
+DELETE FROM `registers_user_subject` WHERE `registers_user_subject`.`id_user` = id_user AND `registers_user_subject`.`id_subject` = id_subject$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteSubjectWithId` (IN `id_subjects` VARCHAR(10))  NO SQL
+DELETE FROM `subjects` WHERE `subjects`.`id_subjects` = id_subjects$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteUserWithId` (IN `id_user` VARCHAR(10))  NO SQL
+DELETE FROM `users` WHERE `users`.`id_user` = id_user$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getClasses` ()  BEGIN 
+SELECT * FROM `classes` LEFT JOIN `faculties` ON `faculties`.`id_faculty`= `classes`.`id_faculty` LEFT JOIN `courses` ON `courses`.`id_course` = `classes`.`id_course` ORDER BY `classes`.`date` DESC; 
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getClassesWithIdCourseAndIdFaculty` (IN `id_course` VARCHAR(10), IN `id_faculty` VARCHAR(10))  NO SQL
+SELECT * FROM `classes` LEFT JOIN `courses` ON `courses`.`id_course` = `classes`.`id_course` LEFT JOIN `faculties` ON `faculties`.`id_faculty` = `classes`.`id_faculty` WHERE `courses`.`id_course` = id_course AND `faculties`.`id_faculty` = id_faculty$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getClassWithClassName` (IN `class_name` VARCHAR(100))  NO SQL
+SELECT * FROM `classes` LEFT JOIN `courses` ON `courses`.`id_course` = `classes`.`id_course` LEFT JOIN `faculties` ON `faculties`.`id_faculty` = `classes`.`id_faculty` WHERE `classes`.`class_name` = class_name$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getCourses` ()  NO SQL
+SELECT * FROM `courses` ORDER BY date DESC$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getFaculties` ()  NO SQL
+SELECT * FROM `faculties` ORDER BY date DESC$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getSubjects` ()  NO SQL
+SELECT * FROM `subjects` LEFT JOIN `courses` ON `courses`.`id_course` = `subjects`.`id_course` LEFT JOIN `faculties` ON `faculties`.`id_faculty` = `subjects`.`id_faculty` ORDER BY `subjects`.`date` DESC$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getSubjectsWithRegisterIdUser` (IN `id_user` VARCHAR(10))  NO SQL
+SELECT * FROM `registers_user_subject` LEFT JOIN `users` ON `users`.`id_user` = `registers_user_subject`.`id_user` LEFT JOIN `subjects` ON `subjects`.`id_subjects` = `registers_user_subject`.`id_subject` WHERE `registers_user_subject`.`id_user` = id_user ORDER BY `registers_user_subject`.`date` DESC$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getUsers` ()  NO SQL
+SELECT * FROM `users` LEFT JOIN `classes` ON `classes`.`id_class`= `users`.`id_class` LEFT JOIN `courses` ON `courses`.`id_course` = `classes`.`id_course` LEFT JOIN `faculties` ON `faculties`.`id_faculty` = `classes`.`id_faculty` ORDER BY `users`.`date` DESC$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getUserWithId` (IN `id_user` VARCHAR(10))  NO SQL
+SELECT *  FROM `users` LEFT JOIN `classes` ON `classes`.`id_class`= `users`.`id_class` LEFT JOIN `courses` ON `courses`.`id_course` = `classes`.`id_course` LEFT JOIN `faculties` ON `faculties`.`id_faculty` = `classes`.`id_faculty` WHERE `users`.`id_user` = id_user$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateClassWithId` (IN `v_id_class` VARCHAR(10), IN `id_course` VARCHAR(10), IN `id_faculty` VARCHAR(10), IN `class_name` VARCHAR(100))  NO SQL
+UPDATE `classes` SET `id_course`= id_course,`id_faculty`= id_faculty,`class_name`= class_name WHERE `id_class`= v_id_class$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateCourseWithId` (IN `v_id_course` VARCHAR(10), IN `course_name` VARCHAR(100))  NO SQL
+UPDATE `courses` SET `course_name`= course_name WHERE `id_course`= v_id_course$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateFacultyWithId` (IN `v_id_faculty` VARCHAR(10), IN `faculty_name` VARCHAR(100))  NO SQL
+UPDATE `faculties` SET `faculty_name`= faculty_name WHERE `id_faculty` = v_id_faculty$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateSubjectWithId` (IN `v_id_subjects` INT(10), IN `subject_name` VARCHAR(100), IN `credit` INT, IN `information` TEXT, IN `lecturer_name` VARCHAR(200), IN `start_day` DATETIME, IN `end_day` DATETIME, IN `id_course` VARCHAR(10), IN `id_faculty` VARCHAR(10))  NO SQL
+UPDATE `subjects` SET `subject_name`= subject_name,`credit`= credit,`information`= information,`lecturer_name`= lecturer_name,`start_day`= start_day,`end_day`= end_day,`id_course`= id_course,`id_faculty`= id_faculty WHERE `subjects`.`id_subjects` = v_id_subjects$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateUserFromAdminWithId` (IN `v_id_user` VARCHAR(10), IN `name` VARCHAR(100), IN `birthday` DATE, IN `id_class` VARCHAR(10))  NO SQL
+UPDATE `users` SET `name`= name,`birthday`= birthday, `id_class`= id_class WHERE `id_user`= v_id_user$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateUserWithId` (IN `v_id_user` VARCHAR(10), IN `textpassword` TEXT, IN `name` VARCHAR(100), IN `birthday` DATE, IN `id_class` VARCHAR(10))  NO SQL
+UPDATE `users` SET `password`= textpassword, `name`= name,`birthday`= birthday, `id_class`= id_class WHERE `id_user`= v_id_user$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -124,6 +212,7 @@ CREATE TABLE `registers_user_subject` (
 
 INSERT INTO `registers_user_subject` (`id_user`, `id_subject`, `date`) VALUES
 ('SD22440', 'SJ2', 2147483647);
+
 
 -- --------------------------------------------------------
 

@@ -78,7 +78,7 @@ namespace project_winform.DAL
                 MySqlCommand command = connectDB.CreateCommand();
                 command.CommandText = "updateCourseWithId";
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new MySqlParameter("@id_course", course.IdCourse));
+                command.Parameters.Add(new MySqlParameter("@v_id_course", course.IdCourse));
                 command.Parameters.Add(new MySqlParameter("@course_name", course.Name));
                 int result = command.ExecuteNonQuery();
                 if (result == 1)

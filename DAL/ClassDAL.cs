@@ -151,7 +151,7 @@ namespace project_winform.DAL
                 MySqlCommand command = connectDB.CreateCommand();
                 command.CommandText = "updateClassWithId";
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new MySqlParameter("@id_class", classModel.IdClass));
+                command.Parameters.Add(new MySqlParameter("@v_id_class", classModel.IdClass));
                 command.Parameters.Add(new MySqlParameter("@id_course", classModel.Course.IdCourse));
                 command.Parameters.Add(new MySqlParameter("@id_faculty", classModel.Faculty.IdFaculty));
                 command.Parameters.Add(new MySqlParameter("@class_name", classModel.Name));
