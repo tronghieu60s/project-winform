@@ -60,7 +60,8 @@ namespace project_winform.DAL
             {
                 DataSet subjectsData = new DataSet();
                 MySqlCommand command = connectDB.CreateCommand();
-                command.CommandText = "SELECT * FROM `subjects` LEFT JOIN `courses` ON `courses`.`id_course` = `subjects`.`id_course` LEFT JOIN `faculties` ON `faculties`.`id_faculty` = `subjects`.`id_faculty` ORDER BY `subjects`.`date` DESC";
+                command.CommandText = "getSubjects";
+                command.CommandType = CommandType.StoredProcedure;
 
                 MySqlDataAdapter sqlData = new MySqlDataAdapter(command);
                 sqlData.Fill(subjectsData);
@@ -84,7 +85,8 @@ namespace project_winform.DAL
             {
                 DataSet subjectsData = new DataSet();
                 MySqlCommand command = connectDB.CreateCommand();
-                command.CommandText = "SELECT * FROM `registers_user_subject` LEFT JOIN `users` ON `users`.`id_user` = `registers_user_subject`.`id_user` LEFT JOIN `subjects` ON `subjects`.`id_subjects` = `registers_user_subject`.`id_subject` WHERE `registers_user_subject`.`id_user` = @id_user ORDER BY `registers_user_subject`.`date` DESC";
+                command.CommandText = "getSubjectsWithRegisterIdUser";
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new MySqlParameter("@id_user", id_user));
 
                 MySqlDataAdapter sqlData = new MySqlDataAdapter(command);
@@ -108,7 +110,8 @@ namespace project_winform.DAL
             try
             {
                 MySqlCommand command = connectDB.CreateCommand();
-                command.CommandText = "INSERT INTO `subjects`(`id_subjects`, `subject_name`, `credit`, `information`, `lecturer_name`, `start_day`, `end_day`, `id_course`, `id_faculty`) VALUES (@id_subjects, @subject_name, @credit, @information, @lecturer_name, @start_day, @end_day, @id_course, @id_faculty)";
+                command.CommandText = "createSubject";
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new MySqlParameter("@id_subjects", subject.IdSubject));
                 command.Parameters.Add(new MySqlParameter("@subject_name", subject.Name));
                 command.Parameters.Add(new MySqlParameter("@credit", subject.Credit));
@@ -135,7 +138,8 @@ namespace project_winform.DAL
             try
             {
                 MySqlCommand command = connectDB.CreateCommand();
-                command.CommandText = "DELETE FROM `subjects` WHERE `subjects`.`id_subjects` = @id_subjects";
+                command.CommandText = "deleteSubjectWithId";
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new MySqlParameter("@id_subjects", id_subject));
                 int result = command.ExecuteNonQuery();
                 if (result == 1)
@@ -154,7 +158,8 @@ namespace project_winform.DAL
             try
             {
                 MySqlCommand command = connectDB.CreateCommand();
-                command.CommandText = "UPDATE `subjects` SET `subject_name`= @subject_name,`credit`= @credit,`information`= @information,`lecturer_name`= @lecturer_name,`start_day`= @start_day,`end_day`= @end_day,`id_course`= @id_course,`id_faculty`= @id_faculty WHERE `subjects`.`id_subjects` = @id_subjects";
+                command.CommandText = "updateSubjectWithId";
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new MySqlParameter("@id_subjects", subject.IdSubject));
                 command.Parameters.Add(new MySqlParameter("@subject_name", subject.Name));
                 command.Parameters.Add(new MySqlParameter("@credit", subject.Credit));

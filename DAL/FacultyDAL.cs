@@ -4,9 +4,6 @@ using project_winform.src.constants;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace project_winform.DAL
@@ -17,7 +14,8 @@ namespace project_winform.DAL
         {
             DataSet facultiesData = new DataSet();
             MySqlCommand command = connectDB.CreateCommand();
-            command.CommandText = "SELECT * FROM `faculties` ORDER BY date DESC";
+            command.CommandText = "getFaculties";
+            command.CommandType = CommandType.StoredProcedure;
 
             MySqlDataAdapter sqlData = new MySqlDataAdapter(command);
             sqlData.Fill(facultiesData);
@@ -37,7 +35,8 @@ namespace project_winform.DAL
             try
             {
                 MySqlCommand command = connectDB.CreateCommand();
-                command.CommandText = "INSERT INTO `faculties`(`id_faculty`, `faculty_name`) VALUES (@id_faculty, @faculty_name)";
+                command.CommandText = "createFaculty";
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new MySqlParameter("@id_faculty", faculty.IdFaculty));
                 command.Parameters.Add(new MySqlParameter("@faculty_name", faculty.Name));
                 int result = command.ExecuteNonQuery();
@@ -57,7 +56,8 @@ namespace project_winform.DAL
             try
             {
                 MySqlCommand command = connectDB.CreateCommand();
-                command.CommandText = "DELETE FROM `faculties` WHERE `faculties`.`id_faculty` = @id_faculty";
+                command.CommandText = "deleteFacultyWithId";
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new MySqlParameter("@id_faculty", id_faculty));
                 int result = command.ExecuteNonQuery();
                 if (result == 1)
@@ -76,7 +76,8 @@ namespace project_winform.DAL
             try
             {
                 MySqlCommand command = connectDB.CreateCommand();
-                command.CommandText = "UPDATE `faculties` SET `faculty_name`= @faculty_name WHERE `id_faculty` = @id_faculty";
+                command.CommandText = "updateFacultyWithId";
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new MySqlParameter("@id_faculty", faculty.IdFaculty));
                 command.Parameters.Add(new MySqlParameter("@faculty_name", faculty.Name));
                 int result = command.ExecuteNonQuery();

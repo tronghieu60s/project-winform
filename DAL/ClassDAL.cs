@@ -23,7 +23,8 @@ namespace project_winform.DAL
             {
                 DataSet classesData = new DataSet();
                 MySqlCommand command = connectDB.CreateCommand();
-                command.CommandText = "SELECT * FROM `classes` LEFT JOIN `faculties` ON `faculties`.`id_faculty`= `classes`.`id_faculty` LEFT JOIN `courses` ON `courses`.`id_course` = `classes`.`id_course` ORDER BY `classes`.`date` DESC";
+                command.CommandText = "getClasses";
+                command.CommandType = CommandType.StoredProcedure;
 
                 MySqlDataAdapter sqlData = new MySqlDataAdapter(command);
                 sqlData.Fill(classesData);
@@ -47,7 +48,8 @@ namespace project_winform.DAL
             {
                 DataSet usersData = new DataSet();
                 MySqlCommand command = connectDB.CreateCommand();
-                command.CommandText = "SELECT * FROM `classes` LEFT JOIN `courses` ON `courses`.`id_course` = `classes`.`id_course` LEFT JOIN `faculties` ON `faculties`.`id_faculty` = `classes`.`id_faculty` WHERE `classes`.`class_name` = @class_name";
+                command.CommandText = "getClassWithClassName";
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new MySqlParameter("@class_name", class_name));
 
                 MySqlDataAdapter sqlData = new MySqlDataAdapter(command);
@@ -72,7 +74,8 @@ namespace project_winform.DAL
             {
                 DataSet classesData = new DataSet();
                 MySqlCommand command = connectDB.CreateCommand();
-                command.CommandText = "SELECT * FROM `classes` LEFT JOIN `courses` ON `courses`.`id_course` = `classes`.`id_course` LEFT JOIN `faculties` ON `faculties`.`id_faculty` = `classes`.`id_faculty` WHERE `courses`.`id_course` = @id_course AND `faculties`.`id_faculty` = @id_faculty";
+                command.CommandText = "getClassesWithIdCourseAndIdFaculty";
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new MySqlParameter("@id_course", id_course));
                 command.Parameters.Add(new MySqlParameter("@id_faculty", id_faculty));
 
@@ -103,7 +106,8 @@ namespace project_winform.DAL
             try
             {
                 MySqlCommand command = connectDB.CreateCommand();
-                command.CommandText = "INSERT INTO `classes`(`id_class`, `id_course`, `id_faculty`, `class_name`) VALUES (@id_class, @id_course, @id_faculty, @class_name)";
+                command.CommandText = "createClass";
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new MySqlParameter("@id_class", classModel.IdClass));
                 command.Parameters.Add(new MySqlParameter("@id_course", classModel.Course.IdCourse));
                 command.Parameters.Add(new MySqlParameter("@id_faculty", classModel.Faculty.IdFaculty));
@@ -125,7 +129,8 @@ namespace project_winform.DAL
             try
             {
                 MySqlCommand command = connectDB.CreateCommand();
-                command.CommandText = "DELETE FROM `classes` WHERE `classes`.`id_class` = @id_class";
+                command.CommandText = "deleteClassWithId";
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new MySqlParameter("@id_class", id_class));
                 int result = command.ExecuteNonQuery();
                 if (result == 1)
@@ -144,7 +149,8 @@ namespace project_winform.DAL
             try
             {
                 MySqlCommand command = connectDB.CreateCommand();
-                command.CommandText = "UPDATE `classes` SET `id_course`= @id_course,`id_faculty`= @id_faculty,`class_name`= @class_name WHERE `id_class`= @id_class";
+                command.CommandText = "updateClassWithId";
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new MySqlParameter("@id_class", classModel.IdClass));
                 command.Parameters.Add(new MySqlParameter("@id_course", classModel.Course.IdCourse));
                 command.Parameters.Add(new MySqlParameter("@id_faculty", classModel.Faculty.IdFaculty));

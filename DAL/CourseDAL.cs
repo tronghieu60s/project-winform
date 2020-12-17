@@ -14,7 +14,8 @@ namespace project_winform.DAL
         {
             DataSet coursesData = new DataSet();
             MySqlCommand command = connectDB.CreateCommand();
-            command.CommandText = "SELECT * FROM `courses` ORDER BY date DESC";
+            command.CommandText = "getCourses";
+            command.CommandType = CommandType.StoredProcedure;
 
             MySqlDataAdapter sqlData = new MySqlDataAdapter(command);
             sqlData.Fill(coursesData);
@@ -34,7 +35,8 @@ namespace project_winform.DAL
             try
             {
                 MySqlCommand command = connectDB.CreateCommand();
-                command.CommandText = "INSERT INTO `courses`(`id_course`, `course_name`) VALUES (@id_course, @course_name)";
+                command.CommandText = "createCourse";
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new MySqlParameter("@id_course", course.IdCourse));
                 command.Parameters.Add(new MySqlParameter("@course_name", course.Name));
                 int result = command.ExecuteNonQuery();
@@ -54,7 +56,8 @@ namespace project_winform.DAL
             try
             {
                 MySqlCommand command = connectDB.CreateCommand();
-                command.CommandText = "DELETE FROM `courses` WHERE `courses`.`id_course` = @id_course";
+                command.CommandText = "deleteCourseWithId";
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new MySqlParameter("@id_course", id_course));
                 int result = command.ExecuteNonQuery();
                 if (result == 1)
@@ -73,7 +76,8 @@ namespace project_winform.DAL
             try
             {
                 MySqlCommand command = connectDB.CreateCommand();
-                command.CommandText = "UPDATE `courses` SET `course_name`= @course_name WHERE `id_course`= @id_course";
+                command.CommandText = "updateCourseWithId";
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new MySqlParameter("@id_course", course.IdCourse));
                 command.Parameters.Add(new MySqlParameter("@course_name", course.Name));
                 int result = command.ExecuteNonQuery();

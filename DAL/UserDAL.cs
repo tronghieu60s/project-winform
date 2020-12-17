@@ -34,8 +34,8 @@ namespace project_winform.DAL
             {
                 DataSet usersData = new DataSet();
                 MySqlCommand command = connectDB.CreateCommand();
-                command.CommandText = "SELECT * FROM `users` LEFT JOIN `classes` ON `classes`.`id_class`= `users`.`id_class` LEFT JOIN `courses` ON `courses`.`id_course` = `classes`.`id_course` LEFT JOIN `faculties` ON `faculties`.`id_faculty` = `classes`.`id_faculty` ORDER BY `users`.`date` DESC";
-                // command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "getUsers";
+                command.CommandType = CommandType.StoredProcedure;
 
                 MySqlDataAdapter sqlData = new MySqlDataAdapter(command);
                 sqlData.Fill(usersData);
@@ -59,7 +59,8 @@ namespace project_winform.DAL
             {
                 DataSet usersData = new DataSet();
                 MySqlCommand command = connectDB.CreateCommand();
-                command.CommandText = "SELECT *  FROM `users` LEFT JOIN `classes` ON `classes`.`id_class`= `users`.`id_class` LEFT JOIN `courses` ON `courses`.`id_course` = `classes`.`id_course` LEFT JOIN `faculties` ON `faculties`.`id_faculty` = `classes`.`id_faculty` WHERE `users`.`id_user` = @id_user";
+                command.CommandText = "getUserWithId";
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new MySqlParameter("@id_user", id));
 
                 MySqlDataAdapter sqlData = new MySqlDataAdapter(command);
@@ -84,7 +85,8 @@ namespace project_winform.DAL
             {
                 MySqlCommand command = connectDB.CreateCommand();
                 Class classModel = user.ClassModel;
-                command.CommandText = "INSERT INTO `users`(`id_user`, `password`, `name`, `birthday`, `id_class`) VALUES (@id_user, @password, @name, @birthday, @id_class)";
+                command.CommandText = "createUser";
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new MySqlParameter("@id_user", user.IdUser));
                 command.Parameters.Add(new MySqlParameter("@password", Password.HashPassword(user.Password)));
                 command.Parameters.Add(new MySqlParameter("@name", user.Name));
@@ -107,7 +109,8 @@ namespace project_winform.DAL
             try
             {
                 MySqlCommand command = connectDB.CreateCommand();
-                command.CommandText = "DELETE FROM `users` WHERE `users`.`id_user` = @id_user";
+                command.CommandText = "deleteUserWithId";
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new MySqlParameter("@id_user", id_user));
                 int result = command.ExecuteNonQuery();
                 if (result == 1)
@@ -127,7 +130,8 @@ namespace project_winform.DAL
             {
                 MySqlCommand command = connectDB.CreateCommand();
                 Class classModel = user.ClassModel;
-                command.CommandText = "UPDATE `users` SET `name`= @name,`birthday`= @birthday, `id_class`= @id_class WHERE `id_user`= @id_user";
+                command.CommandText = "updateUserFromAdminWithId";
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new MySqlParameter("@id_user", user.IdUser));
                 command.Parameters.Add(new MySqlParameter("@name", user.Name));
                 command.Parameters.Add(new MySqlParameter("@birthday", user.Birthday));
@@ -150,7 +154,8 @@ namespace project_winform.DAL
             {
                 MySqlCommand command = connectDB.CreateCommand();
                 Class classModel = user.ClassModel;
-                command.CommandText = "UPDATE `users` SET `password`= @password, `name`= @name,`birthday`= @birthday, `id_class`= @id_class WHERE `id_user`= @id_user";
+                command.CommandText = "updateUserWithId";
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new MySqlParameter("@id_user", user.IdUser));
                 command.Parameters.Add(new MySqlParameter("@password", user.Password));
                 command.Parameters.Add(new MySqlParameter("@name", user.Name));
