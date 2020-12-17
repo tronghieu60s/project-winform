@@ -88,7 +88,7 @@ namespace project_winform.DAL
                 command.CommandText = "createUser";
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new MySqlParameter("@id_user", user.IdUser));
-                command.Parameters.Add(new MySqlParameter("@password", Password.HashPassword(user.Password)));
+                command.Parameters.Add(new MySqlParameter("@textpassword", Password.HashPassword(user.Password)));
                 command.Parameters.Add(new MySqlParameter("@name", user.Name));
                 command.Parameters.Add(new MySqlParameter("@birthday", user.Birthday));
                 command.Parameters.Add(new MySqlParameter("@id_class", classModel?.IdClass));
@@ -156,8 +156,8 @@ namespace project_winform.DAL
                 Class classModel = user.ClassModel;
                 command.CommandText = "updateUserWithId";
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new MySqlParameter("@id_user", user.IdUser));
-                command.Parameters.Add(new MySqlParameter("@password", user.Password));
+                command.Parameters.Add(new MySqlParameter("@v_id_user", user.IdUser));
+                command.Parameters.Add(new MySqlParameter("@textpassword", user.Password));
                 command.Parameters.Add(new MySqlParameter("@name", user.Name));
                 command.Parameters.Add(new MySqlParameter("@birthday", user.Birthday));
                 command.Parameters.Add(new MySqlParameter("@id_class", classModel.IdClass.Length > 0 ? classModel?.IdClass : null));
