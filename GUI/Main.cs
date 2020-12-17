@@ -81,9 +81,9 @@ namespace project_winform
             btnAdd.BackColor = ColorTheme.getTheme("primary");
             btnDelete.BackColor = ColorTheme.getTheme("danger");
             btnUpdate.BackColor = ColorTheme.getTheme("warning");
-            btnAddCourse.BackColor = ColorTheme.getTheme("primary");
-            btnAddFaculty.BackColor = ColorTheme.getTheme("primary");
-            btnAddClass.BackColor = ColorTheme.getTheme("primary");
+            btnAddCourse.BackColor = ColorTheme.getTheme("warning");
+            btnAddFaculty.BackColor = ColorTheme.getTheme("success");
+            btnAddClass.BackColor = ColorTheme.getTheme("danger");
             btnAction.BackColor = ColorTheme.getTheme("primary");
             btnChangePassword.BackColor = ColorTheme.getTheme("primary");
             btnPassGenerator.BackColor = ColorTheme.getTheme("success");
