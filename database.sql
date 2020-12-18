@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 17, 2020 lúc 11:21 AM
+-- Thời gian đã tạo: Th12 18, 2020 lúc 02:40 AM
 -- Phiên bản máy phục vụ: 10.4.11-MariaDB
 -- Phiên bản PHP: 7.4.2
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `quanlysinhvien`
+-- Cơ sở dữ liệu: `studentsmanagement`
 --
 
 DELIMITER $$
@@ -99,8 +99,9 @@ UPDATE `courses` SET `course_name`= course_name WHERE `id_course`= v_id_course$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateFacultyWithId` (IN `v_id_faculty` VARCHAR(10), IN `faculty_name` VARCHAR(100))  NO SQL
 UPDATE `faculties` SET `faculty_name`= faculty_name WHERE `id_faculty` = v_id_faculty$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateSubjectWithId` (IN `v_id_subjects` INT(10), IN `subject_name` VARCHAR(100), IN `credit` INT, IN `information` TEXT, IN `lecturer_name` VARCHAR(200), IN `start_day` DATETIME, IN `end_day` DATETIME, IN `id_course` VARCHAR(10), IN `id_faculty` VARCHAR(10))  NO SQL
-UPDATE `subjects` SET `subject_name`= subject_name,`credit`= credit,`information`= information,`lecturer_name`= lecturer_name,`start_day`= start_day,`end_day`= end_day,`id_course`= id_course,`id_faculty`= id_faculty WHERE `subjects`.`id_subjects` = v_id_subjects$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateSubjectWithId` (IN `v_id_subjects` VARCHAR(10), IN `subject_name` VARCHAR(100), IN `credit` INT, IN `information` TEXT, IN `lecturer_name` VARCHAR(200), IN `start_day` DATETIME, IN `end_day` DATETIME, IN `id_course` VARCHAR(10), IN `id_faculty` VARCHAR(10))  NO SQL
+UPDATE `subjects` SET `subject_name`= subject_name,`credit`= credit,`information`= information,`lecturer_name`= lecturer_name,`start_day`= start_day,`end_day`= end_day,`id_course`= id_course,`id_faculty`= id_faculty
+WHERE `id_subjects` = v_id_subjects$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateUserFromAdminWithId` (IN `v_id_user` VARCHAR(10), IN `name` VARCHAR(100), IN `birthday` DATE, IN `id_class` VARCHAR(10))  NO SQL
 UPDATE `users` SET `name`= name,`birthday`= birthday, `id_class`= id_class WHERE `id_user`= v_id_user$$
@@ -129,6 +130,7 @@ CREATE TABLE `classes` (
 --
 
 INSERT INTO `classes` (`id_class`, `id_course`, `id_faculty`, `class_name`, `date`) VALUES
+('CD18TN3', 'K18', 'FA03', 'CD18TN3', 2147483647),
 ('CD19TA1', 'K19', 'FA01', 'CD19TA1', 2147483647),
 ('CD19TA2', 'K19', 'FA01', 'CD19TA2', 2147483647),
 ('CD19TA3', 'K19', 'FA01', 'CD19TA3', 2147483647),
@@ -139,9 +141,6 @@ INSERT INTO `classes` (`id_class`, `id_course`, `id_faculty`, `class_name`, `dat
 ('CD19TH3', 'K19', 'FA02', 'CD19TH3', 2147483647),
 ('CD19TH4', 'K19', 'FA02', 'CD19TH4', 2147483647),
 ('CD19TN1', 'K19', 'FA03', 'CD19TN1', 2147483647),
-('CD19TN2', 'K19', 'FA03', 'CD19TN2', 2147483647),
-('CD20TA1', 'K20', 'FA01', 'CD20TA1', 2147483647),
-('CD20TA2', 'K20', 'FA01', 'CD20TA2', 2147483647),
 ('CD20TA3', 'K20', 'FA01', 'CD20TA3', 2147483647),
 ('CD20TH1', 'K20', 'FA02', 'CD20TH1', 2147483647),
 ('CD20TH3', 'K20', 'FA02', 'CD20TH3', 2147483647),
@@ -206,14 +205,6 @@ CREATE TABLE `registers_user_subject` (
   `date` int(11) NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Đang đổ dữ liệu cho bảng `registers_user_subject`
---
-
-INSERT INTO `registers_user_subject` (`id_user`, `id_subject`, `date`) VALUES
-('SD22440', 'SJ2', 2147483647);
-
-
 -- --------------------------------------------------------
 
 --
@@ -238,8 +229,9 @@ CREATE TABLE `subjects` (
 --
 
 INSERT INTO `subjects` (`id_subjects`, `subject_name`, `credit`, `information`, `lecturer_name`, `start_day`, `end_day`, `id_course`, `id_faculty`, `date`) VALUES
-('SJ1', 'Tiếng Anh Cơ Bản', 3, 'Thứ Hai, 07h00 - 12h00, B102B, 53 Võ Văn Ngân, P.Linh Chiểu, Q.Thủ Đức, TpHCM', 'Trần Dần', '2020-12-06 00:00:00', '2020-12-06 00:00:00', 'K20', 'FA01', 2147483647),
-('SJ2', 'Tiếng Anh Giao Tiếp', 3, 'Thứ Hai, 15h25 - 17h40, A113, 53 Võ Văn Ngân, P.Linh Chiểu, Q.Thủ Đức, TpHCM', 'Khá Bảnh', '2020-12-06 00:00:00', '2020-12-06 00:00:00', 'K20', 'FA01', 2147483647);
+('43224', '', 0, '', '', '2020-12-18 00:00:00', '2020-12-18 00:00:00', 'K18', 'FA01', 2147483647),
+('dfgfgdg', 'anh chào em', 0, '', '', '2020-12-18 00:00:00', '2020-12-18 00:00:00', 'K19', 'FA02', 2147483647),
+('dsadsad', '', 0, '', '', '2020-12-18 00:00:00', '2020-12-18 00:00:00', 'K18', 'FA01', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -261,7 +253,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `password`, `name`, `birthday`, `id_class`, `date`) VALUES
-('ADMIN', 'LyQWujvPXbGDYsrSDKkAiVFavg8=', 'Trần Trọng Hiếu', '2020-12-17', NULL, '2020-11-30 21:53:48'),
+('ADMIN', 'DVOZUIQnznlVbNpxkYAgwejRW1M=', 'Trần Trọng Hiếu', '2020-12-17', NULL, '2020-11-30 21:53:48'),
 ('SD11089', 'DVOZUIQnznlVbNpxkYAgwejRW1M=', 'Sử Bình', '2020-12-01', 'CD19TA3', '2020-12-05 20:40:10'),
 ('SD11529', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Ung Khúc Lan', '2020-12-01', 'CD20TN6', '2020-12-05 20:43:20'),
 ('SD11993', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Lục Nhật Minh', '2020-12-01', 'CD19TA3', '2020-12-05 20:40:24'),
@@ -272,11 +264,10 @@ INSERT INTO `users` (`id_user`, `password`, `name`, `birthday`, `id_class`, `dat
 ('SD30440', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Bạch Uyên Diễm', '2020-12-01', 'CD20TN5', '2020-12-05 20:42:55'),
 ('SD40763', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Âu Nguyệt', '2020-12-01', 'CD20TN1', '2020-12-05 20:41:52'),
 ('SD42648', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Khuất Phúc', '2020-12-01', 'CD19TA1', '2020-12-05 20:39:34'),
-('SD58691', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Nông Gia Khanh', '2020-12-01', 'CD19TA4', '2020-12-05 20:42:41'),
 ('SD63382', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Lô Hải Lam', '2020-12-01', 'CD20TN4', '2020-12-05 20:42:25'),
 ('SD69074', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Bình Hạ', '2020-12-01', 'CD19TA1', '2020-12-05 20:39:54'),
-('SD70101', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Đặng Uyển', '2020-12-01', 'CD20TN5', '2020-12-05 20:43:02'),
-('SD74038', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Phi Xuân', '2020-12-01', 'CD19TA4', '2020-12-05 20:40:37'),
+('SD70101', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Đặng Uyển Nhi', '2020-12-01', 'CD20TN5', '2020-12-05 20:43:02'),
+('SD74038', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Phi Xuân Mai', '2020-12-01', 'CD19TA4', '2020-12-05 20:40:37'),
 ('SD74836', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Khúc Lan', '2020-12-01', 'CD20TN3', '2020-12-05 20:42:02'),
 ('SD79060', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Liễu Đài', '2020-12-01', 'CD20TA3', '2020-12-05 20:42:09'),
 ('SD83814', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Nhâm Kiếm', '2020-12-01', 'CD20TN6', '2020-12-05 20:41:25'),

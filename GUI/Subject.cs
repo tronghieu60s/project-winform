@@ -171,9 +171,10 @@ namespace project_winform
                 return;
             }
 
+            int credit = 0;
             string idSubject = txtSubjectId.Text;
             string name = txtName.Text;
-            int credit = int.Parse(txtCredit.Text);
+            int.TryParse(txtCredit.Text, out credit);
             string information = txtInformation.Text;
             string lecturerName = txtLecturerName.Text;
             DateTime startDay = DateTime.Parse(dtpStartDay.Text);
