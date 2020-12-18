@@ -40,6 +40,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.btnExportReport = new System.Windows.Forms.Button();
             this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
@@ -51,8 +52,9 @@
             this.pnlTitleBar.Controls.Add(this.picMinimize);
             this.pnlTitleBar.Controls.Add(this.picExit);
             this.pnlTitleBar.Location = new System.Drawing.Point(0, 0);
+            this.pnlTitleBar.Margin = new System.Windows.Forms.Padding(2);
             this.pnlTitleBar.Name = "pnlTitleBar";
-            this.pnlTitleBar.Size = new System.Drawing.Size(517, 46);
+            this.pnlTitleBar.Size = new System.Drawing.Size(345, 30);
             this.pnlTitleBar.TabIndex = 1;
             this.pnlTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlTitleBar_MouseDown);
             // 
@@ -60,17 +62,19 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(16, 14);
+            this.label1.Location = new System.Drawing.Point(11, 9);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 20);
+            this.label1.Size = new System.Drawing.Size(32, 13);
             this.label1.TabIndex = 9;
             this.label1.Text = "Khóa";
             // 
             // picMinimize
             // 
-            this.picMinimize.Location = new System.Drawing.Point(435, 9);
+            this.picMinimize.Location = new System.Drawing.Point(290, 6);
+            this.picMinimize.Margin = new System.Windows.Forms.Padding(2);
             this.picMinimize.Name = "picMinimize";
-            this.picMinimize.Size = new System.Drawing.Size(27, 28);
+            this.picMinimize.Size = new System.Drawing.Size(18, 18);
             this.picMinimize.TabIndex = 6;
             this.picMinimize.TabStop = false;
             this.picMinimize.Click += new System.EventHandler(this.picMinimize_Click);
@@ -79,9 +83,10 @@
             // 
             // picExit
             // 
-            this.picExit.Location = new System.Drawing.Point(475, 9);
+            this.picExit.Location = new System.Drawing.Point(317, 6);
+            this.picExit.Margin = new System.Windows.Forms.Padding(2);
             this.picExit.Name = "picExit";
-            this.picExit.Size = new System.Drawing.Size(27, 28);
+            this.picExit.Size = new System.Drawing.Size(18, 18);
             this.picExit.TabIndex = 8;
             this.picExit.TabStop = false;
             this.picExit.Click += new System.EventHandler(this.picExit_Click);
@@ -90,42 +95,47 @@
             // 
             // txtCourseId
             // 
-            this.txtCourseId.Location = new System.Drawing.Point(127, 72);
+            this.txtCourseId.Location = new System.Drawing.Point(85, 47);
+            this.txtCourseId.Margin = new System.Windows.Forms.Padding(2);
             this.txtCourseId.Name = "txtCourseId";
-            this.txtCourseId.Size = new System.Drawing.Size(107, 26);
+            this.txtCourseId.Size = new System.Drawing.Size(73, 20);
             this.txtCourseId.TabIndex = 0;
             // 
             // lblCourseId
             // 
             this.lblCourseId.AutoSize = true;
-            this.lblCourseId.Location = new System.Drawing.Point(12, 75);
+            this.lblCourseId.Location = new System.Drawing.Point(8, 49);
+            this.lblCourseId.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCourseId.Name = "lblCourseId";
-            this.lblCourseId.Size = new System.Drawing.Size(76, 20);
+            this.lblCourseId.Size = new System.Drawing.Size(53, 13);
             this.lblCourseId.TabIndex = 3;
             this.lblCourseId.Text = "Mã Khóa:";
             // 
             // lblCourseName
             // 
             this.lblCourseName.AutoSize = true;
-            this.lblCourseName.Location = new System.Drawing.Point(12, 111);
+            this.lblCourseName.Location = new System.Drawing.Point(8, 72);
+            this.lblCourseName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCourseName.Name = "lblCourseName";
-            this.lblCourseName.Size = new System.Drawing.Size(81, 20);
+            this.lblCourseName.Size = new System.Drawing.Size(57, 13);
             this.lblCourseName.TabIndex = 3;
             this.lblCourseName.Text = "Tên Khóa:";
             // 
             // txtCourseName
             // 
-            this.txtCourseName.Location = new System.Drawing.Point(127, 108);
+            this.txtCourseName.Location = new System.Drawing.Point(85, 70);
+            this.txtCourseName.Margin = new System.Windows.Forms.Padding(2);
             this.txtCourseName.Name = "txtCourseName";
-            this.txtCourseName.Size = new System.Drawing.Size(216, 26);
+            this.txtCourseName.Size = new System.Drawing.Size(145, 20);
             this.txtCourseName.TabIndex = 1;
             // 
             // lvwCourse
             // 
             this.lvwCourse.HideSelection = false;
-            this.lvwCourse.Location = new System.Drawing.Point(12, 169);
+            this.lvwCourse.Location = new System.Drawing.Point(8, 110);
+            this.lvwCourse.Margin = new System.Windows.Forms.Padding(2);
             this.lvwCourse.Name = "lvwCourse";
-            this.lvwCourse.Size = new System.Drawing.Size(492, 269);
+            this.lvwCourse.Size = new System.Drawing.Size(329, 156);
             this.lvwCourse.TabIndex = 5;
             this.lvwCourse.UseCompatibleStateImageBehavior = false;
             this.lvwCourse.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwCourse_ColumnClick);
@@ -135,9 +145,10 @@
             // 
             this.btnAdd.BackColor = System.Drawing.SystemColors.Menu;
             this.btnAdd.ForeColor = System.Drawing.Color.Black;
-            this.btnAdd.Location = new System.Drawing.Point(351, 69);
+            this.btnAdd.Location = new System.Drawing.Point(234, 45);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(67, 33);
+            this.btnAdd.Size = new System.Drawing.Size(45, 21);
             this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -147,9 +158,10 @@
             // 
             this.btnEdit.BackColor = System.Drawing.SystemColors.Menu;
             this.btnEdit.ForeColor = System.Drawing.Color.Black;
-            this.btnEdit.Location = new System.Drawing.Point(435, 69);
+            this.btnEdit.Location = new System.Drawing.Point(290, 45);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(2);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(67, 33);
+            this.btnEdit.Size = new System.Drawing.Size(45, 21);
             this.btnEdit.TabIndex = 3;
             this.btnEdit.Text = "Sửa";
             this.btnEdit.UseVisualStyleBackColor = false;
@@ -159,19 +171,34 @@
             // 
             this.btnDelete.BackColor = System.Drawing.SystemColors.Menu;
             this.btnDelete.ForeColor = System.Drawing.Color.Black;
-            this.btnDelete.Location = new System.Drawing.Point(387, 108);
+            this.btnDelete.Location = new System.Drawing.Point(258, 70);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(67, 33);
+            this.btnDelete.Size = new System.Drawing.Size(45, 21);
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // btnExportReport
+            // 
+            this.btnExportReport.BackColor = System.Drawing.SystemColors.Menu;
+            this.btnExportReport.ForeColor = System.Drawing.Color.Black;
+            this.btnExportReport.Location = new System.Drawing.Point(104, 270);
+            this.btnExportReport.Margin = new System.Windows.Forms.Padding(2);
+            this.btnExportReport.Name = "btnExportReport";
+            this.btnExportReport.Size = new System.Drawing.Size(126, 21);
+            this.btnExportReport.TabIndex = 30;
+            this.btnExportReport.Text = "Xuất Báo Cáo";
+            this.btnExportReport.UseVisualStyleBackColor = false;
+            this.btnExportReport.Click += new System.EventHandler(this.btnExportReport_Click);
+            // 
             // frmCourse
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(516, 450);
+            this.ClientSize = new System.Drawing.Size(344, 300);
+            this.Controls.Add(this.btnExportReport);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnAdd);
@@ -181,6 +208,7 @@
             this.Controls.Add(this.lblCourseName);
             this.Controls.Add(this.lblCourseId);
             this.Controls.Add(this.pnlTitleBar);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmCourse";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Course";
@@ -209,5 +237,6 @@
         private System.Windows.Forms.PictureBox picMinimize;
         private System.Windows.Forms.PictureBox picExit;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnExportReport;
     }
 }

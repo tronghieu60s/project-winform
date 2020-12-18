@@ -17,6 +17,28 @@ namespace project_winform.DAL
             return new Class(user["id_class"].ToString(), user["class_name"].ToString(), faculty, course);
         }
 
+        public static DataTable GetClassesReport()
+        {
+            try
+            {
+                DataTable classesData = new DataTable();
+                MySqlCommand command = connectDB.CreateCommand();
+                command.CommandText = "getClasses";
+                command.CommandType = CommandType.StoredProcedure;
+
+                MySqlDataAdapter sqlData = new MySqlDataAdapter(command);
+                sqlData.Fill(classesData);
+               
+                return classesData;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return null;
+        }
+
         public static List<Class> GetClasses()
         {
             try

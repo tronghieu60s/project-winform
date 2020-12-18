@@ -1,5 +1,6 @@
 ﻿using project_winform.BUS;
 using project_winform.CTO;
+using project_winform.GUI.GUI_REPORT;
 using project_winform.src.constants;
 using project_winform.src.helpers;
 using project_winform.src.themes;
@@ -46,6 +47,7 @@ namespace project_winform
             btnAdd.BackColor = ColorTheme.getTheme("primary");
             btnDelete.BackColor = ColorTheme.getTheme("danger");
             btnEdit.BackColor = ColorTheme.getTheme("warning");
+            btnExportReport.BackColor = ColorTheme.getTheme("primary");
             #endregion
         }
 
@@ -239,5 +241,11 @@ namespace project_winform
         }
 
         #endregion
+
+        private void btnExportReport_Click(object sender, EventArgs e)
+        {
+            GuiClassReport guiClassReport = new GuiClassReport();
+            guiClassReport.Show();
+        }
     }
 }

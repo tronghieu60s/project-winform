@@ -28,6 +28,28 @@ namespace project_winform.DAL
             return new User(id_user, password, name, birthday, classModal);
         }
 
+        public static DataTable GetUsersReport()
+        {
+            try
+            {
+                DataTable usersData = new DataTable();
+                MySqlCommand command = connectDB.CreateCommand();
+                command.CommandText = "getUsers";
+                command.CommandType = CommandType.StoredProcedure;
+
+                MySqlDataAdapter sqlData = new MySqlDataAdapter(command);
+                sqlData.Fill(usersData);
+                
+                return usersData;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return null;
+        }
+
         public static List<User> GetUsers()
         {
             try

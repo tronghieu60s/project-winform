@@ -10,6 +10,19 @@ namespace project_winform.DAL
 {
     class CourseDAL: DatabaseUtils
     {
+        public static DataTable GetCoursesReport()
+        {
+            DataTable coursesData = new DataTable();
+            MySqlCommand command = connectDB.CreateCommand();
+            command.CommandText = "getCourses";
+            command.CommandType = CommandType.StoredProcedure;
+
+            MySqlDataAdapter sqlData = new MySqlDataAdapter(command);
+            sqlData.Fill(coursesData);
+            
+            return coursesData;
+        }
+
         public static List<Course> GetCourses()
         {
             DataSet coursesData = new DataSet();

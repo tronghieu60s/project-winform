@@ -54,6 +54,28 @@ namespace project_winform.DAL
             return new Subject(idSubject, name, credit, information, lecturerName, startDay, endDay, faculty, course);
         }
 
+        public static DataTable GetSubjectsReport()
+        {
+            try
+            {
+                DataTable subjectsData = new DataTable();
+                MySqlCommand command = connectDB.CreateCommand();
+                command.CommandText = "getSubjects";
+                command.CommandType = CommandType.StoredProcedure;
+
+                MySqlDataAdapter sqlData = new MySqlDataAdapter(command);
+                sqlData.Fill(subjectsData);
+                
+                return subjectsData;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(MessageBoxText.Exception, MessageBoxText.CaptionError, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return null;
+        }
+
         public static List<Subject> GetSubjects()
         {
             try

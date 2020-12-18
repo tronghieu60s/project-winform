@@ -10,6 +10,19 @@ namespace project_winform.DAL
 {
     class FacultyDAL: DatabaseUtils
     {
+        public static DataTable GetFacultiesReport()
+        {
+            DataTable facultiesData = new DataTable();
+            MySqlCommand command = connectDB.CreateCommand();
+            command.CommandText = "getFaculties";
+            command.CommandType = CommandType.StoredProcedure;
+
+            MySqlDataAdapter sqlData = new MySqlDataAdapter(command);
+            sqlData.Fill(facultiesData);
+            
+            return facultiesData;
+        }
+
         public static List<Faculty> GetFaculties()
         {
             DataSet facultiesData = new DataSet();

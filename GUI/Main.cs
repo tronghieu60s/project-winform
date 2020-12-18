@@ -5,6 +5,7 @@ using System.IO;
 using System.Windows.Forms;
 using project_winform.BUS;
 using project_winform.CTO;
+using project_winform.GUI.GUI_REPORT;
 using project_winform.src.config;
 using project_winform.src.constants;
 using project_winform.src.helpers;
@@ -88,6 +89,7 @@ namespace project_winform
             btnChangePassword.BackColor = ColorTheme.getTheme("primary");
             btnPassGenerator.BackColor = ColorTheme.getTheme("success");
             btnShowSubject.BackColor = ColorTheme.getTheme();
+            btnExportReport.BackColor = ColorTheme.getTheme("primary");
             #endregion
         }
 
@@ -587,6 +589,12 @@ namespace project_winform
         {
             frmSubject frmSubject = new frmSubject();
             frmSubject.Show();
+        }
+
+        private void btnExportReport_Click(object sender, EventArgs e)
+        {
+            GuiUserReport report = new GuiUserReport();
+            report.Show();
         }
     }
 }
