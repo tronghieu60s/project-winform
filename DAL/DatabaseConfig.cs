@@ -55,8 +55,9 @@ namespace project_winform.DAL
         public static int GetLocalStorageConfig()
         {
             string line = "";
-            bool fileValid = File.Exists(Config.fileDatabaseConfig);
-            if (!fileValid) return -1;
+
+            if (!File.Exists(Config.fileDatabaseConfig))
+                using (FileStream fs = File.Create(Config.fileDatabaseConfig)) { }
 
             string server = String.Empty;
             string database = String.Empty;
@@ -65,23 +66,23 @@ namespace project_winform.DAL
             string password = String.Empty;
             using (StreamReader sr = new StreamReader(Config.fileDatabaseConfig))
             {
-                if ((line = sr.ReadLine()) == null) return -1;
+                if ((line = sr.ReadLine()) == null) return 0;
                 server = line.StartsWith(Config.configServer) ?
                     line.Substring(Config.configServer.Length, line.Length - Config.configServer.Length) : String.Empty;
 
-                if ((line = sr.ReadLine()) == null) return -1;
+                if ((line = sr.ReadLine()) == null) return 0;
                 database = line.StartsWith(Config.configDatabaseName) ?
                     line.Substring(Config.configDatabaseName.Length, line.Length - Config.configDatabaseName.Length) : String.Empty;
 
-                if ((line = sr.ReadLine()) == null) return -1;
+                if ((line = sr.ReadLine()) == null) return 0;
                 port = line.StartsWith(Config.configPort) ?
                     line.Substring(Config.configPort.Length, line.Length - Config.configPort.Length) : String.Empty;
 
-                if ((line = sr.ReadLine()) == null) return -1;
+                if ((line = sr.ReadLine()) == null) return 0;
                 username = line.StartsWith(Config.configUsername) ?
                     line.Substring(Config.configUsername.Length, line.Length - Config.configUsername.Length) : String.Empty;
 
-                if ((line = sr.ReadLine()) == null) return -1;
+                if ((line = sr.ReadLine()) == null) return 0;
                 password = line.StartsWith(Config.configPassword) ?
                     line.Substring(Config.configPassword.Length, line.Length - Config.configPassword.Length) : String.Empty;
             }
@@ -102,6 +103,7 @@ namespace project_winform.DAL
                 if (result == DialogResult.Yes)
                     return 0;
             }
+
             return -1;
         }
 
