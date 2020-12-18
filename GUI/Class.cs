@@ -56,6 +56,19 @@ namespace project_winform
             FacultyBUS.RenderListViewDataFaculty(lvwFaculty);
             ClassBUS.RenderListViewFromState(lvwClass);
 
+            // Select Default
+            if (lvwCourse.Items.Count > 0)
+            {
+                lvwCourse.Items[0].Selected = true;
+                lvwCourse.Select();
+            }
+
+            if (lvwFaculty.Items.Count > 0)
+            {
+                lvwFaculty.Items[0].Selected = true;
+                lvwFaculty.Select();
+            }
+
             // Load Initial Config
             FormSetup.FormLoad(this);
         }
@@ -211,8 +224,6 @@ namespace project_winform
 
             txtClassId.Text = String.Empty;
             txtClassName.Text = String.Empty;
-            txtCourse.Text = String.Empty;
-            txtFaculty.Text = String.Empty;
         }
 
         private void btnEdit_Click(object sender, EventArgs e)

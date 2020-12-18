@@ -74,7 +74,7 @@ namespace project_winform.BUS
                     if (result)
                     {
                         lvwSubjectState.Items.Remove(item);
-                        RenderListViewFromState(lvwSubject);
+                        RenderListViewWithCourseAndFaculty(lvwSubject);
                     }
                     return;
                 }

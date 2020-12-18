@@ -35,7 +35,7 @@ namespace project_winform.src.helpers
                 }
                 else if (listView.Items[item.Index].Focused == false)
                 {
-                    listView.Items[item.Index].BackColor = Color.Blue;
+                    listView.Items[item.Index].BackColor = ColorTheme.getTheme("primary");
                 }
             }
         }

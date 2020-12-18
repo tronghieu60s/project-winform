@@ -62,6 +62,19 @@ namespace project_winform
             FacultyBUS.RenderListViewDataFaculty(lvwFaculty);
             SubjectBUS.RenderListViewFromState(lvwSubject);
 
+            // Select Default
+            if (lvwCourse.Items.Count > 0)
+            {
+                lvwCourse.Items[0].Selected = true;
+                lvwCourse.Select();
+            }
+
+            if (lvwFaculty.Items.Count > 0)
+            {
+                lvwFaculty.Items[0].Selected = true;
+                lvwFaculty.Select();
+            }
+
             // Load Initial Config
             FormSetup.FormLoad(this);
         }
@@ -251,7 +264,5 @@ namespace project_winform
         }
 
         #endregion
-
-
     }
 }

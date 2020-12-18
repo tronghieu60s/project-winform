@@ -33,8 +33,10 @@ namespace project_winform
                     else Application.Run(new frmLogin());
                 }
             }
-            else if (config == 0 || config == -1)
+            else if (config == 0)
                 Application.Run(new frmConfigDatabase());
+            else if (config == -1)
+                Application.Exit();
         }
     }
 }
