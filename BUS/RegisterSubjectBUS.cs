@@ -39,11 +39,20 @@ namespace project_winform.BUS
 
         public static ListViewItem RegisterSubjectModelToListViewItem(RegisterSubject registerSubject)
         {
-            Console.WriteLine(lvwRegisterSubjectState.Items.Count);
             foreach (ListViewItem item in lvwRegisterSubjectState.Items)
                 if (item.SubItems[0].Text == registerSubject.Id_subject)
                     return item;
             return null;
+        }
+
+        public static void RenderListViewRegisterWithIdUser(ListView lvwRegister, string id_user)
+        {
+           List<Subject> listSubject = SubjectDAL.GetSubjectsWithRegisterIdUser(id_user);
+            foreach (Subject subject in listSubject)
+            {
+                ListViewItem item = SubjectBUS.SubjectModelToListViewItem(subject);
+                lvwRegister.Items.Add(item.Clone() as ListViewItem);
+            }
         }
 
         public static void RenderListViewRegisterFromState(ListView lvwRegister)
@@ -53,21 +62,21 @@ namespace project_winform.BUS
                 lvwRegister.Items.Add(item.Clone() as ListViewItem);
         }
 
-        public static void DeleteListViewRegisterWithIdSubject(string id_subject)
-        {
-            foreach (ListViewItem item in lvwRegisterSubjectState.Items)
-                if(item.SubItems[0].Text == id_subject)
-                {
-                    lvwRegisterSubjectState.Items.Remove(item);
-                    return;
-                }
-        }
-
         public static void RenderListViewRegisteredFromState(ListView lvwRegistered)
         {
             lvwRegistered.Items.Clear();
             foreach (ListViewItem item in lvwRegisteredSubjectState.Items)
                 lvwRegistered.Items.Add(item.Clone() as ListViewItem);
+        }
+
+        public static void DeleteListViewRegisterWithIdSubject(string id_subject)
+        {
+            foreach (ListViewItem item in lvwRegisterSubjectState.Items)
+                if (item.SubItems[0].Text == id_subject)
+                {
+                    lvwRegisterSubjectState.Items.Remove(item);
+                    return;
+                }
         }
 
         public static void HandleCreateRegisterSubject(ListView lvwRegister, ListView lvwRegistered, RegisterSubject registerSubject)

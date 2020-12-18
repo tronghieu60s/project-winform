@@ -5,6 +5,7 @@ using System.IO;
 using System.Windows.Forms;
 using project_winform.BUS;
 using project_winform.CTO;
+using project_winform.GUI;
 using project_winform.GUI.GUI_REPORT;
 using project_winform.src.config;
 using project_winform.src.constants;
@@ -90,6 +91,7 @@ namespace project_winform
             btnPassGenerator.BackColor = ColorTheme.getTheme("success");
             btnShowSubject.BackColor = ColorTheme.getTheme();
             btnExportReport.BackColor = ColorTheme.getTheme("primary");
+            btnSubject.BackColor = ColorTheme.getTheme();
             #endregion
         }
 
@@ -595,6 +597,13 @@ namespace project_winform
         {
             GuiUserReport report = new GuiUserReport();
             report.Show();
+        }
+
+        private void btnSubject_Click(object sender, EventArgs e)
+        {
+            string id_user = UserBUS.TypeSelectUser + txtCodeNum.Text;
+            frmUserRegisterList frm = new frmUserRegisterList(id_user);
+            frm.Show();
         }
     }
 }
