@@ -210,8 +210,6 @@ namespace project_winform
 
             txtClassId.Text = String.Empty;
             txtClassName.Text = String.Empty;
-            txtCourse.Text = String.Empty;
-            txtFaculty.Text = String.Empty;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

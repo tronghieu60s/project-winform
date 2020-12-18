@@ -470,7 +470,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1182, 694);
+            this.ClientSize = new System.Drawing.Size(1188, 701);
             this.Controls.Add(this.btnCancelRegister);
             this.Controls.Add(this.txtCancelIdRegister);
             this.Controls.Add(this.txtCancelNameRegister);
@@ -491,6 +491,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainStudent";
             this.Load += new System.EventHandler(this.frmMainStudent_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmMain_Paint);
             this.mnuStripListView.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
