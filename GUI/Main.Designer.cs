@@ -81,6 +81,7 @@
             this.txtPassOld = new System.Windows.Forms.TextBox();
             this.lblPassOld = new System.Windows.Forms.Label();
             this.btnExportReport = new System.Windows.Forms.Button();
+            this.picLogo = new System.Windows.Forms.PictureBox();
             this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
@@ -90,14 +91,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.picReloadCourse)).BeginInit();
             this.mnuStripListView.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlTitleBar
             // 
+            this.pnlTitleBar.Controls.Add(this.picLogo);
             this.pnlTitleBar.Controls.Add(this.picMinimize);
             this.pnlTitleBar.Controls.Add(this.picExit);
             this.pnlTitleBar.Location = new System.Drawing.Point(-1, -1);
-            this.pnlTitleBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlTitleBar.Margin = new System.Windows.Forms.Padding(2);
             this.pnlTitleBar.Name = "pnlTitleBar";
             this.pnlTitleBar.Size = new System.Drawing.Size(828, 30);
             this.pnlTitleBar.TabIndex = 0;
@@ -106,7 +109,7 @@
             // picMinimize
             // 
             this.picMinimize.Location = new System.Drawing.Point(746, 6);
-            this.picMinimize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picMinimize.Margin = new System.Windows.Forms.Padding(2);
             this.picMinimize.Name = "picMinimize";
             this.picMinimize.Size = new System.Drawing.Size(18, 18);
             this.picMinimize.TabIndex = 0;
@@ -118,7 +121,7 @@
             // picExit
             // 
             this.picExit.Location = new System.Drawing.Point(774, 6);
-            this.picExit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picExit.Margin = new System.Windows.Forms.Padding(2);
             this.picExit.Name = "picExit";
             this.picExit.Size = new System.Drawing.Size(18, 18);
             this.picExit.TabIndex = 0;
@@ -152,7 +155,7 @@
             // picLogout
             // 
             this.picLogout.Location = new System.Drawing.Point(240, 60);
-            this.picLogout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picLogout.Margin = new System.Windows.Forms.Padding(2);
             this.picLogout.Name = "picLogout";
             this.picLogout.Size = new System.Drawing.Size(17, 16);
             this.picLogout.TabIndex = 3;
@@ -163,7 +166,7 @@
             // 
             this.btnExportExcel.BackColor = System.Drawing.SystemColors.Menu;
             this.btnExportExcel.Location = new System.Drawing.Point(704, 450);
-            this.btnExportExcel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExportExcel.Margin = new System.Windows.Forms.Padding(2);
             this.btnExportExcel.Name = "btnExportExcel";
             this.btnExportExcel.Size = new System.Drawing.Size(87, 21);
             this.btnExportExcel.TabIndex = 26;
@@ -176,7 +179,7 @@
             this.btnImportExcel.BackColor = System.Drawing.SystemColors.Menu;
             this.btnImportExcel.ForeColor = System.Drawing.Color.Black;
             this.btnImportExcel.Location = new System.Drawing.Point(613, 450);
-            this.btnImportExcel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnImportExcel.Margin = new System.Windows.Forms.Padding(2);
             this.btnImportExcel.Name = "btnImportExcel";
             this.btnImportExcel.Size = new System.Drawing.Size(87, 21);
             this.btnImportExcel.TabIndex = 25;
@@ -191,7 +194,7 @@
             "Quản Trị Viên",
             "Học Sinh"});
             this.cboTypeUser.Location = new System.Drawing.Point(319, 82);
-            this.cboTypeUser.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboTypeUser.Margin = new System.Windows.Forms.Padding(2);
             this.cboTypeUser.Name = "cboTypeUser";
             this.cboTypeUser.Size = new System.Drawing.Size(119, 21);
             this.cboTypeUser.TabIndex = 0;
@@ -220,9 +223,9 @@
             this.groupBox2.Controls.Add(this.lblFullName);
             this.groupBox2.Controls.Add(this.lblCodeNum);
             this.groupBox2.Location = new System.Drawing.Point(12, 220);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(295, 251);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
@@ -234,7 +237,7 @@
             this.chkRandomCodeNum.Checked = true;
             this.chkRandomCodeNum.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkRandomCodeNum.Location = new System.Drawing.Point(212, 26);
-            this.chkRandomCodeNum.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkRandomCodeNum.Margin = new System.Windows.Forms.Padding(2);
             this.chkRandomCodeNum.Name = "chkRandomCodeNum";
             this.chkRandomCodeNum.Size = new System.Drawing.Size(79, 17);
             this.chkRandomCodeNum.TabIndex = 7;
@@ -245,7 +248,7 @@
             // dtpBirthday
             // 
             this.dtpBirthday.Location = new System.Drawing.Point(101, 82);
-            this.dtpBirthday.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpBirthday.Margin = new System.Windows.Forms.Padding(2);
             this.dtpBirthday.Name = "dtpBirthday";
             this.dtpBirthday.Size = new System.Drawing.Size(118, 20);
             this.dtpBirthday.TabIndex = 9;
@@ -255,7 +258,7 @@
             this.btnSubject.BackColor = System.Drawing.SystemColors.Menu;
             this.btnSubject.ForeColor = System.Drawing.Color.Black;
             this.btnSubject.Location = new System.Drawing.Point(217, 207);
-            this.btnSubject.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSubject.Margin = new System.Windows.Forms.Padding(2);
             this.btnSubject.Name = "btnSubject";
             this.btnSubject.Size = new System.Drawing.Size(65, 30);
             this.btnSubject.TabIndex = 18;
@@ -268,7 +271,7 @@
             this.btnUpdate.BackColor = System.Drawing.SystemColors.Menu;
             this.btnUpdate.ForeColor = System.Drawing.Color.Black;
             this.btnUpdate.Location = new System.Drawing.Point(139, 207);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(65, 30);
             this.btnUpdate.TabIndex = 18;
@@ -280,7 +283,7 @@
             // 
             this.cboClass.FormattingEnabled = true;
             this.cboClass.Location = new System.Drawing.Point(101, 171);
-            this.cboClass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboClass.Margin = new System.Windows.Forms.Padding(2);
             this.cboClass.Name = "cboClass";
             this.cboClass.Size = new System.Drawing.Size(126, 21);
             this.cboClass.TabIndex = 14;
@@ -290,7 +293,7 @@
             this.btnDelete.BackColor = System.Drawing.SystemColors.Menu;
             this.btnDelete.ForeColor = System.Drawing.Color.Black;
             this.btnDelete.Location = new System.Drawing.Point(72, 207);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(53, 30);
             this.btnDelete.TabIndex = 17;
@@ -302,7 +305,7 @@
             // 
             this.cboFaculty.FormattingEnabled = true;
             this.cboFaculty.Location = new System.Drawing.Point(101, 141);
-            this.cboFaculty.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboFaculty.Margin = new System.Windows.Forms.Padding(2);
             this.cboFaculty.Name = "cboFaculty";
             this.cboFaculty.Size = new System.Drawing.Size(152, 21);
             this.cboFaculty.TabIndex = 12;
@@ -313,7 +316,7 @@
             this.btnAdd.BackColor = System.Drawing.SystemColors.Menu;
             this.btnAdd.ForeColor = System.Drawing.Color.Black;
             this.btnAdd.Location = new System.Drawing.Point(9, 207);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(49, 30);
             this.btnAdd.TabIndex = 16;
@@ -325,7 +328,7 @@
             // 
             this.cboCourse.FormattingEnabled = true;
             this.cboCourse.Location = new System.Drawing.Point(101, 111);
-            this.cboCourse.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboCourse.Margin = new System.Windows.Forms.Padding(2);
             this.cboCourse.Name = "cboCourse";
             this.cboCourse.Size = new System.Drawing.Size(126, 21);
             this.cboCourse.TabIndex = 10;
@@ -334,7 +337,7 @@
             // txtFullName
             // 
             this.txtFullName.Location = new System.Drawing.Point(101, 53);
-            this.txtFullName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFullName.Margin = new System.Windows.Forms.Padding(2);
             this.txtFullName.Name = "txtFullName";
             this.txtFullName.Size = new System.Drawing.Size(145, 20);
             this.txtFullName.TabIndex = 8;
@@ -344,7 +347,7 @@
             // 
             this.txtCodeNum.Enabled = false;
             this.txtCodeNum.Location = new System.Drawing.Point(101, 24);
-            this.txtCodeNum.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCodeNum.Margin = new System.Windows.Forms.Padding(2);
             this.txtCodeNum.Name = "txtCodeNum";
             this.txtCodeNum.Size = new System.Drawing.Size(105, 20);
             this.txtCodeNum.TabIndex = 6;
@@ -354,7 +357,7 @@
             // picReloadFaculty
             // 
             this.picReloadFaculty.Location = new System.Drawing.Point(265, 143);
-            this.picReloadFaculty.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picReloadFaculty.Margin = new System.Windows.Forms.Padding(2);
             this.picReloadFaculty.Name = "picReloadFaculty";
             this.picReloadFaculty.Size = new System.Drawing.Size(17, 16);
             this.picReloadFaculty.TabIndex = 3;
@@ -364,7 +367,7 @@
             // picReloadCourse
             // 
             this.picReloadCourse.Location = new System.Drawing.Point(241, 113);
-            this.picReloadCourse.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picReloadCourse.Margin = new System.Windows.Forms.Padding(2);
             this.picReloadCourse.Name = "picReloadCourse";
             this.picReloadCourse.Size = new System.Drawing.Size(17, 16);
             this.picReloadCourse.TabIndex = 3;
@@ -436,7 +439,7 @@
             this.btnAddClass.BackColor = System.Drawing.SystemColors.Menu;
             this.btnAddClass.ForeColor = System.Drawing.Color.Black;
             this.btnAddClass.Location = new System.Drawing.Point(576, 47);
-            this.btnAddClass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddClass.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddClass.Name = "btnAddClass";
             this.btnAddClass.Size = new System.Drawing.Size(82, 20);
             this.btnAddClass.TabIndex = 15;
@@ -449,7 +452,7 @@
             this.btnAddFaculty.BackColor = System.Drawing.SystemColors.Menu;
             this.btnAddFaculty.ForeColor = System.Drawing.Color.Black;
             this.btnAddFaculty.Location = new System.Drawing.Point(450, 47);
-            this.btnAddFaculty.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddFaculty.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddFaculty.Name = "btnAddFaculty";
             this.btnAddFaculty.Size = new System.Drawing.Size(82, 20);
             this.btnAddFaculty.TabIndex = 13;
@@ -462,7 +465,7 @@
             this.btnAddCourse.BackColor = System.Drawing.SystemColors.Menu;
             this.btnAddCourse.ForeColor = System.Drawing.Color.Black;
             this.btnAddCourse.Location = new System.Drawing.Point(324, 46);
-            this.btnAddCourse.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddCourse.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddCourse.Name = "btnAddCourse";
             this.btnAddCourse.Size = new System.Drawing.Size(82, 20);
             this.btnAddCourse.TabIndex = 11;
@@ -475,7 +478,7 @@
             this.btnShowSubject.BackColor = System.Drawing.SystemColors.Menu;
             this.btnShowSubject.ForeColor = System.Drawing.Color.Black;
             this.btnShowSubject.Location = new System.Drawing.Point(702, 47);
-            this.btnShowSubject.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnShowSubject.Margin = new System.Windows.Forms.Padding(2);
             this.btnShowSubject.Name = "btnShowSubject";
             this.btnShowSubject.Size = new System.Drawing.Size(82, 20);
             this.btnShowSubject.TabIndex = 18;
@@ -487,7 +490,7 @@
             // 
             this.lvwMain.HideSelection = false;
             this.lvwMain.Location = new System.Drawing.Point(319, 106);
-            this.lvwMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lvwMain.Margin = new System.Windows.Forms.Padding(2);
             this.lvwMain.Name = "lvwMain";
             this.lvwMain.Size = new System.Drawing.Size(480, 339);
             this.lvwMain.TabIndex = 22;
@@ -543,7 +546,7 @@
             // 
             this.cboSelectSearch.FormattingEnabled = true;
             this.cboSelectSearch.Location = new System.Drawing.Point(695, 81);
-            this.cboSelectSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboSelectSearch.Margin = new System.Windows.Forms.Padding(2);
             this.cboSelectSearch.Name = "cboSelectSearch";
             this.cboSelectSearch.Size = new System.Drawing.Size(57, 21);
             this.cboSelectSearch.TabIndex = 20;
@@ -554,7 +557,7 @@
             this.cboAction.Items.AddRange(new object[] {
             "Xóa"});
             this.cboAction.Location = new System.Drawing.Point(319, 450);
-            this.cboAction.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboAction.Margin = new System.Windows.Forms.Padding(2);
             this.cboAction.Name = "cboAction";
             this.cboAction.Size = new System.Drawing.Size(82, 21);
             this.cboAction.TabIndex = 23;
@@ -562,7 +565,7 @@
             // btnAction
             // 
             this.btnAction.Location = new System.Drawing.Point(403, 449);
-            this.btnAction.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAction.Margin = new System.Windows.Forms.Padding(2);
             this.btnAction.Name = "btnAction";
             this.btnAction.Size = new System.Drawing.Size(66, 23);
             this.btnAction.TabIndex = 24;
@@ -582,9 +585,9 @@
             this.groupBox1.Controls.Add(this.txtPassOld);
             this.groupBox1.Controls.Add(this.lblPassOld);
             this.groupBox1.Location = new System.Drawing.Point(12, 89);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(295, 127);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
@@ -595,7 +598,7 @@
             this.btnPassGenerator.BackColor = System.Drawing.SystemColors.Menu;
             this.btnPassGenerator.ForeColor = System.Drawing.Color.Black;
             this.btnPassGenerator.Location = new System.Drawing.Point(151, 94);
-            this.btnPassGenerator.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPassGenerator.Margin = new System.Windows.Forms.Padding(2);
             this.btnPassGenerator.Name = "btnPassGenerator";
             this.btnPassGenerator.Size = new System.Drawing.Size(102, 24);
             this.btnPassGenerator.TabIndex = 5;
@@ -608,7 +611,7 @@
             this.btnChangePassword.BackColor = System.Drawing.SystemColors.Menu;
             this.btnChangePassword.ForeColor = System.Drawing.Color.Black;
             this.btnChangePassword.Location = new System.Drawing.Point(56, 94);
-            this.btnChangePassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnChangePassword.Margin = new System.Windows.Forms.Padding(2);
             this.btnChangePassword.Name = "btnChangePassword";
             this.btnChangePassword.Size = new System.Drawing.Size(85, 24);
             this.btnChangePassword.TabIndex = 4;
@@ -619,7 +622,7 @@
             // txtRePassNew
             // 
             this.txtRePassNew.Location = new System.Drawing.Point(125, 69);
-            this.txtRePassNew.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtRePassNew.Margin = new System.Windows.Forms.Padding(2);
             this.txtRePassNew.Name = "txtRePassNew";
             this.txtRePassNew.Size = new System.Drawing.Size(121, 20);
             this.txtRePassNew.TabIndex = 3;
@@ -638,7 +641,7 @@
             // txtPassNew
             // 
             this.txtPassNew.Location = new System.Drawing.Point(125, 44);
-            this.txtPassNew.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPassNew.Margin = new System.Windows.Forms.Padding(2);
             this.txtPassNew.Name = "txtPassNew";
             this.txtPassNew.Size = new System.Drawing.Size(121, 20);
             this.txtPassNew.TabIndex = 2;
@@ -657,7 +660,7 @@
             // txtPassOld
             // 
             this.txtPassOld.Location = new System.Drawing.Point(125, 19);
-            this.txtPassOld.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPassOld.Margin = new System.Windows.Forms.Padding(2);
             this.txtPassOld.Name = "txtPassOld";
             this.txtPassOld.Size = new System.Drawing.Size(102, 20);
             this.txtPassOld.TabIndex = 1;
@@ -678,13 +681,22 @@
             this.btnExportReport.BackColor = System.Drawing.SystemColors.Menu;
             this.btnExportReport.ForeColor = System.Drawing.Color.Black;
             this.btnExportReport.Location = new System.Drawing.Point(502, 450);
-            this.btnExportReport.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExportReport.Margin = new System.Windows.Forms.Padding(2);
             this.btnExportReport.Name = "btnExportReport";
             this.btnExportReport.Size = new System.Drawing.Size(107, 21);
             this.btnExportReport.TabIndex = 25;
             this.btnExportReport.Text = "Xuất Báo Cáo";
             this.btnExportReport.UseVisualStyleBackColor = false;
             this.btnExportReport.Click += new System.EventHandler(this.btnExportReport_Click);
+            // 
+            // picLogo
+            // 
+            this.picLogo.Location = new System.Drawing.Point(12, 6);
+            this.picLogo.Margin = new System.Windows.Forms.Padding(2);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Size = new System.Drawing.Size(18, 18);
+            this.picLogo.TabIndex = 1;
+            this.picLogo.TabStop = false;
             // 
             // frmMain
             // 
@@ -713,7 +725,7 @@
             this.Controls.Add(this.lblWelcomeSlogan);
             this.Controls.Add(this.lblWelcome);
             this.Controls.Add(this.pnlTitleBar);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(806, 448);
             this.Name = "frmMain";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
@@ -732,6 +744,7 @@
             this.mnuStripListView.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -791,6 +804,7 @@
         private System.Windows.Forms.Button btnShowSubject;
         private System.Windows.Forms.Button btnExportReport;
         private System.Windows.Forms.Button btnSubject;
+        private System.Windows.Forms.PictureBox picLogo;
     }
 }
 

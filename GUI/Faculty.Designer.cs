@@ -41,6 +41,7 @@
             this.lblFacultyName = new System.Windows.Forms.Label();
             this.lblFacultyId = new System.Windows.Forms.Label();
             this.btnExportReport = new System.Windows.Forms.Button();
+            this.cachedClassesReport1 = new project_winform.REPORT.CachedClassesReport();
             this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
@@ -239,5 +240,6 @@
         private System.Windows.Forms.Label lblFacultyId;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnExportReport;
+        private REPORT.CachedClassesReport cachedClassesReport1;
     }
 }

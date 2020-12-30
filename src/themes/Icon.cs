@@ -22,5 +22,6 @@ namespace project_winform.src.themes
         static public string teacher = path + "assets/teacher.png";
         static public string logout = path + "assets/logout.png";
         static public string reload = path + "assets/reload.png";
+        static public string logo = path + "assets/logo.png";
     }
 }

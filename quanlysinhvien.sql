@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 18, 2020 lúc 02:40 AM
+-- Thời gian đã tạo: Th12 30, 2020 lúc 02:14 AM
 -- Phiên bản máy phục vụ: 10.4.11-MariaDB
 -- Phiên bản PHP: 7.4.2
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `studentsmanagement`
+-- Cơ sở dữ liệu: `quanlysinhvien`
 --
 
 DELIMITER $$
@@ -229,9 +229,8 @@ CREATE TABLE `subjects` (
 --
 
 INSERT INTO `subjects` (`id_subjects`, `subject_name`, `credit`, `information`, `lecturer_name`, `start_day`, `end_day`, `id_course`, `id_faculty`, `date`) VALUES
-('43224', '', 0, '', '', '2020-12-18 00:00:00', '2020-12-18 00:00:00', 'K18', 'FA01', 2147483647),
-('dfgfgdg', 'anh chào em', 0, '', '', '2020-12-18 00:00:00', '2020-12-18 00:00:00', 'K19', 'FA02', 2147483647),
-('dsadsad', '', 0, '', '', '2020-12-18 00:00:00', '2020-12-18 00:00:00', 'K18', 'FA01', 2147483647);
+('123', 'Lập Trình Ứng Dụng', 3, '12345', 'Phan Thị Thể', '2020-12-18 00:00:00', '2020-12-18 00:00:00', 'K18', 'FA01', 2147483647),
+('43224', 'Lập Trình App', 4, '', 'AAAA', '2020-12-18 00:00:00', '2020-12-18 00:00:00', 'K18', 'FA01', 2147483647);
 
 -- --------------------------------------------------------
 

@@ -60,7 +60,7 @@
             this.pnlTitleBar.Controls.Add(this.picMinimize);
             this.pnlTitleBar.Controls.Add(this.picExit);
             this.pnlTitleBar.Location = new System.Drawing.Point(0, 0);
-            this.pnlTitleBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlTitleBar.Margin = new System.Windows.Forms.Padding(2);
             this.pnlTitleBar.Name = "pnlTitleBar";
             this.pnlTitleBar.Size = new System.Drawing.Size(588, 30);
             this.pnlTitleBar.TabIndex = 10;
@@ -80,7 +80,7 @@
             // picMinimize
             // 
             this.picMinimize.Location = new System.Drawing.Point(527, 6);
-            this.picMinimize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picMinimize.Margin = new System.Windows.Forms.Padding(2);
             this.picMinimize.Name = "picMinimize";
             this.picMinimize.Size = new System.Drawing.Size(18, 18);
             this.picMinimize.TabIndex = 27;
@@ -92,7 +92,7 @@
             // picExit
             // 
             this.picExit.Location = new System.Drawing.Point(556, 6);
-            this.picExit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picExit.Margin = new System.Windows.Forms.Padding(2);
             this.picExit.Name = "picExit";
             this.picExit.Size = new System.Drawing.Size(18, 18);
             this.picExit.TabIndex = 29;
@@ -105,7 +105,7 @@
             // 
             this.txtClassName.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtClassName.Location = new System.Drawing.Point(103, 75);
-            this.txtClassName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtClassName.Margin = new System.Windows.Forms.Padding(2);
             this.txtClassName.Name = "txtClassName";
             this.txtClassName.Size = new System.Drawing.Size(145, 20);
             this.txtClassName.TabIndex = 1;
@@ -113,7 +113,7 @@
             // txtClassId
             // 
             this.txtClassId.Location = new System.Drawing.Point(103, 51);
-            this.txtClassId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtClassId.Margin = new System.Windows.Forms.Padding(2);
             this.txtClassId.Name = "txtClassId";
             this.txtClassId.Size = new System.Drawing.Size(73, 20);
             this.txtClassId.TabIndex = 0;
@@ -142,7 +142,7 @@
             // 
             this.lvwClass.HideSelection = false;
             this.lvwClass.Location = new System.Drawing.Point(8, 147);
-            this.lvwClass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lvwClass.Margin = new System.Windows.Forms.Padding(2);
             this.lvwClass.Name = "lvwClass";
             this.lvwClass.Size = new System.Drawing.Size(327, 170);
             this.lvwClass.TabIndex = 5;
@@ -155,7 +155,7 @@
             this.btnDelete.BackColor = System.Drawing.SystemColors.Menu;
             this.btnDelete.ForeColor = System.Drawing.Color.Black;
             this.btnDelete.Location = new System.Drawing.Point(270, 74);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(45, 21);
             this.btnDelete.TabIndex = 3;
@@ -168,7 +168,7 @@
             this.btnEdit.BackColor = System.Drawing.SystemColors.Menu;
             this.btnEdit.ForeColor = System.Drawing.Color.Black;
             this.btnEdit.Location = new System.Drawing.Point(270, 106);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(2);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(45, 21);
             this.btnEdit.TabIndex = 4;
@@ -181,7 +181,7 @@
             this.btnAdd.BackColor = System.Drawing.SystemColors.Menu;
             this.btnAdd.ForeColor = System.Drawing.Color.Black;
             this.btnAdd.Location = new System.Drawing.Point(270, 43);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(45, 21);
             this.btnAdd.TabIndex = 2;
@@ -193,9 +193,9 @@
             // 
             this.groupBox1.Controls.Add(this.lvwCourse);
             this.groupBox1.Location = new System.Drawing.Point(344, 34);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(233, 150);
             this.groupBox1.TabIndex = 25;
             this.groupBox1.TabStop = false;
@@ -205,7 +205,7 @@
             // 
             this.lvwCourse.HideSelection = false;
             this.lvwCourse.Location = new System.Drawing.Point(0, 16);
-            this.lvwCourse.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lvwCourse.Margin = new System.Windows.Forms.Padding(2);
             this.lvwCourse.Name = "lvwCourse";
             this.lvwCourse.Size = new System.Drawing.Size(232, 133);
             this.lvwCourse.TabIndex = 6;
@@ -217,9 +217,9 @@
             // 
             this.groupBox2.Controls.Add(this.lvwFaculty);
             this.groupBox2.Location = new System.Drawing.Point(344, 188);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(233, 150);
             this.groupBox2.TabIndex = 26;
             this.groupBox2.TabStop = false;
@@ -229,7 +229,7 @@
             // 
             this.lvwFaculty.HideSelection = false;
             this.lvwFaculty.Location = new System.Drawing.Point(0, 16);
-            this.lvwFaculty.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lvwFaculty.Margin = new System.Windows.Forms.Padding(2);
             this.lvwFaculty.Name = "lvwFaculty";
             this.lvwFaculty.Size = new System.Drawing.Size(232, 133);
             this.lvwFaculty.TabIndex = 7;
@@ -243,7 +243,7 @@
             this.txtCourse.Enabled = false;
             this.txtCourse.ForeColor = System.Drawing.SystemColors.InfoText;
             this.txtCourse.Location = new System.Drawing.Point(29, 103);
-            this.txtCourse.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCourse.Margin = new System.Windows.Forms.Padding(2);
             this.txtCourse.Name = "txtCourse";
             this.txtCourse.Size = new System.Drawing.Size(81, 20);
             this.txtCourse.TabIndex = 27;
@@ -254,7 +254,7 @@
             this.txtFaculty.Enabled = false;
             this.txtFaculty.ForeColor = System.Drawing.SystemColors.InfoText;
             this.txtFaculty.Location = new System.Drawing.Point(121, 103);
-            this.txtFaculty.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFaculty.Margin = new System.Windows.Forms.Padding(2);
             this.txtFaculty.Name = "txtFaculty";
             this.txtFaculty.Size = new System.Drawing.Size(135, 20);
             this.txtFaculty.TabIndex = 28;
@@ -291,7 +291,7 @@
             this.Controls.Add(this.lblClassName);
             this.Controls.Add(this.lblClassId);
             this.Controls.Add(this.pnlTitleBar);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmClass";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Class";

@@ -74,6 +74,7 @@ namespace project_winform
 
             // Style Title Bar
             pnlTitleBar.BackColor = ColorTheme.getTheme();
+            picLogo.Image = Image.FromFile(IconTheme.logo);
             picExit.Image = Image.FromFile(IconTheme.exit);
             picMinimize.Image = Image.FromFile(IconTheme.minimize);
 
@@ -270,10 +271,6 @@ namespace project_winform
             cboClass.Hide();
             picReloadCourse.Hide();
             picReloadFaculty.Hide();
-
-            btnAddCourse.Hide();
-            btnAddFaculty.Hide();
-            btnAddClass.Hide();
         }
 
         private void TypeUserStudent()
@@ -304,10 +301,6 @@ namespace project_winform
             cboClass.Show();
             picReloadCourse.Show();
             picReloadFaculty.Show();
-
-            btnAddCourse.Show();
-            btnAddFaculty.Show();
-            btnAddClass.Show();
         }
 
         #endregion
@@ -585,8 +578,6 @@ namespace project_winform
             frmClass.Show();
         }
 
-        #endregion
-
         private void btnShowSubject_Click(object sender, EventArgs e)
         {
             frmSubject frmSubject = new frmSubject();
@@ -605,5 +596,9 @@ namespace project_winform
             frmUserRegisterList frm = new frmUserRegisterList(id_user);
             frm.Show();
         }
+
+        #endregion
+
+
     }
 }

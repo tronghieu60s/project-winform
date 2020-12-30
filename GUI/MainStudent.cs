@@ -57,6 +57,7 @@ namespace project_winform
 
             // Style Title Bar
             pnlTitleBar.BackColor = ColorTheme.getTheme();
+            picLogo.Image = Image.FromFile(IconTheme.logo);
             picExit.Image = Image.FromFile(IconTheme.exit);
             picMinimize.Image = Image.FromFile(IconTheme.minimize);
 
