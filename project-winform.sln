@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "project-winform", "project-winform.csproj", "{A2AC0FEC-7C1A-451C-8CCA-3CD4A7975349}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{1DAD6E1E-49BC-42D1-8D53-0ADE0005B7F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A2AC0FEC-7C1A-451C-8CCA-3CD4A7975349}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A2AC0FEC-7C1A-451C-8CCA-3CD4A7975349}.Release|x64.ActiveCfg = Release|x64
 		{A2AC0FEC-7C1A-451C-8CCA-3CD4A7975349}.Release|x64.Build.0 = Release|x64
+		{1DAD6E1E-49BC-42D1-8D53-0ADE0005B7F1}.Debug|Any CPU.ActiveCfg = Debug
+		{1DAD6E1E-49BC-42D1-8D53-0ADE0005B7F1}.Debug|x64.ActiveCfg = Debug
+		{1DAD6E1E-49BC-42D1-8D53-0ADE0005B7F1}.Release|Any CPU.ActiveCfg = Release
+		{1DAD6E1E-49BC-42D1-8D53-0ADE0005B7F1}.Release|x64.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

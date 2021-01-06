@@ -269,6 +269,7 @@ namespace project_winform
             cboFaculty.Hide();
             lblClass.Hide();
             cboClass.Hide();
+            btnSubject.Hide();
             picReloadCourse.Hide();
             picReloadFaculty.Hide();
         }
@@ -299,6 +300,7 @@ namespace project_winform
             cboFaculty.Show();
             lblClass.Show();
             cboClass.Show();
+            btnSubject.Show();
             picReloadCourse.Show();
             picReloadFaculty.Show();
         }
