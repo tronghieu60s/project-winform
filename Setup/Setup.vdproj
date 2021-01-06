@@ -124,13 +124,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_39F1560AF3EA490FA2D388D1ACCAFE8A"
+        "OwnerKey" = "8:_54217EFE8FED4C1CBC48D98D52BC165E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_54217EFE8FED4C1CBC48D98D52BC165E"
+        "OwnerKey" = "8:_39F1560AF3EA490FA2D388D1ACCAFE8A"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -151,6 +151,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -180,6 +196,11 @@
                     {
                     "Name" = "8:Microsoft .NET Framework 4.5.2 (x86 and x64)"
                     "ProductCode" = "8:.NETFramework,Version=v4.5.2"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:SAP.CrystalReports14.NET.2.0"
+                    {
+                    "Name" = "8:SAP Crystal Reports Runtime Engine for .NET Framework"
+                    "ProductCode" = "8:SAP.CrystalReports14.NET.2.0"
                     }
                 }
             }
@@ -217,7 +238,7 @@
             "SourcePath" = "8:..\\assets\\exit.png"
             "TargetName" = "8:exit.png"
             "Tag" = "8:"
-            "Folder" = "8:_96780C376D42453EB6829CD7625C71D3"
+            "Folder" = "8:_AB64874E9DF94D3998991474B98C190B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -237,7 +258,7 @@
             "SourcePath" = "8:..\\assets\\minimize.png"
             "TargetName" = "8:minimize.png"
             "Tag" = "8:"
-            "Folder" = "8:_96780C376D42453EB6829CD7625C71D3"
+            "Folder" = "8:_AB64874E9DF94D3998991474B98C190B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -268,7 +289,7 @@
             "SourcePath" = "8:..\\lib\\Microsoft.VisualBasic.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_DD9EB011AA0C4061BE4F4B31AFF0B0C8"
+            "Folder" = "8:_4BD06F79A11A4209A113240498285376"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -288,7 +309,7 @@
             "SourcePath" = "8:..\\assets\\minimize_hover.png"
             "TargetName" = "8:minimize_hover.png"
             "Tag" = "8:"
-            "Folder" = "8:_96780C376D42453EB6829CD7625C71D3"
+            "Folder" = "8:_AB64874E9DF94D3998991474B98C190B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -308,7 +329,7 @@
             "SourcePath" = "8:..\\assets\\move.png"
             "TargetName" = "8:move.png"
             "Tag" = "8:"
-            "Folder" = "8:_96780C376D42453EB6829CD7625C71D3"
+            "Folder" = "8:_AB64874E9DF94D3998991474B98C190B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -328,7 +349,7 @@
             "SourcePath" = "8:..\\assets\\logout.png"
             "TargetName" = "8:logout.png"
             "Tag" = "8:"
-            "Folder" = "8:_96780C376D42453EB6829CD7625C71D3"
+            "Folder" = "8:_AB64874E9DF94D3998991474B98C190B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -348,7 +369,7 @@
             "SourcePath" = "8:..\\assets\\exit_hover.png"
             "TargetName" = "8:exit_hover.png"
             "Tag" = "8:"
-            "Folder" = "8:_96780C376D42453EB6829CD7625C71D3"
+            "Folder" = "8:_AB64874E9DF94D3998991474B98C190B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -379,7 +400,7 @@
             "SourcePath" = "8:..\\lib\\Microsoft.CSharp.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_DD9EB011AA0C4061BE4F4B31AFF0B0C8"
+            "Folder" = "8:_4BD06F79A11A4209A113240498285376"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -399,7 +420,7 @@
             "SourcePath" = "8:..\\assets\\reload.png"
             "TargetName" = "8:reload.png"
             "Tag" = "8:"
-            "Folder" = "8:_96780C376D42453EB6829CD7625C71D3"
+            "Folder" = "8:_AB64874E9DF94D3998991474B98C190B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -419,7 +440,7 @@
             "SourcePath" = "8:..\\assets\\move_hover.png"
             "TargetName" = "8:move_hover.png"
             "Tag" = "8:"
-            "Folder" = "8:_96780C376D42453EB6829CD7625C71D3"
+            "Folder" = "8:_AB64874E9DF94D3998991474B98C190B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -439,7 +460,7 @@
             "SourcePath" = "8:..\\assets\\logo.png"
             "TargetName" = "8:logo.png"
             "Tag" = "8:"
-            "Folder" = "8:_96780C376D42453EB6829CD7625C71D3"
+            "Folder" = "8:_AB64874E9DF94D3998991474B98C190B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -459,7 +480,7 @@
             "SourcePath" = "8:..\\assets\\bg.jpg"
             "TargetName" = "8:bg.jpg"
             "Tag" = "8:"
-            "Folder" = "8:_96780C376D42453EB6829CD7625C71D3"
+            "Folder" = "8:_AB64874E9DF94D3998991474B98C190B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -479,7 +500,7 @@
             "SourcePath" = "8:..\\assets\\resize_hover.png"
             "TargetName" = "8:resize_hover.png"
             "Tag" = "8:"
-            "Folder" = "8:_96780C376D42453EB6829CD7625C71D3"
+            "Folder" = "8:_AB64874E9DF94D3998991474B98C190B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -499,7 +520,7 @@
             "SourcePath" = "8:..\\assets\\resize.png"
             "TargetName" = "8:resize.png"
             "Tag" = "8:"
-            "Folder" = "8:_96780C376D42453EB6829CD7625C71D3"
+            "Folder" = "8:_AB64874E9DF94D3998991474B98C190B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -530,7 +551,7 @@
             "SourcePath" = "8:..\\lib\\MySql.Data.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_DD9EB011AA0C4061BE4F4B31AFF0B0C8"
+            "Folder" = "8:_4BD06F79A11A4209A113240498285376"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -550,7 +571,7 @@
             "SourcePath" = "8:..\\assets\\project-management.ico"
             "TargetName" = "8:project-management.ico"
             "Tag" = "8:"
-            "Folder" = "8:_96780C376D42453EB6829CD7625C71D3"
+            "Folder" = "8:_AB64874E9DF94D3998991474B98C190B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -592,15 +613,26 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
-                    "{9EF0B969-E518-4E46-987F-47570745A589}:_96780C376D42453EB6829CD7625C71D3"
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_4BD06F79A11A4209A113240498285376"
                     {
-                    "Name" = "8:assets"
+                    "Name" = "8:Students Management"
                     "AlwaysCreate" = "11:FALSE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
-                    "Property" = "8:_4E64F161E6D845258F0B9FE0E02E1F11"
+                    "Property" = "8:_A3A651F7BE64403A8EAB8401276AE741"
                         "Folders"
                         {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_AB64874E9DF94D3998991474B98C190B"
+                            {
+                            "Name" = "8:assets"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_4E64F161E6D845258F0B9FE0E02E1F11"
+                                "Folders"
+                                {
+                                }
+                            }
                         }
                     }
                 }
@@ -633,7 +665,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Setup"
         "ProductCode" = "8:{BA79360E-1048-4FCE-B98F-8BFD5A43E3D0}"
-        "PackageCode" = "8:{89B2D64D-3772-40B6-9773-AD38A2FFC16B}"
+        "PackageCode" = "8:{654D8235-E84F-4D26-81A5-7F9A11A57293}"
         "UpgradeCode" = "8:{9FB9E007-75E9-4F3E-8A61-4EDD4026F81D}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -1154,10 +1186,10 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_1E7D3C38D99C4A1099922B8D9A2E287D"
             {
-            "SourcePath" = "8:..\\obj\\Release\\project-winform.exe"
+            "SourcePath" = "8:..\\obj\\x64\\Release\\project-winform.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_DD9EB011AA0C4061BE4F4B31AFF0B0C8"
+            "Folder" = "8:_4BD06F79A11A4209A113240498285376"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
