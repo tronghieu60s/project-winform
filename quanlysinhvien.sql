@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 30, 2020 lúc 02:14 AM
+-- Thời gian đã tạo: Th1 13, 2021 lúc 04:01 PM
 -- Phiên bản máy phục vụ: 10.4.11-MariaDB
 -- Phiên bản PHP: 7.4.2
 
@@ -53,7 +53,7 @@ DELETE FROM `courses` WHERE `courses`.`id_course` = id_course$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteFacultyWithId` (IN `id_faculty` VARCHAR(10))  NO SQL
 DELETE FROM `faculties` WHERE `faculties`.`id_faculty` = id_faculty$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteRegisterSubjectWithId` (IN `id_userFROM ``registers_user_subject`` WHERE ``registers_user_subject``.``id_user`` = @id_user AND ``registers_user_subject``.``id_subject`` = @id_subject` VARCHAR(10), IN `id_subject` VARCHAR(10))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteRegisterSubjectWithId` (IN `id_user` VARCHAR(10), IN `id_subject` VARCHAR(10))  NO SQL
 DELETE FROM `registers_user_subject` WHERE `registers_user_subject`.`id_user` = id_user AND `registers_user_subject`.`id_subject` = id_subject$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteSubjectWithId` (IN `id_subjects` VARCHAR(10))  NO SQL
@@ -136,6 +136,7 @@ INSERT INTO `classes` (`id_class`, `id_course`, `id_faculty`, `class_name`, `dat
 ('CD19TA3', 'K19', 'FA01', 'CD19TA3', 2147483647),
 ('CD19TA4', 'K19', 'FA01', 'CD19TA4', 2147483647),
 ('CD19TA5', 'K19', 'FA01', 'CD19TA5', 2147483647),
+('CD19TA6', 'K19', 'FA01', 'CD19TA6', 2147483647),
 ('CD19TH1', 'K19', 'FA02', 'CD19TH1', 2147483647),
 ('CD19TH2', 'K19', 'FA02', 'CD19TH2', 2147483647),
 ('CD19TH3', 'K19', 'FA02', 'CD19TH3', 2147483647),
@@ -168,6 +169,7 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`id_course`, `course_name`, `date`) VALUES
+('K17', 'Khóa 17', 2147483647),
 ('K18', 'Khóa 18', 2147483647),
 ('K19', 'Khóa 19', 2147483647),
 ('K20', 'Khóa 20', 2147483647);
@@ -191,7 +193,7 @@ CREATE TABLE `faculties` (
 INSERT INTO `faculties` (`id_faculty`, `faculty_name`, `date`) VALUES
 ('FA01', 'Tiếng Anh', 2147483647),
 ('FA02', 'Tiếng Hàn', 2147483647),
-('FA03', 'Tiếng Nhật', 2147483647);
+('FA03', 'Tiếng Nhật Ngữ', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -204,6 +206,15 @@ CREATE TABLE `registers_user_subject` (
   `id_subject` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `date` int(11) NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `registers_user_subject`
+--
+
+INSERT INTO `registers_user_subject` (`id_user`, `id_subject`, `date`) VALUES
+('SD34114', 'MH01', 2147483647),
+('SD34114', 'MH02', 2147483647),
+('SD98698', 'MH02', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -230,7 +241,9 @@ CREATE TABLE `subjects` (
 
 INSERT INTO `subjects` (`id_subjects`, `subject_name`, `credit`, `information`, `lecturer_name`, `start_day`, `end_day`, `id_course`, `id_faculty`, `date`) VALUES
 ('123', 'Lập Trình Ứng Dụng', 3, '12345', 'Phan Thị Thể', '2020-12-18 00:00:00', '2020-12-18 00:00:00', 'K18', 'FA01', 2147483647),
-('43224', 'Lập Trình App', 4, '', 'AAAA', '2020-12-18 00:00:00', '2020-12-18 00:00:00', 'K18', 'FA01', 2147483647);
+('43224', 'Lập Trình App', 4, '', 'Trần Dần', '2020-12-18 00:00:00', '2020-12-18 00:00:00', 'K18', 'FA01', 2147483647),
+('MH01', 'Tieng nhat', 3, 'mon nhat ngu', 'nhan', '2021-01-13 00:00:00', '2021-01-30 00:00:00', 'K20', 'FA03', 2147483647),
+('MH02', 'Tieng nhat 2', 3, 'mon nhat ngu 2', 'nhan', '2021-01-13 00:00:00', '2021-02-05 00:00:00', 'K20', 'FA03', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -253,28 +266,30 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `password`, `name`, `birthday`, `id_class`, `date`) VALUES
 ('ADMIN', 'DVOZUIQnznlVbNpxkYAgwejRW1M=', 'Trần Trọng Hiếu', '2020-12-17', NULL, '2020-11-30 21:53:48'),
-('SD11089', 'DVOZUIQnznlVbNpxkYAgwejRW1M=', 'Sử Bình', '2020-12-01', 'CD19TA3', '2020-12-05 20:40:10'),
-('SD11529', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Ung Khúc Lan', '2020-12-01', 'CD20TN6', '2020-12-05 20:43:20'),
-('SD11993', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Lục Nhật Minh', '2020-12-01', 'CD19TA3', '2020-12-05 20:40:24'),
-('SD17436', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Lục Thảo', '2020-12-01', 'CD20TH1', '2020-12-05 20:41:00'),
-('SD17833', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Bình Hạ', '2020-12-01', 'CD19TA1', '2020-12-05 20:39:47'),
+('SD11540', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Âu Nguyệt', '2020-12-01', 'CD20TA3', '2021-01-13 15:26:11'),
 ('SD22440', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Âu Nguyệt', '2020-12-01', 'CD20TA3', '2020-12-05 20:43:33'),
-('SD29707', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Trần Diễm Chiêu', '2020-12-01', 'CD20TN4', '2020-12-05 20:42:19'),
+('SD24065', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Bạch Uyên Diễm', '2020-12-01', 'CD20TN5', '2021-01-13 13:10:54'),
+('SD26265', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Âu Nguyệt', '2020-12-01', 'CD20TA3', '2021-01-13 15:26:11'),
+('SD28478', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Bạch Uyên Diễm', '2020-12-01', 'CD20TN5', '2021-01-13 13:10:55'),
 ('SD30440', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Bạch Uyên Diễm', '2020-12-01', 'CD20TN5', '2020-12-05 20:42:55'),
-('SD40763', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Âu Nguyệt', '2020-12-01', 'CD20TN1', '2020-12-05 20:41:52'),
-('SD42648', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Khuất Phúc', '2020-12-01', 'CD19TA1', '2020-12-05 20:39:34'),
+('SD30813', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Âu Nguyệt', '2020-12-01', 'CD20TA3', '2021-01-06 14:13:08'),
+('SD34114', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Bạch Uyên Diễm', '2020-12-01', 'CD20TN5', '2021-01-13 15:26:11'),
+('SD36624', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Âu Nguyệt', '2020-12-01', 'CD20TA3', '2021-01-13 13:10:54'),
+('SD38196', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Lô Hải Lam', '2020-12-01', 'CD20TN4', '2021-01-13 13:10:55'),
+('SD43832', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Âu Nguyệt', '2020-12-01', 'CD20TA3', '2021-01-13 15:26:11'),
+('SD50350', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Bạch Uyên Diễm', '2020-12-01', 'CD20TN5', '2021-01-06 14:13:13'),
+('SD56688', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Đặng Uyển Nhi', '2020-12-01', 'CD20TN5', '2021-01-13 15:26:11'),
+('SD59198', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Âu Nguyệt', '2020-12-01', 'CD20TA3', '2021-01-13 13:10:54'),
 ('SD63382', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Lô Hải Lam', '2020-12-01', 'CD20TN4', '2020-12-05 20:42:25'),
-('SD69074', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Bình Hạ', '2020-12-01', 'CD19TA1', '2020-12-05 20:39:54'),
+('SD65778', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Đặng Uyển Nhi', '2020-12-01', 'CD20TN5', '2021-01-13 13:10:55'),
+('SD66406', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Bạch Uyên Diễm', '2020-12-01', 'CD20TN5', '2021-01-13 15:26:11'),
 ('SD70101', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Đặng Uyển Nhi', '2020-12-01', 'CD20TN5', '2020-12-05 20:43:02'),
-('SD74038', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Phi Xuân Mai', '2020-12-01', 'CD19TA4', '2020-12-05 20:40:37'),
-('SD74836', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Khúc Lan', '2020-12-01', 'CD20TN3', '2020-12-05 20:42:02'),
+('SD71413', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Đặng Uyển Nhi', '2020-12-01', 'CD20TN5', '2021-01-13 15:26:11'),
+('SD76124', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Âu Nguyệt', '2020-12-01', 'CD20TA3', '2021-01-13 15:26:11'),
 ('SD79060', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Liễu Đài', '2020-12-01', 'CD20TA3', '2020-12-05 20:42:09'),
-('SD83814', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Nhâm Kiếm', '2020-12-01', 'CD20TN6', '2020-12-05 20:41:25'),
-('SD84969', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Ngô Hợp', '2020-12-01', 'CD20TH1', '2020-12-05 20:41:06'),
-('SD86310', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Cái Liên', '2020-12-01', 'CD20TN3', '2020-12-05 20:43:13'),
-('SD91688', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Lã Cảnh Ẩn', '2020-12-01', 'CD20TN2', '2020-12-05 20:41:43'),
-('SD92446', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Lâm Huynh', '2020-12-01', 'CD20TN2', '2020-12-05 20:41:19'),
-('SD95015', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Vũ Đan', '2020-12-01', 'CD20TN2', '2020-12-05 20:41:36');
+('SD83972', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Bạch Uyên Diễm', '2020-12-01', 'CD20TN5', '2021-01-13 15:26:11'),
+('SD96828', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Liễu Đài', '2020-12-01', 'CD20TA3', '2021-01-13 15:26:11'),
+('SD98698', 'btWDPPNShuv4Zit7WUnw10K77D8=', 'Bạch Uyên Diễm', '2020-12-01', 'CD20TN5', '2021-01-13 15:26:11');
 
 --
 -- Chỉ mục cho các bảng đã đổ
