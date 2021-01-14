@@ -24,7 +24,7 @@ namespace project_winform.DAL
             string name = subject["subject_name"].ToString();
             int credit = int.Parse(subject["credit"].ToString());
             string information = subject["information"].ToString();
-            User lecturer = new User(subject["id_lecturer"].ToString(), "");
+            User lecturer = new User(subject["id_lecturer"].ToString(), "", subject["name"].ToString(), new DateTime(), new Class());
             DateTime startDay = DateTime.Parse(sStartDay);
             DateTime endDay = DateTime.Parse(sEndDay);
             Faculty faculty = new Faculty(subject["id_faculty"].ToString(), subject["faculty_name"].ToString());
@@ -46,7 +46,7 @@ namespace project_winform.DAL
             string name = subject["subject_name"].ToString();
             int credit = int.Parse(subject["credit"].ToString());
             string information = subject["information"].ToString();
-            User lecturer = new User(subject["id_lecturer"].ToString(), "");
+            User lecturer = new User(subject["id_lecturer"].ToString(), "", subject["name"].ToString(), new DateTime(), new Class());
             DateTime startDay = DateTime.Parse(sStartDay);
             DateTime endDay = DateTime.Parse(sEndDay);
             Faculty faculty = new Faculty(subject["id_faculty"].ToString(), "");
