@@ -101,7 +101,6 @@
     <Compile Include="CTO\Class.cs" />
     <Compile Include="CTO\Course.cs" />
     <Compile Include="CTO\Faculty.cs" />
-    <Compile Include="CTO\Lecturer.cs" />
     <Compile Include="CTO\RegisterSubject.cs" />
     <Compile Include="CTO\Subject.cs" />
     <Compile Include="CTO\User.cs" />

@@ -30,7 +30,7 @@ namespace project_winform.BUS
             item.SubItems.Add(subject.Name);
             item.SubItems.Add(subject.Credit.ToString());
             item.SubItems.Add(subject.Information);
-            item.SubItems.Add(subject.LecturerName);
+            item.SubItems.Add(subject.Lecturer.Name);
             item.SubItems.Add(subject.StartDay.ToString("dd/MM/yyyy"));
             item.SubItems.Add(subject.EndDay.ToString("dd/MM/yyyy"));
             item.SubItems.Add(subject.Course.IdCourse);

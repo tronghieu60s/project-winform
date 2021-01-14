@@ -36,6 +36,14 @@ namespace project_winform
             lvwFaculty.Columns.Add("Mã Khoa", 80);
             lvwFaculty.Columns.Add("Tên Khoa", 148);
 
+            cboLecturer.DisplayMember = "Text";
+            cboLecturer.ValueMember = "Value";
+
+            cboLecturer.Format += (s, e) =>
+            {
+                e.Value = ((User)e.Value).Name;
+            };
+
             #endregion
 
             #region * UI STYLE
@@ -63,6 +71,7 @@ namespace project_winform
             CourseBUS.RenderListViewDataCourses(lvwCourse);
             FacultyBUS.RenderListViewDataFaculty(lvwFaculty);
             SubjectBUS.RenderListViewFromState(lvwSubject);
+            UserBUS.RenderComboBoxDataLecturer(cboLecturer);
 
             // Select Default
             if (lvwCourse.Items.Count > 0)
@@ -178,12 +187,12 @@ namespace project_winform
             string name = txtName.Text;
             int.TryParse(txtCredit.Text, out credit);
             string information = txtInformation.Text;
-            string lecturerName = txtLecturerName.Text;
+            User lecturer = ((User)cboLecturer.SelectedItem);
             DateTime startDay = DateTime.Parse(dtpStartDay.Text);
             DateTime endDay = DateTime.Parse(dtpEndDay.Text);
             Faculty faculty = new Faculty(txtFaculty.Text, "");
             Course course = new Course(txtCourse.Text, "");
-            Subject subject = new Subject(idSubject, name, credit, information, lecturerName, startDay, endDay, faculty, course);
+            Subject subject = new Subject(idSubject, name, credit, information, lecturer, startDay, endDay, faculty, course);
             SubjectBUS.HandleAddSubject(lvwSubject, subject);
         }
 
@@ -210,12 +219,12 @@ namespace project_winform
             string name = txtName.Text;
             int credit = int.Parse(txtCredit.Text);
             string information = txtInformation.Text;
-            string lecturerName = txtLecturerName.Text;
+            User lecturer = ((User)cboLecturer.SelectedItem);
             DateTime startDay = DateTime.Parse(dtpStartDay.Text);
             DateTime endDay = DateTime.Parse(dtpEndDay.Text);
             Faculty faculty = new Faculty(txtFaculty.Text, "");
             Course course = new Course(txtCourse.Text, "");
-            Subject subject = new Subject(idSubject, name, credit, information, lecturerName, startDay, endDay, faculty, course);
+            Subject subject = new Subject(idSubject, name, credit, information, lecturer, startDay, endDay, faculty, course);
             SubjectBUS.HandleUpdateSubject(lvwSubject, subject);
         }
 
@@ -254,7 +263,7 @@ namespace project_winform
                 txtName.Text = item.SubItems[1].Text;
                 txtCredit.Text = item.SubItems[2].Text;
                 txtInformation.Text = item.SubItems[3].Text;
-                txtLecturerName.Text = item.SubItems[4].Text;
+                cboLecturer.Text = item.SubItems[4].Text;
                 dtpStartDay.Value = DateTime.ParseExact(item.SubItems[5].Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 dtpEndDay.Value = DateTime.ParseExact(item.SubItems[6].Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 txtCourse.Text = item.SubItems[7].Text;

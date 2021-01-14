@@ -263,5 +263,16 @@ namespace project_winform.BUS
             if (count == lvwExcel.Items.Count)
                 MessageBox.Show(MessageBoxText.ImportSuccess + count, MessageBoxText.CaptionSuccess, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        public static void RenderComboBoxDataLecturer(ComboBox cboLecturer)
+        {
+            cboLecturer.Items.Clear();
+            List<User> users = UserDAL.GetUsers();
+            foreach (User user in users)
+            {
+                if (user.IdUser.Substring(0, 2) == Config.typeLecturer)
+                cboLecturer.Items.Add(user);
+            }
+        }
     }
 }

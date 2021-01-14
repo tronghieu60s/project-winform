@@ -24,12 +24,12 @@ namespace project_winform.DAL
             string name = subject["subject_name"].ToString();
             int credit = int.Parse(subject["credit"].ToString());
             string information = subject["information"].ToString();
-            string lecturerName = subject["lecturer_name"].ToString();
+            User lecturer = new User(subject["id_lecturer"].ToString(), "");
             DateTime startDay = DateTime.Parse(sStartDay);
             DateTime endDay = DateTime.Parse(sEndDay);
             Faculty faculty = new Faculty(subject["id_faculty"].ToString(), subject["faculty_name"].ToString());
             Course course = new Course(subject["id_course"].ToString(), subject["course_name"].ToString());
-            return new Subject(idSubject, name, credit, information, lecturerName, startDay, endDay, faculty, course);
+            return new Subject(idSubject, name, credit, information, lecturer, startDay, endDay, faculty, course);
         }
 
         private static Subject GetSubjectRegisterFromDataRow(DataRow subject)
@@ -46,12 +46,12 @@ namespace project_winform.DAL
             string name = subject["subject_name"].ToString();
             int credit = int.Parse(subject["credit"].ToString());
             string information = subject["information"].ToString();
-            string lecturerName = subject["lecturer_name"].ToString();
+            User lecturer = new User(subject["id_lecturer"].ToString(), "");
             DateTime startDay = DateTime.Parse(sStartDay);
             DateTime endDay = DateTime.Parse(sEndDay);
             Faculty faculty = new Faculty(subject["id_faculty"].ToString(), "");
             Course course = new Course(subject["id_course"].ToString(), "");
-            return new Subject(idSubject, name, credit, information, lecturerName, startDay, endDay, faculty, course);
+            return new Subject(idSubject, name, credit, information, lecturer, startDay, endDay, faculty, course);
         }
 
         public static DataTable GetSubjectsReport()
@@ -138,7 +138,7 @@ namespace project_winform.DAL
                 command.Parameters.Add(new MySqlParameter("@subject_name", subject.Name));
                 command.Parameters.Add(new MySqlParameter("@credit", subject.Credit));
                 command.Parameters.Add(new MySqlParameter("@information", subject.Information));
-                command.Parameters.Add(new MySqlParameter("@lecturer_name", subject.LecturerName));
+                command.Parameters.Add(new MySqlParameter("@id_lecturer", subject.Lecturer.IdUser));
                 command.Parameters.Add(new MySqlParameter("@start_day", subject.StartDay));
                 command.Parameters.Add(new MySqlParameter("@end_day", subject.EndDay));
                 command.Parameters.Add(new MySqlParameter("@id_course", subject.Course.IdCourse));
@@ -186,7 +186,7 @@ namespace project_winform.DAL
                 command.Parameters.Add(new MySqlParameter("@subject_name", subject.Name));
                 command.Parameters.Add(new MySqlParameter("@credit", subject.Credit));
                 command.Parameters.Add(new MySqlParameter("@information", subject.Information));
-                command.Parameters.Add(new MySqlParameter("@lecturer_name", subject.LecturerName));
+                command.Parameters.Add(new MySqlParameter("@id_lecturer", subject.Lecturer.IdUser));
                 command.Parameters.Add(new MySqlParameter("@start_day", subject.StartDay));
                 command.Parameters.Add(new MySqlParameter("@end_day", subject.EndDay));
                 command.Parameters.Add(new MySqlParameter("@id_course", subject.Course.IdCourse));
