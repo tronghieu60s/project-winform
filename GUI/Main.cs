@@ -215,10 +215,16 @@ namespace project_winform
         private void SelectTypeUser()
         {
             if (cboTypeUser.SelectedIndex == 0)
+            {
+                Control.typeSelect = Config.typeAdmin;
                 TypeUserAdmin();
+            }
             if (cboTypeUser.SelectedIndex == 1)
+            {
+                Control.typeSelect = Config.typeStudent;
                 TypeUserStudent();
-
+            }
+            
             UserBUS.RenderListViewDataUsersWithPermission(lvwMain);
             CountNumberListView();
         }

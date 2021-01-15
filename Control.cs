@@ -6,5 +6,6 @@ namespace project_winform
     class Control
     {
         static public User userLogin = null;
+        static public string typeSelect = "SD";
     }
 }

@@ -60,7 +60,7 @@ namespace project_winform
             picMinimize.Image = Image.FromFile(IconTheme.minimize);
 
             // Color Button Style
-            btnSubjectRegister.BackColor = ColorTheme.getTheme("primary");
+            //btnSubjectRegister.BackColor = ColorTheme.getTheme("primary");
             btnRegister.BackColor = ColorTheme.getTheme("primary");
             btnCancelRegister.BackColor = ColorTheme.getTheme("danger");
             #endregion

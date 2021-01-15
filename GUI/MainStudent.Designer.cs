@@ -62,7 +62,6 @@
             this.txtCancelIdRegister = new System.Windows.Forms.TextBox();
             this.txtCancelNameRegister = new System.Windows.Forms.TextBox();
             this.picPassWord = new System.Windows.Forms.PictureBox();
-            this.btnSubjectRegister = new System.Windows.Forms.Button();
             this.mnuStripListView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
@@ -76,10 +75,9 @@
             // lvwRegister
             // 
             this.lvwRegister.HideSelection = false;
-            this.lvwRegister.Location = new System.Drawing.Point(313, 64);
-            this.lvwRegister.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lvwRegister.Location = new System.Drawing.Point(470, 98);
             this.lvwRegister.Name = "lvwRegister";
-            this.lvwRegister.Size = new System.Drawing.Size(470, 173);
+            this.lvwRegister.Size = new System.Drawing.Size(703, 264);
             this.lvwRegister.TabIndex = 0;
             this.lvwRegister.UseCompatibleStateImageBehavior = false;
             this.lvwRegister.SelectedIndexChanged += new System.EventHandler(this.lvwRegister_SelectedIndexChanged);
@@ -90,79 +88,72 @@
             this.mnuStripListView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.xóaToolStripMenuItem});
             this.mnuStripListView.Name = "contextMenuStrip1";
-            this.mnuStripListView.Size = new System.Drawing.Size(95, 26);
+            this.mnuStripListView.Size = new System.Drawing.Size(116, 36);
             // 
             // xóaToolStripMenuItem
             // 
             this.xóaToolStripMenuItem.Name = "xóaToolStripMenuItem";
-            this.xóaToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
+            this.xóaToolStripMenuItem.Size = new System.Drawing.Size(115, 32);
             this.xóaToolStripMenuItem.Text = "Xóa";
             // 
             // dtpBirthday
             // 
             this.dtpBirthday.Enabled = false;
-            this.dtpBirthday.Location = new System.Drawing.Point(111, 92);
-            this.dtpBirthday.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpBirthday.Location = new System.Drawing.Point(166, 142);
             this.dtpBirthday.Name = "dtpBirthday";
-            this.dtpBirthday.Size = new System.Drawing.Size(118, 20);
+            this.dtpBirthday.Size = new System.Drawing.Size(175, 26);
             this.dtpBirthday.TabIndex = 9;
             // 
             // cboClass
             // 
             this.cboClass.Enabled = false;
             this.cboClass.FormattingEnabled = true;
-            this.cboClass.Location = new System.Drawing.Point(111, 177);
-            this.cboClass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboClass.Location = new System.Drawing.Point(166, 272);
             this.cboClass.Name = "cboClass";
-            this.cboClass.Size = new System.Drawing.Size(125, 21);
+            this.cboClass.Size = new System.Drawing.Size(186, 28);
             this.cboClass.TabIndex = 14;
             // 
             // cboFaculty
             // 
             this.cboFaculty.Enabled = false;
             this.cboFaculty.FormattingEnabled = true;
-            this.cboFaculty.Location = new System.Drawing.Point(111, 148);
-            this.cboFaculty.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboFaculty.Location = new System.Drawing.Point(166, 228);
             this.cboFaculty.Name = "cboFaculty";
-            this.cboFaculty.Size = new System.Drawing.Size(144, 21);
+            this.cboFaculty.Size = new System.Drawing.Size(214, 28);
             this.cboFaculty.TabIndex = 12;
             // 
             // cboCourse
             // 
             this.cboCourse.Enabled = false;
             this.cboCourse.FormattingEnabled = true;
-            this.cboCourse.Location = new System.Drawing.Point(111, 120);
-            this.cboCourse.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboCourse.Location = new System.Drawing.Point(166, 185);
             this.cboCourse.Name = "cboCourse";
-            this.cboCourse.Size = new System.Drawing.Size(105, 21);
+            this.cboCourse.Size = new System.Drawing.Size(156, 28);
             this.cboCourse.TabIndex = 10;
             // 
             // txtFullName
             // 
             this.txtFullName.Enabled = false;
-            this.txtFullName.Location = new System.Drawing.Point(111, 65);
-            this.txtFullName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFullName.Location = new System.Drawing.Point(166, 100);
             this.txtFullName.Name = "txtFullName";
             this.txtFullName.ReadOnly = true;
-            this.txtFullName.Size = new System.Drawing.Size(145, 20);
+            this.txtFullName.Size = new System.Drawing.Size(216, 26);
             this.txtFullName.TabIndex = 8;
             // 
             // txtCodeNum
             // 
             this.txtCodeNum.Enabled = false;
-            this.txtCodeNum.Location = new System.Drawing.Point(111, 38);
-            this.txtCodeNum.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCodeNum.Location = new System.Drawing.Point(166, 58);
             this.txtCodeNum.Name = "txtCodeNum";
             this.txtCodeNum.ReadOnly = true;
-            this.txtCodeNum.Size = new System.Drawing.Size(105, 20);
+            this.txtCodeNum.Size = new System.Drawing.Size(156, 26);
             this.txtCodeNum.TabIndex = 6;
             // 
             // picMinimize
             // 
-            this.picMinimize.Location = new System.Drawing.Point(746, 6);
-            this.picMinimize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picMinimize.Location = new System.Drawing.Point(1119, 9);
             this.picMinimize.Name = "picMinimize";
-            this.picMinimize.Size = new System.Drawing.Size(18, 18);
+            this.picMinimize.Size = new System.Drawing.Size(27, 28);
             this.picMinimize.TabIndex = 0;
             this.picMinimize.TabStop = false;
             this.picMinimize.Click += new System.EventHandler(this.picMinimize_Click);
@@ -171,10 +162,9 @@
             // 
             // picExit
             // 
-            this.picExit.Location = new System.Drawing.Point(774, 6);
-            this.picExit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picExit.Location = new System.Drawing.Point(1161, 9);
             this.picExit.Name = "picExit";
-            this.picExit.Size = new System.Drawing.Size(18, 18);
+            this.picExit.Size = new System.Drawing.Size(27, 28);
             this.picExit.TabIndex = 0;
             this.picExit.TabStop = false;
             this.picExit.Click += new System.EventHandler(this.picExit_Click);
@@ -196,11 +186,9 @@
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.lblFullName);
             this.groupBox2.Controls.Add(this.lblCodeNum);
-            this.groupBox2.Location = new System.Drawing.Point(9, 145);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Location = new System.Drawing.Point(14, 223);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox2.Size = new System.Drawing.Size(295, 222);
+            this.groupBox2.Size = new System.Drawing.Size(442, 342);
             this.groupBox2.TabIndex = 32;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông Tin Chi Tiết";
@@ -208,69 +196,62 @@
             // lblFaculty
             // 
             this.lblFaculty.AutoSize = true;
-            this.lblFaculty.Location = new System.Drawing.Point(34, 150);
-            this.lblFaculty.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFaculty.Location = new System.Drawing.Point(51, 231);
             this.lblFaculty.Name = "lblFaculty";
-            this.lblFaculty.Size = new System.Drawing.Size(35, 13);
+            this.lblFaculty.Size = new System.Drawing.Size(50, 20);
             this.lblFaculty.TabIndex = 0;
             this.lblFaculty.Text = "Khoa:";
             // 
             // lblClass
             // 
             this.lblClass.AutoSize = true;
-            this.lblClass.Location = new System.Drawing.Point(34, 179);
-            this.lblClass.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblClass.Location = new System.Drawing.Point(51, 275);
             this.lblClass.Name = "lblClass";
-            this.lblClass.Size = new System.Drawing.Size(28, 13);
+            this.lblClass.Size = new System.Drawing.Size(40, 20);
             this.lblClass.TabIndex = 0;
             this.lblClass.Text = "Lớp:";
             // 
             // lblCourse
             // 
             this.lblCourse.AutoSize = true;
-            this.lblCourse.Location = new System.Drawing.Point(34, 122);
-            this.lblCourse.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblCourse.Location = new System.Drawing.Point(51, 188);
             this.lblCourse.Name = "lblCourse";
-            this.lblCourse.Size = new System.Drawing.Size(35, 13);
+            this.lblCourse.Size = new System.Drawing.Size(50, 20);
             this.lblCourse.TabIndex = 0;
             this.lblCourse.Text = "Khóa:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(34, 96);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(51, 148);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 13);
+            this.label4.Size = new System.Drawing.Size(85, 20);
             this.label4.TabIndex = 0;
             this.label4.Text = "Ngày Sinh:";
             // 
             // lblFullName
             // 
             this.lblFullName.AutoSize = true;
-            this.lblFullName.Location = new System.Drawing.Point(34, 67);
-            this.lblFullName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFullName.Location = new System.Drawing.Point(51, 103);
             this.lblFullName.Name = "lblFullName";
-            this.lblFullName.Size = new System.Drawing.Size(46, 13);
+            this.lblFullName.Size = new System.Drawing.Size(65, 20);
             this.lblFullName.TabIndex = 0;
             this.lblFullName.Text = "Họ Tên:";
             // 
             // lblCodeNum
             // 
             this.lblCodeNum.AutoSize = true;
-            this.lblCodeNum.Location = new System.Drawing.Point(34, 40);
-            this.lblCodeNum.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblCodeNum.Location = new System.Drawing.Point(51, 62);
             this.lblCodeNum.Name = "lblCodeNum";
-            this.lblCodeNum.Size = new System.Drawing.Size(41, 13);
+            this.lblCodeNum.Size = new System.Drawing.Size(59, 20);
             this.lblCodeNum.TabIndex = 0;
             this.lblCodeNum.Text = "Mã Số:";
             // 
             // picLogout
             // 
-            this.picLogout.Location = new System.Drawing.Point(245, 67);
-            this.picLogout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picLogout.Location = new System.Drawing.Point(368, 103);
             this.picLogout.Name = "picLogout";
-            this.picLogout.Size = new System.Drawing.Size(17, 16);
+            this.picLogout.Size = new System.Drawing.Size(26, 25);
             this.picLogout.TabIndex = 31;
             this.picLogout.TabStop = false;
             this.picLogout.Click += new System.EventHandler(this.picLogout_Click);
@@ -279,10 +260,9 @@
             // 
             this.lblWelcomeSlogan.AutoSize = true;
             this.lblWelcomeSlogan.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWelcomeSlogan.Location = new System.Drawing.Point(6, 60);
-            this.lblWelcomeSlogan.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblWelcomeSlogan.Location = new System.Drawing.Point(9, 92);
             this.lblWelcomeSlogan.Name = "lblWelcomeSlogan";
-            this.lblWelcomeSlogan.Size = new System.Drawing.Size(225, 28);
+            this.lblWelcomeSlogan.Size = new System.Drawing.Size(320, 36);
             this.lblWelcomeSlogan.TabIndex = 30;
             this.lblWelcomeSlogan.Text = "Bạn đang đăng nhập với dữ liệu của học sinh\r\nbạn có thể đăng kí môn ở đây.\r\n";
             // 
@@ -290,10 +270,9 @@
             // 
             this.lblWelcome.AutoSize = true;
             this.lblWelcome.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWelcome.Location = new System.Drawing.Point(6, 40);
-            this.lblWelcome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblWelcome.Location = new System.Drawing.Point(9, 62);
             this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(165, 16);
+            this.lblWelcome.Size = new System.Drawing.Size(225, 24);
             this.lblWelcome.TabIndex = 28;
             this.lblWelcome.Text = "Xin chào Administrator";
             // 
@@ -302,30 +281,27 @@
             this.pnlTitleBar.Controls.Add(this.picLogo);
             this.pnlTitleBar.Controls.Add(this.picMinimize);
             this.pnlTitleBar.Controls.Add(this.picExit);
-            this.pnlTitleBar.Location = new System.Drawing.Point(-11, 0);
-            this.pnlTitleBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlTitleBar.Location = new System.Drawing.Point(-16, 0);
             this.pnlTitleBar.Name = "pnlTitleBar";
-            this.pnlTitleBar.Size = new System.Drawing.Size(828, 30);
+            this.pnlTitleBar.Size = new System.Drawing.Size(1242, 46);
             this.pnlTitleBar.TabIndex = 27;
             this.pnlTitleBar.Paint += new System.Windows.Forms.PaintEventHandler(this.frmMain_Paint);
             this.pnlTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlTitleBar_MouseDown);
             // 
             // picLogo
             // 
-            this.picLogo.Location = new System.Drawing.Point(22, 6);
-            this.picLogo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picLogo.Location = new System.Drawing.Point(33, 9);
             this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(18, 18);
+            this.picLogo.Size = new System.Drawing.Size(27, 28);
             this.picLogo.TabIndex = 48;
             this.picLogo.TabStop = false;
             // 
             // lvwRegistered
             // 
             this.lvwRegistered.HideSelection = false;
-            this.lvwRegistered.Location = new System.Drawing.Point(313, 271);
-            this.lvwRegistered.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lvwRegistered.Location = new System.Drawing.Point(470, 417);
             this.lvwRegistered.Name = "lvwRegistered";
-            this.lvwRegistered.Size = new System.Drawing.Size(470, 173);
+            this.lvwRegistered.Size = new System.Drawing.Size(703, 264);
             this.lvwRegistered.TabIndex = 39;
             this.lvwRegistered.UseCompatibleStateImageBehavior = false;
             this.lvwRegistered.SelectedIndexChanged += new System.EventHandler(this.lvwRegistered_SelectedIndexChanged);
@@ -333,47 +309,42 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(310, 45);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(465, 69);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 13);
+            this.label1.Size = new System.Drawing.Size(146, 20);
             this.label1.TabIndex = 40;
             this.label1.Text = "Môn Chưa Đăng Ký";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(310, 252);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(465, 388);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 13);
+            this.label2.Size = new System.Drawing.Size(129, 20);
             this.label2.TabIndex = 41;
             this.label2.Text = "Môn Đã Đăng Ký";
             // 
             // txtNameRegister
             // 
             this.txtNameRegister.Enabled = false;
-            this.txtNameRegister.Location = new System.Drawing.Point(589, 40);
-            this.txtNameRegister.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNameRegister.Location = new System.Drawing.Point(884, 62);
             this.txtNameRegister.Name = "txtNameRegister";
-            this.txtNameRegister.Size = new System.Drawing.Size(130, 20);
+            this.txtNameRegister.Size = new System.Drawing.Size(193, 26);
             this.txtNameRegister.TabIndex = 42;
             // 
             // txtIdRegister
             // 
             this.txtIdRegister.Enabled = false;
-            this.txtIdRegister.Location = new System.Drawing.Point(518, 40);
-            this.txtIdRegister.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtIdRegister.Location = new System.Drawing.Point(777, 62);
             this.txtIdRegister.Name = "txtIdRegister";
-            this.txtIdRegister.Size = new System.Drawing.Size(68, 20);
+            this.txtIdRegister.Size = new System.Drawing.Size(100, 26);
             this.txtIdRegister.TabIndex = 28;
             // 
             // btnRegister
             // 
-            this.btnRegister.Location = new System.Drawing.Point(721, 38);
-            this.btnRegister.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRegister.Location = new System.Drawing.Point(1082, 58);
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(60, 23);
+            this.btnRegister.Size = new System.Drawing.Size(90, 35);
             this.btnRegister.TabIndex = 44;
             this.btnRegister.Text = "Đăng Ký";
             this.btnRegister.UseVisualStyleBackColor = true;
@@ -381,10 +352,9 @@
             // 
             // btnCancelRegister
             // 
-            this.btnCancelRegister.Location = new System.Drawing.Point(692, 246);
-            this.btnCancelRegister.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancelRegister.Location = new System.Drawing.Point(1038, 378);
             this.btnCancelRegister.Name = "btnCancelRegister";
-            this.btnCancelRegister.Size = new System.Drawing.Size(89, 23);
+            this.btnCancelRegister.Size = new System.Drawing.Size(134, 35);
             this.btnCancelRegister.TabIndex = 47;
             this.btnCancelRegister.Text = "Hủy Đăng Ký";
             this.btnCancelRegister.UseVisualStyleBackColor = true;
@@ -393,47 +363,33 @@
             // txtCancelIdRegister
             // 
             this.txtCancelIdRegister.Enabled = false;
-            this.txtCancelIdRegister.Location = new System.Drawing.Point(489, 248);
-            this.txtCancelIdRegister.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCancelIdRegister.Location = new System.Drawing.Point(734, 382);
             this.txtCancelIdRegister.Name = "txtCancelIdRegister";
-            this.txtCancelIdRegister.Size = new System.Drawing.Size(68, 20);
+            this.txtCancelIdRegister.Size = new System.Drawing.Size(100, 26);
             this.txtCancelIdRegister.TabIndex = 45;
             // 
             // txtCancelNameRegister
             // 
             this.txtCancelNameRegister.Enabled = false;
-            this.txtCancelNameRegister.Location = new System.Drawing.Point(559, 248);
-            this.txtCancelNameRegister.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCancelNameRegister.Location = new System.Drawing.Point(838, 382);
             this.txtCancelNameRegister.Name = "txtCancelNameRegister";
-            this.txtCancelNameRegister.Size = new System.Drawing.Size(130, 20);
+            this.txtCancelNameRegister.Size = new System.Drawing.Size(193, 26);
             this.txtCancelNameRegister.TabIndex = 46;
             // 
             // picPassWord
             // 
-            this.picPassWord.Location = new System.Drawing.Point(245, 44);
-            this.picPassWord.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picPassWord.Location = new System.Drawing.Point(368, 68);
             this.picPassWord.Name = "picPassWord";
-            this.picPassWord.Size = new System.Drawing.Size(17, 16);
+            this.picPassWord.Size = new System.Drawing.Size(26, 25);
             this.picPassWord.TabIndex = 48;
             this.picPassWord.TabStop = false;
             this.picPassWord.Click += new System.EventHandler(this.picPassWord_Click);
             // 
-            // btnSubjectRegister
-            // 
-            this.btnSubjectRegister.Location = new System.Drawing.Point(69, 373);
-            this.btnSubjectRegister.Name = "btnSubjectRegister";
-            this.btnSubjectRegister.Size = new System.Drawing.Size(176, 23);
-            this.btnSubjectRegister.TabIndex = 49;
-            this.btnSubjectRegister.Text = "Xem Môn Đã Đăng Kí";
-            this.btnSubjectRegister.UseVisualStyleBackColor = true;
-            this.btnSubjectRegister.Click += new System.EventHandler(this.btnSubjectRegister_Click);
-            // 
             // frmMainStudent
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 456);
-            this.Controls.Add(this.btnSubjectRegister);
+            this.ClientSize = new System.Drawing.Size(1188, 702);
             this.Controls.Add(this.picPassWord);
             this.Controls.Add(this.btnCancelRegister);
             this.Controls.Add(this.txtCancelIdRegister);
@@ -450,7 +406,6 @@
             this.Controls.Add(this.lblWelcomeSlogan);
             this.Controls.Add(this.lblWelcome);
             this.Controls.Add(this.pnlTitleBar);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmMainStudent";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainStudent";
@@ -504,6 +459,5 @@
         private System.Windows.Forms.TextBox txtCancelNameRegister;
         private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.PictureBox picPassWord;
-        private System.Windows.Forms.Button btnSubjectRegister;
     }
 }
